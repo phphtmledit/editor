@@ -1,0 +1,126 @@
+{
+  "version": "8.8.2",
+  "assets": [
+    {
+      "path": "tinymce.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 486491,
+      "sha256": "e68a8e0787cf2aafc7041c9141c8ec04019a7762f8ead6417061593be1219e9d"
+    },
+    {
+      "path": "license.md",
+      "kind": "vendor-byte-identical",
+      "bytes": 779,
+      "sha256": "b51d1c5ec53358d4d8745d1f6fcce764ce1bfaf82b254f6d501f42760678d4e0"
+    },
+    {
+      "path": "notices.txt",
+      "kind": "vendor-byte-identical",
+      "bytes": 453,
+      "sha256": "012d23ec45cd3d46c8ea5017774ad3fab9c38ec2b984bfcd29489d804d566dca"
+    },
+    {
+      "path": "themes/silver/theme.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 446315,
+      "sha256": "9702cda396b031988da9c922c9eae2be57ebe5455d33e4662f64241ffeda5182"
+    },
+    {
+      "path": "models/dom/model.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 95936,
+      "sha256": "c3321c3f9fe38550441922c64a8f8a358e660b25ccd4cd206cf73a4c13db3465"
+    },
+    {
+      "path": "plugins/lists/plugin.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 5001,
+      "sha256": "66d451d56c8f22bfd8f864b146dbf35851a8848dd8ab92c962bc988f59d145d5"
+    },
+    {
+      "path": "plugins/link/plugin.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 18679,
+      "sha256": "2694078aad82b21daaab1f469122d9e2e3675c42ffc8ebbedec2694e7ec9f5a4"
+    },
+    {
+      "path": "plugins/image/plugin.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 19063,
+      "sha256": "91fb5ecc1341997f45d7ef6904eddc1304c6cb7090cdb034c1c6c0d91ecad8b9"
+    },
+    {
+      "path": "plugins/table/plugin.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 46473,
+      "sha256": "c6250646b1f5df33993602fbd0156ce629b00b87532e3c0a0776e17dac864ed9"
+    },
+    {
+      "path": "plugins/charmap/plugin.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 11102,
+      "sha256": "fcec7012f02f28a9154d81b6a0877805b0a791a1eba9427a0deda6058483067c"
+    },
+    {
+      "path": "plugins/emoticons/plugin.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 6570,
+      "sha256": "b6216af035612be534757ffb0b78d10044c447ad7b5d8677ad1eae15abd29411"
+    },
+    {
+      "path": "plugins/emoticons/js/emojis.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 192805,
+      "sha256": "66f71a7fc7094165772664ff37a327c75090fbc646186b7e89c6e39d0676cdf1"
+    },
+    {
+      "path": "plugins/insertdatetime/plugin.min.js",
+      "kind": "vendor-byte-identical",
+      "bytes": 3033,
+      "sha256": "c2cf4c6da8d47af65eff9629bb9f60dcceebf9f093784d29b5421aa972d72db1"
+    },
+    {
+      "path": "skins/ui/oxide/skin.min.css",
+      "kind": "vendor-byte-identical",
+      "bytes": 178210,
+      "sha256": "098e47b9e8da9007d88464a24f80ab171bb5ec4821f5a840e5d84e9e80bb4550"
+    },
+    {
+      "path": "skins/ui/oxide/content.min.css",
+      "kind": "vendor-byte-identical",
+      "bytes": 43102,
+      "sha256": "b2430740ad7dfe91bab74cd0626d1330e813b643a0f3bfc0b496b122b8cf07ee"
+    },
+    {
+      "path": "skins/content/default/content.min.css",
+      "kind": "vendor-byte-identical",
+      "bytes": 1403,
+      "sha256": "8fbc7f18efefe59b8b7d692d25e0c4283aa4100eaba292e1cdda0cd32e20fc88"
+    },
+    {
+      "path": "skins/ui/oxide-dark/skin.min.css",
+      "kind": "vendor-byte-identical",
+      "bytes": 178474,
+      "sha256": "51a73cf0b2df858e9e76c4bd0aa3e0d88d680c11727cfafb4662fa923fc89366"
+    },
+    {
+      "path": "skins/ui/oxide-dark/content.min.css",
+      "kind": "vendor-byte-identical",
+      "bytes": 42917,
+      "sha256": "834ed38a2494c5dbb49070bfc81f4c018587ed9e55a9f43f3cda7937549a472b"
+    },
+    {
+      "path": "skins/content/dark/content.min.css",
+      "kind": "vendor-byte-identical",
+      "bytes": 1518,
+      "sha256": "68f1f973a688fab3de5c39334743c00ff962abc78d38dc33ca959ecf72be0574"
+    },
+    {
+      "path": "icons/phphtmledit/icons.min.js",
+      "kind": "project-generated-from-tinymce",
+      "icons": 68,
+      "bytes": 23785,
+      "sha256": "d76c40de675fc6b40151003e691a3332c60779ca802678971b816ed89dd83b2c"
+    }
+  ]
+}

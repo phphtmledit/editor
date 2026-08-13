@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>phphtmledit.com — E0 diagnostic</title>
+    <script src="/tinymce/tinymce.min.js?v=8.8.2"></script>
+  </head>
+  <body>
+    <main>
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Risk gate E0</p>
+          <h1>Self-hosted editor diagnostic</h1>
+          <p class="lede">Temporary measurement surface. Product work starts after this gate is accepted.</p>
+        </div>
+        <a id="source-link" href="https://github.com/phphtmledit/editor" rel="noreferrer">Source code</a>
+      </header>
+
+      <section class="status-grid" aria-label="Diagnostic status">
+        <article><span>TinyMCE</span><strong id="tiny-status">Starting…</strong></article>
+        <article><span>GPL mode</span><strong id="license-status">Checking…</strong></article>
+        <article><span>Plugins</span><strong id="plugin-status">Checking…</strong></article>
+        <article><span>Network</span><strong id="network-status">Capturing…</strong></article>
+      </section>
+
+      <section class="editor-card" aria-labelledby="editor-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Selected open-source plugin set</p>
+            <h2 id="editor-title">TinyMCE 8</h2>
+          </div>
+          <button id="docx-smoke" type="button" disabled>Run DOCX smoke test</button>
+        </div>
+        <textarea id="e0-editor"><h2>E0 editor check</h2><p>Edit this text to exercise the self-hosted editor.</p></textarea>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Observed state</p>
+            <h2 id="log-title">Runtime log</h2>
+          </div>
+          <output id="docx-status">DOCX test not run</output>
+        </div>
+        <ol id="runtime-log" aria-live="polite"></ol>
+        <pre id="network-cold-json" hidden></pre>
+        <pre id="network-full-json" hidden></pre>
+      </section>
+    </main>
+    <script type="module" src="/src/e0/main.ts"></script>
+  </body>
+</html>

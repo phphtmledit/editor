@@ -1,0 +1,37 @@
+{
+  "name": "phphtmledit-editor",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "GPL-2.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phphtmledit/editor.git"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "npm run vendor:tinymce && vite --host 127.0.0.1",
+    "dev:e0": "npm run vendor:tinymce && vite --mode e0 --host 127.0.0.1",
+    "build": "npm run vendor:tinymce && vite build",
+    "build:e0": "npm run build && vite build --mode e0 && npm run e0:build-boundary",
+    "preview:e0": "vite preview --mode e0 --host 127.0.0.1",
+    "check": "tsc --noEmit -p tsconfig.json",
+    "vendor:tinymce": "node scripts/copy-tinymce.mjs",
+    "e0:build-boundary": "node scripts/check-build-boundary.mjs",
+    "e0:docx": "node scripts/check-docx.mjs",
+    "e0:legal": "node scripts/check-legal-comments.mjs && node scripts/check-notices-delivery.mjs",
+    "icons": "node scripts/check-icon-visual.mjs",
+    "size": "node scripts/check-size.mjs",
+    "licenses": "node scripts/check-licenses.mjs"
+  },
+  "dependencies": {
+    "mammoth": "1.12.1",
+    "tinymce": "8.8.2"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2",
+    "vite": "8.2.1"
+  }
+}

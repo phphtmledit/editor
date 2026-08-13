@@ -1,0 +1,63 @@
+{
+  "capturedAt": "2026-08-13T13:12:31.384Z",
+  "browser": "Chrome 151.0.7922.77",
+  "protocol": "Chrome DevTools Protocol 1.3",
+  "source": "Network domain used by DevTools Network panel",
+  "cacheDisabled": true,
+  "serviceWorkerBypassed": true,
+  "responseBodiesIncluded": false,
+  "sanitized": true,
+  "cold": {
+    "scenario": "cold",
+    "entries": 19,
+    "applicationRequests": 18,
+    "onlyGet": true,
+    "originOk": true,
+    "failures": [
+      {
+        "url": "http://127.0.0.1:4173/favicon.ico",
+        "status": 404,
+        "failed": null
+      }
+    ],
+    "cacheHits": [],
+    "thirdParty": [],
+    "defaultIcons": [],
+    "customIcons": 1,
+    "mammoth": [],
+    "fixtures": []
+  },
+  "full": {
+    "scenario": "full",
+    "entries": 19,
+    "applicationRequests": 19,
+    "onlyGet": true,
+    "originOk": true,
+    "failures": [],
+    "cacheHits": [],
+    "thirdParty": [],
+    "defaultIcons": [],
+    "customIcons": 1,
+    "mammoth": [
+      "http://127.0.0.1:4173/assets/lib-CDHSGtcq.js"
+    ],
+    "fixtures": []
+  },
+  "assertions": {
+    "coldApplicationRequests": true,
+    "fullApplicationRequests": true,
+    "fullContainsCold": true,
+    "onlyLocal": true,
+    "onlyGet": true,
+    "noCacheOrServiceWorker": true,
+    "defaultIconsAbsent": true,
+    "customIconsOnce": true,
+    "mammothLazyOnlyInFull": true,
+    "fixturesAbsent": true,
+    "dialogsOpened": true,
+    "productionDocxRuntimeLoaded": true,
+    "consoleClean": true,
+    "noApplicationFailures": true
+  },
+  "note": "Chrome automatically probed /favicon.ico once during the cold run; the 404 is browser chrome, not an application request, and is excluded from the 18/19 application-request budgets."
+}

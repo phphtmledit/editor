@@ -1,0 +1,24 @@
+{
+  "pageUrl": "http://127.0.0.1:4173/",
+  "capturedAt": "2026-08-13T11:36:49.013Z",
+  "requests": [
+    { "url": "http://127.0.0.1:4173/", "status": 200, "initiatorType": "navigation", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/assets/index-BwipqBE_.js", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/assets/index-BmXZGYS_.css", "status": 200, "initiatorType": "link", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/themes/silver/theme.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/models/dom/model.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/plugins/lists/plugin.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/plugins/link/plugin.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/plugins/image/plugin.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/plugins/table/plugin.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/plugins/charmap/plugin.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2", "status": 200, "initiatorType": "link", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/js/emojis.min.js?v=8.8.2", "status": 200, "initiatorType": "script", "context": "page" },
+    { "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/content.min.css?v=8.8.2", "status": 200, "initiatorType": "link", "context": "editor-frame" },
+    { "url": "http://127.0.0.1:4173/tinymce/skins/content/default/content.min.css?v=8.8.2", "status": 200, "initiatorType": "link", "context": "editor-frame" }
+  ]
+}

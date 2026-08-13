@@ -1,0 +1,33 @@
+{
+  "capturedAt": "2026-08-13T11:44:48.469Z",
+  "browserSurface": "in-app Chromium browser",
+  "pageUrl": "http://127.0.0.1:4173/",
+  "tinyMceVersion": "8.8.2",
+  "pack": "phphtmledit",
+  "configuredIcons": 68,
+  "customIconSha256": "d76c40de675fc6b40151003e691a3332c60779ca802678971b816ed89dd83b2c",
+  "observedUiStates": 27,
+  "scenarios": [
+    "toolbar including overflow",
+    "File/Edit/View/Insert/Format/Table menus",
+    "text color palette and color picker",
+    "link dialog and link context actions",
+    "image dialog with lock and unlock states",
+    "table picker and inserted-table context menu",
+    "Table properties General and Advanced tabs",
+    "Row/Column/Cell nested table menus",
+    "character map dialog",
+    "emoji dialog with full unchanged database",
+    "date/time menu"
+  ],
+  "assertions": {
+    "allObservedToxIconsContainSvg": true,
+    "temporaryPlaceholderAvailable": false,
+    "temporaryPlaceholderRendered": false,
+    "notFoundFallbackRendered": false,
+    "stockDefaultIconRequestObserved": false,
+    "customIconColdRequests": 1,
+    "consoleWarningsOrErrors": 0
+  },
+  "result": "PASS"
+}
