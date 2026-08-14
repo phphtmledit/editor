@@ -190,6 +190,134 @@ h1 {
 .app-error p { margin: 0; }
 .app-error h2 { margin-bottom: 4px; font-size: 1rem; }
 
+.document-tools {
+  border: 1px solid var(--phe-border);
+  border-radius: var(--phe-radius);
+  background: var(--phe-surface);
+  overflow: hidden;
+}
+
+.tools-header,
+.tool-panel-header,
+.mass-undo,
+.tool-actions,
+.rule-options {
+  display: flex;
+  align-items: center;
+}
+
+.tools-header {
+  justify-content: space-between;
+  gap: 18px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--phe-border);
+}
+
+.tools-header h2,
+.tool-panel h3,
+.tools-header p,
+.tool-panel-header p,
+.ai-priority { margin: 0; }
+.tools-header h2 { font-size: 1rem; }
+.tools-header p,
+.tool-panel-header p { margin-top: 3px; color: var(--phe-text-muted); font-size: .8rem; }
+
+.mass-undo { gap: 10px; }
+.mass-undo output { max-width: 20rem; color: var(--phe-text-muted); font-size: .8rem; }
+
+.tool-columns {
+  display: grid;
+  grid-template-columns: minmax(0, var(--phe-visual-percent)) minmax(0, calc(100% - var(--phe-visual-percent) - 12px));
+  gap: 12px;
+  padding: 12px;
+}
+
+.tool-panel {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--phe-border);
+  border-radius: 8px;
+}
+
+.tool-panel h3 { font-size: .95rem; }
+.tool-panel-header { justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+
+.ai-priority {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-inline-start: 3px solid var(--phe-accent);
+  color: var(--phe-text-muted);
+  background: #f3f2ff;
+  font-size: .82rem;
+}
+
+.cleaning-rule-list,
+.replacement-rule-list {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.cleaning-rule {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  min-height: 38px;
+  padding: 6px 7px;
+  border: 1px solid #dde2ea;
+  border-radius: 6px;
+}
+
+.cleaning-rule-name { font-size: .84rem; }
+.cleaning-rule-description { display: block; margin-top: 1px; color: var(--phe-text-muted); font-size: .73rem; }
+.cleaning-rule.is-priority { border-color: #aaa6f4; }
+
+.replacement-rule {
+  padding: 9px;
+  border: 1px solid #dde2ea;
+  border-radius: 6px;
+}
+
+.replacement-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+}
+
+.replacement-fields label { color: var(--phe-text-muted); font-size: .75rem; }
+.replacement-fields input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-top: 3px;
+  padding: 7px 8px;
+  border: 1px solid var(--phe-border);
+  border-radius: 5px;
+  color: var(--phe-text);
+  background: var(--phe-surface);
+}
+.replacement-fields input[aria-invalid="true"] { border-color: #b42318; outline-color: #b42318; }
+
+.rule-options { flex-wrap: wrap; gap: 10px; margin-top: 7px; }
+.rule-options label { display: inline-flex; align-items: center; gap: 5px; font-size: .76rem; }
+.rule-error { min-height: 1.1em; margin: 5px 0 0; color: #b42318; font-size: .75rem; }
+
+button {
+  padding: 7px 10px;
+  border: 1px solid var(--phe-border);
+  border-radius: 6px;
+  color: var(--phe-text);
+  background: var(--phe-surface);
+  cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: var(--phe-accent); }
+button:focus-visible { outline: 3px solid color-mix(in srgb, var(--phe-accent) 45%, transparent); outline-offset: 1px; }
+button:disabled { cursor: not-allowed; opacity: .55; }
+.primary-action { color: #fff; border-color: var(--phe-accent); background: var(--phe-accent); }
+.tool-actions { flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+.tool-result { display: block; min-height: 1.2em; margin-top: 8px; color: var(--phe-text-muted); font-size: .8rem; }
+.tool-panel[aria-busy="true"] { opacity: .7; }
+
 .loading-skeleton {
   position: absolute;
   z-index: 8;
@@ -242,6 +370,8 @@ h1 {
   .editor-panel { width: 100%; height: 100%; }
   .panel-title { padding-block: 8px; }
   .source-heading { min-height: 37px; }
+  .tools-header { align-items: start; }
+  .tool-columns { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
@@ -250,6 +380,10 @@ h1 {
   .source-heading { gap: 8px; }
   .wrap-control { font-size: 0; }
   .wrap-control input { width: 20px; height: 20px; }
+  .tools-header,
+  .tool-panel-header,
+  .mass-undo { align-items: stretch; flex-direction: column; }
+  .replacement-fields { grid-template-columns: 1fr; }
 }
 
 @media (pointer: coarse) {

@@ -21,7 +21,7 @@
 These files preserve the accepted E0 baseline. They are no longer inputs to the
 current `npm run size`, and later stages do not overwrite them.
 
-## Current E1 evidence
+## Immutable E1 evidence
 
 - `network-e1-cold.har` and `network-e1-cold.json` — fresh production load
   through TinyMCE plus the eager CodeMirror HTML grammar/highlighting, before
@@ -36,6 +36,35 @@ current `npm run size`, and later stages do not overwrite them.
   budgets plus request-count gate.
 - `docs/E1.md` — implementation and stage conclusion.
 
-The E1 JSON captures include the SHA-256 of `dist/.vite/manifest.json`.
-`npm run size` refuses a stale capture, requires exactly one lazy dynamic entry
-(`src/editor/source-rich.ts`), and rejects diagnostic/future-stage resources.
+The E1 JSON captures include the SHA-256 of their `dist/.vite/manifest.json`.
+They preserve the accepted E1 baseline and are no longer inputs to the current
+`npm run size`.
+
+## Current E2 evidence
+
+- `network-e2-cold.har` and `network-e2-cold.json` — fresh production load
+  through editor-ready, before source focus or any regex action.
+- `network-e2-cumulative.har` and `network-e2-cumulative.json` — a separate
+  fresh load followed by source focus and the full E2 document-tools inventory:
+  ten individual cleaners, the 100,000-character cleaning run, format, minify,
+  literal and batch replacement, isolated regex timeout, remove and common undo.
+- `network-e2-har-result.json` — sanitized HAR 1.2 assertions, including the
+  flattened page/Worker CDP lifecycle. Page and Worker events are coalesced only
+  by their documented request ID; the Worker has real response, data and
+  `Network.loadingFinished` events, with no synthetic sizes or terminal event.
+- `size-e2-result.json` — the current-dist SHA-256 inventory, all four byte
+  budgets, cold request-count gate and the 100,000-character browser timing.
+
+The E2 captures include the SHA-256 of the current manifest. `npm run size`
+refuses stale captures, requires exactly two dynamic entries (`source-rich` and
+`safe`), allows exactly one emitted `regex-worker` asset, requires those three
+JavaScript resources only in cumulative, and rejects TinyMCE default icons,
+Mammoth, DOCX and fixture requests.
+
+The flattened Worker lifecycle provides its complete decoded size and a real
+terminal event, but Chrome does not expose a byte-accurate split between HTTP
+headers and the gzip body across the page/Worker sessions. Its HAR entry keeps
+the observed encoded length, marks `headersSize` and `bodySize` as unknown
+(`-1`), omits `content.compression`, and records the limitation explicitly.
+The four budget values never use HAR wire sizes: `npm run size` deterministically
+compresses the exact current `dist` files with gzip level 9 and Brotli quality 11.

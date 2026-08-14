@@ -45,6 +45,48 @@
         </div>
       </section>
 
+      <section id="document-tools" class="document-tools" aria-label="Очистка и замена HTML">
+        <header class="tools-header">
+          <div>
+            <h2>Очистка и замена</h2>
+            <p>Массовые операции изменяют обе панели и имеют общую отмену.</p>
+          </div>
+          <div class="mass-undo">
+            <button id="undo-mass-operation" type="button" disabled>Отменить</button>
+            <output id="undo-mass-description" aria-live="polite">Нет операций для отмены</output>
+          </div>
+        </header>
+
+        <div class="tool-columns">
+          <article class="tool-panel cleaning-panel" aria-labelledby="cleaning-title">
+            <h3 id="cleaning-title">Очистка HTML</h3>
+            <p class="ai-priority"><strong>Символы ИИ:</strong> отдельное правило нормализует кавычки, тире и невидимые символы.</p>
+            <div id="cleaning-rule-list" class="cleaning-rule-list"></div>
+            <div class="tool-actions">
+              <button id="clean-selected-rules" type="button" class="primary-action">Очистить выбранное</button>
+              <button id="format-html" type="button">Форматировать</button>
+              <button id="minify-html" type="button">Сжать</button>
+            </div>
+            <output id="cleaning-result" class="tool-result" aria-live="polite"></output>
+          </article>
+
+          <article class="tool-panel replacement-panel" aria-labelledby="replacement-title">
+            <header class="tool-panel-header">
+              <div>
+                <h3 id="replacement-title">Найти и заменить</h3>
+                <p>До 10 правил; при общем запуске порядок имеет значение.</p>
+              </div>
+              <button id="add-replacement-rule" type="button">Добавить правило</button>
+            </header>
+            <div id="replacement-rule-list" class="replacement-rule-list"></div>
+            <div class="tool-actions">
+              <button id="apply-all-replacements" type="button" class="primary-action">Применить все</button>
+            </div>
+            <output id="replacement-result" class="tool-result" aria-live="polite"></output>
+          </article>
+        </div>
+      </section>
+
       <p id="normalization-note" class="normalization-note" role="status" aria-live="polite" hidden>Визуальный редактор нормализовал HTML: отступы, переносы и неподдерживаемая разметка могли измениться.</p>
       <p id="app-status" class="sr-only" role="status" aria-live="polite">Редакторы загружаются…</p>
       <section id="app-error" class="app-error" role="alert" hidden>

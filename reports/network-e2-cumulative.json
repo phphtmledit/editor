@@ -1,0 +1,207 @@
+{
+  "stage": "E2",
+  "scenario": "cumulative",
+  "manifestSha256": "92f015457d9cfd2aba016a7f28ea39e4f9924209ab7007f0aab679139e92f358",
+  "pageUrl": "http://127.0.0.1:4173/",
+  "capturedAt": "2026-08-14T07:32:15.731Z",
+  "uiActionInventory": {
+    "cleanupRuleButtonsExpected": 10,
+    "cleanupRuleButtonsApplied": 10,
+    "largeDocumentClean100k": true,
+    "largeDocumentCleanDurationMs": 187.6,
+    "largeDocumentCleanWithin500ms": true,
+    "cleanSelected": true,
+    "format": true,
+    "minify": true,
+    "replacementRuleAdded": true,
+    "individualLiteralRuleApplied": true,
+    "pathologicalRegexTimeoutVisible": true,
+    "pathologicalRegexDocumentUnchanged": true,
+    "applyAllReplacements": true,
+    "replacementRuleRemoved": true,
+    "commonMassUndo": true
+  },
+  "regexActionRequestPaths": [
+    "/assets/safe-BYn9iGgB.js",
+    "/assets/regex-worker-BSN1lRMf.js"
+  ],
+  "attachedWorkerTargets": [
+    {
+      "sessionId": "038B7AB81C0E112DE2814E415A23E6F9",
+      "targetId": "9A2FFD33EFEE36128A85A2AC91638E77",
+      "type": "worker",
+      "url": "http://127.0.0.1:4173/assets/regex-worker-BSN1lRMf.js",
+      "detached": false
+    }
+  ],
+  "workerNetworkLifecycle": [
+    {
+      "url": "http://127.0.0.1:4173/assets/regex-worker-BSN1lRMf.js",
+      "sessions": [
+        "page",
+        "038B7AB81C0E112DE2814E415A23E6F9"
+      ],
+      "requestWillBeSentEvents": 1,
+      "dataReceivedEvents": 1,
+      "terminalEvent": "Network.loadingFinished",
+      "status": 200,
+      "decodedContentSize": 1655,
+      "encodedTransferSize": 301,
+      "wireBodySizeKnown": false,
+      "headersSize": -1,
+      "bodySize": -1,
+      "compression": null,
+      "failure": null
+    }
+  ],
+  "workerSessionSetupErrors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4173/",
+      "status": 200,
+      "resourceType": "document",
+      "initiatorType": "other",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-CnEeOgAy.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DMNMtUwr.css",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/themes/silver/theme.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/models/dom/model.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/link/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/image/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/table/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "editor-frame"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/content/default/content.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "editor-frame"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/js/emojis.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/source-rich-DgYbLdZE.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/safe-BYn9iGgB.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/regex-worker-BSN1lRMf.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "other",
+      "context": "page"
+    }
+  ]
+}

@@ -12,6 +12,7 @@ const syncAnnotation = Annotation.define<boolean>();
 export interface SourceEditorController {
   getHtml: () => string;
   setHtml: (html: string) => void;
+  setHtmlAndResetHistory: (html: string) => void;
   hasFocus: () => boolean;
   setLineWrapping: (enabled: boolean) => void;
   requestMeasure: () => void;
@@ -61,6 +62,8 @@ export const createSourceEditor = (
   const blurListeners = new Set<Listener>();
   let destroyed = false;
   let richFeaturesRequested = false;
+  let lineWrappingEnabled = true;
+  let richFeatureExtensions: Extension = [];
 
   const emit = (listeners: Set<Listener>): void => {
     if (!destroyed) listeners.forEach((listener) => listener());
@@ -75,7 +78,8 @@ export const createSourceEditor = (
     if (richFeaturesRequested || destroyed) return;
     richFeaturesRequested = true;
     void import('./source-rich').then(({ sourceRichExtensions }) => {
-      if (!destroyed) view.dispatch({ effects: richFeatures.reconfigure(sourceRichExtensions) });
+      richFeatureExtensions = sourceRichExtensions;
+      if (!destroyed) view.dispatch({ effects: richFeatures.reconfigure(richFeatureExtensions) });
     }).catch((error: unknown) => {
       richFeaturesRequested = false;
       console.error('CodeMirror HTML tools failed to load', error);
@@ -90,14 +94,12 @@ export const createSourceEditor = (
     }
   });
 
-  const extensions: Extension[] = [
+  const baseExtensions: Extension[] = [
     lineNumbers(),
     history(),
     plainHtmlLanguage,
     syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
     keymap.of([...defaultKeymap, ...searchKeymap, ...historyKeymap]),
-    wrapping.of(EditorView.lineWrapping),
-    richFeatures.of([]),
     updateListener,
     EditorView.contentAttributes.of({
       'aria-label': 'Исходный HTML',
@@ -110,10 +112,15 @@ export const createSourceEditor = (
       '.cm-content': { minHeight: '100%' },
     }),
   ];
+  const createExtensions = (): Extension[] => [
+    ...baseExtensions,
+    wrapping.of(lineWrappingEnabled ? EditorView.lineWrapping : []),
+    richFeatures.of(richFeatureExtensions),
+  ];
 
   view = new EditorView({
     parent,
-    state: EditorState.create({ doc: initialHtml, extensions }),
+    state: EditorState.create({ doc: initialHtml, extensions: createExtensions() }),
   });
   updateCount(initialHtml);
 
@@ -151,8 +158,13 @@ export const createSourceEditor = (
         view.scrollDOM.scrollTo(scrollLeft, scrollTop);
       });
     },
+    setHtmlAndResetHistory: (nextHtml) => {
+      view.setState(EditorState.create({ doc: nextHtml, extensions: createExtensions() }));
+      updateCount(nextHtml);
+    },
     hasFocus: () => view.dom.contains(document.activeElement),
     setLineWrapping: (enabled) => {
+      lineWrappingEnabled = enabled;
       view.dispatch({ effects: wrapping.reconfigure(enabled ? EditorView.lineWrapping : []) });
     },
     requestMeasure: () => view.requestMeasure(),

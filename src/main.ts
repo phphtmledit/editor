@@ -2,6 +2,12 @@
 import { createSourceEditor, type SourceEditorController } from './editor/source';
 import { createSyncController, type SyncController } from './editor/sync';
 import { createVisualEditor, type VisualEditorController } from './editor/visual';
+import { createMassDocumentController } from './editor/mass-document';
+import { createProgrammaticMutationGuard } from './editor/mutation-guard';
+import {
+  createDocumentToolsController,
+  type DocumentToolsController,
+} from './ui/document-tools';
 import { createLayoutController, type LayoutController } from './ui/layout';
 import './styles/app.css';
 
@@ -22,6 +28,7 @@ let visual: VisualEditorController | null = null;
 let source: SourceEditorController | null = null;
 let sync: SyncController | null = null;
 let layout: LayoutController | null = null;
+let documentTools: DocumentToolsController | null = null;
 
 const showNormalizationNotice = (): void => {
   normalizationNote.hidden = false;
@@ -37,7 +44,10 @@ const initialise = async (): Promise<void> => {
     element<HTMLOutputElement>('character-count'),
     visual.getHtml(),
   );
-  sync = createSyncController(visual, source, showNormalizationNotice);
+  const mutationGuard = createProgrammaticMutationGuard();
+  sync = createSyncController(visual, source, showNormalizationNotice, mutationGuard);
+  const massDocument = createMassDocumentController(visual, source, mutationGuard);
+  documentTools = createDocumentToolsController(source, sync, massDocument);
   layout = createLayoutController(
     {
       workspace: element('editor-workspace'),
@@ -59,6 +69,7 @@ const initialise = async (): Promise<void> => {
 };
 
 const destroy = (): void => {
+  documentTools?.destroy();
   layout?.destroy();
   sync?.destroy();
   source?.destroy();

@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { isAbsolute, relative, resolve } from 'node:path';
 import { brotliCompressSync, constants, gzipSync } from 'node:zlib';
 import { TINYMCE_ASSETS } from './tinymce-assets.mjs';
@@ -34,16 +34,23 @@ const REQUIRED_COLD_PATHS = [
   '/tinymce/skins/content/default/content.min.css',
 ];
 
-const [coldReport, cumulativeReport, manifestBytes] = await Promise.all([
-  readFile(resolve(reportsRoot, 'network-e1-cold.json'), 'utf8').then(JSON.parse),
-  readFile(resolve(reportsRoot, 'network-e1-cumulative.json'), 'utf8').then(JSON.parse),
+const [coldReport, cumulativeReport, manifestBytes, distAssetNames] = await Promise.all([
+  readFile(resolve(reportsRoot, 'network-e2-cold.json'), 'utf8').then(JSON.parse),
+  readFile(resolve(reportsRoot, 'network-e2-cumulative.json'), 'utf8').then(JSON.parse),
   readFile(resolve(distRoot, '.vite', 'manifest.json')),
+  readdir(resolve(distRoot, 'assets')),
 ]);
 const manifestSha256 = createHash('sha256').update(manifestBytes).digest('hex');
 const manifest = JSON.parse(manifestBytes.toString('utf8'));
 const appEntry = manifest['index.html'];
 const sourceRichEntry = manifest['src/editor/source-rich.ts'];
-const dynamicEntries = Object.values(manifest).filter((entry) => entry?.isDynamicEntry === true);
+const safeReplaceEntry = manifest['src/replace/safe.ts'];
+const dynamicEntryKeys = Object.entries(manifest)
+  .filter(([, entry]) => entry?.isDynamicEntry === true)
+  .map(([key]) => key)
+  .sort();
+const expectedDynamicEntryKeys = ['src/editor/source-rich.ts', 'src/replace/safe.ts'].sort();
+const regexWorkerAssetNames = distAssetNames.filter((name) => /^regex-worker-[\w-]+\.js$/i.test(name));
 
 if (!appEntry?.isEntry || typeof appEntry.file !== 'string') {
   failures.push('dist manifest must contain the product index.html entry');
@@ -51,15 +58,20 @@ if (!appEntry?.isEntry || typeof appEntry.file !== 'string') {
 if (!sourceRichEntry?.isDynamicEntry || typeof sourceRichEntry.file !== 'string') {
   failures.push('dist manifest must contain the lazy src/editor/source-rich.ts entry');
 }
+if (!safeReplaceEntry?.isDynamicEntry || typeof safeReplaceEntry.file !== 'string') {
+  failures.push('dist manifest must contain the lazy src/replace/safe.ts entry');
+}
 if (
   !Array.isArray(appEntry?.dynamicImports) ||
-  appEntry.dynamicImports.length !== 1 ||
-  appEntry.dynamicImports[0] !== 'src/editor/source-rich.ts'
+  JSON.stringify([...appEntry.dynamicImports].sort()) !== JSON.stringify(expectedDynamicEntryKeys)
 ) {
-  failures.push('product entry must dynamically import only src/editor/source-rich.ts in E1');
+  failures.push('product entry must dynamically import only source-rich and safe replacement in E2');
 }
-if (dynamicEntries.length !== 1 || dynamicEntries[0] !== sourceRichEntry) {
-  failures.push(`dist manifest must have exactly one E1 dynamic entry, got ${dynamicEntries.length}`);
+if (JSON.stringify(dynamicEntryKeys) !== JSON.stringify(expectedDynamicEntryKeys)) {
+  failures.push(`dist manifest must have exactly the two E2 dynamic entries, got ${dynamicEntryKeys.join(', ')}`);
+}
+if (regexWorkerAssetNames.length !== 1) {
+  failures.push(`dist must contain exactly one regex-worker asset, got ${regexWorkerAssetNames.length}`);
 }
 for (const [key, entry] of Object.entries(manifest)) {
   const manifestText = `${key} ${entry?.src ?? ''} ${entry?.file ?? ''}`;
@@ -76,7 +88,7 @@ const assertReportShape = (name, report, scenario) => {
   if (typeof report.capturedAt !== 'string' || Number.isNaN(Date.parse(report.capturedAt))) {
     failures.push(`${name}: capturedAt is missing or invalid`);
   }
-  if (report.stage !== 'E1') failures.push(`${name}: stage must be E1`);
+  if (report.stage !== 'E2') failures.push(`${name}: stage must be E2`);
   if (report.scenario !== scenario) failures.push(`${name}: scenario must be ${scenario}`);
   if (report.manifestSha256 !== manifestSha256) {
     failures.push(`${name}: capture manifest hash does not match current dist`);
@@ -164,6 +176,11 @@ const cumulativeUrls = new Set(cumulativeReport.requests.map(({ url }) => url));
 const appPath = typeof appEntry?.file === 'string' ? `/${appEntry.file}` : null;
 const appCssPaths = Array.isArray(appEntry?.css) ? appEntry.css.map((file) => `/${file}`) : [];
 const sourceRichPath = typeof sourceRichEntry?.file === 'string' ? `/${sourceRichEntry.file}` : null;
+const safeReplacePath = typeof safeReplaceEntry?.file === 'string' ? `/${safeReplaceEntry.file}` : null;
+const regexWorkerPath = regexWorkerAssetNames.length === 1 ? `/assets/${regexWorkerAssetNames[0]}` : null;
+const regexWorkerRawSize = regexWorkerPath
+  ? (await readFile(resolve(distRoot, `.${regexWorkerPath}`))).byteLength
+  : null;
 const countPath = (report, expectedPath) =>
   report.requests.filter((request) => pathname(request) === expectedPath).length;
 
@@ -190,12 +207,85 @@ if (sourceRichPath && countPath(coldReport, sourceRichPath) !== 0) {
 if (sourceRichPath && countPath(cumulativeReport, sourceRichPath) !== 1) {
   failures.push(`cumulative: expected lazy CodeMirror HTML tools exactly once: ${sourceRichPath}`);
 }
-for (const path of cumulativeOnlyPaths.filter((path) => path.endsWith('.js'))) {
-  if (path !== sourceRichPath) failures.push(`cumulative: unexpected lazy JavaScript request: ${path}`);
+if (safeReplacePath && countPath(coldReport, safeReplacePath) !== 0) {
+  failures.push(`cold: safe replacement module loaded before a regex action: ${safeReplacePath}`);
+}
+if (safeReplacePath && countPath(cumulativeReport, safeReplacePath) !== 1) {
+  failures.push(`cumulative: expected safe replacement module exactly once: ${safeReplacePath}`);
+}
+if (regexWorkerPath && countPath(coldReport, regexWorkerPath) !== 0) {
+  failures.push(`cold: regex Worker loaded before a regex action: ${regexWorkerPath}`);
+}
+if (regexWorkerPath && countPath(cumulativeReport, regexWorkerPath) !== 1) {
+  failures.push(`cumulative: expected regex Worker exactly once: ${regexWorkerPath}`);
+}
+const cumulativeOnlyJavaScriptPaths = cumulativeOnlyPaths.filter((path) => path.endsWith('.js')).sort();
+const expectedCumulativeOnlyJavaScriptPaths = [sourceRichPath, safeReplacePath, regexWorkerPath]
+  .filter((path) => typeof path === 'string')
+  .sort();
+if (
+  JSON.stringify(cumulativeOnlyJavaScriptPaths) !==
+  JSON.stringify(expectedCumulativeOnlyJavaScriptPaths)
+) {
+  failures.push(
+    `cumulative: expected only source-rich, safe and regex-worker JavaScript; got ${cumulativeOnlyJavaScriptPaths.join(', ')}`,
+  );
+}
+if (
+  !Array.isArray(cumulativeReport.regexActionRequestPaths) ||
+  !safeReplacePath ||
+  !regexWorkerPath ||
+  !cumulativeReport.regexActionRequestPaths.includes(safeReplacePath) ||
+  !cumulativeReport.regexActionRequestPaths.includes(regexWorkerPath)
+) {
+  failures.push('cumulative: regex action did not request both safe replacement and regex Worker');
+}
+const workerLifecycle = cumulativeReport.workerNetworkLifecycle;
+if (
+  !Array.isArray(coldReport.workerNetworkLifecycle) ||
+  coldReport.workerNetworkLifecycle.length !== 0 ||
+  !Array.isArray(workerLifecycle) ||
+  workerLifecycle.length !== 1 ||
+  workerLifecycle[0]?.terminalEvent !== 'Network.loadingFinished' ||
+  workerLifecycle[0]?.status !== 200 ||
+  workerLifecycle[0]?.failure !== null ||
+  workerLifecycle[0]?.decodedContentSize !== regexWorkerRawSize ||
+  workerLifecycle[0]?.dataReceivedEvents < 1 ||
+  workerLifecycle[0]?.wireBodySizeKnown !== false ||
+  workerLifecycle[0]?.headersSize !== -1 ||
+  workerLifecycle[0]?.bodySize !== -1 ||
+  workerLifecycle[0]?.compression !== null
+) {
+  failures.push('cumulative: regex Worker lacks one complete, decoded, non-duplicated Network lifecycle');
+}
+const ui = cumulativeReport.uiActionInventory;
+const requiredUiFlags = [
+  'largeDocumentClean100k',
+  'largeDocumentCleanWithin500ms',
+  'cleanSelected',
+  'format',
+  'minify',
+  'replacementRuleAdded',
+  'individualLiteralRuleApplied',
+  'pathologicalRegexTimeoutVisible',
+  'pathologicalRegexDocumentUnchanged',
+  'applyAllReplacements',
+  'replacementRuleRemoved',
+  'commonMassUndo',
+];
+if (
+  !ui ||
+  ui.cleanupRuleButtonsExpected !== 10 ||
+  ui.cleanupRuleButtonsApplied !== 10 ||
+  !requiredUiFlags.every((key) => ui[key] === true) ||
+  typeof ui.largeDocumentCleanDurationMs !== 'number' ||
+  ui.largeDocumentCleanDurationMs > 500
+) {
+  failures.push('cumulative: complete E2 UI action inventory or 100,000-character timing is missing');
 }
 for (const path of [...coldReport.requests, ...cumulativeReport.requests].map(pathname)) {
   if (isDiagnosticFixturePath(path) || /mammoth/i.test(path)) {
-    failures.push(`E1 production capture contains a diagnostic or future-stage resource: ${path}`);
+    failures.push(`E2 production capture contains a diagnostic or future-stage resource: ${path}`);
   }
 }
 if (Date.parse(cumulativeReport.capturedAt) < Date.parse(coldReport.capturedAt)) {
@@ -233,12 +323,12 @@ const metrics = [
     budget: BYTE_BUDGETS.cold.brotli,
   },
   {
-    name: 'Cumulative E1 transfer (gzip)',
+    name: 'Cumulative E2 transfer (gzip)',
     actual: cumulativeTransfer.gzip,
     budget: BYTE_BUDGETS.cumulative.gzip,
   },
   {
-    name: 'Cumulative E1 transfer (brotli)',
+    name: 'Cumulative E2 transfer (brotli)',
     actual: cumulativeTransfer.brotli,
     budget: BYTE_BUDGETS.cumulative.brotli,
   },
@@ -302,12 +392,12 @@ const tinyDomainRequests = allUrls.filter((rawUrl) => {
 if (tinyDomainRequests.length > 0) failures.push('Tiny Cloud/domain requests were observed');
 
 const output = {
-  stage: 'E1',
+  stage: 'E2',
   origin: expectedOrigin,
   manifestSha256,
   definitions: {
     cold: 'All production HTTP resources requested from navigation through editor-ready.',
-    cumulative: 'All E1 production HTTP resources after the cold load and first source-editor focus; it must contain every cold URL and the one lazy CodeMirror HTML-tools chunk.',
+    cumulative: 'A separate fresh production load containing every cold URL, first source focus, and the complete E2 document-tools inventory; the only cumulative JavaScript additions are source-rich, safe replacement and the isolated regex Worker.',
     requestCount: 'Cold load through editor-ready only, including the HTML document.',
     initialJs: 'Supplementary, non-budget detail: cold-load JavaScript outside /tinymce; lazy source-editor tools are excluded.',
   },
@@ -322,6 +412,7 @@ const output = {
   },
   supplementary: {
     initialJsWithoutTinyMCE: initialJsTransfer,
+    largeDocumentCleanDurationMs: cumulativeReport.uiActionInventory?.largeDocumentCleanDurationMs ?? null,
   },
   activeLightTinyStaticFootprint,
   tinyStaticFootprint,
@@ -333,6 +424,6 @@ const output = {
   failures,
 };
 
-await writeFile(resolve(reportsRoot, 'size-e1-result.json'), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+await writeFile(resolve(reportsRoot, 'size-e2-result.json'), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
 console.log(JSON.stringify(output, null, 2));
 if (failures.length > 0) process.exitCode = 1;

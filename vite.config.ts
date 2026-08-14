@@ -29,6 +29,18 @@ export default defineConfig(({ mode }) => {
     define: {
       __E0_DIAGNOSTIC__: JSON.stringify(diagnostic),
     },
+    worker: {
+      format: 'es',
+      rolldownOptions: {
+        output: {
+          comments: {
+            legal: true,
+            jsdoc: true,
+          },
+          postBanner: bundleBanner,
+        },
+      },
+    },
     build: {
       outDir: diagnostic ? 'dist-e0' : 'dist',
       emptyOutDir: true,

@@ -1,6 +1,10 @@
 /*! @license GPL-2.0-or-later | https://github.com/phphtmledit/editor */
 import type { SourceEditorController } from './source';
 import type { VisualEditorController } from './visual';
+import {
+  createProgrammaticMutationGuard,
+  type ProgrammaticMutationGuard,
+} from './mutation-guard';
 
 type Panel = 'visual' | 'source';
 
@@ -37,9 +41,9 @@ export const createSyncController = (
   visual: VisualEditorController,
   source: SourceEditorController,
   showNormalizationNotice: () => void,
+  mutationGuard: ProgrammaticMutationGuard = createProgrammaticMutationGuard(),
 ): SyncController => {
   let authority: Panel | null = null;
-  let applyingDepth = 0;
   let disposed = false;
   let nextToken = 0;
   let normalizationNoticeShown = hasShownNotice();
@@ -48,24 +52,21 @@ export const createSyncController = (
   const pending: Record<Panel, PendingSync | null> = { visual: null, source: null };
   const unsubscribers: Array<() => void> = [];
 
-  const withProgrammaticApply = (operation: () => void): void => {
-    applyingDepth += 1;
-    try {
-      operation();
-    } finally {
-      applyingDepth -= 1;
-    }
-  };
-
   const cancel = (panel: Panel): void => {
     const current = pending[panel];
     if (current) clearTimeout(current.timer);
     pending[panel] = null;
   };
 
+  unsubscribers.push(mutationGuard.onStart(() => {
+    cancel('visual');
+    cancel('source');
+    sourceProjection = null;
+  }));
+
   const applyVisualToSource = (): void => {
     const html = visual.getHtml();
-    if (source.getHtml() !== html) withProgrammaticApply(() => source.setHtml(html));
+    if (source.getHtml() !== html) mutationGuard.run(() => source.setHtml(html));
     sourceProjection = null;
   };
 
@@ -75,7 +76,7 @@ export const createSyncController = (
 
     let normalized = visual.getHtml();
     if (normalized !== raw) {
-      withProgrammaticApply(() => {
+      mutationGuard.run(() => {
         normalized = visual.setHtml(raw);
       });
     }
@@ -111,7 +112,7 @@ export const createSyncController = (
   };
 
   const enter = (next: Panel): void => {
-    if (disposed || applyingDepth > 0) return;
+    if (disposed || mutationGuard.isActive()) return;
     const previous = authority;
     if (previous && previous !== next) flush(previous);
     authority = next;
@@ -147,7 +148,7 @@ export const createSyncController = (
     if (authority !== 'visual' || !sourceProjection?.userAuthored) return;
     const { raw, normalized } = sourceProjection;
     if (raw !== normalized && source.getHtml() === raw) {
-      withProgrammaticApply(() => source.setHtml(normalized));
+      mutationGuard.run(() => source.setHtml(normalized));
       if (!normalizationNoticeShown) {
         normalizationNoticeShown = true;
         rememberNotice();
@@ -161,12 +162,12 @@ export const createSyncController = (
     visual.onFocus(() => enter('visual')),
     visual.onBlur(() => leave('visual')),
     visual.onChange(() => {
-      if (!disposed && applyingDepth === 0 && authority === 'visual') schedule('visual', 300);
+      if (!disposed && !mutationGuard.isActive() && authority === 'visual') schedule('visual', 300);
     }),
     source.onFocus(() => enter('source')),
     source.onBlur(() => leave('source')),
     source.onChange(() => {
-      if (!disposed && applyingDepth === 0 && authority === 'source') schedule('source', 500);
+      if (!disposed && !mutationGuard.isActive() && authority === 'source') schedule('source', 500);
     }),
   );
 

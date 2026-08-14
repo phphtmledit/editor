@@ -44,13 +44,22 @@ requireMatch(
   'Mammoth license is absent from diagnostic dist-e0/licenses.txt',
 );
 
-const mainJsPath = (await readdir(resolve(projectRoot, 'dist', 'assets')))
-  .find((file) => file.endsWith('.js') && file.startsWith('index-'));
+const builtJsPaths = (await readdir(resolve(projectRoot, 'dist', 'assets')))
+  .filter((file) => file.endsWith('.js'));
+const mainJsPath = builtJsPaths.find((file) => file.startsWith('index-'));
 if (!mainJsPath) failures.push('Built application JS was not found');
-else {
-  const mainJs = await readFile(resolve(projectRoot, 'dist', 'assets', mainJsPath), 'utf8');
-  requireMatch(mainJs, /@license GPL-2\.0-or-later/, 'Project GPL legal comment did not survive minification');
-  requireMatch(mainJs, /Third-party notices: \/licenses\.txt/, 'Project bundle has no canonical notices URL');
+for (const jsPath of builtJsPaths) {
+  const builtJs = await readFile(resolve(projectRoot, 'dist', 'assets', jsPath), 'utf8');
+  requireMatch(
+    builtJs,
+    /@license GPL-2\.0-or-later/,
+    `Project GPL legal comment is missing from ${jsPath}`,
+  );
+  requireMatch(
+    builtJs,
+    /Third-party notices: \/licenses\.txt/,
+    `Project bundle has no canonical notices URL: ${jsPath}`,
+  );
 }
 
 for (const asset of TINYMCE_VENDOR_ASSETS) {

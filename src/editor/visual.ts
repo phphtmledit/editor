@@ -22,6 +22,7 @@ interface TextSelectionSnapshot {
 export interface VisualEditorController {
   getHtml: () => string;
   setHtml: (html: string) => string;
+  setHtmlAndResetHistory: (html: string) => string;
   hasFocus: () => boolean;
   onChange: (listener: Listener) => () => void;
   onFocus: (listener: Listener) => () => void;
@@ -247,9 +248,27 @@ export const createVisualEditor = async (
     return editor.getContent({ format: 'html' });
   };
 
+  const setHtmlAndResetHistory = (html: string): string => {
+    applyingContent = true;
+    try {
+      editor.undoManager.ignore(() => {
+        editor.setContent(html, { format: 'html' });
+      });
+      editor.undoManager.reset();
+    } finally {
+      applyingContent = false;
+    }
+
+    lastBookmark = null;
+    lastTextSelection = null;
+    rememberSelection();
+    return editor.getContent({ format: 'html' });
+  };
+
   return {
     getHtml: () => editor.getContent({ format: 'html' }),
     setHtml,
+    setHtmlAndResetHistory,
     hasFocus,
     onChange: (listener) => subscribe(changeListeners, listener),
     onFocus: (listener) => subscribe(focusListeners, listener),

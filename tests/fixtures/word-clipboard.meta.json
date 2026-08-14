@@ -1,0 +1,23 @@
+{
+  "capturedAt": "2026-08-14",
+  "sourceApplication": "Microsoft Word for the web",
+  "sourceApplicationVersion": "16.0000",
+  "captureFormat": "Windows CF_HTML / text/html",
+  "sourceDocumentSha256": "4f80598c87f05919010f87c81ec043b44d14db24a75e1f9422091e7b3af9edba",
+  "rawClipboardSha256": "1612ff1cef5e1a8b8896d84a1cd6455b1fac3754f3dd2428218394d66a041eb7",
+  "fixtureSha256": "b29b485dba7d5ac3fd5cf1ad455283e59c5b7145544d2529f57ee4699a25a50c",
+  "fixtureBytes": 51128,
+  "expectedSha256": "e970f7944603850388e06e14110edb5c66610a96d26f34e7489b8dc16038c2c9",
+  "expectedBytes": 741,
+  "normalization": [
+    "Recovered the UTF-8 CF_HTML payload from the Windows clipboard string representation.",
+    "Removed the CF_HTML transport header, including SourceURL and session identifiers.",
+    "Kept only the exact payload between StartFragment and EndFragment.",
+    "Normalized line endings to LF and added one trailing LF."
+  ],
+  "privacyChecks": {
+    "containsExternalUrl": false,
+    "containsEmailAddress": false,
+    "containsDocumentCreator": false
+  }
+}
