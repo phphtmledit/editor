@@ -1,54 +1,57 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex,nofollow" />
-    <title>phphtmledit.com — E0 diagnostic</title>
+    <meta name="description" content="Бесплатный локальный редактор HTML-фрагментов с визуальным и исходным режимами." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234F46E5'/%3E%3Cpath d='M8 9h16v3H8zm0 6h10v3H8zm0 6h16v3H8z' fill='white'/%3E%3C/svg%3E" />
+    <title>Редактор HTML-фрагментов</title>
     <script src="/tinymce/tinymce.min.js?v=8.8.2"></script>
   </head>
   <body>
-    <main>
-      <header class="page-header">
-        <div>
-          <p class="eyebrow">Risk gate E0</p>
-          <h1>Self-hosted editor diagnostic</h1>
-          <p class="lede">Temporary measurement surface. Product work starts after this gate is accepted.</p>
-        </div>
-        <a id="source-link" href="https://github.com/phphtmledit/editor" rel="noreferrer">Source code</a>
+    <main id="app" class="app-shell" aria-busy="true">
+      <header class="app-header">
+        <h1>Редактор HTML-фрагментов</h1>
+        <p class="privacy-note">Текст обрабатывается только в браузере и не отправляется на сервер.</p>
       </header>
 
-      <section class="status-grid" aria-label="Diagnostic status">
-        <article><span>TinyMCE</span><strong id="tiny-status">Starting…</strong></article>
-        <article><span>GPL mode</span><strong id="license-status">Checking…</strong></article>
-        <article><span>Plugins</span><strong id="plugin-status">Checking…</strong></article>
-        <article><span>Network</span><strong id="network-status">Capturing…</strong></article>
+      <nav class="mobile-tabs" role="tablist" aria-label="Режим редактора" hidden>
+        <button id="visual-tab" type="button" role="tab" aria-selected="true" aria-controls="visual-panel" tabindex="0">Визуально</button>
+        <button id="source-tab" type="button" role="tab" aria-selected="false" aria-controls="source-panel" tabindex="-1">Код</button>
+      </nav>
+
+      <section id="editor-workspace" class="editor-workspace" aria-label="Редактор HTML">
+        <article id="visual-panel" class="editor-panel visual-panel" role="tabpanel" aria-labelledby="visual-tab">
+          <h2 class="panel-title">Визуальный редактор</h2>
+          <div class="editor-frame visual-frame">
+            <textarea id="visual-editor" aria-label="Визуальный редактор HTML"></textarea>
+          </div>
+        </article>
+
+        <div id="editor-splitter" class="editor-splitter" role="separator" aria-label="Изменить ширину панелей" aria-orientation="vertical" aria-valuemin="30" aria-valuemax="70" aria-valuenow="50" tabindex="0"></div>
+
+        <article id="source-panel" class="editor-panel source-panel" role="tabpanel" aria-labelledby="source-tab">
+          <div class="source-heading">
+            <h2 class="panel-title">HTML-код</h2>
+            <label class="wrap-control"><input id="wrap-source" type="checkbox" checked /> Перенос строк</label>
+            <output id="character-count" class="character-count">0 знаков</output>
+          </div>
+          <div id="source-editor" class="editor-frame source-frame" aria-label="Редактор исходного HTML"></div>
+        </article>
+
+        <div id="loading-skeleton" class="loading-skeleton" role="status" aria-live="polite">
+          <span class="sr-only">Редакторы загружаются…</span>
+          <div></div><div></div><div></div>
+        </div>
       </section>
 
-      <section class="editor-card" aria-labelledby="editor-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Selected open-source plugin set</p>
-            <h2 id="editor-title">TinyMCE 8</h2>
-          </div>
-          <button id="docx-smoke" type="button" disabled>Run DOCX smoke test</button>
-        </div>
-        <textarea id="e0-editor"><h2>E0 editor check</h2><p>Edit this text to exercise the self-hosted editor.</p></textarea>
-      </section>
-
-      <section class="log-card" aria-labelledby="log-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Observed state</p>
-            <h2 id="log-title">Runtime log</h2>
-          </div>
-          <output id="docx-status">DOCX test not run</output>
-        </div>
-        <ol id="runtime-log" aria-live="polite"></ol>
-        <pre id="network-cold-json" hidden></pre>
-        <pre id="network-full-json" hidden></pre>
+      <p id="normalization-note" class="normalization-note" role="status" aria-live="polite" hidden>Визуальный редактор нормализовал HTML: отступы, переносы и неподдерживаемая разметка могли измениться.</p>
+      <p id="app-status" class="sr-only" role="status" aria-live="polite">Редакторы загружаются…</p>
+      <section id="app-error" class="app-error" role="alert" hidden>
+        <h2>Редактор не загрузился</h2>
+        <p>Обновите страницу. Если ошибка повторяется, проверьте, что локальные файлы приложения доступны.</p>
       </section>
     </main>
-    <script type="module" src="/src/e0/main.ts"></script>
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -22,7 +22,7 @@ jobs:
       - run: npm run build:e0
       - run: npm run e0:docx
       - run: npm run licenses
-      - run: npm run e0:legal
+      - run: npm run legal
       - run: npm run icons
       - run: npm run size
       - run: npm audit --audit-level=high

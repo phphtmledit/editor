@@ -1,11 +1,16 @@
 # Third-party notices
 
-This notice covers the complete production dependency closure rooted at
-`tinymce@8.8.2` and `mammoth@1.12.1`, as locked by `package-lock.json`, plus
-third-party components embedded in the selected TinyMCE files. Build-only
-`typescript@7.0.2` and `vite@8.2.1`, and their dependency trees, are intentionally
-excluded: they are development tools and are not part of the distributed browser
-runtime.
+This notice covers the complete production dependency closure rooted at the six
+declared CodeMirror packages, `tinymce@8.8.2`, and `mammoth@1.12.1`, as locked by
+`package-lock.json`, plus third-party components embedded in the selected TinyMCE
+files. Build-only `typescript@7.0.2` and `vite@8.2.1`, and their dependency trees,
+are intentionally excluded: they are development tools and are not part of the
+distributed browser runtime.
+
+The E1 product bundle contains CodeMirror. Mammoth is reserved for the E3 product
+feature and is currently exercised by the separate E0 diagnostic build; it remains
+listed because it is a declared production dependency and part of the strict
+runtime closure.
 
 The corresponding source distribution is licensed under
 `GPL-2.0-or-later`. A package's inclusion below does not change its own license.
@@ -17,11 +22,29 @@ components are under `third-party-licenses/embedded/`.
 
 | Component | Effective license for this distribution | Copyright notice | Upstream |
 | --- | --- | --- | --- |
+| `@codemirror/autocomplete@6.20.3` | MIT | Copyright (C) 2018-2021 by Marijn Haverbeke and others | [codemirror/autocomplete](https://github.com/codemirror/autocomplete) |
+| `@codemirror/commands@6.10.4` | MIT | Copyright (C) 2018-2021 by Marijn Haverbeke and others | [codemirror/commands](https://github.com/codemirror/commands) |
+| `@codemirror/lang-css@6.3.1` | MIT | Copyright (C) 2018-2021 by Marijn Haverbeke and others | [codemirror/lang-css](https://github.com/codemirror/lang-css) |
+| `@codemirror/lang-html@6.4.12` | MIT | Copyright (C) 2018-2021 by Marijn Haverbeke and others | [codemirror/lang-html](https://github.com/codemirror/lang-html) |
+| `@codemirror/lang-javascript@6.2.5` | MIT | Copyright (C) 2018-2021 by Marijn Haverbeke and others | [codemirror/lang-javascript](https://github.com/codemirror/lang-javascript) |
+| `@codemirror/language@6.12.4` | MIT | Copyright (C) 2018-2021 by Marijn Haverbeke and others | [codemirror/language](https://github.com/codemirror/language) |
+| `@codemirror/lint@6.9.7` | MIT | Copyright (C) 2018-2021 by Marijn Haverbeke and others | [codemirror/lint](https://github.com/codemirror/lint) |
+| `@codemirror/search@6.7.1` | MIT | Copyright (C) 2018-2021 by Marijn Haverbeke and others | [codemirror/search](https://github.com/codemirror/search) |
+| `@codemirror/state@6.7.1` | MIT | Copyright (C) 2018-2021 by Marijn Haverbeke and others | [codemirror/state](https://github.com/codemirror/state) |
+| `@codemirror/view@6.43.8` | MIT | Copyright (C) 2018-2021 by Marijn Haverbeke and others | [codemirror/view](https://github.com/codemirror/view) |
+| `@lezer/common@1.5.2` | MIT | Copyright (C) 2018 by Marijn Haverbeke and others | [lezer-parser/common](https://github.com/lezer-parser/common) |
+| `@lezer/css@1.3.6` | MIT | Copyright (C) 2018 by Marijn Haverbeke and others | [lezer-parser/css](https://github.com/lezer-parser/css) |
+| `@lezer/highlight@1.2.3` | MIT | Copyright (C) 2018 by Marijn Haverbeke and others | [lezer-parser/highlight](https://github.com/lezer-parser/highlight) |
+| `@lezer/html@1.3.13` | MIT | Copyright (C) 2018 by Marijn Haverbeke and others | [lezer-parser/html](https://github.com/lezer-parser/html) |
+| `@lezer/javascript@1.5.4` | MIT | Copyright (C) 2018 by Marijn Haverbeke and others | [lezer-parser/javascript](https://github.com/lezer-parser/javascript) |
+| `@lezer/lr@1.4.10` | MIT | Copyright (C) 2018 by Marijn Haverbeke and others | [lezer-parser/lr](https://github.com/lezer-parser/lr) |
+| `@marijn/find-cluster-break@1.0.3` | MIT | Copyright (C) 2024 by Marijn Haverbeke | [marijnh/find-cluster-break](https://github.com/marijnh/find-cluster-break) |
 | `@xmldom/xmldom@0.8.14` | MIT | Copyright 2019 - present Christopher J. Brody and other contributors; Copyright 2012 - 2017 @jindw and other contributors | [xmldom/xmldom](https://github.com/xmldom/xmldom) |
 | `argparse@1.0.10` | MIT | Copyright (C) 2012 by Vitaly Puzrin | [nodeca/argparse](https://github.com/nodeca/argparse) |
 | `base64-js@1.5.1` | MIT | Copyright (c) 2014 Jameson Little | [beatgammit/base64-js](https://github.com/beatgammit/base64-js) |
 | `bluebird@3.4.7` | MIT | Copyright (c) 2013-2015 Petka Antonov | [petkaantonov/bluebird](https://github.com/petkaantonov/bluebird) |
 | `core-util-is@1.0.3` | MIT | Copyright Node.js contributors. All rights reserved. | [isaacs/core-util-is](https://github.com/isaacs/core-util-is) |
+| `crelt@1.0.7` | MIT | Copyright (C) 2020 by Marijn Haverbeke | [marijnh/crelt](https://github.com/marijnh/crelt) |
 | `dingbat-to-unicode@1.0.1` | BSD-2-Clause (manifest declaration; see gap below) | No copyright notice is present in the published package; package author metadata names Michael Williamson | [mwilliamson/dingbat-to-unicode](https://github.com/mwilliamson/dingbat-to-unicode) |
 | `duck@0.1.12` | BSD-2-Clause (legacy `BSD` metadata normalized only after exact LICENSE verification) | Copyright (c) 2013, Michael Williamson | [mwilliamson/duck](https://github.com/mwilliamson/duck) |
 | `immediate@3.0.6` | MIT | Copyright (c) 2012 Barnesandnoble.com, llc, Donavon West, Domenic Denicola, Brian Cavalier | [calvinmetcalf/immediate](https://github.com/calvinmetcalf/immediate) |
@@ -40,9 +63,11 @@ components are under `third-party-licenses/embedded/`.
 | `setimmediate@1.0.5` | MIT | Copyright (c) 2012 Barnesandnoble.com, llc, Donavon West, and Domenic Denicola | [YuzuJS/setImmediate](https://github.com/YuzuJS/setImmediate) |
 | `sprintf-js@1.0.3` | BSD-3-Clause | Copyright (c) 2007-2014, Alexandru Marasteanu &lt;hello [at) alexei (dot] ro&gt; | [alexei/sprintf.js](https://github.com/alexei/sprintf.js) |
 | `string_decoder@1.1.1` | MIT | Copyright Node.js contributors. All rights reserved; Copyright Joyent, Inc. and other Node contributors. All rights reserved. | [nodejs/string_decoder](https://github.com/nodejs/string_decoder) |
+| `style-mod@4.1.3` | MIT | Copyright (C) 2018 by Marijn Haverbeke and others | [marijnh/style-mod](https://github.com/marijnh/style-mod) |
 | `tinymce@8.8.2` | GPL-2.0-or-later (`license.md`; package metadata says `SEE LICENSE IN license.md`) | Copyright (c) 2025 Ephox Corporation DBA Tiny Technologies, Inc. | [tinymce/tinymce-dist](https://github.com/tinymce/tinymce-dist/tree/8.8.2) |
 | `underscore@1.13.8` | MIT | Copyright (c) 2009-2022 Jeremy Ashkenas, Julian Gonggrijp, and DocumentCloud and Investigative Reporters & Editors | [jashkenas/underscore](https://github.com/jashkenas/underscore) |
 | `util-deprecate@1.0.2` | MIT | Copyright (c) 2014 Nathan Rajlich &lt;nathan@tootallnate.net&gt; | [TooTallNate/util-deprecate](https://github.com/TooTallNate/util-deprecate) |
+| `w3c-keyname@2.2.8` | MIT | Copyright (C) 2016 by Marijn Haverbeke and others | [marijnh/w3c-keyname](https://github.com/marijnh/w3c-keyname) |
 | `xmlbuilder@10.1.1` | MIT | Copyright (c) 2013 Ozgur Ozcitak | [oozcitak/xmlbuilder-js](https://github.com/oozcitak/xmlbuilder-js) |
 
 `jszip@3.10.1` is used under its MIT alternative. `pako@1.0.11` is not

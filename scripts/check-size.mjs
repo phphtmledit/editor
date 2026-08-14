@@ -34,28 +34,52 @@ const REQUIRED_COLD_PATHS = [
   '/tinymce/skins/content/default/content.min.css',
 ];
 
-const [coldReport, fullReport] = await Promise.all([
-  readFile(resolve(reportsRoot, 'network-cold.json'), 'utf8').then(JSON.parse),
-  readFile(resolve(reportsRoot, 'network-full.json'), 'utf8').then(JSON.parse),
+const [coldReport, cumulativeReport, manifestBytes] = await Promise.all([
+  readFile(resolve(reportsRoot, 'network-e1-cold.json'), 'utf8').then(JSON.parse),
+  readFile(resolve(reportsRoot, 'network-e1-cumulative.json'), 'utf8').then(JSON.parse),
+  readFile(resolve(distRoot, '.vite', 'manifest.json')),
 ]);
-const manifest = JSON.parse(await readFile(resolve(distRoot, '.vite', 'manifest.json'), 'utf8'));
-const mammothEntries = Object.values(manifest).filter(
-  (entry) => entry?.isDynamicEntry === true && /(?:^|\/)mammoth\/lib\/index\.js$/.test(entry.src),
-);
-if (mammothEntries.length !== 1 || typeof mammothEntries[0]?.file !== 'string') {
-  failures.push(`dist manifest must have exactly one Mammoth dynamic entry, got ${mammothEntries.length}`);
-}
-const mammothEntry = mammothEntries.length === 1 && typeof mammothEntries[0].file === 'string'
-  ? mammothEntries[0]
-  : null;
+const manifestSha256 = createHash('sha256').update(manifestBytes).digest('hex');
+const manifest = JSON.parse(manifestBytes.toString('utf8'));
+const appEntry = manifest['index.html'];
+const sourceRichEntry = manifest['src/editor/source-rich.ts'];
+const dynamicEntries = Object.values(manifest).filter((entry) => entry?.isDynamicEntry === true);
 
-const assertReportShape = (name, report) => {
+if (!appEntry?.isEntry || typeof appEntry.file !== 'string') {
+  failures.push('dist manifest must contain the product index.html entry');
+}
+if (!sourceRichEntry?.isDynamicEntry || typeof sourceRichEntry.file !== 'string') {
+  failures.push('dist manifest must contain the lazy src/editor/source-rich.ts entry');
+}
+if (
+  !Array.isArray(appEntry?.dynamicImports) ||
+  appEntry.dynamicImports.length !== 1 ||
+  appEntry.dynamicImports[0] !== 'src/editor/source-rich.ts'
+) {
+  failures.push('product entry must dynamically import only src/editor/source-rich.ts in E1');
+}
+if (dynamicEntries.length !== 1 || dynamicEntries[0] !== sourceRichEntry) {
+  failures.push(`dist manifest must have exactly one E1 dynamic entry, got ${dynamicEntries.length}`);
+}
+for (const [key, entry] of Object.entries(manifest)) {
+  const manifestText = `${key} ${entry?.src ?? ''} ${entry?.file ?? ''}`;
+  if (/(?:mammoth|\.docx|fixture)/i.test(manifestText)) {
+    failures.push(`production manifest contains an E0/E3-only resource: ${manifestText}`);
+  }
+}
+
+const assertReportShape = (name, report, scenario) => {
   if (!report || typeof report !== 'object') throw new TypeError(`${name}: report must be an object`);
   if (typeof report.pageUrl !== 'string') throw new TypeError(`${name}: pageUrl must be a string`);
   if (!Array.isArray(report.requests)) throw new TypeError(`${name}: requests must be an array`);
   if (report.requests.length === 0) failures.push(`${name}: network capture is empty`);
   if (typeof report.capturedAt !== 'string' || Number.isNaN(Date.parse(report.capturedAt))) {
     failures.push(`${name}: capturedAt is missing or invalid`);
+  }
+  if (report.stage !== 'E1') failures.push(`${name}: stage must be E1`);
+  if (report.scenario !== scenario) failures.push(`${name}: scenario must be ${scenario}`);
+  if (report.manifestSha256 !== manifestSha256) {
+    failures.push(`${name}: capture manifest hash does not match current dist`);
   }
   for (const [index, request] of report.requests.entries()) {
     if (!request || typeof request !== 'object' || typeof request.url !== 'string') {
@@ -64,8 +88,8 @@ const assertReportShape = (name, report) => {
   }
 };
 
-assertReportShape('cold', coldReport);
-assertReportShape('full', fullReport);
+assertReportShape('cold', coldReport, 'cold');
+assertReportShape('cumulative', cumulativeReport, 'cumulative');
 
 const compressedSizes = (bytes) => ({
   raw: bytes.byteLength,
@@ -125,9 +149,9 @@ const analyseScenario = async (name, report) => {
   return rows;
 };
 
-const [coldRows, fullRows] = await Promise.all([
+const [coldRows, cumulativeRows] = await Promise.all([
   analyseScenario('cold', coldReport),
-  analyseScenario('full', fullReport),
+  analyseScenario('cumulative', cumulativeReport),
 ]);
 
 const pathname = ({ url }) => new URL(url).pathname;
@@ -136,43 +160,46 @@ const isDiagnosticFixturePath = (path) =>
   /(?:mammoth-fixture|tests\/fixtures)/i.test(path);
 const coldPaths = new Set(coldReport.requests.map(pathname));
 const coldUrls = new Set(coldReport.requests.map(({ url }) => url));
-const fullUrls = new Set(fullReport.requests.map(({ url }) => url));
+const cumulativeUrls = new Set(cumulativeReport.requests.map(({ url }) => url));
+const appPath = typeof appEntry?.file === 'string' ? `/${appEntry.file}` : null;
+const appCssPaths = Array.isArray(appEntry?.css) ? appEntry.css.map((file) => `/${file}`) : [];
+const sourceRichPath = typeof sourceRichEntry?.file === 'string' ? `/${sourceRichEntry.file}` : null;
+const countPath = (report, expectedPath) =>
+  report.requests.filter((request) => pathname(request) === expectedPath).length;
 
 for (const requiredPath of REQUIRED_COLD_PATHS) {
   if (!coldPaths.has(requiredPath)) failures.push(`cold: required request is missing: ${requiredPath}`);
 }
-if (![...coldPaths].some((path) => path.startsWith('/assets/') && path.endsWith('.js'))) {
-  failures.push('cold: application JavaScript request is missing');
+if (appPath && countPath(coldReport, appPath) !== 1) {
+  failures.push(`cold: expected the manifest application entry exactly once: ${appPath}`);
 }
-if (![...coldPaths].some((path) => path.startsWith('/assets/') && path.endsWith('.css'))) {
-  failures.push('cold: application CSS request is missing');
+for (const cssPath of appCssPaths) {
+  if (countPath(coldReport, cssPath) !== 1) {
+    failures.push(`cold: expected the manifest stylesheet exactly once: ${cssPath}`);
+  }
 }
 for (const coldUrl of coldUrls) {
-  if (!fullUrls.has(coldUrl)) failures.push(`full: cold request is missing: ${coldUrl}`);
+  if (!cumulativeUrls.has(coldUrl)) failures.push(`cumulative: cold request is missing: ${coldUrl}`);
 }
-const fullOnlyPaths = fullReport.requests
+const cumulativeOnlyPaths = cumulativeReport.requests
   .filter(({ url }) => !coldUrls.has(url))
   .map(pathname);
-const mammothPath = mammothEntry ? `/${mammothEntry.file}` : null;
-const fullMammothRequests = mammothPath
-  ? fullReport.requests.filter((request) => pathname(request) === mammothPath)
-  : [];
-if (mammothPath && fullMammothRequests.length !== 1) {
-  failures.push(
-    `full: expected exactly one lazy Mammoth request for ${mammothPath}, got ${fullMammothRequests.length}`,
-  );
+if (sourceRichPath && countPath(coldReport, sourceRichPath) !== 0) {
+  failures.push(`cold: lazy CodeMirror HTML tools loaded before source focus: ${sourceRichPath}`);
 }
-if (mammothPath && coldPaths.has(mammothPath)) {
-  failures.push(`cold: lazy Mammoth was requested before full interaction: ${mammothPath}`);
+if (sourceRichPath && countPath(cumulativeReport, sourceRichPath) !== 1) {
+  failures.push(`cumulative: expected lazy CodeMirror HTML tools exactly once: ${sourceRichPath}`);
 }
-for (const path of fullOnlyPaths.filter((path) => path.endsWith('.js'))) {
-  if (path !== mammothPath) failures.push(`full: unexpected full-only JavaScript request: ${path}`);
+for (const path of cumulativeOnlyPaths.filter((path) => path.endsWith('.js'))) {
+  if (path !== sourceRichPath) failures.push(`cumulative: unexpected lazy JavaScript request: ${path}`);
 }
-for (const path of fullReport.requests.map(pathname).filter(isDiagnosticFixturePath)) {
-  failures.push(`full: production capture contains a diagnostic fixture: ${path}`);
+for (const path of [...coldReport.requests, ...cumulativeReport.requests].map(pathname)) {
+  if (isDiagnosticFixturePath(path) || /mammoth/i.test(path)) {
+    failures.push(`E1 production capture contains a diagnostic or future-stage resource: ${path}`);
+  }
 }
-if (Date.parse(fullReport.capturedAt) < Date.parse(coldReport.capturedAt)) {
-  failures.push('full: capture predates the cold capture');
+if (Date.parse(cumulativeReport.capturedAt) < Date.parse(coldReport.capturedAt)) {
+  failures.push('cumulative: capture predates the cold capture');
 }
 
 const sum = (items, key) => items.reduce((total, item) => total + item[key], 0);
@@ -186,8 +213,8 @@ const coldTransfer = {
   brotli: sum(coldRows, 'brotli'),
 };
 const cumulativeTransfer = {
-  gzip: sum(fullRows, 'gzip'),
-  brotli: sum(fullRows, 'brotli'),
+  gzip: sum(cumulativeRows, 'gzip'),
+  brotli: sum(cumulativeRows, 'brotli'),
 };
 const initialJsTransfer = {
   gzip: sum(initialJs, 'gzip'),
@@ -206,12 +233,12 @@ const metrics = [
     budget: BYTE_BUDGETS.cold.brotli,
   },
   {
-    name: 'Full cumulative transfer (gzip)',
+    name: 'Cumulative E1 transfer (gzip)',
     actual: cumulativeTransfer.gzip,
     budget: BYTE_BUDGETS.cumulative.gzip,
   },
   {
-    name: 'Full cumulative transfer (brotli)',
+    name: 'Cumulative E1 transfer (brotli)',
     actual: cumulativeTransfer.brotli,
     budget: BYTE_BUDGETS.cumulative.brotli,
   },
@@ -248,11 +275,14 @@ const activeLightTinyStaticFootprint = {
   brotli: sum(activeLightTinyFiles, 'brotli'),
 };
 
-const allUrls = [...coldReport.requests, ...fullReport.requests].map(({ url }) => url);
+const allUrls = [...coldReport.requests, ...cumulativeReport.requests].map(({ url }) => url);
 const defaultIconRequests = allUrls.filter(
   (rawUrl) => new URL(rawUrl).pathname === '/tinymce/icons/default/icons.min.js',
 );
 const coldCustomIconRequests = coldReport.requests.filter(
+  ({ url }) => new URL(url).pathname === '/tinymce/icons/phphtmledit/icons.min.js',
+);
+const cumulativeCustomIconRequests = cumulativeReport.requests.filter(
   ({ url }) => new URL(url).pathname === '/tinymce/icons/phphtmledit/icons.min.js',
 );
 if (defaultIconRequests.length > 0) {
@@ -260,6 +290,9 @@ if (defaultIconRequests.length > 0) {
 }
 if (coldCustomIconRequests.length !== 1) {
   failures.push(`Expected exactly one cold custom-icon request, got ${coldCustomIconRequests.length}`);
+}
+if (cumulativeCustomIconRequests.length !== 1) {
+  failures.push(`Expected exactly one cumulative custom-icon request, got ${cumulativeCustomIconRequests.length}`);
 }
 const tinyDomainRequests = allUrls.filter((rawUrl) => {
   const hostname = new URL(rawUrl).hostname.toLowerCase();
@@ -269,12 +302,14 @@ const tinyDomainRequests = allUrls.filter((rawUrl) => {
 if (tinyDomainRequests.length > 0) failures.push('Tiny Cloud/domain requests were observed');
 
 const output = {
+  stage: 'E1',
   origin: expectedOrigin,
+  manifestSha256,
   definitions: {
     cold: 'All production HTTP resources requested from navigation through editor-ready.',
-    cumulative: 'All production HTTP resources in the full interaction capture, which must contain every cold URL and the one lazy Mammoth chunk; diagnostic fixtures are forbidden.',
+    cumulative: 'All E1 production HTTP resources after the cold load and first source-editor focus; it must contain every cold URL and the one lazy CodeMirror HTML-tools chunk.',
     requestCount: 'Cold load through editor-ready only, including the HTML document.',
-    initialJs: 'Supplementary, non-budget detail: cold-load JavaScript outside /tinymce; lazy Mammoth is excluded.',
+    initialJs: 'Supplementary, non-budget detail: cold-load JavaScript outside /tinymce; lazy source-editor tools are excluded.',
   },
   metrics,
   coldEditorReadyTransfer: {
@@ -282,7 +317,7 @@ const output = {
     ...coldTransfer,
   },
   cumulativeTransfer: {
-    requests: fullReport.requests.length,
+    requests: cumulativeReport.requests.length,
     ...cumulativeTransfer,
   },
   supplementary: {
@@ -293,11 +328,11 @@ const output = {
   tinyDomainRequests,
   scenarios: {
     cold: { capturedAt: coldReport.capturedAt, requests: coldRows },
-    full: { capturedAt: fullReport.capturedAt, requests: fullRows },
+    cumulative: { capturedAt: cumulativeReport.capturedAt, requests: cumulativeRows },
   },
   failures,
 };
 
-await writeFile(resolve(reportsRoot, 'size-result.json'), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+await writeFile(resolve(reportsRoot, 'size-e1-result.json'), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
 console.log(JSON.stringify(output, null, 2));
 if (failures.length > 0) process.exitCode = 1;

@@ -1,6 +1,6 @@
-# E0 reports
+# Stage evidence
 
-Generated and captured evidence for the E0 risk gate is kept here.
+## Immutable E0 evidence
 
 - `network-cold.har` — Chrome DevTools Protocol Network-domain capture through
   editor-ready, with cache disabled and the service worker bypassed.
@@ -18,7 +18,24 @@ Generated and captured evidence for the E0 risk gate is kept here.
   check, and supplementary non-budget details such as initial application JS.
 - `docs/E0.md` — final comparison with the budgets in `docs/TZ.md` §7.
 
-The two network JSON files remain deterministic inputs to `npm run size`. The
-HAR files are the authoritative DevTools Network-domain evidence required by
-`AGENTS.md` §E0.3; they were captured from the final production build rather
-than from the diagnostic build.
+These files preserve the accepted E0 baseline. They are no longer inputs to the
+current `npm run size`, and later stages do not overwrite them.
+
+## Current E1 evidence
+
+- `network-e1-cold.har` and `network-e1-cold.json` — fresh production load
+  through TinyMCE plus the eager CodeMirror HTML grammar/highlighting, before
+  source focus.
+- `network-e1-cumulative.har` and `network-e1-cumulative.json` — a separate
+  fresh load followed by first source focus and lazy activation of autocomplete,
+  folding and tag-matching tools.
+- `network-e1-har-result.json` — cache, service-worker, origin, request,
+  console, icon, fixture, eager-pre-focus-highlighting and lazy-entry assertions
+  over both sanitized HARs.
+- `size-e1-result.json` — current-dist SHA-256 inventory and the four byte
+  budgets plus request-count gate.
+- `docs/E1.md` — implementation and stage conclusion.
+
+The E1 JSON captures include the SHA-256 of `dist/.vite/manifest.json`.
+`npm run size` refuses a stale capture, requires exactly one lazy dynamic entry
+(`src/editor/source-rich.ts`), and rejects diagnostic/future-stage resources.

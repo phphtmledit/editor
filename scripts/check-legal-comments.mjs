@@ -17,8 +17,32 @@ const requireMatch = (text, expression, message) => {
   if (!expression.test(text)) failures.push(message);
 };
 
-const builtLicense = await readFile(resolve(projectRoot, 'dist', 'licenses.txt'), 'utf8');
-requireMatch(builtLicense, /BSD 2-Clause|BSD-2-Clause|Michael Williamson/i, 'Mammoth license is absent from dist/licenses.txt');
+const [builtLicense, diagnosticLicense] = await Promise.all([
+  readFile(resolve(projectRoot, 'dist', 'licenses.txt'), 'utf8'),
+  readFile(resolve(projectRoot, 'dist-e0', 'licenses.txt'), 'utf8'),
+]);
+const productCodeMirrorRoots = [
+  ['@codemirror/commands', '6.10.4'],
+  ['@codemirror/lang-html', '6.4.12'],
+  ['@codemirror/language', '6.12.4'],
+  ['@codemirror/search', '6.7.1'],
+  ['@codemirror/state', '6.7.1'],
+  ['@codemirror/view', '6.43.8'],
+];
+for (const [name, version] of productCodeMirrorRoots) {
+  const marker = `## ${name} - ${version} (MIT)`;
+  if (!builtLicense.includes(marker)) {
+    failures.push(`${name}@${version} license is absent from product dist/licenses.txt`);
+  }
+}
+if (/^## mammoth\b/m.test(builtLicense)) {
+  failures.push('Mammoth must not appear in the E1 product bundle license inventory');
+}
+requireMatch(
+  diagnosticLicense,
+  /^## mammoth - 1\.12\.1 \(BSD-2-Clause\)$/m,
+  'Mammoth license is absent from diagnostic dist-e0/licenses.txt',
+);
 
 const mainJsPath = (await readdir(resolve(projectRoot, 'dist', 'assets')))
   .find((file) => file.endsWith('.js') && file.startsWith('index-'));
@@ -110,7 +134,8 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   console.log(
-    `Legal comments, ${TINYMCE_VENDOR_ASSETS.length} byte-identical TinyMCE assets, ` +
-      `and the ${CUSTOM_ICON_NAMES.length}-icon custom pack verified.`,
+    `Legal comments, product CodeMirror notices, diagnostic Mammoth notice, ` +
+      `${TINYMCE_VENDOR_ASSETS.length} byte-identical TinyMCE assets, and the ` +
+      `${CUSTOM_ICON_NAMES.length}-icon custom pack verified.`,
   );
 }
