@@ -157,12 +157,12 @@ describe('document tools controller', () => {
     expect(harness.sync.flushActive.mock.invocationCallOrder[0])
       .toBeLessThan(harness.source.getHtml.mock.invocationCallOrder[0] ?? Infinity);
     expect(harness.apply).toHaveBeenCalledWith(
-      'очистка — Инлайн-стили',
+      'clean — Inline styles',
       '<p>Test</p>',
       '<p style="color: red">Test</p>',
     );
     expect(document.querySelector('#cleaning-result')?.textContent)
-      .toBe('Применено правило «Инлайн-стили».');
+      .toBe('Applied the “Inline styles” rule.');
   });
 
   it('does not overwrite an edit made while cooperative cleaning is yielding', async () => {
@@ -177,7 +177,7 @@ describe('document tools controller', () => {
 
     expect(harness.apply).not.toHaveBeenCalled();
     expect(document.querySelector('#cleaning-result')?.textContent)
-      .toBe('Документ изменился во время операции; результат не применён.');
+      .toBe('The document changed during the operation, so its result was not applied.');
   });
 
   it('marks an invalid regular expression and creates no mass operation', async () => {
@@ -196,7 +196,7 @@ describe('document tools controller', () => {
 
     expect(find.getAttribute('aria-invalid')).toBe('true');
     expect(document.querySelector('[data-role="error"]')?.textContent)
-      .toBe('Некорректное регулярное выражение.');
+      .toBe('The regular expression is invalid.');
     expect(harness.apply).not.toHaveBeenCalled();
   });
 
@@ -227,7 +227,7 @@ describe('document tools controller', () => {
 
     expect(harness.apply).not.toHaveBeenCalled();
     expect(document.querySelector('#replacement-result')?.textContent)
-      .toBe('Документ изменился во время операции; результат не применён.');
+      .toBe('The document changed during the operation, so its result was not applied.');
   });
 
   it('reports exact counts and exposes one common mass undo', async () => {
@@ -244,16 +244,16 @@ describe('document tools controller', () => {
     document.querySelector<HTMLButtonElement>('[data-action="apply"]')?.click();
     await vi.runAllTimersAsync();
 
-    expect(document.querySelector('#replacement-result')?.textContent).toBe('Выполнено замен: 2.');
+    expect(document.querySelector('#replacement-result')?.textContent).toBe('Replacements made: 2.');
     expect(document.querySelectorAll('#undo-mass-operation')).toHaveLength(1);
     expect(document.querySelector('#undo-mass-description')?.textContent)
-      .toBe('Можно отменить: замена — правило 1.');
+      .toBe('Can undo: replace — rule 1.');
 
     document.querySelector<HTMLButtonElement>('#undo-mass-operation')?.click();
     await vi.runAllTimersAsync();
     expect(harness.undo).toHaveBeenCalledOnce();
     expect(document.querySelector('#undo-mass-description')?.textContent)
-      .toBe('Отменено: замена — правило 1. Нет операций для отмены.');
+      .toBe('Undone: replace — rule 1. No mass operations to undo.');
   });
 
   it('recovers from invalid versioned cleaning settings', () => {
@@ -263,7 +263,7 @@ describe('document tools controller', () => {
 
     expect(document.querySelectorAll('.cleaning-rule input:checked')).toHaveLength(8);
     expect(document.querySelector('#cleaning-result')?.textContent)
-      .toContain('восстановлены значения по умолчанию');
+      .toContain('the defaults have been restored');
   });
 
   it('does not hide a storage error when a replacement rule is removed', () => {
@@ -280,6 +280,6 @@ describe('document tools controller', () => {
     document.querySelector<HTMLButtonElement>('[data-action="remove"]')?.click();
 
     expect(document.querySelector('#replacement-result')?.textContent)
-      .toBe('Не удалось сохранить правила.');
+      .toBe('The rules could not be saved.');
   });
 });

@@ -397,7 +397,8 @@ async function verifyEmbeddedLicenseTexts() {
       continue;
     }
     const bytes = await readFile(path);
-    if (sha256(bytes) !== check.sha256) {
+    const canonicalBytes = Buffer.from(bytes.toString('utf8').replace(/\r\n?/g, '\n'), 'utf8');
+    if (sha256(canonicalBytes) !== check.sha256) {
       fail(`${check.path}: SHA-256 differs from the pinned upstream license text`);
     }
     const text = bytes.toString('utf8');

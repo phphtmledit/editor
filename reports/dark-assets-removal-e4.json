@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "stage": "E4 prerequisite",
+  "tinymceVersion": "8.8.2",
+  "scope": "Isolated sum of per-file raw, gzip-9 and Brotli-11 sizes for the TinyMCE distribution allow-list, excluding the separately delivered full license.md text.",
+  "acceptedE3Baseline": {
+    "evidenceFile": "reports/size-e3-result.json",
+    "evidenceCanonicalSha256": "6776a54220cd65277ebe54f3b54f66ce724635d821d4dbe1584cd8c5c84eb0f0",
+    "productionManifestSha256": "01024a4ce4f2bfa3ae99705448ad9aa1c0b72cfc66e5657cca12002f24ebbb6f",
+    "tinymceAssetInventoryFile": "reports/tinymce-assets.json",
+    "tinymceAssetInventoryCanonicalSha256": "62ede0d4dc9d467f2b171c74f6bfc2d132f26adbcb8b8de1f25235e8ab109249",
+    "cold": {
+      "requests": 18,
+      "gzip9": 569631,
+      "brotli11": 484561
+    },
+    "cumulative": {
+      "requests": 22,
+      "gzip9": 713603,
+      "brotli11": 601697
+    },
+    "staticFootprintsIncludingFullLicenseText": {
+      "beforeRemoval": {
+        "files": 20,
+        "raw": 1648032,
+        "gzip9": 464506,
+        "brotli11": 393573
+      },
+      "lightOnly": {
+        "files": 17,
+        "raw": 1425123,
+        "gzip9": 431188,
+        "brotli11": 365500
+      }
+    },
+    "assetCounts": {
+      "vendorCopiesPlusGeneratedIconPack": 19,
+      "distributionExcludingFullLicenseText": 19,
+      "reportEntriesIncludingFullLicenseText": 20,
+      "byteIdenticalVendorFiles": 18
+    }
+  },
+  "countReconciliation": {
+    "vendorCopiesPlusGeneratedIconPack": {
+      "before": 19,
+      "after": 16
+    },
+    "distributionAssetsExcludingFullLicenseText": {
+      "before": 19,
+      "after": 16
+    },
+    "reportEntriesIncludingFullLicenseText": {
+      "before": 20,
+      "after": 17
+    },
+    "byteIdenticalVendorFiles": {
+      "before": 18,
+      "after": 15
+    }
+  },
+  "compression": {
+    "gzipLevel": 9,
+    "brotliQuality": 11,
+    "aggregation": "sum of each file"
+  },
+  "beforeRemoval": {
+    "files": 19,
+    "raw": 1647253,
+    "gzip9": 464037,
+    "brotli11": 393270
+  },
+  "afterRemoval": {
+    "files": 16,
+    "raw": 1424344,
+    "gzip9": 430719,
+    "brotli11": 365197
+  },
+  "removedAssets": [
+    {
+      "path": "skins/ui/oxide-dark/skin.min.css",
+      "sha256": "51a73cf0b2df858e9e76c4bd0aa3e0d88d680c11727cfafb4662fa923fc89366",
+      "raw": 178474,
+      "gzip9": 24762,
+      "brotli11": 20564
+    },
+    {
+      "path": "skins/ui/oxide-dark/content.min.css",
+      "sha256": "834ed38a2494c5dbb49070bfc81f4c018587ed9e55a9f43f3cda7937549a472b",
+      "raw": 42917,
+      "gzip9": 7870,
+      "brotli11": 6958
+    },
+    {
+      "path": "skins/content/dark/content.min.css",
+      "sha256": "68f1f973a688fab3de5c39334743c00ff962abc78d38dc33ca959ecf72be0574",
+      "raw": 1518,
+      "gzip9": 686,
+      "brotli11": 551
+    }
+  ],
+  "saved": {
+    "files": 3,
+    "raw": 222909,
+    "gzip9": 33318,
+    "brotli11": 28073
+  },
+  "validation": {
+    "e3EvidenceCanonicalSha256": "6776a54220cd65277ebe54f3b54f66ce724635d821d4dbe1584cd8c5c84eb0f0",
+    "retainedInventoryCanonicalSha256": "a597a6f164dd0236bf4dd898867b022641e84929d919895cb77f34634252fa30",
+    "excludedFromDistributionAllowList": true,
+    "absentByRoot": {
+      "public": true,
+      "dist": true,
+      "dist-e0": true
+    }
+  },
+  "failures": []
+}

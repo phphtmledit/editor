@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { appendEmojilibToCanonicalLicenses } from './scripts/embedded-licenses.mjs';
 import { mammothBrowserAliases } from './scripts/mammoth-browser-aliases.mjs';
+import { STATIC_UI } from './src/ui/strings.ts';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
 const sourceUrl = 'https://github.com/phphtmledit/editor';
@@ -23,6 +24,31 @@ const embeddedLicensesPlugin = (outDir: string): Plugin => ({
   },
 });
 
+const escapeHtml = (value: string): string => value
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&#39;');
+
+const staticUiHtmlPlugin = (): Plugin => ({
+  name: 'phphtmledit-static-ui-copy',
+  transformIndexHtml: {
+    order: 'pre',
+    handler: (html) => {
+      const transformed = html.replace(/\{\{phe:([A-Za-z0-9]+)\}\}/g, (token, key: string) => {
+        const value = STATIC_UI[key as keyof typeof STATIC_UI];
+        if (typeof value !== 'string') throw new Error(`Unknown static UI copy token: ${token}`);
+        return escapeHtml(value);
+      });
+      if (transformed.includes('{{phe:')) {
+        throw new Error('An unresolved static UI copy token remains in index.html');
+      }
+      return transformed;
+    },
+  },
+});
+
 export default defineConfig(({ mode }) => {
   const diagnostic = mode === 'e0';
   const outDir = diagnostic ? 'dist-e0' : 'dist';
@@ -35,6 +61,7 @@ export default defineConfig(({ mode }) => {
       alias: mammothBrowserAliases(projectRoot),
     },
     plugins: [
+      ...(!diagnostic ? [staticUiHtmlPlugin()] : []),
       ...(diagnostic
         ? [
           {

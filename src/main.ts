@@ -11,7 +11,11 @@ import {
 import { createIoToolsController, type IoToolsController } from './ui/io-tools';
 import { createLayoutController, type LayoutController } from './ui/layout';
 import { loadDraft } from './storage/draft';
+import { appConfig } from './config';
+import { applyStaticUi, STATIC_UI } from './ui/strings';
 import './styles/app.css';
+
+void appConfig;
 
 const element = <T extends HTMLElement>(id: string): T => {
   const result = document.getElementById(id);
@@ -19,12 +23,12 @@ const element = <T extends HTMLElement>(id: string): T => {
   return result as T;
 };
 
-const app = element<HTMLElement>('app');
-const skeleton = element<HTMLElement>('loading-skeleton');
-const status = element<HTMLElement>('app-status');
-const errorPanel = element<HTMLElement>('app-error');
-const normalizationNote = element<HTMLElement>('normalization-note');
-const wrapSource = element<HTMLInputElement>('wrap-source');
+let app: HTMLElement;
+let skeleton: HTMLElement;
+let status: HTMLElement;
+let errorPanel: HTMLElement;
+let normalizationNote: HTMLElement;
+let wrapSource: HTMLInputElement;
 
 let visual: VisualEditorController | null = null;
 let source: SourceEditorController | null = null;
@@ -79,12 +83,13 @@ const initialise = async (): Promise<void> => {
     },
     source,
     sync,
+    visual,
   );
 
   wrapSource.addEventListener('change', () => source?.setLineWrapping(wrapSource.checked));
   skeleton.hidden = true;
   app.setAttribute('aria-busy', 'false');
-  status.textContent = 'Редакторы готовы.';
+  status.textContent = STATIC_UI.appStatusReady;
 };
 
 const destroy = (): void => {
@@ -96,19 +101,49 @@ const destroy = (): void => {
   visual?.destroy();
 };
 
-window.addEventListener('pagehide', (event: PageTransitionEvent) => {
-  if (event.persisted) {
-    ioTools?.saveDraftNow();
-    return;
-  }
-  ioTools?.saveDraftFinal();
-  destroy();
+const waitForInitialPaint = (): Promise<void> => new Promise((resolve) => {
+  requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
 });
 
-void initialise().catch((error: unknown) => {
+const showFatalError = (error: unknown): void => {
   console.error('Editor initialisation failed', error);
-  skeleton.hidden = true;
-  errorPanel.hidden = false;
-  app.setAttribute('aria-busy', 'false');
-  status.textContent = 'Редактор не загрузился.';
-});
+  const shell = document.getElementById('app');
+  const loading = document.getElementById('loading-skeleton');
+  const errorElement = document.getElementById('app-error');
+  const statusElement = document.getElementById('app-status');
+  if (loading instanceof HTMLElement) loading.hidden = true;
+  if (errorElement instanceof HTMLElement) {
+    errorElement.classList.remove('bootstrap-fallback');
+    errorElement.hidden = false;
+  }
+  if (shell instanceof HTMLElement) {
+    shell.classList.add('has-fatal-error');
+    shell.setAttribute('aria-busy', 'false');
+  }
+  if (statusElement instanceof HTMLElement) statusElement.textContent = STATIC_UI.appStatusFailed;
+};
+
+try {
+  applyStaticUi();
+  app = element<HTMLElement>('app');
+  skeleton = element<HTMLElement>('loading-skeleton');
+  status = element<HTMLElement>('app-status');
+  errorPanel = element<HTMLElement>('app-error');
+  normalizationNote = element<HTMLElement>('normalization-note');
+  wrapSource = element<HTMLInputElement>('wrap-source');
+  errorPanel.hidden = true;
+  errorPanel.classList.remove('bootstrap-fallback');
+
+  window.addEventListener('pagehide', (event: PageTransitionEvent) => {
+    if (event.persisted) {
+      ioTools?.saveDraftNow();
+      return;
+    }
+    ioTools?.saveDraftFinal();
+    destroy();
+  });
+
+  void waitForInitialPaint().then(initialise).catch(showFatalError);
+} catch (error: unknown) {
+  showFatalError(error);
+}

@@ -2,8 +2,10 @@ import { createHash } from 'node:crypto';
 import { access, readdir, readFile } from 'node:fs/promises';
 import { extname, relative, resolve } from 'node:path';
 import {
+  TINYMCE_ASSETS,
   CUSTOM_EMOTICONS_DATABASE_ASSET,
   STOCK_EMOTICONS_DATABASE_ASSET,
+  TINYMCE_EXCLUDED_DARK_ASSETS,
   TINYMCE_VENDOR_ASSETS,
 } from './tinymce-assets.mjs';
 
@@ -56,6 +58,11 @@ const exists = async (path) => {
 if (TINYMCE_VENDOR_ASSETS.includes(STOCK_EMOTICONS_DATABASE_ASSET)) {
   errors.push('stock TinyMCE emoji database remains in the vendor allow-list');
 }
+const includedDarkAssets = TINYMCE_EXCLUDED_DARK_ASSETS.filter((asset) =>
+  TINYMCE_ASSETS.includes(asset));
+if (includedDarkAssets.length > 0) {
+  errors.push(`dark TinyMCE assets remain in the distribution allow-list: ${includedDarkAssets.join(', ')}`);
+}
 const expectedEmoticonsHash =
   'ae44bba7002ff59b2ffcd17b96bcd7b51c39dbbe4a07c767b1bab5c9201f4b19';
 for (const [name, root] of [
@@ -74,6 +81,48 @@ for (const [name, root] of [
     if (digest !== expectedEmoticonsHash) {
       errors.push(`${name} common emoji database SHA-256 differs: ${digest}`);
     }
+  }
+}
+
+for (const [name, root] of [
+  ['public', resolve(ROOT, 'public')],
+  ['production', PROD_ROOT],
+  ['diagnostic', DIAGNOSTIC_ROOT],
+]) {
+  for (const asset of TINYMCE_EXCLUDED_DARK_ASSETS) {
+    if (await exists(resolve(root, 'tinymce', asset))) {
+      errors.push(`${name} contains excluded dark TinyMCE asset: ${asset}`);
+    }
+  }
+}
+
+const tinyMceAssetReportText = await readFile(
+  resolve(ROOT, 'reports', 'tinymce-assets.json'),
+  'utf8',
+);
+const tinyMceAssetReport = JSON.parse(tinyMceAssetReportText);
+if (/\b[A-Z]:\\/i.test(tinyMceAssetReportText) || /"(?:capturedAt|generatedAt)"/.test(tinyMceAssetReportText)) {
+  errors.push('TinyMCE asset report contains a machine path or nondeterministic timestamp');
+}
+const reportedTinyMceAssets = Array.isArray(tinyMceAssetReport.assets)
+  ? tinyMceAssetReport.assets
+  : [];
+const reportedTinyMcePaths = reportedTinyMceAssets.map(({ path }) => path);
+if (JSON.stringify(reportedTinyMcePaths) !== JSON.stringify(TINYMCE_ASSETS)) {
+  errors.push(
+    `TinyMCE asset report inventory differs: ` +
+      `${JSON.stringify(reportedTinyMcePaths)}/${JSON.stringify(TINYMCE_ASSETS)}`,
+  );
+}
+for (const entry of reportedTinyMceAssets) {
+  const publicPath = resolve(ROOT, 'public', 'tinymce', entry.path);
+  if (!(await exists(publicPath))) {
+    errors.push(`TinyMCE asset report points to a missing public file: ${entry.path}`);
+    continue;
+  }
+  const bytes = await readFile(publicPath);
+  if (entry.bytes !== bytes.byteLength || entry.sha256 !== sha256(bytes)) {
+    errors.push(`TinyMCE asset report hash or byte count differs: ${entry.path}`);
   }
 }
 
@@ -119,6 +168,9 @@ for (const path of productionFiles) {
   }
   if (fixtureHashes.has(sha256(bytes))) {
     errors.push(`production contains a fixture payload: ${displayPath}`);
+  }
+  if (displayPath === 'index.html' && bytes.includes(Buffer.from('{{phe:'))) {
+    errors.push('production index.html contains an unresolved static UI copy token');
   }
   for (const marker of FORBIDDEN_MARKERS) {
     if (bytes.includes(marker)) {

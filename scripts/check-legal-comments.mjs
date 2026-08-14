@@ -15,6 +15,7 @@ import {
   CUSTOM_ICON_NAMES,
   CUSTOM_ICON_PACK,
   STOCK_EMOTICONS_DATABASE_ASSET,
+  TINYMCE_EXCLUDED_DARK_ASSETS,
   TINYMCE_VENDOR_ASSETS,
   TINYMCE_VERSION,
 } from './tinymce-assets.mjs';
@@ -95,6 +96,21 @@ for (const asset of TINYMCE_VENDOR_ASSETS) {
   const sourceHash = createHash('sha256').update(source).digest('hex');
   const builtHash = createHash('sha256').update(built).digest('hex');
   if (sourceHash !== builtHash) failures.push(`TinyMCE asset changed during build: ${asset}`);
+}
+const includedDarkAssets = TINYMCE_EXCLUDED_DARK_ASSETS.filter((asset) =>
+  TINYMCE_VENDOR_ASSETS.includes(asset));
+if (includedDarkAssets.length > 0) {
+  failures.push(`Dark TinyMCE assets remain in the vendor allow-list: ${includedDarkAssets.join(', ')}`);
+}
+for (const root of ['public', 'dist', 'dist-e0']) {
+  for (const asset of TINYMCE_EXCLUDED_DARK_ASSETS) {
+    try {
+      await access(resolve(projectRoot, root, 'tinymce', asset));
+      failures.push(`${root} contains excluded dark TinyMCE asset: ${asset}`);
+    } catch {
+      // Expected: the MVP distributes only the light TinyMCE skin.
+    }
+  }
 }
 
 const [publicCustomIcons, builtCustomIcons] = await Promise.all([

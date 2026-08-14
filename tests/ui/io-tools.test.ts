@@ -183,7 +183,7 @@ describe('I/O tools controller', () => {
     }));
     expect(harness.apply).toHaveBeenNthCalledWith(
       1,
-      'импорт page.HTML',
+      'import page.HTML',
       '<p>Imported HTML</p>',
       '<p>Before HTML</p>',
     );
@@ -202,11 +202,11 @@ describe('I/O tools controller', () => {
     }));
     expect(harness.apply).toHaveBeenNthCalledWith(
       2,
-      'импорт letter.DoCx',
+      'import letter.DoCx',
       '<h1>Imported DOCX</h1>',
       '<p>Before DOCX</p>',
     );
-    expect(document.querySelector('#io-result')?.textContent).toContain('Предупреждений: 3');
+    expect(document.querySelector('#io-result')?.textContent).toContain('Warnings: 3');
     expect(harness.sync.flushActive).toHaveBeenCalledTimes(4);
   });
 
@@ -225,7 +225,7 @@ describe('I/O tools controller', () => {
 
     expect(harness.apply).not.toHaveBeenCalled();
     expect(document.querySelector('#io-result')?.textContent)
-      .toBe('Документ изменился во время операции. Полученный результат не применён.');
+      .toBe('The document changed during the operation, so the imported result was not applied.');
   });
 
   it('shows errors for multiple, unsupported and oversized files without a mass write', async () => {
@@ -233,7 +233,7 @@ describe('I/O tools controller', () => {
 
     setInputFiles([fakeFile('one.html'), fakeFile('two.html')]);
     expect(document.querySelector('#io-result')?.textContent)
-      .toBe('Импортируйте по одному файлу за раз.');
+      .toBe('Import one file at a time.');
 
     harness.operations.importDocx.mockRejectedValueOnce(new ImportFileError(
       'unsupported-extension',
@@ -242,7 +242,7 @@ describe('I/O tools controller', () => {
     setInputFiles([fakeFile('notes.txt')]);
     await settle();
     expect(document.querySelector('#io-result')?.textContent)
-      .toBe('Поддерживаются только файлы .html, .htm и .docx.');
+      .toBe('Only .html, .htm, and .docx files are supported.');
 
     harness.operations.importDocx.mockRejectedValueOnce(new ImportFileError(
       'file-too-large',
@@ -251,7 +251,7 @@ describe('I/O tools controller', () => {
     setInputFiles([fakeFile('large.docx', MAX_IMPORT_BYTES + 1)]);
     await settle();
     expect(document.querySelector('#io-result')?.textContent)
-      .toBe('Файл превышает ограничение 5 МБ.');
+      .toBe('The file exceeds the 5 MB limit.');
     expect(harness.apply).not.toHaveBeenCalled();
   });
 
@@ -271,7 +271,7 @@ describe('I/O tools controller', () => {
 
     expect(harness.operations.importHtml).toHaveBeenCalledOnce();
     expect(harness.apply).toHaveBeenCalledWith(
-      'импорт dropped.html',
+      'import dropped.html',
       '<p>Imported HTML</p>',
       '<p>Drop target</p>',
     );
@@ -284,7 +284,7 @@ describe('I/O tools controller', () => {
     document.querySelector<HTMLButtonElement>('#load-example')!.click();
     expect(harness.apply).toHaveBeenNthCalledWith(
       1,
-      'загрузка примера',
+      'load example',
       expect.stringContaining('<h1 class="generated-title"'),
       '<p>Original</p>',
     );
@@ -296,7 +296,7 @@ describe('I/O tools controller', () => {
     expect(harness.confirmNewDocument).toHaveBeenCalledTimes(2);
     expect(harness.apply).toHaveBeenNthCalledWith(
       2,
-      'новый документ',
+      'new document',
       '',
       expect.stringContaining('<h1 class="generated-title"'),
     );
@@ -317,8 +317,8 @@ describe('I/O tools controller', () => {
     await settle();
     expect(harness.operations.copyHtml).toHaveBeenCalledWith('<p>Visual canonical</p>');
     expect(document.querySelector('#io-result')?.textContent)
-      .toBe('HTML не скопирован: браузер запретил доступ к буферу обмена.');
-    expect(document.querySelector('#io-result')?.textContent).not.toContain('HTML скопирован');
+      .toBe('HTML was not copied because the browser denied clipboard access.');
+    expect(document.querySelector('#io-result')?.textContent).not.toContain('HTML was copied');
 
     document.querySelector<HTMLButtonElement>('#copy-text')!.click();
     await settle();
@@ -334,7 +334,7 @@ describe('I/O tools controller', () => {
     await settle();
 
     expect(document.querySelector('#io-result')?.textContent)
-      .toBe('HTML не скопирован: браузер запретил доступ к буферу обмена.');
+      .toBe('HTML was not copied because the browser denied clipboard access.');
   });
 
   it('shows a restored draft and starts a new document without confirmation', () => {
@@ -350,7 +350,7 @@ describe('I/O tools controller', () => {
     const notice = document.querySelector<HTMLElement>('#draft-notice')!;
     expect(notice.hidden).toBe(false);
     expect(document.querySelector('#draft-message')?.textContent)
-      .toContain('Восстановлен локальный черновик');
+      .toContain('Restored a local draft');
     expect(document.querySelector<HTMLButtonElement>('#discard-restored-draft')?.hidden)
       .toBe(false);
 
@@ -358,7 +358,7 @@ describe('I/O tools controller', () => {
 
     expect(harness.confirmNewDocument).not.toHaveBeenCalled();
     expect(harness.apply).toHaveBeenCalledWith(
-      'новый документ',
+      'new document',
       '',
       restoredHtml,
     );

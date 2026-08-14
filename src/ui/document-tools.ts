@@ -22,6 +22,11 @@ import {
   type ReplaceRule,
   type ReplaceRuleError,
 } from '../replace';
+import {
+  CLEAN_RULE_COPY,
+  DOCUMENT_TOOL_UI,
+  documentToolMessage,
+} from './strings';
 
 type ToolSourcePort = Pick<SourceEditorController, 'getHtml'>;
 type ToolSyncPort = Pick<SyncController, 'flushActive'>;
@@ -33,49 +38,6 @@ export interface DocumentToolsController {
 
 export const CLEAN_SETTINGS_STORAGE_KEY = 'phphtmledit.cleaning-settings.v1';
 export const CLEAN_SETTINGS_STORAGE_VERSION = 1;
-
-const CLEAN_RULE_COPY: Record<CleanRuleId, { label: string; description: string }> = {
-  'inline-styles': {
-    label: 'Инлайн-стили',
-    description: 'Удаляет style, align, valign, bgcolor и другие атрибуты оформления.',
-  },
-  'classes-and-ids': {
-    label: 'Классы и ID',
-    description: 'Удаляет атрибуты class и id.',
-  },
-  'empty-elements': {
-    label: 'Пустые теги',
-    description: 'Удаляет элементы без значимого содержимого.',
-  },
-  'single-space-elements': {
-    label: 'Теги с одним пробелом',
-    description: 'Удаляет абзацы с единственным неразрывным пробелом.',
-  },
-  'repeated-spaces': {
-    label: 'Повторяющиеся пробелы',
-    description: 'Схлопывает идущие подряд обычные и неразрывные пробелы.',
-  },
-  comments: {
-    label: 'Комментарии',
-    description: 'Удаляет комментарии HTML.',
-  },
-  'tag-attributes': {
-    label: 'Атрибуты тегов',
-    description: 'Оставляет href у ссылок и src с alt у изображений.',
-  },
-  'plain-text': {
-    label: 'Только текст',
-    description: 'Убирает всю разметку, сохраняя текст документа.',
-  },
-  'ai-symbols': {
-    label: 'Символы ИИ',
-    description: 'Нормализует кавычки, тире, узкие пробелы и невидимые символы.',
-  },
-  'word-junk': {
-    label: 'Мусор из Word',
-    description: 'Удаляет условные комментарии, офисные атрибуты, классы и пустые span.',
-  },
-};
 
 const required = <T extends HTMLElement>(root: Document, id: string): T => {
   const result = root.getElementById(id);
@@ -125,7 +87,7 @@ const loadCleanRuleIds = (
   } catch {
     return {
       enabled: defaultCleanRuleIds(),
-      warning: 'Сохранённые настройки очистки повреждены; восстановлены значения по умолчанию.',
+      warning: DOCUMENT_TOOL_UI.damagedCleaningSettings,
     };
   }
 };
@@ -145,9 +107,6 @@ const saveCleanRuleIds = (
     return false;
   }
 };
-
-const replacementCount = (count: number): string => `Выполнено замен: ${count}.`;
-const staleOperationMessage = 'Документ изменился во время операции; результат не применён.';
 
 type SafeReplaceModule = Pick<
   typeof import('../replace/safe'),
@@ -207,8 +166,10 @@ export const createDocumentToolsController = (
   const renderUndoState = (prefix?: string): void => {
     const state = massDocument.getUndoState();
     undoButton.disabled = busy || state.count === 0;
-    const next = state.nextLabel ? `Можно отменить: ${state.nextLabel}.` : 'Нет операций для отмены.';
-    undoDescription.textContent = prefix ? `${prefix} ${next}` : next;
+    const next = state.nextLabel
+      ? documentToolMessage.undoAvailable(state.nextLabel)
+      : DOCUMENT_TOOL_UI.noMassOperationsToUndo;
+    undoDescription.textContent = documentToolMessage.undoState(prefix, next);
   };
 
   const updateControls = (): void => {
@@ -258,7 +219,7 @@ export const createDocumentToolsController = (
           await operation();
         } catch (error: unknown) {
           console.error('Document operation failed', error);
-          status.textContent = 'Не удалось выполнить операцию.';
+          status.textContent = DOCUMENT_TOOL_UI.operationFailed;
         } finally {
           finishDeferredOperation(panel);
         }
@@ -288,7 +249,7 @@ export const createDocumentToolsController = (
     // compare the current document with the exact input snapshot.
     sync.flushActive();
     if (source.getHtml() === snapshotHtml) return true;
-    status.textContent = staleOperationMessage;
+    status.textContent = DOCUMENT_TOOL_UI.staleOperation;
     return false;
   };
 
@@ -299,7 +260,7 @@ export const createDocumentToolsController = (
     label: string,
     transform: (snapshotHtml: string) => string | Promise<string>,
     changedMessage: string,
-    unchangedMessage = 'Изменений нет.',
+    unchangedMessage: string = DOCUMENT_TOOL_UI.noChanges,
   ): void => {
     runDeferred(panel, status, busyMessage, async () => {
       sync.flushActive();
@@ -326,7 +287,7 @@ export const createDocumentToolsController = (
     checkbox.type = 'checkbox';
     checkbox.id = `clean-rule-${ruleId}`;
     checkbox.checked = enabledCleanRules.has(ruleId);
-    checkbox.setAttribute('aria-label', `Включить правило «${copy.label}» в общую очистку`);
+    checkbox.setAttribute('aria-label', documentToolMessage.includeCleaningRuleAria(copy.label));
     cleanCheckboxes.set(ruleId, checkbox);
 
     const label = createElement(root, 'label', 'cleaning-rule-name');
@@ -338,25 +299,25 @@ export const createDocumentToolsController = (
 
     const applyButton = createElement(root, 'button');
     applyButton.type = 'button';
-    applyButton.textContent = 'Применить';
-    applyButton.setAttribute('aria-label', `Применить правило «${copy.label}»`);
+    applyButton.textContent = DOCUMENT_TOOL_UI.apply;
+    applyButton.setAttribute('aria-label', documentToolMessage.applyCleaningRuleAria(copy.label));
 
     const onSettingChange = (): void => {
       if (checkbox.checked) enabledCleanRules.add(ruleId);
       else enabledCleanRules.delete(ruleId);
       if (!saveCleanRuleIds(enabledCleanRules, storage)) {
-        cleaningResult.textContent = 'Настройка изменена, но сохранить её в браузере не удалось.';
+        cleaningResult.textContent = DOCUMENT_TOOL_UI.cleaningSettingNotSaved;
       }
     };
     const onApply = (): void => {
       runTransform(
         cleaningPanel,
         cleaningResult,
-        `Применяем правило «${copy.label}»…`,
-        `очистка — ${copy.label}`,
+        documentToolMessage.applyingCleaningRule(copy.label),
+        documentToolMessage.cleaningRuleLabel(copy.label),
         (html) => applyCleanRule(html, ruleId).html,
-        `Применено правило «${copy.label}».`,
-        `Правило «${copy.label}» не нашло изменений.`,
+        documentToolMessage.cleaningRuleApplied(copy.label),
+        documentToolMessage.cleaningRuleUnchanged(copy.label),
       );
     };
     checkbox.addEventListener('change', onSettingChange);
@@ -397,7 +358,7 @@ export const createDocumentToolsController = (
     replacementRuleList.replaceChildren();
     if (replaceRules.length === 0) {
       const empty = createElement(root, 'p', 'tool-result');
-      empty.textContent = 'Правила замены не добавлены.';
+      empty.textContent = DOCUMENT_TOOL_UI.noReplacementRules;
       replacementRuleList.append(empty);
     }
 
@@ -407,7 +368,7 @@ export const createDocumentToolsController = (
       const fields = createElement(root, 'div', 'replacement-fields');
 
       const findLabel = createElement(root, 'label');
-      findLabel.append('Найти');
+      findLabel.append(DOCUMENT_TOOL_UI.find);
       const findInput = createElement(root, 'input');
       findInput.type = 'text';
       findInput.maxLength = MAX_REPLACE_FIELD_LENGTH;
@@ -417,7 +378,7 @@ export const createDocumentToolsController = (
       findLabel.append(findInput);
 
       const replacementLabel = createElement(root, 'label');
-      replacementLabel.append('Заменить на');
+      replacementLabel.append(DOCUMENT_TOOL_UI.replaceWith);
       const replacementInput = createElement(root, 'input');
       replacementInput.type = 'text';
       replacementInput.maxLength = MAX_REPLACE_FIELD_LENGTH;
@@ -433,25 +394,31 @@ export const createDocumentToolsController = (
       regexInput.type = 'checkbox';
       regexInput.checked = rule.isRegex;
       regexInput.dataset.field = 'isRegex';
-      regexLabel.append(regexInput, ' Регулярное выражение');
+      regexLabel.append(regexInput, ' ', DOCUMENT_TOOL_UI.regularExpression);
 
       const caseLabel = createElement(root, 'label');
       const caseInput = createElement(root, 'input');
       caseInput.type = 'checkbox';
       caseInput.checked = rule.ignoreCase;
       caseInput.dataset.field = 'ignoreCase';
-      caseLabel.append(caseInput, ' Игнорировать регистр');
+      caseLabel.append(caseInput, ' ', DOCUMENT_TOOL_UI.ignoreCase);
 
       const applyButton = createElement(root, 'button');
       applyButton.type = 'button';
       applyButton.dataset.action = 'apply';
-      applyButton.textContent = 'Применить';
-      applyButton.setAttribute('aria-label', `Применить правило замены ${index + 1}`);
+      applyButton.textContent = DOCUMENT_TOOL_UI.apply;
+      applyButton.setAttribute(
+        'aria-label',
+        documentToolMessage.applyReplacementRuleAria(index + 1),
+      );
       const removeButton = createElement(root, 'button');
       removeButton.type = 'button';
       removeButton.dataset.action = 'remove';
-      removeButton.textContent = 'Удалить';
-      removeButton.setAttribute('aria-label', `Удалить правило замены ${index + 1}`);
+      removeButton.textContent = DOCUMENT_TOOL_UI.remove;
+      removeButton.setAttribute(
+        'aria-label',
+        documentToolMessage.removeReplacementRuleAria(index + 1),
+      );
       options.append(regexLabel, caseLabel, applyButton, removeButton);
 
       const errorOutput = createElement(root, 'p', 'rule-error');
@@ -498,7 +465,11 @@ export const createDocumentToolsController = (
   const applySingleReplacement = (index: number): void => {
     const rule = replaceRules[index];
     if (!rule) return;
-    runDeferred(replacementPanel, replacementResult, `Применяем правило замены ${index + 1}…`, async () => {
+    runDeferred(
+      replacementPanel,
+      replacementResult,
+      documentToolMessage.applyingReplacementRule(index + 1),
+      async () => {
       sync.flushActive();
       const snapshotHtml = source.getHtml();
       const regexError = rule.isRegex ? validateReplaceRegex(rule) : null;
@@ -516,12 +487,15 @@ export const createDocumentToolsController = (
       applyMassResult(
         snapshotHtml,
         result.html,
-        `замена — правило ${index + 1}`,
-        replacementCount(result.count),
-        result.count === 0 ? replacementCount(0) : `Найдено совпадений: ${result.count}; документ не изменился.`,
+        documentToolMessage.replacementRuleLabel(index + 1),
+        documentToolMessage.replacementCount(result.count),
+        result.count === 0
+          ? documentToolMessage.replacementCount(0)
+          : documentToolMessage.matchesWithoutChanges(result.count),
         replacementResult,
       );
-    });
+      },
+    );
   };
 
   const onReplacementClick = (event: Event): void => {
@@ -540,7 +514,7 @@ export const createDocumentToolsController = (
       replaceRules.splice(index, 1);
       const persisted = persistReplaceRules();
       renderReplaceRules();
-      if (persisted) replacementResult.textContent = 'Правило удалено.';
+      if (persisted) replacementResult.textContent = DOCUMENT_TOOL_UI.replacementRuleRemoved;
     }
   };
 
@@ -561,7 +535,7 @@ export const createDocumentToolsController = (
 
   const onApplyAllReplacements = (): void => {
     if (replaceRules.length === 0) return;
-    runDeferred(replacementPanel, replacementResult, 'Применяем правила замены…', async () => {
+    runDeferred(replacementPanel, replacementResult, DOCUMENT_TOOL_UI.applyingReplacementRules, async () => {
       sync.flushActive();
       const snapshotHtml = source.getHtml();
       const result = replaceRules.some((rule) => rule.isRegex)
@@ -569,16 +543,13 @@ export const createDocumentToolsController = (
         : applyReplaceRules(snapshotHtml, replaceRules);
       result.results.forEach((entry) => setReplacementError(entry.ruleIndex, entry.error));
       const errorCount = result.results.filter((entry) => entry.error !== null).length;
-      const suffix = errorCount > 0 ? ` Ошибок в правилах: ${errorCount}.` : '';
       if (!snapshotIsCurrent(snapshotHtml, replacementResult)) return;
       applyMassResult(
         snapshotHtml,
         result.html,
-        'применение всех замен',
-        `${replacementCount(result.count)}${suffix}`,
-        result.count === 0
-          ? `${replacementCount(0)}${suffix}`
-          : `Найдено совпадений: ${result.count}; документ не изменился.${suffix}`,
+        DOCUMENT_TOOL_UI.applyAllReplacementsLabel,
+        documentToolMessage.replacementSummary(result.count, errorCount, true),
+        documentToolMessage.replacementSummary(result.count, errorCount, false),
         replacementResult,
       );
     });
@@ -587,46 +558,46 @@ export const createDocumentToolsController = (
   const onCleanSelected = (): void => {
     const selected = CLEAN_RULE_IDS.filter((ruleId) => cleanCheckboxes.get(ruleId)?.checked);
     if (selected.length === 0) {
-      cleaningResult.textContent = 'Выберите хотя бы одно правило очистки.';
+      cleaningResult.textContent = DOCUMENT_TOOL_UI.selectCleaningRule;
       return;
     }
     runTransform(
       cleaningPanel,
       cleaningResult,
-      'Очищаем документ…',
-      'очистка выбранными правилами',
+      DOCUMENT_TOOL_UI.cleaningDocument,
+      DOCUMENT_TOOL_UI.cleanSelectedLabel,
       async (html) => (await cleanHtmlCooperatively(html, selected)).html,
-      `Очистка завершена: применено правил — ${selected.length}.`,
+      documentToolMessage.cleaningComplete(selected.length),
     );
   };
 
   const onFormat = (): void => runTransform(
     cleaningPanel,
     cleaningResult,
-    'Форматируем HTML…',
-    'форматирование HTML',
+    DOCUMENT_TOOL_UI.formattingHtml,
+    DOCUMENT_TOOL_UI.formatHtmlLabel,
     formatHtml,
-    'HTML отформатирован.',
+    DOCUMENT_TOOL_UI.htmlFormatted,
   );
 
   const onMinify = (): void => runTransform(
     cleaningPanel,
     cleaningResult,
-    'Сжимаем HTML…',
-    'сжатие HTML',
+    DOCUMENT_TOOL_UI.minifyingHtml,
+    DOCUMENT_TOOL_UI.minifyHtmlLabel,
     minifyHtml,
-    'HTML сжат.',
+    DOCUMENT_TOOL_UI.htmlMinified,
   );
 
   const onUndo = (): void => {
-    runDeferred(documentTools, undoDescription, 'Восстанавливаем документ…', () => {
+    runDeferred(documentTools, undoDescription, DOCUMENT_TOOL_UI.restoringDocument, () => {
       sync.flushActive();
       const result = massDocument.undo();
       if (!result) {
         renderUndoState();
         return;
       }
-      renderUndoState(`Отменено: ${result.label}.`);
+      renderUndoState(documentToolMessage.undone(result.label));
     });
   };
 

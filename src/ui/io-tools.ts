@@ -10,7 +10,6 @@ import {
   importDocxFile,
   importHtmlFile,
   ImportFileError,
-  type ClipboardCopyResult,
   type DocxImportResult,
 } from '../io';
 import {
@@ -19,6 +18,7 @@ import {
   type DraftLoadResult,
   type DraftSaveResult,
 } from '../storage/draft';
+import { IO_UI, SAMPLE_HTML, ioMessage } from './strings';
 
 type IoSourcePort = Pick<SourceEditorController, 'getHtml'>;
 type IoVisualPort = Pick<VisualEditorController, 'getHtml' | 'getText' | 'onFileDrop'>;
@@ -47,12 +47,6 @@ export interface IoToolsController {
   readonly destroy: () => void;
 }
 
-const SAMPLE_HTML = `<!-- Лишний комментарий для проверки очистки -->
-<h1 class="generated-title" style="color: #4f46e5">Пример грязного HTML</h1>
-<p style="font-family: Arial">Этот&nbsp;&nbsp;&nbsp;текст содержит   повторные пробелы, “кавычки”,
-нулевой&#8203;символ и <span class="temporary-mark">лишние классы</span>.</p>
-<p><strong>Попробуйте</strong> правила очистки, форматирование и массовую отмену.</p>`;
-
 const element = <T extends HTMLElement>(document: Document, id: string): T => {
   const result = document.getElementById(id);
   if (!(result instanceof HTMLElement)) throw new Error(`Required element #${id} is missing`);
@@ -67,23 +61,6 @@ const extension = (fileName: string): string => {
 const nextPaint = (window: Window): Promise<void> => new Promise((resolve) => {
   window.requestAnimationFrame(() => window.requestAnimationFrame(() => resolve()));
 });
-
-const importErrorMessage = (error: unknown): string => {
-  if (error instanceof ImportFileError) {
-    if (error.code === 'unsupported-extension') return 'Поддерживаются только файлы .html, .htm и .docx.';
-    if (error.code === 'file-too-large') return 'Файл превышает ограничение 5 МБ.';
-    if (error.code === 'file-read-failed') return 'Не удалось прочитать выбранный файл.';
-    if (error.code === 'docx-conversion-failed') return 'Не удалось разобрать документ DOCX.';
-  }
-  return 'Импорт не выполнен. Файл повреждён или имеет неподдерживаемый формат.';
-};
-
-const clipboardMessage = (kind: 'HTML' | 'Текст', result: ClipboardCopyResult): string => {
-  if (!result.ok) return `${kind} не скопирован: браузер запретил доступ к буферу обмена.`;
-  return result.method === 'clipboard-api'
-    ? `${kind} скопирован в буфер обмена.`
-    : `${kind} скопирован резервным способом.`;
-};
 
 export const createIoToolsController = (
   source: IoSourcePort,
@@ -135,12 +112,12 @@ export const createIoToolsController = (
   const handleDraftResult = (saveResult: DraftSaveResult): void => {
     if (saveResult.status === 'too-large') {
       restoredNoticeActive = false;
-      showDraftNotice('Черновик больше 1 МБ. Последняя допустимая версия сохранена, автосохранение возобновится после уменьшения документа.', false);
+      showDraftNotice(IO_UI.draftTooLarge, false);
       return;
     }
     if (saveResult.status === 'storage-error' || saveResult.status === 'source-error') {
       restoredNoticeActive = false;
-      showDraftNotice('Не удалось сохранить черновик в этом браузере.', false);
+      showDraftNotice(IO_UI.draftSaveFailed, false);
       return;
     }
     if (!restoredNoticeActive && !draftNotice.hidden) draftNotice.hidden = true;
@@ -165,14 +142,13 @@ export const createIoToolsController = (
   });
 
   if (options.draftLoadResult.status === 'loaded') {
-    const savedAt = new Date(options.draftLoadResult.draft.savedAt).toLocaleString('ru-RU');
-    showDraftNotice(`Восстановлен локальный черновик от ${savedAt}.`, true);
+    showDraftNotice(ioMessage.restoredDraft(options.draftLoadResult.draft.savedAt), true);
   } else if (options.draftLoadResult.status === 'too-large') {
-    showDraftNotice('Сохранённый черновик превышает 1 МБ и не был восстановлен.', false);
+    showDraftNotice(IO_UI.storedDraftTooLarge, false);
   } else if (options.draftLoadResult.status === 'invalid') {
-    showDraftNotice('Сохранённый черновик повреждён и не был восстановлен.', false);
+    showDraftNotice(IO_UI.storedDraftInvalid, false);
   } else if (options.draftLoadResult.status === 'storage-error') {
-    showDraftNotice('Локальное хранилище недоступно; черновик сохраняться не будет.', false);
+    showDraftNotice(IO_UI.draftStorageUnavailable, false);
   }
 
   const setBusy = (next: boolean): void => {
@@ -189,13 +165,13 @@ export const createIoToolsController = (
   const snapshotIsCurrent = (snapshot: string): boolean => {
     sync.flushActive();
     if (source.getHtml() === snapshot) return true;
-    result.textContent = 'Документ изменился во время операции. Полученный результат не применён.';
+    result.textContent = IO_UI.staleOperation;
     return false;
   };
 
   const applyMass = (label: string, nextHtml: string, snapshot: string): void => {
     if (nextHtml === snapshot) {
-      result.textContent = 'Документ уже содержит эти данные.';
+      result.textContent = IO_UI.alreadyContainsData;
       return;
     }
     massDocument.apply(label, nextHtml, snapshot);
@@ -205,8 +181,8 @@ export const createIoToolsController = (
     if (busy || destroyed) return;
     if (files.length !== 1) {
       result.textContent = files.length === 0
-        ? 'Выберите файл для импорта.'
-        : 'Импортируйте по одному файлу за раз.';
+        ? IO_UI.selectImportFile
+        : IO_UI.importOneFile;
       return;
     }
 
@@ -215,8 +191,8 @@ export const createIoToolsController = (
     const snapshot = currentSnapshot();
     setBusy(true);
     result.textContent = extension(file.name) === 'docx'
-      ? `Разбираем ${file.name}…`
-      : `Открываем ${file.name}…`;
+      ? ioMessage.parsingFile(file.name)
+      : ioMessage.openingFile(file.name);
 
     try {
       await nextPaint(window);
@@ -230,17 +206,17 @@ export const createIoToolsController = (
         html = docxResult.html;
       }
       if (!snapshotIsCurrent(snapshot)) return;
-      applyMass(`импорт ${file.name}`, html, snapshot);
+      applyMass(ioMessage.importMassLabel(file.name), html, snapshot);
       if (docxResult) {
         const warningCount = docxResult.warnings.length + docxResult.omittedWarningCount;
-        result.textContent = warningCount === 0
-          ? `Документ ${file.name} импортирован без предупреждений.`
-          : `Документ ${file.name} импортирован. Предупреждений: ${warningCount}.`;
+        result.textContent = ioMessage.docxImported(file.name, warningCount);
       } else {
-        result.textContent = `Файл ${file.name} импортирован.`;
+        result.textContent = ioMessage.htmlImported(file.name);
       }
     } catch (error: unknown) {
-      result.textContent = importErrorMessage(error);
+      result.textContent = ioMessage.importError(
+        error instanceof ImportFileError ? error.code : undefined,
+      );
     } finally {
       fileInput.value = '';
       setBusy(false);
@@ -262,38 +238,48 @@ export const createIoToolsController = (
     try {
       sync.flushActive();
       operations.download(visual.getHtml());
-      result.textContent = 'HTML-файл подготовлен для скачивания.';
+      result.textContent = IO_UI.htmlDownloadReady;
     } catch {
-      result.textContent = 'Не удалось скачать HTML-файл.';
+      result.textContent = IO_UI.htmlDownloadFailed;
     }
   });
   add(copyHtmlButton, 'click', () => {
     sync.flushActive();
     const copy = operations.copyHtml(visual.getHtml());
     void copy
-      .then((copyResult) => { result.textContent = clipboardMessage('HTML', copyResult); })
-      .catch(() => { result.textContent = 'HTML не скопирован: браузер запретил доступ к буферу обмена.'; });
+      .then((copyResult) => {
+        result.textContent = ioMessage.clipboard(
+          'html',
+          copyResult.ok ? copyResult.method : 'failed',
+        );
+      })
+      .catch(() => { result.textContent = ioMessage.clipboard('html', 'failed'); });
   });
   add(copyTextButton, 'click', () => {
     sync.flushActive();
     const copy = operations.copyText(visual.getText());
     void copy
-      .then((copyResult) => { result.textContent = clipboardMessage('Текст', copyResult); })
-      .catch(() => { result.textContent = 'Текст не скопирован: браузер запретил доступ к буферу обмена.'; });
+      .then((copyResult) => {
+        result.textContent = ioMessage.clipboard(
+          'text',
+          copyResult.ok ? copyResult.method : 'failed',
+        );
+      })
+      .catch(() => { result.textContent = ioMessage.clipboard('text', 'failed'); });
   });
   add(sampleButton, 'click', () => {
     const snapshot = currentSnapshot();
-    applyMass('загрузка примера', SAMPLE_HTML, snapshot);
-    result.textContent = 'Загружен демонстрационный документ.';
+    applyMass(IO_UI.sampleMassLabel, SAMPLE_HTML, snapshot);
+    result.textContent = IO_UI.sampleLoaded;
   });
 
   const startNew = (confirm: boolean): void => {
-    if (confirm && !(options.confirmNewDocument ?? (() => window.confirm('Очистить документ? Несохранённые изменения останутся только в истории массовых операций.')))()) return;
+    if (confirm && !(options.confirmNewDocument ?? (() => window.confirm(IO_UI.confirmNewDocument)))()) return;
     const snapshot = currentSnapshot();
-    applyMass('новый документ', '', snapshot);
+    applyMass(IO_UI.newDocumentMassLabel, '', snapshot);
     hideDraftNotice();
     draftAutosave.saveNow();
-    result.textContent = 'Создан новый документ.';
+    result.textContent = IO_UI.newDocumentCreated;
   };
   add(newButton, 'click', () => startNew(true));
   add(discardDraftButton, 'click', () => startNew(false));

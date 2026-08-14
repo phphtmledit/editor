@@ -1,0 +1,1368 @@
+{
+  "stage": "E4",
+  "scenario": "cumulative",
+  "manifestSha256": "6be1fdc43f3b32cca7fb2119c707f78f4e6150531950a237640061d8914d252e",
+  "pageUrl": "http://127.0.0.1:4173/",
+  "capturedAt": "2026-08-14T13:34:08.306Z",
+  "uiActionInventory": {
+    "cleanupRuleButtonsExpected": 10,
+    "cleanupRuleButtonsApplied": 10,
+    "largeDocumentClean100k": true,
+    "largeDocumentCleanDurationMs": 185.9,
+    "largeDocumentCleanWithin500ms": true,
+    "cleanSelected": true,
+    "format": true,
+    "minify": true,
+    "replacementRuleAdded": true,
+    "individualLiteralRuleApplied": true,
+    "pathologicalRegexTimeoutVisible": true,
+    "pathologicalRegexDocumentUnchanged": true,
+    "applyAllReplacements": true,
+    "replacementRuleRemoved": true,
+    "commonMassUndo": true,
+    "emojiDialogOpened": true,
+    "emojiSearchFiltered": true,
+    "emojiInserted": true,
+    "htmlImported": true,
+    "docxDroppedIntoTinyMce": true,
+    "docxImported": true,
+    "mammothRequestedByDocxImport": true,
+    "htmlExportDownloaded": true,
+    "htmlCopied": true,
+    "textCopied": true,
+    "sampleLoaded": true,
+    "draftAutosaved": true,
+    "newDocumentCreated": true,
+    "loadingSkeletonObserved": true,
+    "loadingPaintProof": {
+      "visibleFrom": 123.3,
+      "firstHiddenAt": 530.4,
+      "visibleState": {
+        "source": "mutation",
+        "at": 123.3,
+        "readyState": "loading",
+        "visibilityState": "visible",
+        "appBusy": "true",
+        "skeletonPresent": true,
+        "skeletonHidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "geometry": {
+          "x": 35,
+          "y": 171.484,
+          "width": 1355,
+          "height": 558
+        }
+      },
+      "firstNonzeroGeometry": {
+        "source": "mutation",
+        "at": 123.3,
+        "readyState": "loading",
+        "visibilityState": "visible",
+        "appBusy": "true",
+        "skeletonPresent": true,
+        "skeletonHidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "geometry": {
+          "x": 35,
+          "y": 171.484,
+          "width": 1355,
+          "height": 558
+        }
+      },
+      "hiddenState": {
+        "source": "mutation",
+        "at": 530.4,
+        "readyState": "complete",
+        "visibilityState": "visible",
+        "appBusy": "false",
+        "skeletonPresent": true,
+        "skeletonHidden": true,
+        "display": "none",
+        "visibility": "visible",
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      "firstPaintStartTime": 472,
+      "firstContentfulPaintStartTime": 472,
+      "paintEntries": [
+        {
+          "name": "first-paint",
+          "startTime": 472,
+          "duration": 0
+        },
+        {
+          "name": "first-contentful-paint",
+          "startTime": 472,
+          "duration": 0
+        }
+      ],
+      "paintObserverError": null,
+      "samples": [
+        {
+          "source": "document-start",
+          "at": 23.3,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": null,
+          "skeletonPresent": false,
+          "skeletonHidden": null,
+          "display": null,
+          "visibility": null,
+          "geometry": null
+        },
+        {
+          "source": "mutation",
+          "at": 123.3,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          }
+        },
+        {
+          "source": "readystatechange",
+          "at": 173,
+          "readyState": "interactive",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          }
+        },
+        {
+          "source": "readystatechange",
+          "at": 185.6,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          }
+        },
+        {
+          "source": "mutation",
+          "at": 530.4,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "source": "paint:first-paint",
+          "at": 549.3,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "source": "paint:first-contentful-paint",
+          "at": 549.3,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "visibleDurationMs": 407.1,
+      "firstPaintOffsetFromVisibleMs": 348.7,
+      "hiddenAfterFirstPaintMs": 58.4
+    },
+    "editorReadyAfterSkeleton": true,
+    "docxBusyStateVisible": true,
+    "docxBusyStateRestored": true
+  },
+  "regexActionRequestPaths": [
+    "/assets/safe-0JEcRVKa.js",
+    "/assets/regex-worker-CWfjSjbr.js"
+  ],
+  "docxImportRequestPaths": [
+    "/assets/mammoth-browser-Dfu_XTS9.js"
+  ],
+  "docxFixtureSha256": "c96400f26ebef8f76b7a859909583f8ea3f9d6760a60512a54b7d800eaf8bfcc",
+  "attachedWorkerTargets": [
+    {
+      "sessionId": "DC0A9C644831CB5BC7C0B59D5565B407",
+      "targetId": "CB75860FE5E4FE5180F446AD0DBF974D",
+      "type": "worker",
+      "url": "http://127.0.0.1:4173/assets/regex-worker-CWfjSjbr.js",
+      "detached": true
+    }
+  ],
+  "workerNetworkLifecycle": [
+    {
+      "url": "http://127.0.0.1:4173/assets/regex-worker-CWfjSjbr.js",
+      "sessions": [
+        "page",
+        "DC0A9C644831CB5BC7C0B59D5565B407"
+      ],
+      "requestWillBeSentEvents": 1,
+      "dataReceivedEvents": 1,
+      "terminalEvent": "Network.loadingFinished",
+      "status": 200,
+      "decodedContentSize": 3970,
+      "encodedTransferSize": 301,
+      "wireBodySizeKnown": false,
+      "headersSize": -1,
+      "bodySize": -1,
+      "compression": null,
+      "failure": null
+    }
+  ],
+  "workerSessionSetupErrors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4173/",
+      "status": 200,
+      "resourceType": "document",
+      "initiatorType": "other",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHYCz9UE.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-C7CHQg2C.css",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/themes/silver/theme.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/models/dom/model.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/link/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/image/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/table/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "editor-frame"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/content/default/content.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "editor-frame"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/source-rich-DzzMUDbx.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/safe-0JEcRVKa.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/regex-worker-CWfjSjbr.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "other",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/mammoth-browser-Dfu_XTS9.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    }
+  ],
+  "e4UiValidation": {
+    "themeQueries": [
+      {
+        "query": "",
+        "dataTheme": "light",
+        "colorScheme": "light",
+        "editorColorScheme": "light",
+        "tinySkin": "oxide",
+        "contentCss": [
+          "default"
+        ],
+        "darkReferences": [],
+        "aboutVisible": false,
+        "passed": true
+      },
+      {
+        "query": "?theme=light",
+        "dataTheme": "light",
+        "colorScheme": "light",
+        "editorColorScheme": "light",
+        "tinySkin": "oxide",
+        "contentCss": [
+          "default"
+        ],
+        "darkReferences": [],
+        "aboutVisible": false,
+        "passed": true
+      },
+      {
+        "query": "?theme=dark",
+        "dataTheme": "light",
+        "colorScheme": "light",
+        "editorColorScheme": "light",
+        "tinySkin": "oxide",
+        "contentCss": [
+          "default"
+        ],
+        "darkReferences": [],
+        "aboutVisible": false,
+        "passed": true
+      },
+      {
+        "query": "?theme=auto",
+        "dataTheme": "light",
+        "colorScheme": "light",
+        "editorColorScheme": "light",
+        "tinySkin": "oxide",
+        "contentCss": [
+          "default"
+        ],
+        "darkReferences": [],
+        "aboutVisible": false,
+        "passed": true
+      },
+      {
+        "query": "?theme=unexpected",
+        "dataTheme": "light",
+        "colorScheme": "light",
+        "editorColorScheme": "light",
+        "tinySkin": "oxide",
+        "contentCss": [
+          "default"
+        ],
+        "darkReferences": [],
+        "aboutVisible": false,
+        "passed": true
+      }
+    ],
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 900,
+        "expectedMode": "desktop",
+        "mode": "desktop",
+        "tabsHidden": true,
+        "splitterHidden": false,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": true,
+        "desktopSplit": true,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "900px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 1024,
+        "height": 900,
+        "expectedMode": "desktop",
+        "mode": "desktop",
+        "tabsHidden": true,
+        "splitterHidden": false,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": true,
+        "desktopSplit": true,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "900px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 900,
+        "height": 900,
+        "expectedMode": "desktop",
+        "mode": "desktop",
+        "tabsHidden": true,
+        "splitterHidden": false,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": true,
+        "desktopSplit": true,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "900px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 899,
+        "height": 844,
+        "expectedMode": "mobile",
+        "mode": "mobile",
+        "tabsHidden": false,
+        "splitterHidden": true,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": false,
+        "desktopSplit": false,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "844px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 768,
+        "height": 844,
+        "expectedMode": "mobile",
+        "mode": "mobile",
+        "tabsHidden": false,
+        "splitterHidden": true,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": false,
+        "desktopSplit": false,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "844px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "expectedMode": "mobile",
+        "mode": "mobile",
+        "tabsHidden": false,
+        "splitterHidden": true,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": false,
+        "desktopSplit": false,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "844px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 320,
+        "height": 844,
+        "expectedMode": "mobile",
+        "mode": "mobile",
+        "tabsHidden": false,
+        "splitterHidden": true,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": false,
+        "desktopSplit": false,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "844px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      }
+    ],
+    "coarsePointer": {
+      "emulated": true,
+      "hoverNone": true,
+      "controls": [
+        {
+          "index": 0,
+          "id": "choose-import-file",
+          "label": "Open file",
+          "width": 86.406,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 1,
+          "id": "export-html",
+          "label": "Download HTML",
+          "width": 140.047,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 2,
+          "id": "copy-html",
+          "label": "Copy HTML",
+          "width": 104.453,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 3,
+          "id": "copy-text",
+          "label": "Copy text",
+          "width": 89.375,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 4,
+          "id": "load-example",
+          "label": "Example",
+          "width": 81.016,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 5,
+          "id": "new-document",
+          "label": "New document",
+          "width": 130.156,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 6,
+          "id": null,
+          "label": "File",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 7,
+          "id": null,
+          "label": "Edit",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 8,
+          "id": null,
+          "label": "View",
+          "width": 45.516,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 9,
+          "id": null,
+          "label": "Insert",
+          "width": 50.516,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 10,
+          "id": null,
+          "label": "Format",
+          "width": 59.844,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 11,
+          "id": null,
+          "label": "Table",
+          "width": 47.813,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 12,
+          "id": null,
+          "label": "Undo",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 13,
+          "id": null,
+          "label": "Redo",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 14,
+          "id": null,
+          "label": "Block Paragraph",
+          "width": 130,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 15,
+          "id": null,
+          "label": "Reveal or hide additional toolbar items",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 16,
+          "id": null,
+          "label": "p",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 17,
+          "id": "undo-mass-operation",
+          "label": "Undo",
+          "width": 60.844,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 18,
+          "id": null,
+          "label": "Apply the “Inline styles” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 19,
+          "id": null,
+          "label": "Apply the “Classes and IDs” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 20,
+          "id": null,
+          "label": "Apply the “Empty elements” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 21,
+          "id": null,
+          "label": "Apply the “Single-space elements” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 22,
+          "id": null,
+          "label": "Apply the “Repeated spaces” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 23,
+          "id": null,
+          "label": "Apply the “Comments” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 24,
+          "id": null,
+          "label": "Apply the “Tag attributes” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 25,
+          "id": null,
+          "label": "Apply the “Plain text” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 26,
+          "id": null,
+          "label": "Apply the “AI symbols” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 27,
+          "id": null,
+          "label": "Apply the “Word cleanup” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 28,
+          "id": "clean-selected-rules",
+          "label": "Clean selected",
+          "width": 123.734,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 29,
+          "id": "format-html",
+          "label": "Format",
+          "width": 72.094,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 30,
+          "id": "minify-html",
+          "label": "Minify",
+          "width": 65.922,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 31,
+          "id": "add-replacement-rule",
+          "label": "Add rule",
+          "width": 82.406,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 32,
+          "id": "apply-all-replacements",
+          "label": "Apply all",
+          "width": 83.031,
+          "height": 44,
+          "atLeast44": true
+        }
+      ],
+      "failures": [],
+      "allAtLeast44": true,
+      "emulationError": null
+    },
+    "contrast": {
+      "tokens": {
+        "accent": "rgb(79, 70, 229)",
+        "bg": "rgb(244, 246, 249)",
+        "surface": "rgb(255, 255, 255)",
+        "text": "rgb(23, 32, 51)",
+        "text-muted": "rgb(94, 104, 121)"
+      },
+      "pairs": [
+        {
+          "name": "text-on-surface",
+          "foregroundToken": "text",
+          "backgroundToken": "surface",
+          "foreground": "rgb(23, 32, 51)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 16.268
+        },
+        {
+          "name": "text-on-background",
+          "foregroundToken": "text",
+          "backgroundToken": "bg",
+          "foreground": "rgb(23, 32, 51)",
+          "background": "rgb(244, 246, 249)",
+          "ratio": 15.027
+        },
+        {
+          "name": "muted-on-surface",
+          "foregroundToken": "text-muted",
+          "backgroundToken": "surface",
+          "foreground": "rgb(94, 104, 121)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.627
+        },
+        {
+          "name": "muted-on-background",
+          "foregroundToken": "text-muted",
+          "backgroundToken": "bg",
+          "foreground": "rgb(94, 104, 121)",
+          "background": "rgb(244, 246, 249)",
+          "ratio": 5.197
+        },
+        {
+          "name": "surface-on-accent",
+          "foregroundToken": "surface",
+          "backgroundToken": "accent",
+          "foreground": "rgb(255, 255, 255)",
+          "background": "rgb(79, 70, 229)",
+          "ratio": 6.288
+        }
+      ],
+      "allAtLeast4_5": true
+    },
+    "focus": {
+      "element": "choose-import-file",
+      "productButton": true,
+      "focusVisible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(79, 70, 229)",
+      "accentColor": "rgb(79, 70, 229)",
+      "solidAccent": true
+    },
+    "visualViewport": {
+      "available": true,
+      "initial": {
+        "available": true,
+        "innerHeight": 844,
+        "viewportHeight": 844,
+        "viewportOffsetTop": 0,
+        "cssHeight": 844,
+        "cssOffset": 0
+      },
+      "resized": {
+        "innerHeight": 700,
+        "viewportHeight": 700,
+        "viewportOffsetTop": 0,
+        "cssHeight": 700,
+        "cssOffset": 0
+      },
+      "resizeUpdated": true
+    },
+    "aboutAbsent": true,
+    "consoleProblems": [],
+    "allPassed": true,
+    "loadingLifecycle": {
+      "coldSkeletonVisibleWhileBusy": true,
+      "coldEditorsReadyAfterSkeleton": true,
+      "cumulativeSkeletonVisibleWhileBusy": true,
+      "cumulativeEditorsReadyAfterSkeleton": true
+    },
+    "loadingPaintProof": {
+      "cold": {
+        "visibleFrom": 116.3,
+        "firstHiddenAt": 520.6,
+        "visibleState": {
+          "source": "mutation",
+          "at": 116.3,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          }
+        },
+        "firstNonzeroGeometry": {
+          "source": "mutation",
+          "at": 116.3,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          }
+        },
+        "hiddenState": {
+          "source": "mutation",
+          "at": 520.6,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        "firstPaintStartTime": 476,
+        "firstContentfulPaintStartTime": 476,
+        "paintEntries": [
+          {
+            "name": "first-paint",
+            "startTime": 476,
+            "duration": 0
+          },
+          {
+            "name": "first-contentful-paint",
+            "startTime": 476,
+            "duration": 0
+          }
+        ],
+        "paintObserverError": null,
+        "samples": [
+          {
+            "source": "document-start",
+            "at": 22.9,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": null,
+            "skeletonPresent": false,
+            "skeletonHidden": null,
+            "display": null,
+            "visibility": null,
+            "geometry": null
+          },
+          {
+            "source": "mutation",
+            "at": 116.3,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            }
+          },
+          {
+            "source": "readystatechange",
+            "at": 164,
+            "readyState": "interactive",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            }
+          },
+          {
+            "source": "readystatechange",
+            "at": 176.7,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            }
+          },
+          {
+            "source": "mutation",
+            "at": 520.6,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "false",
+            "skeletonPresent": true,
+            "skeletonHidden": true,
+            "display": "none",
+            "visibility": "visible",
+            "geometry": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "source": "paint:first-paint",
+            "at": 537.6,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "false",
+            "skeletonPresent": true,
+            "skeletonHidden": true,
+            "display": "none",
+            "visibility": "visible",
+            "geometry": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "source": "paint:first-contentful-paint",
+            "at": 537.6,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "false",
+            "skeletonPresent": true,
+            "skeletonHidden": true,
+            "display": "none",
+            "visibility": "visible",
+            "geometry": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          }
+        ],
+        "visibleDurationMs": 404.3,
+        "firstPaintOffsetFromVisibleMs": 359.7,
+        "hiddenAfterFirstPaintMs": 44.6
+      },
+      "cumulative": {
+        "visibleFrom": 123.3,
+        "firstHiddenAt": 530.4,
+        "visibleState": {
+          "source": "mutation",
+          "at": 123.3,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          }
+        },
+        "firstNonzeroGeometry": {
+          "source": "mutation",
+          "at": 123.3,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          }
+        },
+        "hiddenState": {
+          "source": "mutation",
+          "at": 530.4,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        "firstPaintStartTime": 472,
+        "firstContentfulPaintStartTime": 472,
+        "paintEntries": [
+          {
+            "name": "first-paint",
+            "startTime": 472,
+            "duration": 0
+          },
+          {
+            "name": "first-contentful-paint",
+            "startTime": 472,
+            "duration": 0
+          }
+        ],
+        "paintObserverError": null,
+        "samples": [
+          {
+            "source": "document-start",
+            "at": 23.3,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": null,
+            "skeletonPresent": false,
+            "skeletonHidden": null,
+            "display": null,
+            "visibility": null,
+            "geometry": null
+          },
+          {
+            "source": "mutation",
+            "at": 123.3,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            }
+          },
+          {
+            "source": "readystatechange",
+            "at": 173,
+            "readyState": "interactive",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            }
+          },
+          {
+            "source": "readystatechange",
+            "at": 185.6,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            }
+          },
+          {
+            "source": "mutation",
+            "at": 530.4,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "false",
+            "skeletonPresent": true,
+            "skeletonHidden": true,
+            "display": "none",
+            "visibility": "visible",
+            "geometry": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "source": "paint:first-paint",
+            "at": 549.3,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "false",
+            "skeletonPresent": true,
+            "skeletonHidden": true,
+            "display": "none",
+            "visibility": "visible",
+            "geometry": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          {
+            "source": "paint:first-contentful-paint",
+            "at": 549.3,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "false",
+            "skeletonPresent": true,
+            "skeletonHidden": true,
+            "display": "none",
+            "visibility": "visible",
+            "geometry": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          }
+        ],
+        "visibleDurationMs": 407.1,
+        "firstPaintOffsetFromVisibleMs": 348.7,
+        "hiddenAfterFirstPaintMs": 58.4
+      }
+    },
+    "docxBusyLifecycle": {
+      "busyObservedBeforeParse": true,
+      "controlsRestoredAfterParse": true
+    }
+  }
+}

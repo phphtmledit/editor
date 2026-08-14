@@ -1,4 +1,5 @@
 /*! @license GPL-2.0-or-later | https://github.com/phphtmledit/editor */
+import { REPLACE_RULE_ERRORS } from '../ui/strings';
 import { applyReplaceRule, validateReplaceRegex } from './engine';
 import {
   MAX_REPLACE_RULES,
@@ -48,7 +49,7 @@ const runRegexWorker = (html: string, rule: ReplaceRule): Promise<ReplaceRuleRes
     return Promise.resolve(failure(
       html,
       'regex-worker-failed',
-      'Не удалось запустить изолированную проверку регулярного выражения.',
+      REPLACE_RULE_ERRORS.workerStartFailed,
     ));
   }
 
@@ -67,12 +68,12 @@ const runRegexWorker = (html: string, rule: ReplaceRule): Promise<ReplaceRuleRes
     const workerFailure = (): void => finish(failure(
       html,
       'regex-worker-failed',
-      'Не удалось выполнить регулярное выражение в изолированном процессе.',
+      REPLACE_RULE_ERRORS.workerExecutionFailed,
     ));
     const timeout = window.setTimeout(() => finish(failure(
       html,
       'regex-timeout',
-      `Регулярное выражение выполнялось дольше ${REGEX_WORKER_TIMEOUT_MS} мс и было остановлено.`,
+      REPLACE_RULE_ERRORS.workerTimedOut(REGEX_WORKER_TIMEOUT_MS),
     )), REGEX_WORKER_TIMEOUT_MS);
 
     worker.onmessage = (event: MessageEvent<RegexWorkerResponse>): void => {

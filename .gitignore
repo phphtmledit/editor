@@ -6,3 +6,4 @@ dist-e0/
 !.env.example
 reports/*.actual.html
 reports/preview.*.log
+work/

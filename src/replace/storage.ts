@@ -1,4 +1,5 @@
 /*! @license GPL-2.0-or-later | https://github.com/phphtmledit/editor */
+import { REPLACE_STORAGE_ERRORS } from '../ui/strings';
 import {
   MAX_REPLACE_FIELD_LENGTH,
   MAX_REPLACE_RULE_ID_LENGTH,
@@ -74,7 +75,7 @@ const parseRule = (value: unknown): ReplaceRule | null => {
 
 const validateRules = (value: unknown): ParseReplaceRulesResult => {
   if (!Array.isArray(value) || value.length > MAX_REPLACE_RULES) {
-    return failure('invalid-schema', 'Сохранённый набор правил имеет неверный формат.');
+    return failure('invalid-schema', REPLACE_STORAGE_ERRORS.storedInvalidSchema);
   }
 
   const rules: ReplaceRule[] = [];
@@ -82,7 +83,7 @@ const validateRules = (value: unknown): ParseReplaceRulesResult => {
   for (const candidate of value) {
     const rule = parseRule(candidate);
     if (!rule || ids.has(rule.id)) {
-      return failure('invalid-schema', 'Сохранённый набор правил имеет неверный формат.');
+      return failure('invalid-schema', REPLACE_STORAGE_ERRORS.storedInvalidSchema);
     }
     ids.add(rule.id);
     rules.push(rule);
@@ -94,21 +95,21 @@ const validateRules = (value: unknown): ParseReplaceRulesResult => {
 export const parseStoredReplaceRules = (value: string | null): ParseReplaceRulesResult => {
   if (value === null) return { ok: true, rules: [] };
   if (value.length > MAX_REPLACE_STORAGE_LENGTH) {
-    return failure('too-large', 'Сохранённый набор правил превышает допустимый размер.');
+    return failure('too-large', REPLACE_STORAGE_ERRORS.storedTooLarge);
   }
 
   let parsed: unknown;
   try {
     parsed = JSON.parse(value) as unknown;
   } catch {
-    return failure('invalid-json', 'Сохранённый набор правил повреждён.');
+    return failure('invalid-json', REPLACE_STORAGE_ERRORS.storedInvalidJson);
   }
 
   if (!isRecord(parsed)) {
-    return failure('invalid-schema', 'Сохранённый набор правил имеет неверный формат.');
+    return failure('invalid-schema', REPLACE_STORAGE_ERRORS.storedInvalidSchema);
   }
   if (parsed.version !== REPLACE_RULES_STORAGE_VERSION) {
-    return failure('unsupported-version', 'Версия сохранённого набора правил не поддерживается.');
+    return failure('unsupported-version', REPLACE_STORAGE_ERRORS.unsupportedVersion);
   }
 
   return validateRules(parsed.rules);
@@ -125,7 +126,7 @@ export const serializeReplaceRules = (
     rules: validated.rules,
   });
   if (value.length > MAX_REPLACE_STORAGE_LENGTH) {
-    return failure('too-large', 'Набор правил превышает допустимый размер.');
+    return failure('too-large', REPLACE_STORAGE_ERRORS.currentTooLarge);
   }
 
   return { ok: true, value };
@@ -138,7 +139,7 @@ export const loadReplaceRules = (
     const target = storage ?? globalThis.localStorage;
     return parseStoredReplaceRules(target.getItem(REPLACE_RULES_STORAGE_KEY));
   } catch {
-    return failure('storage-read-failed', 'Не удалось прочитать сохранённые правила.');
+    return failure('storage-read-failed', REPLACE_STORAGE_ERRORS.readFailed);
   }
 };
 
@@ -154,6 +155,6 @@ export const saveReplaceRules = (
     target.setItem(REPLACE_RULES_STORAGE_KEY, serialized.value);
     return { ok: true };
   } catch {
-    return failure('storage-write-failed', 'Не удалось сохранить правила.');
+    return failure('storage-write-failed', REPLACE_STORAGE_ERRORS.writeFailed);
   }
 };

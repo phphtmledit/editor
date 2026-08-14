@@ -1,97 +1,99 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Бесплатный локальный редактор HTML-фрагментов с визуальным и исходным режимами." />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234F46E5'/%3E%3Cpath d='M8 9h16v3H8zm0 6h10v3H8zm0 6h16v3H8z' fill='white'/%3E%3C/svg%3E" />
-    <title>Редактор HTML-фрагментов</title>
+    <meta name="description" content="{{phe:metaDescription}}" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 7h18v4H7zm0 7h12v4H7zm0 7h18v4H7z'/%3E%3C/svg%3E" />
+    <title>{{phe:documentTitle}}</title>
     <script src="/tinymce/tinymce.min.js?v=8.8.2"></script>
   </head>
   <body>
     <main id="app" class="app-shell" aria-busy="true">
       <header class="app-header">
-        <h1>Редактор HTML-фрагментов</h1>
-        <p class="privacy-note">Текст обрабатывается только в браузере и не отправляется на сервер.</p>
+        <h1>{{phe:appTitle}}</h1>
+        <p class="privacy-note">{{phe:privacyNote}}</p>
       </header>
 
-      <section id="io-tools" class="io-tools" aria-label="Файлы, буфер обмена и черновик" aria-busy="false">
+      <section id="io-tools" class="io-tools" aria-label="{{phe:ioToolsAriaLabel}}" aria-busy="false">
         <div class="io-actions">
           <input
             id="import-file-input"
             type="file"
             hidden
+            aria-label="{{phe:importFileAriaLabel}}"
             accept=".html,.htm,.docx,text/html,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           />
-          <button id="choose-import-file" type="button" class="primary-action">Открыть файл</button>
-          <button id="export-html" type="button">Скачать HTML</button>
-          <button id="copy-html" type="button">Копировать HTML</button>
-          <button id="copy-text" type="button">Копировать текст</button>
+          <button id="choose-import-file" type="button" class="primary-action">{{phe:openFile}}</button>
+          <button id="export-html" type="button">{{phe:downloadHtml}}</button>
+          <button id="copy-html" type="button">{{phe:copyHtml}}</button>
+          <button id="copy-text" type="button">{{phe:copyText}}</button>
           <span class="io-action-separator" aria-hidden="true"></span>
-          <button id="load-example" type="button">Пример</button>
-          <button id="new-document" type="button">Новый документ</button>
+          <button id="load-example" type="button">{{phe:loadExample}}</button>
+          <button id="new-document" type="button">{{phe:newDocument}}</button>
         </div>
         <div class="io-feedback">
-          <p id="drop-file-hint">Перетащите сюда файл .html, .htm или .docx размером до 5 МБ.</p>
+          <span class="io-progress" aria-hidden="true"></span>
+          <p id="drop-file-hint">{{phe:dropFileHint}}</p>
           <output id="io-result" role="status" aria-live="polite"></output>
         </div>
         <aside id="draft-notice" class="draft-notice" role="status" aria-live="polite" hidden>
           <span id="draft-message"></span>
-          <button id="discard-restored-draft" type="button">Начать заново</button>
+          <button id="discard-restored-draft" type="button">{{phe:discardRestoredDraft}}</button>
         </aside>
       </section>
 
-      <nav class="mobile-tabs" role="tablist" aria-label="Режим редактора" hidden>
-        <button id="visual-tab" type="button" role="tab" aria-selected="true" aria-controls="visual-panel" tabindex="0">Визуально</button>
-        <button id="source-tab" type="button" role="tab" aria-selected="false" aria-controls="source-panel" tabindex="-1">Код</button>
+      <nav class="mobile-tabs" role="tablist" aria-label="{{phe:mobileTabsAriaLabel}}" hidden>
+        <button id="visual-tab" type="button" role="tab" aria-selected="true" aria-controls="visual-panel" tabindex="0">{{phe:visualTab}}</button>
+        <button id="source-tab" type="button" role="tab" aria-selected="false" aria-controls="source-panel" tabindex="-1">{{phe:sourceTab}}</button>
       </nav>
 
-      <section id="editor-workspace" class="editor-workspace" aria-label="Редактор HTML">
+      <section id="editor-workspace" class="editor-workspace" aria-label="{{phe:editorWorkspaceAriaLabel}}">
         <article id="visual-panel" class="editor-panel visual-panel" role="tabpanel" aria-labelledby="visual-tab">
-          <h2 class="panel-title">Визуальный редактор</h2>
+          <h2 class="panel-title">{{phe:visualPanelTitle}}</h2>
           <div class="editor-frame visual-frame">
-            <textarea id="visual-editor" aria-label="Визуальный редактор HTML"></textarea>
+            <textarea id="visual-editor" aria-label="{{phe:visualEditorAriaLabel}}"></textarea>
           </div>
         </article>
 
-        <div id="editor-splitter" class="editor-splitter" role="separator" aria-label="Изменить ширину панелей" aria-orientation="vertical" aria-valuemin="30" aria-valuemax="70" aria-valuenow="50" tabindex="0"></div>
+        <div id="editor-splitter" class="editor-splitter" role="separator" aria-label="{{phe:splitterAriaLabel}}" aria-orientation="vertical" aria-valuemin="30" aria-valuemax="70" aria-valuenow="50" tabindex="0"></div>
 
         <article id="source-panel" class="editor-panel source-panel" role="tabpanel" aria-labelledby="source-tab">
           <div class="source-heading">
-            <h2 class="panel-title">HTML-код</h2>
-            <label class="wrap-control"><input id="wrap-source" type="checkbox" checked /> Перенос строк</label>
-            <output id="character-count" class="character-count">0 знаков</output>
+            <h2 class="panel-title">{{phe:sourcePanelTitle}}</h2>
+            <label class="wrap-control"><input id="wrap-source" type="checkbox" checked /> {{phe:wrapSource}}</label>
+            <output id="character-count" class="character-count">{{phe:initialCharacterCount}}</output>
           </div>
-          <div id="source-editor" class="editor-frame source-frame" aria-label="Редактор исходного HTML"></div>
+          <div id="source-editor" class="editor-frame source-frame" aria-label="{{phe:sourceEditorHostAriaLabel}}"></div>
         </article>
 
         <div id="loading-skeleton" class="loading-skeleton" role="status" aria-live="polite">
-          <span class="sr-only">Редакторы загружаются…</span>
-          <div></div><div></div><div></div>
+          <span class="sr-only">{{phe:editorsLoading}}</span>
+          <div></div><div></div><div></div><div></div><div></div>
         </div>
       </section>
 
-      <section id="document-tools" class="document-tools" aria-label="Очистка и замена HTML">
+      <section id="document-tools" class="document-tools" aria-label="{{phe:documentToolsAriaLabel}}">
         <header class="tools-header">
           <div>
-            <h2>Очистка и замена</h2>
-            <p>Массовые операции изменяют обе панели и имеют общую отмену.</p>
+            <h2>{{phe:documentToolsTitle}}</h2>
+            <p>{{phe:documentToolsDescription}}</p>
           </div>
           <div class="mass-undo">
-            <button id="undo-mass-operation" type="button" disabled>Отменить</button>
-            <output id="undo-mass-description" aria-live="polite">Нет операций для отмены</output>
+            <button id="undo-mass-operation" type="button" disabled>{{phe:undo}}</button>
+            <output id="undo-mass-description" aria-live="polite">{{phe:noMassOperationsToUndo}}</output>
           </div>
         </header>
 
         <div class="tool-columns">
           <article class="tool-panel cleaning-panel" aria-labelledby="cleaning-title">
-            <h3 id="cleaning-title">Очистка HTML</h3>
-            <p class="ai-priority"><strong>Символы ИИ:</strong> отдельное правило нормализует кавычки, тире и невидимые символы.</p>
+            <h3 id="cleaning-title">{{phe:cleaningTitle}}</h3>
+            <p class="ai-priority"><strong>{{phe:aiPriorityLabel}}</strong> {{phe:aiPriorityDescription}}</p>
             <div id="cleaning-rule-list" class="cleaning-rule-list"></div>
             <div class="tool-actions">
-              <button id="clean-selected-rules" type="button" class="primary-action">Очистить выбранное</button>
-              <button id="format-html" type="button">Форматировать</button>
-              <button id="minify-html" type="button">Сжать</button>
+              <button id="clean-selected-rules" type="button" class="primary-action">{{phe:cleanSelected}}</button>
+              <button id="format-html" type="button">{{phe:formatHtml}}</button>
+              <button id="minify-html" type="button">{{phe:minifyHtml}}</button>
             </div>
             <output id="cleaning-result" class="tool-result" aria-live="polite"></output>
           </article>
@@ -99,25 +101,25 @@
           <article class="tool-panel replacement-panel" aria-labelledby="replacement-title">
             <header class="tool-panel-header">
               <div>
-                <h3 id="replacement-title">Найти и заменить</h3>
-                <p>До 10 правил; при общем запуске порядок имеет значение.</p>
+                <h3 id="replacement-title">{{phe:replacementTitle}}</h3>
+                <p>{{phe:replacementDescription}}</p>
               </div>
-              <button id="add-replacement-rule" type="button">Добавить правило</button>
+              <button id="add-replacement-rule" type="button">{{phe:addReplacementRule}}</button>
             </header>
             <div id="replacement-rule-list" class="replacement-rule-list"></div>
             <div class="tool-actions">
-              <button id="apply-all-replacements" type="button" class="primary-action">Применить все</button>
+              <button id="apply-all-replacements" type="button" class="primary-action">{{phe:applyAllReplacements}}</button>
             </div>
             <output id="replacement-result" class="tool-result" aria-live="polite"></output>
           </article>
         </div>
       </section>
 
-      <p id="normalization-note" class="normalization-note" role="status" aria-live="polite" hidden>Визуальный редактор нормализовал HTML: отступы, переносы и неподдерживаемая разметка могли измениться.</p>
-      <p id="app-status" class="sr-only" role="status" aria-live="polite">Редакторы загружаются…</p>
-      <section id="app-error" class="app-error" role="alert" hidden>
-        <h2>Редактор не загрузился</h2>
-        <p>Обновите страницу. Если ошибка повторяется, проверьте, что локальные файлы приложения доступны.</p>
+      <p id="normalization-note" class="normalization-note" role="status" aria-live="polite" hidden>{{phe:normalizationNotice}}</p>
+      <p id="app-status" class="sr-only" role="status" aria-live="polite">{{phe:appStatusLoading}}</p>
+      <section id="app-error" class="app-error bootstrap-fallback" role="alert">
+        <h2>{{phe:errorTitle}}</h2>
+        <p>{{phe:errorDescription}}</p>
       </section>
     </main>
     <script type="module" src="/src/main.ts"></script>

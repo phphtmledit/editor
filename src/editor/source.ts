@@ -4,6 +4,7 @@ import { defaultHighlightStyle, syntaxHighlighting } from '@codemirror/language'
 import { searchKeymap } from '@codemirror/search';
 import { Annotation, Compartment, EditorState, Transaction, type Extension } from '@codemirror/state';
 import { EditorView, keymap, lineNumbers, type ViewUpdate } from '@codemirror/view';
+import { formatCharacterCount, SOURCE_UI } from '../ui/strings';
 import { plainHtmlLanguage } from './source-language';
 
 type Listener = () => void;
@@ -70,7 +71,7 @@ export const createSourceEditor = (
   };
   const updateCount = (value: string): void => {
     const count = Array.from(value).length;
-    characterCount.value = `${count.toLocaleString('ru-RU')} ${count % 10 === 1 && count % 100 !== 11 ? 'знак' : 'знаков'}`;
+    characterCount.value = formatCharacterCount(count);
   };
 
   let view: EditorView;
@@ -102,7 +103,7 @@ export const createSourceEditor = (
     keymap.of([...defaultKeymap, ...searchKeymap, ...historyKeymap]),
     updateListener,
     EditorView.contentAttributes.of({
-      'aria-label': 'Исходный HTML',
+      'aria-label': SOURCE_UI.editorAriaLabel,
       spellcheck: 'false',
       autocapitalize: 'off',
     }),

@@ -1,6 +1,7 @@
 /*! @license GPL-2.0-or-later | https://github.com/phphtmledit/editor */
 import type { SourceEditorController } from '../editor/source';
 import type { SyncController } from '../editor/sync';
+import type { VisualEditorController } from '../editor/visual';
 
 type Panel = 'visual' | 'source';
 
@@ -22,12 +23,24 @@ export const createLayoutController = (
   elements: LayoutElements,
   source: SourceEditorController,
   sync: SyncController,
+  visual: Pick<VisualEditorController, 'hasFocus'>,
 ): LayoutController => {
   const media = matchMedia('(max-width: 899px)');
   const cleanups: Array<() => void> = [];
   let activePanel: Panel = 'visual';
   let split = 50;
   let dragPointer: number | null = null;
+  let destroyed = false;
+  const scheduledFrames = new Set<number>();
+
+  const requestSourceMeasure = (): void => {
+    if (destroyed) return;
+    const frame = requestAnimationFrame(() => {
+      scheduledFrames.delete(frame);
+      if (!destroyed) source.requestMeasure();
+    });
+    scheduledFrames.add(frame);
+  };
 
   const setActivePanel = (panel: Panel, focusTab = false): void => {
     sync.flushActive();
@@ -40,7 +53,7 @@ export const createLayoutController = (
     if (media.matches) {
       elements.visualPanel.hidden = !visualActive;
       elements.sourcePanel.hidden = visualActive;
-      if (!visualActive) requestAnimationFrame(() => source.requestMeasure());
+      if (!visualActive) requestSourceMeasure();
     }
     if (focusTab) (visualActive ? elements.visualTab : elements.sourceTab).focus();
   };
@@ -50,11 +63,14 @@ export const createLayoutController = (
     elements.tabs.hidden = !mobile;
     elements.splitter.hidden = mobile;
     elements.workspace.classList.toggle('is-mobile', mobile);
-    if (mobile) setActivePanel(activePanel);
-    else {
+    if (mobile) {
+      if (source.hasFocus()) activePanel = 'source';
+      else if (visual.hasFocus()) activePanel = 'visual';
+      setActivePanel(activePanel);
+    } else {
       elements.visualPanel.hidden = false;
       elements.sourcePanel.hidden = false;
-      requestAnimationFrame(() => source.requestMeasure());
+      requestSourceMeasure();
     }
   };
 
@@ -107,13 +123,23 @@ export const createLayoutController = (
     event.preventDefault();
   };
 
+  const onVisualTabClick = (): void => setActivePanel('visual');
+  const onSourceTabClick = (): void => setActivePanel('source');
+  const visualViewport = window.visualViewport;
+
   const updateViewport = (): void => {
-    const height = window.visualViewport?.height ?? window.innerHeight;
+    const height = visualViewport?.height ?? window.innerHeight;
+    const offsetTop = visualViewport?.offsetTop ?? 0;
     document.documentElement.style.setProperty('--phe-viewport-height', `${Math.round(height)}px`);
+    document.documentElement.style.setProperty(
+      '--phe-viewport-offset-top',
+      `${Math.round(offsetTop)}px`,
+    );
+    source.requestMeasure();
   };
 
-  elements.visualTab.addEventListener('click', () => setActivePanel('visual'));
-  elements.sourceTab.addEventListener('click', () => setActivePanel('source'));
+  elements.visualTab.addEventListener('click', onVisualTabClick);
+  elements.sourceTab.addEventListener('click', onSourceTabClick);
   elements.visualTab.addEventListener('keydown', onTabKey);
   elements.sourceTab.addEventListener('keydown', onTabKey);
   elements.splitter.addEventListener('pointerdown', onPointerDown);
@@ -123,9 +149,12 @@ export const createLayoutController = (
   elements.splitter.addEventListener('keydown', onSplitterKey);
   media.addEventListener('change', updateMode);
   window.addEventListener('resize', updateViewport);
-  window.visualViewport?.addEventListener('resize', updateViewport);
+  visualViewport?.addEventListener('resize', updateViewport);
+  visualViewport?.addEventListener('scroll', updateViewport);
 
-  const observer = new ResizeObserver(() => source.requestMeasure());
+  const observer = new ResizeObserver(() => {
+    if (!destroyed) source.requestMeasure();
+  });
   observer.observe(elements.sourcePanel);
   cleanups.push(() => observer.disconnect());
 
@@ -135,10 +164,17 @@ export const createLayoutController = (
 
   return {
     destroy: () => {
+      if (destroyed) return;
+      destroyed = true;
+      scheduledFrames.forEach((frame) => cancelAnimationFrame(frame));
+      scheduledFrames.clear();
       cleanups.forEach((cleanup) => cleanup());
       media.removeEventListener('change', updateMode);
       window.removeEventListener('resize', updateViewport);
-      window.visualViewport?.removeEventListener('resize', updateViewport);
+      visualViewport?.removeEventListener('resize', updateViewport);
+      visualViewport?.removeEventListener('scroll', updateViewport);
+      elements.visualTab.removeEventListener('click', onVisualTabClick);
+      elements.sourceTab.removeEventListener('click', onSourceTabClick);
       elements.visualTab.removeEventListener('keydown', onTabKey);
       elements.sourceTab.removeEventListener('keydown', onTabKey);
       elements.splitter.removeEventListener('pointerdown', onPointerDown);

@@ -46,8 +46,8 @@ const [
   distNames,
   docxFixtureBytes,
 ] = await Promise.all([
-  readFile(resolve(reportsRoot, 'network-e3-cold.json'), 'utf8').then(JSON.parse),
-  readFile(resolve(reportsRoot, 'network-e3-cumulative.json'), 'utf8').then(JSON.parse),
+  readFile(resolve(reportsRoot, 'network-e4-cold.json'), 'utf8').then(JSON.parse),
+  readFile(resolve(reportsRoot, 'network-e4-cumulative.json'), 'utf8').then(JSON.parse),
   readFile(resolve(distRoot, '.vite', 'manifest.json')),
   readdir(resolve(distRoot, 'assets')),
   readdir(distRoot, { recursive: true }),
@@ -72,6 +72,10 @@ const expectedDynamicEntryKeys = [
 const regexWorkerAssetNames = distAssetNames.filter((name) => /^regex-worker-[\w-]+\.js$/i.test(name));
 const distFixtureNames = distNames.filter((name) => /(?:\.docx$|fixture)/i.test(name));
 const normalizedDistNames = distNames.map((name) => name.replaceAll('\\', '/'));
+const darkTinyDistNames = normalizedDistNames.filter((name) =>
+  name.includes('tinymce/skins/ui/oxide-dark/') ||
+  name.includes('tinymce/skins/content/dark/')
+);
 
 if (!appEntry?.isEntry || typeof appEntry.file !== 'string') {
   failures.push('dist manifest must contain the product index.html entry');
@@ -89,10 +93,10 @@ if (
   !Array.isArray(appEntry?.dynamicImports) ||
   JSON.stringify([...appEntry.dynamicImports].sort()) !== JSON.stringify(expectedDynamicEntryKeys)
 ) {
-  failures.push('product entry must dynamically import only source-rich, safe replacement and Mammoth in E3');
+  failures.push('product entry must dynamically import only source-rich, safe replacement and Mammoth in E4');
 }
 if (JSON.stringify(dynamicEntryKeys) !== JSON.stringify(expectedDynamicEntryKeys)) {
-  failures.push(`dist manifest must have exactly the three E3 dynamic entries, got ${dynamicEntryKeys.join(', ')}`);
+  failures.push(`dist manifest must have exactly the three E4 dynamic entries, got ${dynamicEntryKeys.join(', ')}`);
 }
 if (regexWorkerAssetNames.length !== 1) {
   failures.push(`dist must contain exactly one regex-worker asset, got ${regexWorkerAssetNames.length}`);
@@ -105,6 +109,9 @@ if (normalizedDistNames.includes(`tinymce/${STOCK_EMOTICONS_DATABASE_ASSET}`)) {
 }
 if (!normalizedDistNames.includes(`tinymce/${CUSTOM_EMOTICONS_DATABASE_ASSET}`)) {
   failures.push('production dist does not contain the custom TinyMCE emoji database');
+}
+if (darkTinyDistNames.length > 0) {
+  failures.push(`production dist contains excluded dark TinyMCE assets: ${darkTinyDistNames.join(', ')}`);
 }
 for (const [key, entry] of Object.entries(manifest)) {
   const manifestText = `${key} ${entry?.src ?? ''} ${entry?.file ?? ''}`;
@@ -121,7 +128,7 @@ const assertReportShape = (name, report, scenario) => {
   if (typeof report.capturedAt !== 'string' || Number.isNaN(Date.parse(report.capturedAt))) {
     failures.push(`${name}: capturedAt is missing or invalid`);
   }
-  if (report.stage !== 'E3') failures.push(`${name}: stage must be E3`);
+  if (report.stage !== 'E4') failures.push(`${name}: stage must be E4`);
   if (report.scenario !== scenario) failures.push(`${name}: scenario must be ${scenario}`);
   if (report.manifestSha256 !== manifestSha256) {
     failures.push(`${name}: capture manifest hash does not match current dist`);
@@ -340,6 +347,10 @@ const requiredUiFlags = [
   'sampleLoaded',
   'draftAutosaved',
   'newDocumentCreated',
+  'loadingSkeletonObserved',
+  'editorReadyAfterSkeleton',
+  'docxBusyStateVisible',
+  'docxBusyStateRestored',
 ];
 if (
   !ui ||
@@ -349,16 +360,151 @@ if (
   typeof ui.largeDocumentCleanDurationMs !== 'number' ||
   ui.largeDocumentCleanDurationMs > 500
 ) {
-  failures.push('cumulative: complete E3 UI action inventory or 100,000-character timing is missing');
+  failures.push('cumulative: complete E3 action inventory, E4 lifecycle proof or 100,000-character timing is missing');
 }
 for (const path of [...coldReport.requests, ...cumulativeReport.requests].map(pathname)) {
   if (isDiagnosticFixturePath(path)) {
-    failures.push(`E3 production capture contains a diagnostic fixture request: ${path}`);
+    failures.push(`E4 production capture contains a diagnostic fixture request: ${path}`);
+  }
+  if (
+    path.includes('/tinymce/skins/ui/oxide-dark/') ||
+    path.includes('/tinymce/skins/content/dark/')
+  ) {
+    failures.push(`E4 production capture contains an excluded dark TinyMCE request: ${path}`);
   }
 }
 if (Date.parse(cumulativeReport.capturedAt) < Date.parse(coldReport.capturedAt)) {
   failures.push('cumulative: capture predates the cold capture');
 }
+
+const e4Ui = cumulativeReport.e4UiValidation;
+const expectedThemeQueries = ['', '?theme=light', '?theme=dark', '?theme=auto', '?theme=unexpected'];
+const expectedViewports = [
+  { width: 1440, expectedMode: 'desktop' },
+  { width: 1024, expectedMode: 'desktop' },
+  { width: 900, expectedMode: 'desktop' },
+  { width: 899, expectedMode: 'mobile' },
+  { width: 768, expectedMode: 'mobile' },
+  { width: 390, expectedMode: 'mobile' },
+  { width: 320, expectedMode: 'mobile' },
+];
+const themeAuditOk =
+  Array.isArray(e4Ui?.themeQueries) &&
+  JSON.stringify(e4Ui.themeQueries.map(({ query }) => query)) === JSON.stringify(expectedThemeQueries) &&
+  e4Ui.themeQueries.every((state) =>
+    state.passed === true &&
+    state.dataTheme === 'light' &&
+    state.colorScheme === 'light' &&
+    state.editorColorScheme === 'light' &&
+    state.tinySkin === 'oxide' &&
+    Array.isArray(state.darkReferences) &&
+    state.darkReferences.length === 0 &&
+    state.aboutVisible === false
+  );
+if (!themeAuditOk) {
+  failures.push('E4 UI audit must prove that every supported/unsupported ?theme= query resolves to the light app and oxide TinyMCE skin without dark assets or About');
+}
+
+const viewportAuditOk =
+  Array.isArray(e4Ui?.viewports) &&
+  e4Ui.viewports.length === expectedViewports.length &&
+  e4Ui.viewports.every((state, index) => {
+    const expected = expectedViewports[index];
+    const common = state.width === expected.width &&
+      state.expectedMode === expected.expectedMode &&
+      state.mode === expected.expectedMode &&
+      state.workspaceNonzero === true &&
+      state.visualNonzero === true &&
+      state.sourceNonzero === true &&
+      state.noHorizontalOverflow === true &&
+      Number.parseFloat(state.viewportHeightCss) > 0 &&
+      Number.isFinite(Number.parseFloat(state.viewportOffsetCss)) &&
+      state.passed === true;
+    if (!common) return false;
+    return expected.expectedMode === 'desktop'
+      ? state.tabsHidden === true && state.splitterHidden === false && state.desktopSplit === true
+      : state.tabsHidden === false && state.splitterHidden === true && state.mobileTabSwitchWorked === true;
+  });
+if (!viewportAuditOk) {
+  failures.push('E4 UI audit must prove desktop split at 1440/1024/900 and mobile tabs at 899/768/390/320 with nonzero editors and no horizontal overflow');
+}
+
+const coarseAuditOk =
+  e4Ui?.coarsePointer?.emulated === true &&
+  e4Ui.coarsePointer.hoverNone === true &&
+  e4Ui.coarsePointer.emulationError === null &&
+  Array.isArray(e4Ui.coarsePointer.controls) &&
+  e4Ui.coarsePointer.controls.length > 0 &&
+  e4Ui.coarsePointer.controls.every(({ atLeast44, width, height }) =>
+    atLeast44 === true && width >= 43.5 && height >= 43.5) &&
+  Array.isArray(e4Ui.coarsePointer.failures) &&
+  e4Ui.coarsePointer.failures.length === 0 &&
+  e4Ui.coarsePointer.allAtLeast44 === true;
+if (!coarseAuditOk) {
+  failures.push('E4 UI audit must prove every visible app/TinyMCE button is at least 44x44 under emulated coarse pointer input');
+}
+
+const contrastAuditOk =
+  e4Ui?.contrast?.allAtLeast4_5 === true &&
+  Array.isArray(e4Ui.contrast.pairs) &&
+  e4Ui.contrast.pairs.length === 5 &&
+  e4Ui.contrast.pairs.every(({ ratio }) => typeof ratio === 'number' && ratio >= 4.5);
+if (!contrastAuditOk) failures.push('E4 UI audit must prove all five computed text/background pairs are at least 4.5:1');
+
+if (e4Ui?.focus?.productButton !== true || e4Ui.focus.solidAccent !== true) {
+  failures.push('E4 UI audit must prove a keyboard focus-visible outline is solid, at least 3px and uses --phe-accent');
+}
+if (
+  e4Ui?.visualViewport?.available !== true ||
+  e4Ui.visualViewport.resizeUpdated !== true
+) {
+  failures.push('E4 UI audit must prove visualViewport resize updates --phe-viewport-height and --phe-viewport-offset-top');
+}
+if (
+  !e4Ui?.loadingLifecycle ||
+  !Object.values(e4Ui.loadingLifecycle).every((value) => value === true)
+) {
+  failures.push('E4 UI audit must prove the visible busy skeleton transitions to two ready editors in both network scenarios');
+}
+const paintProofOk =
+  e4Ui?.loadingPaintProof &&
+  ['cold', 'cumulative'].every((scenario) => {
+    const proof = e4Ui.loadingPaintProof[scenario];
+    return typeof proof?.visibleFrom === 'number' &&
+      typeof proof.firstPaintStartTime === 'number' &&
+      typeof proof.firstContentfulPaintStartTime === 'number' &&
+      typeof proof.firstHiddenAt === 'number' &&
+      proof.visibleFrom <= proof.firstPaintStartTime &&
+      proof.firstPaintStartTime < proof.firstHiddenAt &&
+      Math.abs(proof.visibleDurationMs - (proof.firstHiddenAt - proof.visibleFrom)) <= 0.001 &&
+      Math.abs(proof.firstPaintOffsetFromVisibleMs -
+        (proof.firstPaintStartTime - proof.visibleFrom)) <= 0.001 &&
+      Math.abs(proof.hiddenAfterFirstPaintMs -
+        (proof.firstHiddenAt - proof.firstPaintStartTime)) <= 0.001 &&
+      (proof.firstNonzeroGeometry?.geometry?.width ?? 0) > 0 &&
+      (proof.firstNonzeroGeometry?.geometry?.height ?? 0) > 0 &&
+      proof.firstNonzeroGeometry?.appBusy === 'true' &&
+      proof.firstNonzeroGeometry?.skeletonHidden === false &&
+      (proof.hiddenState?.skeletonHidden === true || proof.hiddenState?.display === 'none') &&
+      Array.isArray(proof.paintEntries) &&
+      proof.paintEntries.some(({ name }) => name === 'first-paint') &&
+      proof.paintEntries.some(({ name }) => name === 'first-contentful-paint') &&
+      proof.paintObserverError === null;
+  });
+if (!paintProofOk) {
+  failures.push('E4 UI audit must prove visibleFrom <= first-paint < firstHiddenAt with nonzero skeleton geometry and real buffered paint/FCP entries');
+}
+if (
+  !e4Ui?.docxBusyLifecycle ||
+  !Object.values(e4Ui.docxBusyLifecycle).every((value) => value === true)
+) {
+  failures.push('E4 UI audit must prove the DOCX busy/disabled state is painted before parsing and restored afterward');
+}
+if (e4Ui?.aboutAbsent !== true) failures.push('E4 UI audit must prove About is absent before E5');
+if (!Array.isArray(e4Ui?.consoleProblems) || e4Ui.consoleProblems.length !== 0) {
+  failures.push('E4 isolated UI audit contains console errors or warnings');
+}
+if (e4Ui?.allPassed !== true) failures.push('E4 isolated UI audit did not pass every strict assertion');
 
 const sum = (items, key) => items.reduce((total, item) => total + item[key], 0);
 const initialJs = coldRows.filter((row) => {
@@ -391,12 +537,12 @@ const metrics = [
     budget: BYTE_BUDGETS.cold.brotli,
   },
   {
-    name: 'Cumulative E3 transfer (gzip)',
+    name: 'Cumulative E4 transfer (gzip)',
     actual: cumulativeTransfer.gzip,
     budget: BYTE_BUDGETS.cumulative.gzip,
   },
   {
-    name: 'Cumulative E3 transfer (brotli)',
+    name: 'Cumulative E4 transfer (brotli)',
     actual: cumulativeTransfer.brotli,
     budget: BYTE_BUDGETS.cumulative.brotli,
   },
@@ -478,13 +624,13 @@ const tinyDomainRequests = allUrls.filter((rawUrl) => {
 if (tinyDomainRequests.length > 0) failures.push('Tiny Cloud/domain requests were observed');
 
 const output = {
-  stage: 'E3',
+  stage: 'E4',
   origin: expectedOrigin,
   manifestSha256,
   docxFixtureSha256,
   definitions: {
     cold: 'All production HTTP resources requested from navigation through editor-ready.',
-    cumulative: 'A separate fresh production load containing every cold URL, first source focus, the complete E2 document-tools inventory, custom emoji search/insert, actual HTML and DOCX imports, HTML export, clipboard actions, product sample, draft autosave and new document; the only cumulative JavaScript additions are source-rich, safe replacement, Mammoth and the isolated regex Worker.',
+    cumulative: 'A separate fresh production load containing every cold URL, first source focus, the complete E2 document-tools inventory, custom emoji search/insert, actual HTML and DOCX imports, HTML export, clipboard actions, product sample, draft autosave and new document; the only cumulative JavaScript additions are source-rich, safe replacement, Mammoth and the isolated regex Worker. E4 responsive/theme/accessibility checks run in a separate browser without Network enabled and cannot contaminate this byte inventory.',
     requestCount: 'Cold load through editor-ready only, including the HTML document.',
     initialJs: 'Supplementary, non-budget detail: cold-load JavaScript outside /tinymce; lazy source-editor tools are excluded.',
   },
@@ -500,6 +646,7 @@ const output = {
   supplementary: {
     initialJsWithoutTinyMCE: initialJsTransfer,
     largeDocumentCleanDurationMs: cumulativeReport.uiActionInventory?.largeDocumentCleanDurationMs ?? null,
+    e4UiValidation: e4Ui,
   },
   activeLightTinyStaticFootprint,
   tinyStaticFootprint,
@@ -511,6 +658,6 @@ const output = {
   failures,
 };
 
-await writeFile(resolve(reportsRoot, 'size-e3-result.json'), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+await writeFile(resolve(reportsRoot, 'size-e4-result.json'), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
 console.log(JSON.stringify(output, null, 2));
 if (failures.length > 0) process.exitCode = 1;

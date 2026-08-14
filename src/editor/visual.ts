@@ -1,5 +1,6 @@
 /*! @license GPL-2.0-or-later | https://github.com/phphtmledit/editor */
 import type { Bookmark, Editor, TinyMCE } from 'tinymce';
+import { VISUAL_UI } from '../ui/strings';
 
 const PLUGINS = [
   'lists',
@@ -38,6 +39,21 @@ declare global {
     tinymce: TinyMCE;
   }
 }
+
+const CONTENT_TOKEN_NAMES = [
+  '--phe-accent',
+  '--phe-bg',
+  '--phe-surface',
+  '--phe-border',
+  '--phe-text',
+  '--phe-text-muted',
+] as const;
+
+const contentTokenStyle = (): string => {
+  const styles = getComputedStyle(document.documentElement);
+  const declarations = CONTENT_TOKEN_NAMES.map((name) => `${name}: ${styles.getPropertyValue(name).trim()};`);
+  return `:root { color-scheme: light; ${declarations.join(' ')} }`;
+};
 
 const subscribe = (listeners: Set<Listener>, listener: Listener): (() => void) => {
   listeners.add(listener);
@@ -142,15 +158,17 @@ export const createVisualEditor = async (
     language: 'en',
     skin: 'oxide',
     content_css: 'default',
+    content_style: contentTokenStyle(),
     plugins: [...PLUGINS],
     menubar: 'file edit view insert format table',
     toolbar:
       'undo redo | blocks | bold italic underline strikethrough | forecolor backcolor | ' +
       'alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ' +
       'link image hr table | charmap emoticons insertdatetime | removeformat',
-    block_formats:
-      'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; ' +
-      'Quote=blockquote; Preformatted=pre',
+    block_formats: VISUAL_UI.blockFormats,
+    insertdatetime_dateformat: '%Y-%m-%d',
+    insertdatetime_timeformat: '%H:%M:%S',
+    insertdatetime_formats: ['%Y-%m-%d', '%H:%M:%S'],
     promotion: false,
     branding: false,
     xss_sanitization: true,

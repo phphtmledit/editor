@@ -92,24 +92,6 @@
       "sha256": "8fbc7f18efefe59b8b7d692d25e0c4283aa4100eaba292e1cdda0cd32e20fc88"
     },
     {
-      "path": "skins/ui/oxide-dark/skin.min.css",
-      "kind": "vendor-byte-identical",
-      "bytes": 178474,
-      "sha256": "51a73cf0b2df858e9e76c4bd0aa3e0d88d680c11727cfafb4662fa923fc89366"
-    },
-    {
-      "path": "skins/ui/oxide-dark/content.min.css",
-      "kind": "vendor-byte-identical",
-      "bytes": 42917,
-      "sha256": "834ed38a2494c5dbb49070bfc81f4c018587ed9e55a9f43f3cda7937549a472b"
-    },
-    {
-      "path": "skins/content/dark/content.min.css",
-      "kind": "vendor-byte-identical",
-      "bytes": 1518,
-      "sha256": "68f1f973a688fab3de5c39334743c00ff962abc78d38dc33ca959ecf72be0574"
-    },
-    {
       "path": "icons/phphtmledit/icons.min.js",
       "kind": "project-generated-from-tinymce",
       "icons": 68,

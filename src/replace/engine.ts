@@ -1,4 +1,5 @@
 /*! @license GPL-2.0-or-later | https://github.com/phphtmledit/editor */
+import { REPLACE_RULE_ERRORS } from '../ui/strings';
 import {
   MAX_REPLACE_FIELD_LENGTH,
   MAX_REPLACE_RULES,
@@ -8,25 +9,21 @@ import {
   type ReplaceRulesResult,
 } from './types';
 
-const ERROR_MESSAGES = {
-  emptyFind: 'Строка поиска не может быть пустой.',
-  findTooLong: `Строка поиска не может быть длиннее ${MAX_REPLACE_FIELD_LENGTH} символов.`,
-  replacementTooLong: `Строка замены не может быть длиннее ${MAX_REPLACE_FIELD_LENGTH} символов.`,
-  invalidRegex: 'Некорректное регулярное выражение.',
-} as const;
-
 const error = (code: ReplaceRuleError['code'], message: string): ReplaceRuleError => ({
   code,
   message,
 });
 
 export const validateReplaceRule = (rule: ReplaceRule): ReplaceRuleError | null => {
-  if (rule.find.length === 0) return error('empty-find', ERROR_MESSAGES.emptyFind);
+  if (rule.find.length === 0) return error('empty-find', REPLACE_RULE_ERRORS.emptyFind);
   if (rule.find.length > MAX_REPLACE_FIELD_LENGTH) {
-    return error('find-too-long', ERROR_MESSAGES.findTooLong);
+    return error('find-too-long', REPLACE_RULE_ERRORS.findTooLong(MAX_REPLACE_FIELD_LENGTH));
   }
   if (rule.replacement.length > MAX_REPLACE_FIELD_LENGTH) {
-    return error('replacement-too-long', ERROR_MESSAGES.replacementTooLong);
+    return error(
+      'replacement-too-long',
+      REPLACE_RULE_ERRORS.replacementTooLong(MAX_REPLACE_FIELD_LENGTH),
+    );
   }
   return null;
 };
@@ -37,7 +34,7 @@ const compileRegex = (rule: ReplaceRule): RegExp | ReplaceRuleError => {
   try {
     return new RegExp(rule.isRegex ? rule.find : escapeRegExp(rule.find), rule.ignoreCase ? 'gi' : 'g');
   } catch {
-    return error('invalid-regex', ERROR_MESSAGES.invalidRegex);
+    return error('invalid-regex', REPLACE_RULE_ERRORS.invalidRegex);
   }
 };
 

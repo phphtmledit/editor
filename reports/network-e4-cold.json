@@ -1,0 +1,364 @@
+{
+  "stage": "E4",
+  "scenario": "cold",
+  "manifestSha256": "6be1fdc43f3b32cca7fb2119c707f78f4e6150531950a237640061d8914d252e",
+  "pageUrl": "http://127.0.0.1:4173/",
+  "capturedAt": "2026-08-14T13:33:55.334Z",
+  "uiActionInventory": {
+    "cleanupRuleButtonsExpected": 10,
+    "cleanupRuleButtonsApplied": 0,
+    "largeDocumentClean100k": false,
+    "largeDocumentCleanDurationMs": null,
+    "largeDocumentCleanWithin500ms": false,
+    "cleanSelected": false,
+    "format": false,
+    "minify": false,
+    "replacementRuleAdded": false,
+    "individualLiteralRuleApplied": false,
+    "pathologicalRegexTimeoutVisible": false,
+    "pathologicalRegexDocumentUnchanged": false,
+    "applyAllReplacements": false,
+    "replacementRuleRemoved": false,
+    "commonMassUndo": false,
+    "emojiDialogOpened": false,
+    "emojiSearchFiltered": false,
+    "emojiInserted": false,
+    "htmlImported": false,
+    "docxDroppedIntoTinyMce": false,
+    "docxImported": false,
+    "mammothRequestedByDocxImport": false,
+    "htmlExportDownloaded": false,
+    "htmlCopied": false,
+    "textCopied": false,
+    "sampleLoaded": false,
+    "draftAutosaved": false,
+    "newDocumentCreated": false,
+    "loadingSkeletonObserved": true,
+    "loadingPaintProof": {
+      "visibleFrom": 116.3,
+      "firstHiddenAt": 520.6,
+      "visibleState": {
+        "source": "mutation",
+        "at": 116.3,
+        "readyState": "loading",
+        "visibilityState": "visible",
+        "appBusy": "true",
+        "skeletonPresent": true,
+        "skeletonHidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "geometry": {
+          "x": 35,
+          "y": 171.484,
+          "width": 1355,
+          "height": 558
+        }
+      },
+      "firstNonzeroGeometry": {
+        "source": "mutation",
+        "at": 116.3,
+        "readyState": "loading",
+        "visibilityState": "visible",
+        "appBusy": "true",
+        "skeletonPresent": true,
+        "skeletonHidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "geometry": {
+          "x": 35,
+          "y": 171.484,
+          "width": 1355,
+          "height": 558
+        }
+      },
+      "hiddenState": {
+        "source": "mutation",
+        "at": 520.6,
+        "readyState": "complete",
+        "visibilityState": "visible",
+        "appBusy": "false",
+        "skeletonPresent": true,
+        "skeletonHidden": true,
+        "display": "none",
+        "visibility": "visible",
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      },
+      "firstPaintStartTime": 476,
+      "firstContentfulPaintStartTime": 476,
+      "paintEntries": [
+        {
+          "name": "first-paint",
+          "startTime": 476,
+          "duration": 0
+        },
+        {
+          "name": "first-contentful-paint",
+          "startTime": 476,
+          "duration": 0
+        }
+      ],
+      "paintObserverError": null,
+      "samples": [
+        {
+          "source": "document-start",
+          "at": 22.9,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": null,
+          "skeletonPresent": false,
+          "skeletonHidden": null,
+          "display": null,
+          "visibility": null,
+          "geometry": null
+        },
+        {
+          "source": "mutation",
+          "at": 116.3,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          }
+        },
+        {
+          "source": "readystatechange",
+          "at": 164,
+          "readyState": "interactive",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          }
+        },
+        {
+          "source": "readystatechange",
+          "at": 176.7,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          }
+        },
+        {
+          "source": "mutation",
+          "at": 520.6,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "source": "paint:first-paint",
+          "at": 537.6,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "source": "paint:first-contentful-paint",
+          "at": 537.6,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        }
+      ],
+      "visibleDurationMs": 404.3,
+      "firstPaintOffsetFromVisibleMs": 359.7,
+      "hiddenAfterFirstPaintMs": 44.6
+    },
+    "editorReadyAfterSkeleton": true,
+    "docxBusyStateVisible": false,
+    "docxBusyStateRestored": false
+  },
+  "regexActionRequestPaths": [],
+  "docxImportRequestPaths": [],
+  "docxFixtureSha256": "c96400f26ebef8f76b7a859909583f8ea3f9d6760a60512a54b7d800eaf8bfcc",
+  "attachedWorkerTargets": [],
+  "workerNetworkLifecycle": [],
+  "workerSessionSetupErrors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4173/",
+      "status": 200,
+      "resourceType": "document",
+      "initiatorType": "other",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DHYCz9UE.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-C7CHQg2C.css",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/themes/silver/theme.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/models/dom/model.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/link/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/image/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/table/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "editor-frame"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/content/default/content.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "editor-frame"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    }
+  ]
+}

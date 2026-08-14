@@ -2,12 +2,12 @@
 
 Browser-only WYSIWYG HTML editor focused on cleaning copied and generated markup. The application uses a self-hosted TinyMCE 8 visual editor and does not send document contents to a backend or to Tiny Cloud.
 
-**E3 — import, export, local drafts and their weight reductions are implemented.**
+**E4 — the final application interface, accessibility, and responsive layout are implemented.**
 TinyMCE and CodeMirror 6 share one HTML fragment, while ten independently
 testable cleaning rules remove Word/Office markup, presentation attributes,
 empty structures and typographic artifacts. The verified stage evidence is
-documented in `docs/E3.md`; the accepted E0, E1 and E2 reports remain unchanged
-in `docs/E0.md`, `docs/E1.md` and `docs/E2.md`.
+documented in `docs/E4.md`; the accepted E0–E3 reports remain unchanged in
+`docs/E0.md`, `docs/E1.md`, `docs/E2.md`, and `docs/E3.md`.
 
 On desktop the visual and source panels share a keyboard- and pointer-adjustable
 splitter. Below 900 px they become accessible tabs. TinyMCE-to-source updates
@@ -20,8 +20,12 @@ Potentially pathological regular expressions run in a disposable Worker with a
 the picker or file drop. The application downloads HTML, copies HTML or plain
 text, saves a local draft every 3 seconds up to 1 MiB, and provides sample/new
 document actions. Whole-document changes join the same mass-operation stack.
-Final themes/accessibility, embedding and legal interface work, and E6 manual
-acceptance remain later stages.
+The English interface uses one tokenized light palette, preserves visible focus,
+switches to 44 px touch targets and editor tabs below 900 px, follows the mobile
+`visualViewport`, and exposes loading, DOCX progress, and fatal-error states.
+The `?theme=` parameter remains stable, but every value resolves to the light
+theme in the MVP; `color-scheme: light` is applied to the shell and editor frame.
+Embedding, interface legal links, and E6 manual acceptance remain later stages.
 
 ## License
 
@@ -53,21 +57,28 @@ import but no DOCX/golden fixture, while the diagnostic graph contains the
 Mammoth DOCX/golden pair exactly once. Every other test fixture remains absent
 from both builds.
 
-`npm run size` consumes the sanitized E3 production-preview captures in
-`reports/network-e3-cold.json` and `reports/network-e3-cumulative.json`, checks
+`npm run size` consumes the sanitized E4 production-preview captures in
+`reports/network-e4-cold.json` and `reports/network-e4-cumulative.json`, checks
 their manifest fingerprint against the current `dist`, and applies the four
-byte budgets plus the request-count limit. See `docs/E3.md` for the current
+byte budgets plus the request-count limit. See `docs/E4.md` for the current
 measurements.
 
-The accepted E0, E1 and E2 HAR/JSON files are preserved unchanged. Current
+The accepted E0–E3 stage-specific Network, size, and report evidence is
+preserved unchanged. `reports/tinymce-assets.json` is deliberately a rolling,
+reproducible inventory of the current vendored distribution; the E4 reduction
+report pins the accepted E3 inventory hash used as its baseline. Current
 independent DevTools Network-domain evidence is in
-`reports/network-e3-cold.har` and `reports/network-e3-cumulative.har`;
-`reports/network-e3-har-result.json` records its assertions.
+`reports/network-e4-cold.har` and `reports/network-e4-cumulative.har`;
+`reports/network-e4-har-result.json` records its assertions.
 
 `npm run vendor:tinymce` deterministically generates the 300-entry common emoji
 database from TinyMCE 8.8.2/emojilib data. The stock database is not shipped.
 Copyright, license and dated modification provenance is recorded in
 `THIRD-PARTY-NOTICES.md` and delivered through `/licenses.txt`.
+
+The TinyMCE distribution is light-only. `npm run e4:dark-assets-removal`
+reproduces the isolated raw, gzip-9, and Brotli-11 savings from excluding the
+three unused dark-skin files while keeping all copied vendor files byte-identical.
 
 `npm run icons` is a permanent pre-report gate. It verifies the generated
 68-icon pack against the current visual toolbar, menus, dialogs and fallback

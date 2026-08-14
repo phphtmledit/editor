@@ -12,6 +12,7 @@ import {
   CUSTOM_ICON_NAMES,
   CUSTOM_ICON_PACK,
   STOCK_EMOTICONS_DATABASE_ASSET,
+  TINYMCE_EXCLUDED_DARK_ASSETS,
   TINYMCE_VENDOR_ASSETS,
   TINYMCE_VERSION,
 } from './tinymce-assets.mjs';
@@ -154,6 +155,11 @@ if (packageJson.version !== TINYMCE_VERSION) {
 }
 if (TINYMCE_VENDOR_ASSETS.includes(STOCK_EMOTICONS_DATABASE_ASSET)) {
   throw new Error(`Stock emoji database must not be copied: ${STOCK_EMOTICONS_DATABASE_ASSET}`);
+}
+const includedDarkAssets = TINYMCE_EXCLUDED_DARK_ASSETS.filter((asset) =>
+  TINYMCE_VENDOR_ASSETS.includes(asset));
+if (includedDarkAssets.length > 0) {
+  throw new Error(`Dark TinyMCE assets must not be copied: ${includedDarkAssets.join(', ')}`);
 }
 
 await stat(sourceRoot);

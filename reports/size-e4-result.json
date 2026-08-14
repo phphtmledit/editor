@@ -1,0 +1,1476 @@
+{
+  "stage": "E4",
+  "origin": "http://127.0.0.1:4173",
+  "manifestSha256": "6be1fdc43f3b32cca7fb2119c707f78f4e6150531950a237640061d8914d252e",
+  "docxFixtureSha256": "c96400f26ebef8f76b7a859909583f8ea3f9d6760a60512a54b7d800eaf8bfcc",
+  "definitions": {
+    "cold": "All production HTTP resources requested from navigation through editor-ready.",
+    "cumulative": "A separate fresh production load containing every cold URL, first source focus, the complete E2 document-tools inventory, custom emoji search/insert, actual HTML and DOCX imports, HTML export, clipboard actions, product sample, draft autosave and new document; the only cumulative JavaScript additions are source-rich, safe replacement, Mammoth and the isolated regex Worker. E4 responsive/theme/accessibility checks run in a separate browser without Network enabled and cannot contaminate this byte inventory.",
+    "requestCount": "Cold load through editor-ready only, including the HTML document.",
+    "initialJs": "Supplementary, non-budget detail: cold-load JavaScript outside /tinymce; lazy source-editor tools are excluded."
+  },
+  "metrics": [
+    {
+      "name": "Cold editor-ready transfer (gzip)",
+      "actual": 572129,
+      "budget": 600000,
+      "margin": 27871,
+      "status": "PASS"
+    },
+    {
+      "name": "Cold editor-ready transfer (brotli)",
+      "actual": 486385,
+      "budget": 500000,
+      "margin": 13615,
+      "status": "PASS"
+    },
+    {
+      "name": "Cumulative E4 transfer (gzip)",
+      "actual": 716821,
+      "budget": 750000,
+      "margin": 33179,
+      "status": "PASS"
+    },
+    {
+      "name": "Cumulative E4 transfer (brotli)",
+      "actual": 604281,
+      "budget": 630000,
+      "margin": 25719,
+      "status": "PASS"
+    },
+    {
+      "name": "Cold-load HTTP requests",
+      "actual": 18,
+      "budget": 25,
+      "margin": 7,
+      "status": "PASS"
+    }
+  ],
+  "coldEditorReadyTransfer": {
+    "requests": 18,
+    "gzip": 572129,
+    "brotli": 486385
+  },
+  "cumulativeTransfer": {
+    "requests": 22,
+    "gzip": 716821,
+    "brotli": 604281
+  },
+  "supplementary": {
+    "initialJsWithoutTinyMCE": {
+      "gzip": 135905,
+      "brotli": 116588
+    },
+    "largeDocumentCleanDurationMs": 185.9,
+    "e4UiValidation": {
+      "themeQueries": [
+        {
+          "query": "",
+          "dataTheme": "light",
+          "colorScheme": "light",
+          "editorColorScheme": "light",
+          "tinySkin": "oxide",
+          "contentCss": [
+            "default"
+          ],
+          "darkReferences": [],
+          "aboutVisible": false,
+          "passed": true
+        },
+        {
+          "query": "?theme=light",
+          "dataTheme": "light",
+          "colorScheme": "light",
+          "editorColorScheme": "light",
+          "tinySkin": "oxide",
+          "contentCss": [
+            "default"
+          ],
+          "darkReferences": [],
+          "aboutVisible": false,
+          "passed": true
+        },
+        {
+          "query": "?theme=dark",
+          "dataTheme": "light",
+          "colorScheme": "light",
+          "editorColorScheme": "light",
+          "tinySkin": "oxide",
+          "contentCss": [
+            "default"
+          ],
+          "darkReferences": [],
+          "aboutVisible": false,
+          "passed": true
+        },
+        {
+          "query": "?theme=auto",
+          "dataTheme": "light",
+          "colorScheme": "light",
+          "editorColorScheme": "light",
+          "tinySkin": "oxide",
+          "contentCss": [
+            "default"
+          ],
+          "darkReferences": [],
+          "aboutVisible": false,
+          "passed": true
+        },
+        {
+          "query": "?theme=unexpected",
+          "dataTheme": "light",
+          "colorScheme": "light",
+          "editorColorScheme": "light",
+          "tinySkin": "oxide",
+          "contentCss": [
+            "default"
+          ],
+          "darkReferences": [],
+          "aboutVisible": false,
+          "passed": true
+        }
+      ],
+      "viewports": [
+        {
+          "width": 1440,
+          "height": 900,
+          "expectedMode": "desktop",
+          "mode": "desktop",
+          "tabsHidden": true,
+          "splitterHidden": false,
+          "workspaceNonzero": true,
+          "visualNonzero": true,
+          "sourceInitiallyNonzero": true,
+          "desktopSplit": true,
+          "noHorizontalOverflow": true,
+          "viewportHeightCss": "900px",
+          "viewportOffsetCss": "0px",
+          "sourceNonzero": true,
+          "mobileTabSwitchWorked": true,
+          "passed": true
+        },
+        {
+          "width": 1024,
+          "height": 900,
+          "expectedMode": "desktop",
+          "mode": "desktop",
+          "tabsHidden": true,
+          "splitterHidden": false,
+          "workspaceNonzero": true,
+          "visualNonzero": true,
+          "sourceInitiallyNonzero": true,
+          "desktopSplit": true,
+          "noHorizontalOverflow": true,
+          "viewportHeightCss": "900px",
+          "viewportOffsetCss": "0px",
+          "sourceNonzero": true,
+          "mobileTabSwitchWorked": true,
+          "passed": true
+        },
+        {
+          "width": 900,
+          "height": 900,
+          "expectedMode": "desktop",
+          "mode": "desktop",
+          "tabsHidden": true,
+          "splitterHidden": false,
+          "workspaceNonzero": true,
+          "visualNonzero": true,
+          "sourceInitiallyNonzero": true,
+          "desktopSplit": true,
+          "noHorizontalOverflow": true,
+          "viewportHeightCss": "900px",
+          "viewportOffsetCss": "0px",
+          "sourceNonzero": true,
+          "mobileTabSwitchWorked": true,
+          "passed": true
+        },
+        {
+          "width": 899,
+          "height": 844,
+          "expectedMode": "mobile",
+          "mode": "mobile",
+          "tabsHidden": false,
+          "splitterHidden": true,
+          "workspaceNonzero": true,
+          "visualNonzero": true,
+          "sourceInitiallyNonzero": false,
+          "desktopSplit": false,
+          "noHorizontalOverflow": true,
+          "viewportHeightCss": "844px",
+          "viewportOffsetCss": "0px",
+          "sourceNonzero": true,
+          "mobileTabSwitchWorked": true,
+          "passed": true
+        },
+        {
+          "width": 768,
+          "height": 844,
+          "expectedMode": "mobile",
+          "mode": "mobile",
+          "tabsHidden": false,
+          "splitterHidden": true,
+          "workspaceNonzero": true,
+          "visualNonzero": true,
+          "sourceInitiallyNonzero": false,
+          "desktopSplit": false,
+          "noHorizontalOverflow": true,
+          "viewportHeightCss": "844px",
+          "viewportOffsetCss": "0px",
+          "sourceNonzero": true,
+          "mobileTabSwitchWorked": true,
+          "passed": true
+        },
+        {
+          "width": 390,
+          "height": 844,
+          "expectedMode": "mobile",
+          "mode": "mobile",
+          "tabsHidden": false,
+          "splitterHidden": true,
+          "workspaceNonzero": true,
+          "visualNonzero": true,
+          "sourceInitiallyNonzero": false,
+          "desktopSplit": false,
+          "noHorizontalOverflow": true,
+          "viewportHeightCss": "844px",
+          "viewportOffsetCss": "0px",
+          "sourceNonzero": true,
+          "mobileTabSwitchWorked": true,
+          "passed": true
+        },
+        {
+          "width": 320,
+          "height": 844,
+          "expectedMode": "mobile",
+          "mode": "mobile",
+          "tabsHidden": false,
+          "splitterHidden": true,
+          "workspaceNonzero": true,
+          "visualNonzero": true,
+          "sourceInitiallyNonzero": false,
+          "desktopSplit": false,
+          "noHorizontalOverflow": true,
+          "viewportHeightCss": "844px",
+          "viewportOffsetCss": "0px",
+          "sourceNonzero": true,
+          "mobileTabSwitchWorked": true,
+          "passed": true
+        }
+      ],
+      "coarsePointer": {
+        "emulated": true,
+        "hoverNone": true,
+        "controls": [
+          {
+            "index": 0,
+            "id": "choose-import-file",
+            "label": "Open file",
+            "width": 86.406,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 1,
+            "id": "export-html",
+            "label": "Download HTML",
+            "width": 140.047,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 2,
+            "id": "copy-html",
+            "label": "Copy HTML",
+            "width": 104.453,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 3,
+            "id": "copy-text",
+            "label": "Copy text",
+            "width": 89.375,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 4,
+            "id": "load-example",
+            "label": "Example",
+            "width": 81.016,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 5,
+            "id": "new-document",
+            "label": "New document",
+            "width": 130.156,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 6,
+            "id": null,
+            "label": "File",
+            "width": 44,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 7,
+            "id": null,
+            "label": "Edit",
+            "width": 44,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 8,
+            "id": null,
+            "label": "View",
+            "width": 45.516,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 9,
+            "id": null,
+            "label": "Insert",
+            "width": 50.516,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 10,
+            "id": null,
+            "label": "Format",
+            "width": 59.844,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 11,
+            "id": null,
+            "label": "Table",
+            "width": 47.813,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 12,
+            "id": null,
+            "label": "Undo",
+            "width": 44,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 13,
+            "id": null,
+            "label": "Redo",
+            "width": 44,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 14,
+            "id": null,
+            "label": "Block Paragraph",
+            "width": 130,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 15,
+            "id": null,
+            "label": "Reveal or hide additional toolbar items",
+            "width": 44,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 16,
+            "id": null,
+            "label": "p",
+            "width": 44,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 17,
+            "id": "undo-mass-operation",
+            "label": "Undo",
+            "width": 60.844,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 18,
+            "id": null,
+            "label": "Apply the “Inline styles” rule",
+            "width": 62.75,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 19,
+            "id": null,
+            "label": "Apply the “Classes and IDs” rule",
+            "width": 62.75,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 20,
+            "id": null,
+            "label": "Apply the “Empty elements” rule",
+            "width": 62.75,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 21,
+            "id": null,
+            "label": "Apply the “Single-space elements” rule",
+            "width": 62.75,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 22,
+            "id": null,
+            "label": "Apply the “Repeated spaces” rule",
+            "width": 62.75,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 23,
+            "id": null,
+            "label": "Apply the “Comments” rule",
+            "width": 62.75,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 24,
+            "id": null,
+            "label": "Apply the “Tag attributes” rule",
+            "width": 62.75,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 25,
+            "id": null,
+            "label": "Apply the “Plain text” rule",
+            "width": 62.75,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 26,
+            "id": null,
+            "label": "Apply the “AI symbols” rule",
+            "width": 62.75,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 27,
+            "id": null,
+            "label": "Apply the “Word cleanup” rule",
+            "width": 62.75,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 28,
+            "id": "clean-selected-rules",
+            "label": "Clean selected",
+            "width": 123.734,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 29,
+            "id": "format-html",
+            "label": "Format",
+            "width": 72.094,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 30,
+            "id": "minify-html",
+            "label": "Minify",
+            "width": 65.922,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 31,
+            "id": "add-replacement-rule",
+            "label": "Add rule",
+            "width": 82.406,
+            "height": 44,
+            "atLeast44": true
+          },
+          {
+            "index": 32,
+            "id": "apply-all-replacements",
+            "label": "Apply all",
+            "width": 83.031,
+            "height": 44,
+            "atLeast44": true
+          }
+        ],
+        "failures": [],
+        "allAtLeast44": true,
+        "emulationError": null
+      },
+      "contrast": {
+        "tokens": {
+          "accent": "rgb(79, 70, 229)",
+          "bg": "rgb(244, 246, 249)",
+          "surface": "rgb(255, 255, 255)",
+          "text": "rgb(23, 32, 51)",
+          "text-muted": "rgb(94, 104, 121)"
+        },
+        "pairs": [
+          {
+            "name": "text-on-surface",
+            "foregroundToken": "text",
+            "backgroundToken": "surface",
+            "foreground": "rgb(23, 32, 51)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 16.268
+          },
+          {
+            "name": "text-on-background",
+            "foregroundToken": "text",
+            "backgroundToken": "bg",
+            "foreground": "rgb(23, 32, 51)",
+            "background": "rgb(244, 246, 249)",
+            "ratio": 15.027
+          },
+          {
+            "name": "muted-on-surface",
+            "foregroundToken": "text-muted",
+            "backgroundToken": "surface",
+            "foreground": "rgb(94, 104, 121)",
+            "background": "rgb(255, 255, 255)",
+            "ratio": 5.627
+          },
+          {
+            "name": "muted-on-background",
+            "foregroundToken": "text-muted",
+            "backgroundToken": "bg",
+            "foreground": "rgb(94, 104, 121)",
+            "background": "rgb(244, 246, 249)",
+            "ratio": 5.197
+          },
+          {
+            "name": "surface-on-accent",
+            "foregroundToken": "surface",
+            "backgroundToken": "accent",
+            "foreground": "rgb(255, 255, 255)",
+            "background": "rgb(79, 70, 229)",
+            "ratio": 6.288
+          }
+        ],
+        "allAtLeast4_5": true
+      },
+      "focus": {
+        "element": "choose-import-file",
+        "productButton": true,
+        "focusVisible": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "outlineColor": "rgb(79, 70, 229)",
+        "accentColor": "rgb(79, 70, 229)",
+        "solidAccent": true
+      },
+      "visualViewport": {
+        "available": true,
+        "initial": {
+          "available": true,
+          "innerHeight": 844,
+          "viewportHeight": 844,
+          "viewportOffsetTop": 0,
+          "cssHeight": 844,
+          "cssOffset": 0
+        },
+        "resized": {
+          "innerHeight": 700,
+          "viewportHeight": 700,
+          "viewportOffsetTop": 0,
+          "cssHeight": 700,
+          "cssOffset": 0
+        },
+        "resizeUpdated": true
+      },
+      "aboutAbsent": true,
+      "consoleProblems": [],
+      "allPassed": true,
+      "loadingLifecycle": {
+        "coldSkeletonVisibleWhileBusy": true,
+        "coldEditorsReadyAfterSkeleton": true,
+        "cumulativeSkeletonVisibleWhileBusy": true,
+        "cumulativeEditorsReadyAfterSkeleton": true
+      },
+      "loadingPaintProof": {
+        "cold": {
+          "visibleFrom": 116.3,
+          "firstHiddenAt": 520.6,
+          "visibleState": {
+            "source": "mutation",
+            "at": 116.3,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            }
+          },
+          "firstNonzeroGeometry": {
+            "source": "mutation",
+            "at": 116.3,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            }
+          },
+          "hiddenState": {
+            "source": "mutation",
+            "at": 520.6,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "false",
+            "skeletonPresent": true,
+            "skeletonHidden": true,
+            "display": "none",
+            "visibility": "visible",
+            "geometry": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          "firstPaintStartTime": 476,
+          "firstContentfulPaintStartTime": 476,
+          "paintEntries": [
+            {
+              "name": "first-paint",
+              "startTime": 476,
+              "duration": 0
+            },
+            {
+              "name": "first-contentful-paint",
+              "startTime": 476,
+              "duration": 0
+            }
+          ],
+          "paintObserverError": null,
+          "samples": [
+            {
+              "source": "document-start",
+              "at": 22.9,
+              "readyState": "loading",
+              "visibilityState": "visible",
+              "appBusy": null,
+              "skeletonPresent": false,
+              "skeletonHidden": null,
+              "display": null,
+              "visibility": null,
+              "geometry": null
+            },
+            {
+              "source": "mutation",
+              "at": 116.3,
+              "readyState": "loading",
+              "visibilityState": "visible",
+              "appBusy": "true",
+              "skeletonPresent": true,
+              "skeletonHidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "x": 35,
+                "y": 171.484,
+                "width": 1355,
+                "height": 558
+              }
+            },
+            {
+              "source": "readystatechange",
+              "at": 164,
+              "readyState": "interactive",
+              "visibilityState": "visible",
+              "appBusy": "true",
+              "skeletonPresent": true,
+              "skeletonHidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "x": 35,
+                "y": 171.484,
+                "width": 1355,
+                "height": 558
+              }
+            },
+            {
+              "source": "readystatechange",
+              "at": 176.7,
+              "readyState": "complete",
+              "visibilityState": "visible",
+              "appBusy": "true",
+              "skeletonPresent": true,
+              "skeletonHidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "x": 35,
+                "y": 171.484,
+                "width": 1355,
+                "height": 558
+              }
+            },
+            {
+              "source": "mutation",
+              "at": 520.6,
+              "readyState": "complete",
+              "visibilityState": "visible",
+              "appBusy": "false",
+              "skeletonPresent": true,
+              "skeletonHidden": true,
+              "display": "none",
+              "visibility": "visible",
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              }
+            },
+            {
+              "source": "paint:first-paint",
+              "at": 537.6,
+              "readyState": "complete",
+              "visibilityState": "visible",
+              "appBusy": "false",
+              "skeletonPresent": true,
+              "skeletonHidden": true,
+              "display": "none",
+              "visibility": "visible",
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              }
+            },
+            {
+              "source": "paint:first-contentful-paint",
+              "at": 537.6,
+              "readyState": "complete",
+              "visibilityState": "visible",
+              "appBusy": "false",
+              "skeletonPresent": true,
+              "skeletonHidden": true,
+              "display": "none",
+              "visibility": "visible",
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              }
+            }
+          ],
+          "visibleDurationMs": 404.3,
+          "firstPaintOffsetFromVisibleMs": 359.7,
+          "hiddenAfterFirstPaintMs": 44.6
+        },
+        "cumulative": {
+          "visibleFrom": 123.3,
+          "firstHiddenAt": 530.4,
+          "visibleState": {
+            "source": "mutation",
+            "at": 123.3,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            }
+          },
+          "firstNonzeroGeometry": {
+            "source": "mutation",
+            "at": 123.3,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            }
+          },
+          "hiddenState": {
+            "source": "mutation",
+            "at": 530.4,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "false",
+            "skeletonPresent": true,
+            "skeletonHidden": true,
+            "display": "none",
+            "visibility": "visible",
+            "geometry": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          },
+          "firstPaintStartTime": 472,
+          "firstContentfulPaintStartTime": 472,
+          "paintEntries": [
+            {
+              "name": "first-paint",
+              "startTime": 472,
+              "duration": 0
+            },
+            {
+              "name": "first-contentful-paint",
+              "startTime": 472,
+              "duration": 0
+            }
+          ],
+          "paintObserverError": null,
+          "samples": [
+            {
+              "source": "document-start",
+              "at": 23.3,
+              "readyState": "loading",
+              "visibilityState": "visible",
+              "appBusy": null,
+              "skeletonPresent": false,
+              "skeletonHidden": null,
+              "display": null,
+              "visibility": null,
+              "geometry": null
+            },
+            {
+              "source": "mutation",
+              "at": 123.3,
+              "readyState": "loading",
+              "visibilityState": "visible",
+              "appBusy": "true",
+              "skeletonPresent": true,
+              "skeletonHidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "x": 35,
+                "y": 171.484,
+                "width": 1355,
+                "height": 558
+              }
+            },
+            {
+              "source": "readystatechange",
+              "at": 173,
+              "readyState": "interactive",
+              "visibilityState": "visible",
+              "appBusy": "true",
+              "skeletonPresent": true,
+              "skeletonHidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "x": 35,
+                "y": 171.484,
+                "width": 1355,
+                "height": 558
+              }
+            },
+            {
+              "source": "readystatechange",
+              "at": 185.6,
+              "readyState": "complete",
+              "visibilityState": "visible",
+              "appBusy": "true",
+              "skeletonPresent": true,
+              "skeletonHidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "x": 35,
+                "y": 171.484,
+                "width": 1355,
+                "height": 558
+              }
+            },
+            {
+              "source": "mutation",
+              "at": 530.4,
+              "readyState": "complete",
+              "visibilityState": "visible",
+              "appBusy": "false",
+              "skeletonPresent": true,
+              "skeletonHidden": true,
+              "display": "none",
+              "visibility": "visible",
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              }
+            },
+            {
+              "source": "paint:first-paint",
+              "at": 549.3,
+              "readyState": "complete",
+              "visibilityState": "visible",
+              "appBusy": "false",
+              "skeletonPresent": true,
+              "skeletonHidden": true,
+              "display": "none",
+              "visibility": "visible",
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              }
+            },
+            {
+              "source": "paint:first-contentful-paint",
+              "at": 549.3,
+              "readyState": "complete",
+              "visibilityState": "visible",
+              "appBusy": "false",
+              "skeletonPresent": true,
+              "skeletonHidden": true,
+              "display": "none",
+              "visibility": "visible",
+              "geometry": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              }
+            }
+          ],
+          "visibleDurationMs": 407.1,
+          "firstPaintOffsetFromVisibleMs": 348.7,
+          "hiddenAfterFirstPaintMs": 58.4
+        }
+      },
+      "docxBusyLifecycle": {
+        "busyObservedBeforeParse": true,
+        "controlsRestoredAfterParse": true
+      }
+    }
+  },
+  "activeLightTinyStaticFootprint": {
+    "files": 17,
+    "raw": 1425123,
+    "gzip": 431188,
+    "brotli": 365500
+  },
+  "tinyStaticFootprint": {
+    "files": 17,
+    "raw": 1425123,
+    "gzip": 431188,
+    "brotli": 365500
+  },
+  "tinyDomainRequests": [],
+  "scenarios": {
+    "cold": {
+      "capturedAt": "2026-08-14T13:33:55.334Z",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:4173/",
+          "path": "index.html",
+          "status": 200,
+          "initiatorType": "other",
+          "context": "page",
+          "sha256": "2ccd8153a039a7ae8258e7e2f7a0cf35ba580e3bc485b05a1677c799c1b4c775",
+          "raw": 7118,
+          "gzip": 2242,
+          "brotli": 1762
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "path": "tinymce/tinymce.min.js",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "e68a8e0787cf2aafc7041c9141c8ec04019a7762f8ead6417061593be1219e9d",
+          "raw": 486491,
+          "gzip": 169991,
+          "brotli": 142494
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/index-DHYCz9UE.js",
+          "path": "assets/index-DHYCz9UE.js",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "e537f1752ef3c64294b8365de669a6e5788455c458efd5e0f3e3bd9624d56e26",
+          "raw": 420514,
+          "gzip": 135905,
+          "brotli": 116588
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/index-C7CHQg2C.css",
+          "path": "assets/index-C7CHQg2C.css",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "a7536acb21b08fc984528cc8ee666e2208cae816a44863f855519502ae8b77e3",
+          "raw": 14763,
+          "gzip": 3495,
+          "brotli": 3036
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/themes/silver/theme.min.js?v=8.8.2",
+          "path": "tinymce/themes/silver/theme.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "9702cda396b031988da9c922c9eae2be57ebe5455d33e4662f64241ffeda5182",
+          "raw": 446315,
+          "gzip": 143384,
+          "brotli": 120347
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/models/dom/model.min.js?v=8.8.2",
+          "path": "tinymce/models/dom/model.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c3321c3f9fe38550441922c64a8f8a358e660b25ccd4cd206cf73a4c13db3465",
+          "raw": 95936,
+          "gzip": 32586,
+          "brotli": 29012
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
+          "path": "tinymce/icons/phphtmledit/icons.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "d76c40de675fc6b40151003e691a3332c60779ca802678971b816ed89dd83b2c",
+          "raw": 23785,
+          "gzip": 6196,
+          "brotli": 5270
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/lists/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "66d451d56c8f22bfd8f864b146dbf35851a8848dd8ab92c962bc988f59d145d5",
+          "raw": 5001,
+          "gzip": 2092,
+          "brotli": 1885
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/link/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/link/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "2694078aad82b21daaab1f469122d9e2e3675c42ffc8ebbedec2694e7ec9f5a4",
+          "raw": 18679,
+          "gzip": 6923,
+          "brotli": 6248
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/image/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/image/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "91fb5ecc1341997f45d7ef6904eddc1304c6cb7090cdb034c1c6c0d91ecad8b9",
+          "raw": 19063,
+          "gzip": 6719,
+          "brotli": 6043
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/table/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/table/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c6250646b1f5df33993602fbd0156ce629b00b87532e3c0a0776e17dac864ed9",
+          "raw": 46473,
+          "gzip": 13652,
+          "brotli": 12264
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/charmap/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "fcec7012f02f28a9154d81b6a0877805b0a791a1eba9427a0deda6058483067c",
+          "raw": 11102,
+          "gzip": 4416,
+          "brotli": 3714
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/emoticons/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "b6216af035612be534757ffb0b78d10044c447ad7b5d8677ad1eae15abd29411",
+          "raw": 6570,
+          "gzip": 2817,
+          "brotli": 2526
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/insertdatetime/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c2cf4c6da8d47af65eff9629bb9f60dcceebf9f093784d29b5421aa972d72db1",
+          "raw": 3033,
+          "gzip": 1252,
+          "brotli": 1133
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
+          "path": "tinymce/skins/ui/oxide/skin.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "098e47b9e8da9007d88464a24f80ab171bb5ec4821f5a840e5d84e9e80bb4550",
+          "raw": 178210,
+          "gzip": 24691,
+          "brotli": 20552
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
+          "path": "tinymce/skins/ui/oxide/content.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "editor-frame",
+          "sha256": "b2430740ad7dfe91bab74cd0626d1330e813b643a0f3bfc0b496b122b8cf07ee",
+          "raw": 43102,
+          "gzip": 7895,
+          "brotli": 6959
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/content/default/content.min.css?v=8.8.2",
+          "path": "tinymce/skins/content/default/content.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "editor-frame",
+          "sha256": "8fbc7f18efefe59b8b7d692d25e0c4283aa4100eaba292e1cdda0cd32e20fc88",
+          "raw": 1403,
+          "gzip": 629,
+          "brotli": 493
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
+          "path": "tinymce/plugins/emoticons/js/emojis-common.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "ae44bba7002ff59b2ffcd17b96bcd7b51c39dbbe4a07c767b1bab5c9201f4b19",
+          "raw": 38728,
+          "gzip": 7244,
+          "brotli": 6059
+        }
+      ]
+    },
+    "cumulative": {
+      "capturedAt": "2026-08-14T13:34:08.306Z",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:4173/",
+          "path": "index.html",
+          "status": 200,
+          "initiatorType": "other",
+          "context": "page",
+          "sha256": "2ccd8153a039a7ae8258e7e2f7a0cf35ba580e3bc485b05a1677c799c1b4c775",
+          "raw": 7118,
+          "gzip": 2242,
+          "brotli": 1762
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "path": "tinymce/tinymce.min.js",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "e68a8e0787cf2aafc7041c9141c8ec04019a7762f8ead6417061593be1219e9d",
+          "raw": 486491,
+          "gzip": 169991,
+          "brotli": 142494
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/index-DHYCz9UE.js",
+          "path": "assets/index-DHYCz9UE.js",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "e537f1752ef3c64294b8365de669a6e5788455c458efd5e0f3e3bd9624d56e26",
+          "raw": 420514,
+          "gzip": 135905,
+          "brotli": 116588
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/index-C7CHQg2C.css",
+          "path": "assets/index-C7CHQg2C.css",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "a7536acb21b08fc984528cc8ee666e2208cae816a44863f855519502ae8b77e3",
+          "raw": 14763,
+          "gzip": 3495,
+          "brotli": 3036
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/themes/silver/theme.min.js?v=8.8.2",
+          "path": "tinymce/themes/silver/theme.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "9702cda396b031988da9c922c9eae2be57ebe5455d33e4662f64241ffeda5182",
+          "raw": 446315,
+          "gzip": 143384,
+          "brotli": 120347
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/models/dom/model.min.js?v=8.8.2",
+          "path": "tinymce/models/dom/model.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c3321c3f9fe38550441922c64a8f8a358e660b25ccd4cd206cf73a4c13db3465",
+          "raw": 95936,
+          "gzip": 32586,
+          "brotli": 29012
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
+          "path": "tinymce/icons/phphtmledit/icons.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "d76c40de675fc6b40151003e691a3332c60779ca802678971b816ed89dd83b2c",
+          "raw": 23785,
+          "gzip": 6196,
+          "brotli": 5270
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/lists/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "66d451d56c8f22bfd8f864b146dbf35851a8848dd8ab92c962bc988f59d145d5",
+          "raw": 5001,
+          "gzip": 2092,
+          "brotli": 1885
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/link/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/link/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "2694078aad82b21daaab1f469122d9e2e3675c42ffc8ebbedec2694e7ec9f5a4",
+          "raw": 18679,
+          "gzip": 6923,
+          "brotli": 6248
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/image/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/image/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "91fb5ecc1341997f45d7ef6904eddc1304c6cb7090cdb034c1c6c0d91ecad8b9",
+          "raw": 19063,
+          "gzip": 6719,
+          "brotli": 6043
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/table/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/table/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c6250646b1f5df33993602fbd0156ce629b00b87532e3c0a0776e17dac864ed9",
+          "raw": 46473,
+          "gzip": 13652,
+          "brotli": 12264
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/charmap/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "fcec7012f02f28a9154d81b6a0877805b0a791a1eba9427a0deda6058483067c",
+          "raw": 11102,
+          "gzip": 4416,
+          "brotli": 3714
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/emoticons/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "b6216af035612be534757ffb0b78d10044c447ad7b5d8677ad1eae15abd29411",
+          "raw": 6570,
+          "gzip": 2817,
+          "brotli": 2526
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/insertdatetime/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c2cf4c6da8d47af65eff9629bb9f60dcceebf9f093784d29b5421aa972d72db1",
+          "raw": 3033,
+          "gzip": 1252,
+          "brotli": 1133
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
+          "path": "tinymce/skins/ui/oxide/skin.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "098e47b9e8da9007d88464a24f80ab171bb5ec4821f5a840e5d84e9e80bb4550",
+          "raw": 178210,
+          "gzip": 24691,
+          "brotli": 20552
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
+          "path": "tinymce/skins/ui/oxide/content.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "editor-frame",
+          "sha256": "b2430740ad7dfe91bab74cd0626d1330e813b643a0f3bfc0b496b122b8cf07ee",
+          "raw": 43102,
+          "gzip": 7895,
+          "brotli": 6959
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/content/default/content.min.css?v=8.8.2",
+          "path": "tinymce/skins/content/default/content.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "editor-frame",
+          "sha256": "8fbc7f18efefe59b8b7d692d25e0c4283aa4100eaba292e1cdda0cd32e20fc88",
+          "raw": 1403,
+          "gzip": 629,
+          "brotli": 493
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
+          "path": "tinymce/plugins/emoticons/js/emojis-common.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "ae44bba7002ff59b2ffcd17b96bcd7b51c39dbbe4a07c767b1bab5c9201f4b19",
+          "raw": 38728,
+          "gzip": 7244,
+          "brotli": 6059
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/source-rich-DzzMUDbx.js",
+          "path": "assets/source-rich-DzzMUDbx.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "65702acb206aa50180964e6eafd2e65d3a65261fd85d35d26412adcdf5738f2f",
+          "raw": 134426,
+          "gzip": 53135,
+          "brotli": 43836
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/safe-0JEcRVKa.js",
+          "path": "assets/safe-0JEcRVKa.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "d0016f1becb9835ca3aad78f155b426830f8b0b6eadabf58b76f6902d5c7adf2",
+          "raw": 1696,
+          "gzip": 903,
+          "brotli": 788
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/regex-worker-CWfjSjbr.js",
+          "path": "assets/regex-worker-CWfjSjbr.js",
+          "status": 200,
+          "initiatorType": "other",
+          "context": "page",
+          "sha256": "335c0d9b0134651c2fb0717e5ed013bb2c8de1ab60e230eb8a8b2ee41d595a58",
+          "raw": 3970,
+          "gzip": 1710,
+          "brotli": 1438
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/mammoth-browser-Dfu_XTS9.js",
+          "path": "assets/mammoth-browser-Dfu_XTS9.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "7fc187c18c44e6e0c1933f7be650b0d2931503500fc06f09efaf6a434bf3c29f",
+          "raw": 355543,
+          "gzip": 88944,
+          "brotli": 71834
+        }
+      ]
+    }
+  },
+  "failures": []
+}

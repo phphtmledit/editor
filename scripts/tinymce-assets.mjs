@@ -1,5 +1,11 @@
 export const TINYMCE_VERSION = '8.8.2';
 
+export const TINYMCE_EXCLUDED_DARK_ASSETS = Object.freeze([
+  'skins/ui/oxide-dark/skin.min.css',
+  'skins/ui/oxide-dark/content.min.css',
+  'skins/content/dark/content.min.css',
+]);
+
 export const TINYMCE_VENDOR_ASSETS = Object.freeze([
   'tinymce.min.js',
   'license.md',
@@ -16,9 +22,6 @@ export const TINYMCE_VENDOR_ASSETS = Object.freeze([
   'skins/ui/oxide/skin.min.css',
   'skins/ui/oxide/content.min.css',
   'skins/content/default/content.min.css',
-  'skins/ui/oxide-dark/skin.min.css',
-  'skins/ui/oxide-dark/content.min.css',
-  'skins/content/dark/content.min.css',
 ]);
 
 export const CUSTOM_ICON_PACK = 'phphtmledit';

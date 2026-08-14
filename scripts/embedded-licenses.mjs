@@ -13,17 +13,17 @@ const occurrenceCount = (text, marker) => text.split(marker).length - 1;
 
 export const readEmojilibLicenseSection = async (projectRoot) => {
   const licensePath = resolve(projectRoot, EMOJILIB_LICENSE_RELATIVE_PATH);
-  const bytes = await readFile(licensePath);
-  const digest = sha256(bytes);
+  const source = await readFile(licensePath, 'utf8');
+  const text = source.replace(/\r\n?/g, '\n');
+  const digest = sha256(Buffer.from(text, 'utf8'));
   if (digest !== EMOJILIB_LICENSE_SHA256) {
     throw new Error(
       `emojilib 2.4.0 MIT text SHA-256 differs: expected ${EMOJILIB_LICENSE_SHA256}, ` +
         `got ${digest}`,
     );
   }
-  const text = bytes.toString('utf8');
-  if (text.includes('\r') || !text.endsWith('\n')) {
-    throw new Error('emojilib 2.4.0 MIT text must use normalized LF and one final newline');
+  if (!text.endsWith('\n') || text.endsWith('\n\n')) {
+    throw new Error('emojilib 2.4.0 MIT text must have exactly one final newline');
   }
   return `${EMOJILIB_LICENSE_MARKER}\n\n${text}`;
 };

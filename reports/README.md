@@ -8,7 +8,6 @@
   lazy production DOCX runtime load.
 - `network-har-result.json` — assertions over both sanitized HAR 1.2 files.
 
-- `tinymce-assets.json` — byte counts and SHA-256 hashes of copied TinyMCE files.
 - `mammoth-result.json` — golden-output comparison and semantic tag inventory.
 - `icon-visual-result.json` — toolbar/menu/dialog visual icon checklist and fallback assertions.
 - `network-cold.json` — sanitized editor-ready `PerformanceResourceTiming` inventory.
@@ -66,7 +65,7 @@ the observed encoded length, marks `headersSize` and `bodySize` as unknown
 The four budget values never use HAR wire sizes: `npm run size` deterministically
 compresses the exact current `dist` files with gzip level 9 and Brotli quality 11.
 
-## Current E3 evidence
+## Immutable E3 evidence
 
 - `network-e3-cold.har` and `network-e3-cold.json` — fresh production load
   through editor-ready, before source focus, regex replacement or DOCX import.
@@ -99,3 +98,48 @@ observed encoded length, records `headersSize` and `bodySize` as `-1`, omits
 `content.compression`, and keeps byte-budget calculation independent by
 compressing the exact manifest-bound `dist` files with gzip level 9 and Brotli
 quality 11.
+
+The E3 files preserve the accepted baseline and are no longer inputs to the
+current `npm run size`.
+
+## Current E4 evidence
+
+- `dark-assets-removal-e4.json` - reproducible before/after measurement for the
+  three excluded TinyMCE dark-skin assets. It pins the accepted E3
+  `tinymce-assets.json` canonical inventory SHA-256 instead of relying on the
+  rolling file's current bytes.
+- `tinymce-assets.json` - rolling byte and SHA-256 inventory for the current
+  copied TinyMCE allow-list. The build regenerates this file, so it describes
+  the current distribution and is not immutable E0 evidence.
+- `network-e4-cold.har` and `network-e4-cold.json` - a fresh 1440x1000 desktop
+  production load through editor-ready, with cache disabled and the service
+  worker bypassed.
+- `network-e4-cumulative.har` and `network-e4-cumulative.json` - a separate
+  fresh desktop load containing every cold request and the complete E3 action
+  inventory: source tools, isolated regex Worker, custom emoji search/insert,
+  HTML and real DOCX import, export, clipboard, sample, draft and new document.
+- `network-e4-har-result.json` - all sanitized HAR, manifest, dynamic-entry,
+  Worker, Mammoth, custom-icon, custom-emoji, fixture-boundary and UI assertions.
+- `size-e4-result.json` - exact current-dist SHA-256 inventory, the four byte
+  budgets, cold request-count gate, UI evidence and browser timing.
+
+The isolated E4 UI audit runs in a separate CDP browser without `Network.enable`,
+so it cannot add URLs to either byte inventory. It verifies light-only handling
+for the empty, `light`, `dark`, `auto` and unsupported theme queries; desktop
+split layout at 1440, 1024 and 900 px; mobile tabs at 899, 768, 390 and 320 px;
+nonzero active editors and no horizontal overflow; every visible app/TinyMCE
+button at least 44x44 under coarse-pointer emulation; five computed contrast
+pairs at or above 4.5:1; solid accent keyboard focus; `visualViewport` resize
+variables; DOCX busy-state restoration; and the intentional absence of About
+before E5.
+
+Loading-state proof comes from a document-start state sampler plus buffered
+`PerformancePaintTiming`. Both fresh network scenarios record nonzero skeleton
+geometry and require `visibleFrom <= first-paint < firstHiddenAt`; first paint
+and first contentful paint timestamps are preserved in the JSON evidence.
+
+`npm run size` now refuses stale or non-E4 captures. The captures must match the
+current manifest and DOCX fixture, retain exactly the three dynamic entries and
+single regex Worker, contain no fixture or dark-skin request, and pass the full
+E3 action inventory plus every E4 UI and paint assertion before the four byte
+budgets and 25-request ceiling can pass.
