@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "stage": "E3",
+  "toolchain": {
+    "vite": "8.2.1",
+    "mammoth": "1.12.1",
+    "underscore": "1.13.8",
+    "targets": [
+      "es2020",
+      "chrome111",
+      "edge111",
+      "firefox114",
+      "safari16"
+    ],
+    "compression": {
+      "gzipLevel": 9,
+      "brotliQuality": 11
+    }
+  },
+  "scope": "Exact project E0 lazy Mammoth chunk; application and fixture assets excluded",
+  "baseline": {
+    "commit": "dbe1de6",
+    "file": "assets/lib-CFU1GAm2.js",
+    "sha256": "07efe870ce99960ad65dc9071ca6028cd5c127e1618ee49bd7053d9fed6f39f0",
+    "raw": 498084,
+    "gzip9": 123960,
+    "brotli11": 102259
+  },
+  "optimized": {
+    "file": "assets/mammoth-browser-Dfu_XTS9.js",
+    "sha256": "7fc187c18c44e6e0c1933f7be650b0d2931503500fc06f09efaf6a434bf3c29f",
+    "raw": 355543,
+    "gzip9": 88944,
+    "brotli11": 71834
+  },
+  "saved": {
+    "raw": 142541,
+    "gzip9": 35016,
+    "brotli11": 30425
+  },
+  "retainedRuntime": [
+    "mammoth",
+    "underscore",
+    "dingbat-to-unicode"
+  ],
+  "removedFromBrowserChunk": [
+    "bluebird",
+    "xmlbuilder"
+  ],
+  "validation": {
+    "projectGolden": "tests/import/mammoth-browser.test.ts",
+    "warningInventory": "empty",
+    "wingdings": "w:sym Wingdings F04A -> U+263A"
+  },
+  "failures": []
+}

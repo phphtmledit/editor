@@ -3,7 +3,12 @@ import { access, readFile, realpath } from 'node:fs/promises';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { TINYMCE_VENDOR_ASSETS, TINYMCE_VERSION } from './tinymce-assets.mjs';
+import {
+  CUSTOM_EMOTICONS_DATABASE_ASSET,
+  STOCK_EMOTICONS_DATABASE_ASSET,
+  TINYMCE_VENDOR_ASSETS,
+  TINYMCE_VERSION,
+} from './tinymce-assets.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const THIRD_PARTY_DIR = join(ROOT, 'third-party-licenses');
@@ -12,6 +17,13 @@ const DUCK_LICENSE_SHA256 =
   '6663bbd049205d38a496ccacb412a151980b444627d38de218b3b809aef330f1';
 const GPL_V2_TEXT_SHA256 =
   'a78aa507531e05215fec3b74f0d130bb38fd3518bd3fb5292fa364976242ea89';
+const EXPECTED_EMOTICONS_NOTICE_ROW =
+  '| Derived common emoji database (`emojis-common`) | Generated from the TinyMCE 8.8.2 ' +
+  'emoji database (source data: `emojilib@2.4.0`); contains 300 selected entries; names, ' +
+  'keywords, Unicode characters, categories and Fitzpatrick metadata are unaltered | MIT ' +
+  '(emojilib data) AND GPL-2.0-or-later (TinyMCE Resource wrapper and phphtmledit ' +
+  'modifications) | Emoji data Copyright (c) 2014 Mu-An Chiou; TinyMCE wrapper Copyright ' +
+  '(c) 2025 Ephox Corporation DBA Tiny Technologies, Inc. |';
 
 const EXPECTED_DIRECT_RUNTIME = Object.freeze({
   '@codemirror/autocomplete': '6.20.3',
@@ -24,6 +36,7 @@ const EXPECTED_DIRECT_RUNTIME = Object.freeze({
   '@lezer/html': '1.3.13',
   mammoth: '1.12.1',
   tinymce: '8.8.2',
+  underscore: '1.13.8',
 });
 
 const EXPECTED_RUNTIME = Object.freeze([
@@ -275,6 +288,12 @@ async function verifyTinyMce(packageDirectory) {
   if (TINYMCE_VERSION !== '8.8.2') {
     fail(`TinyMCE allow-list version is ${TINYMCE_VERSION}; expected 8.8.2`);
   }
+  if (TINYMCE_VENDOR_ASSETS.includes(STOCK_EMOTICONS_DATABASE_ASSET)) {
+    fail(`TinyMCE vendor allow-list must exclude ${STOCK_EMOTICONS_DATABASE_ASSET}`);
+  }
+  if (TINYMCE_VENDOR_ASSETS.includes(CUSTOM_EMOTICONS_DATABASE_ASSET)) {
+    fail(`Generated emoji subset must not be treated as a byte-identical vendor asset`);
+  }
 
   const [license, notices, core, theme] = await Promise.all([
     readText(join(packageDirectory, 'license.md')),
@@ -364,6 +383,11 @@ async function verifyEmbeddedLicenseTexts() {
       sha256: 'e2264658d7deb2bfb574e3d6c9cff84d0e081a6887694d46c3c091e6e15a1119',
       markers: ['Copyright (c) 2015 PrismJS', 'Permission is hereby granted, free of charge'],
     },
+    {
+      path: 'embedded/emojilib-2.4.0-MIT.txt',
+      sha256: 'da00c2955742e85d06f80a34f5142f96a6167df2d8762b2dc5a998c9f919a715',
+      markers: ['Copyright (c) 2014 Mu-An Chiou', 'Permission is hereby granted, free of charge'],
+    },
   ];
 
   for (const check of checks) {
@@ -393,6 +417,9 @@ async function verifyNotices(packages) {
       fail(`THIRD-PARTY-NOTICES.md has no exact runtime row for ${id}`);
     }
   }
+  if (!notices.includes(EXPECTED_EMOTICONS_NOTICE_ROW)) {
+    fail('THIRD-PARTY-NOTICES.md exact derived emoji component row differs');
+  }
 
   const requiredStatements = [
     'vendor `notices.txt`: `3.3.2`',
@@ -402,6 +429,10 @@ async function verifyNotices(packages) {
     'PrismJS code is not distributed',
     'published `dingbat-to-unicode@1.0.1` package contains no license file',
     'MIT AND Zlib',
+    'Derived common emoji database (`emojis-common`)',
+    '`emojilib@2.4.0`',
+    'MIT (emojilib data) AND GPL-2.0-or-later',
+    'Emoji data Copyright (c) 2014 Mu-An Chiou',
   ];
   for (const statement of requiredStatements) {
     if (!notices.includes(statement)) {
@@ -541,6 +572,13 @@ const report = {
       version: '1.25.0',
       license: 'MIT',
       shippedExecutableCode: false,
+    },
+    emojilib: {
+      version: '2.4.0',
+      license: 'MIT',
+      copyright: 'Copyright (c) 2014 Mu-An Chiou',
+      selectedEntries: 300,
+      distributedAs: CUSTOM_EMOTICONS_DATABASE_ASSET,
     },
   },
   warnings,

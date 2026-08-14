@@ -12,7 +12,6 @@ export const TINYMCE_VENDOR_ASSETS = Object.freeze([
   'plugins/table/plugin.min.js',
   'plugins/charmap/plugin.min.js',
   'plugins/emoticons/plugin.min.js',
-  'plugins/emoticons/js/emojis.min.js',
   'plugins/insertdatetime/plugin.min.js',
   'skins/ui/oxide/skin.min.css',
   'skins/ui/oxide/content.min.css',
@@ -25,6 +24,11 @@ export const TINYMCE_VENDOR_ASSETS = Object.freeze([
 export const CUSTOM_ICON_PACK = 'phphtmledit';
 export const CUSTOM_ICON_ASSET = `icons/${CUSTOM_ICON_PACK}/icons.min.js`;
 export const CUSTOM_ICON_MODIFIED_DATE = '2026-08-13';
+
+export const STOCK_EMOTICONS_DATABASE_ASSET = 'plugins/emoticons/js/emojis.min.js';
+export const CUSTOM_EMOTICONS_DATABASE_ASSET = 'plugins/emoticons/js/emojis-common.min.js';
+export const CUSTOM_EMOTICONS_DATABASE_ID = 'tinymce.plugins.emoticons';
+export const CUSTOM_EMOTICONS_MODIFIED_DATE = '2026-08-14';
 
 // Pinned to TinyMCE 8.8.2. This intentionally covers the configured toolbar,
 // the Silver shell, and the link/image/table/charmap/emoticons/insertdatetime UI.
@@ -104,4 +108,5 @@ export const CUSTOM_ICON_NAMES = Object.freeze([
 export const TINYMCE_ASSETS = Object.freeze([
   ...TINYMCE_VENDOR_ASSETS,
   CUSTOM_ICON_ASSET,
+  CUSTOM_EMOTICONS_DATABASE_ASSET,
 ]);

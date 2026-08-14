@@ -2,7 +2,11 @@ import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { isAbsolute, relative, resolve } from 'node:path';
 import { brotliCompressSync, constants, gzipSync } from 'node:zlib';
-import { TINYMCE_ASSETS } from './tinymce-assets.mjs';
+import {
+  CUSTOM_EMOTICONS_DATABASE_ASSET,
+  STOCK_EMOTICONS_DATABASE_ASSET,
+  TINYMCE_ASSETS,
+} from './tinymce-assets.mjs';
 
 const projectRoot = resolve(import.meta.dirname, '..');
 const distRoot = resolve(projectRoot, 'dist');
@@ -28,29 +32,46 @@ const REQUIRED_COLD_PATHS = [
   '/tinymce/plugins/charmap/plugin.min.js',
   '/tinymce/plugins/insertdatetime/plugin.min.js',
   '/tinymce/plugins/emoticons/plugin.min.js',
-  '/tinymce/plugins/emoticons/js/emojis.min.js',
+  `/tinymce/${CUSTOM_EMOTICONS_DATABASE_ASSET}`,
   '/tinymce/skins/ui/oxide/skin.min.css',
   '/tinymce/skins/ui/oxide/content.min.css',
   '/tinymce/skins/content/default/content.min.css',
 ];
 
-const [coldReport, cumulativeReport, manifestBytes, distAssetNames] = await Promise.all([
-  readFile(resolve(reportsRoot, 'network-e2-cold.json'), 'utf8').then(JSON.parse),
-  readFile(resolve(reportsRoot, 'network-e2-cumulative.json'), 'utf8').then(JSON.parse),
+const [
+  coldReport,
+  cumulativeReport,
+  manifestBytes,
+  distAssetNames,
+  distNames,
+  docxFixtureBytes,
+] = await Promise.all([
+  readFile(resolve(reportsRoot, 'network-e3-cold.json'), 'utf8').then(JSON.parse),
+  readFile(resolve(reportsRoot, 'network-e3-cumulative.json'), 'utf8').then(JSON.parse),
   readFile(resolve(distRoot, '.vite', 'manifest.json')),
   readdir(resolve(distRoot, 'assets')),
+  readdir(distRoot, { recursive: true }),
+  readFile(resolve(projectRoot, 'tests', 'fixtures', 'mammoth-fixture.docx')),
 ]);
 const manifestSha256 = createHash('sha256').update(manifestBytes).digest('hex');
+const docxFixtureSha256 = createHash('sha256').update(docxFixtureBytes).digest('hex');
 const manifest = JSON.parse(manifestBytes.toString('utf8'));
 const appEntry = manifest['index.html'];
 const sourceRichEntry = manifest['src/editor/source-rich.ts'];
 const safeReplaceEntry = manifest['src/replace/safe.ts'];
+const mammothEntry = manifest['src/import/mammoth-browser.ts'];
 const dynamicEntryKeys = Object.entries(manifest)
   .filter(([, entry]) => entry?.isDynamicEntry === true)
   .map(([key]) => key)
   .sort();
-const expectedDynamicEntryKeys = ['src/editor/source-rich.ts', 'src/replace/safe.ts'].sort();
+const expectedDynamicEntryKeys = [
+  'src/editor/source-rich.ts',
+  'src/replace/safe.ts',
+  'src/import/mammoth-browser.ts',
+].sort();
 const regexWorkerAssetNames = distAssetNames.filter((name) => /^regex-worker-[\w-]+\.js$/i.test(name));
+const distFixtureNames = distNames.filter((name) => /(?:\.docx$|fixture)/i.test(name));
+const normalizedDistNames = distNames.map((name) => name.replaceAll('\\', '/'));
 
 if (!appEntry?.isEntry || typeof appEntry.file !== 'string') {
   failures.push('dist manifest must contain the product index.html entry');
@@ -61,22 +82,34 @@ if (!sourceRichEntry?.isDynamicEntry || typeof sourceRichEntry.file !== 'string'
 if (!safeReplaceEntry?.isDynamicEntry || typeof safeReplaceEntry.file !== 'string') {
   failures.push('dist manifest must contain the lazy src/replace/safe.ts entry');
 }
+if (!mammothEntry?.isDynamicEntry || typeof mammothEntry.file !== 'string') {
+  failures.push('dist manifest must contain the lazy src/import/mammoth-browser.ts entry');
+}
 if (
   !Array.isArray(appEntry?.dynamicImports) ||
   JSON.stringify([...appEntry.dynamicImports].sort()) !== JSON.stringify(expectedDynamicEntryKeys)
 ) {
-  failures.push('product entry must dynamically import only source-rich and safe replacement in E2');
+  failures.push('product entry must dynamically import only source-rich, safe replacement and Mammoth in E3');
 }
 if (JSON.stringify(dynamicEntryKeys) !== JSON.stringify(expectedDynamicEntryKeys)) {
-  failures.push(`dist manifest must have exactly the two E2 dynamic entries, got ${dynamicEntryKeys.join(', ')}`);
+  failures.push(`dist manifest must have exactly the three E3 dynamic entries, got ${dynamicEntryKeys.join(', ')}`);
 }
 if (regexWorkerAssetNames.length !== 1) {
   failures.push(`dist must contain exactly one regex-worker asset, got ${regexWorkerAssetNames.length}`);
 }
+if (distFixtureNames.length > 0) {
+  failures.push(`production dist contains diagnostic fixtures: ${distFixtureNames.join(', ')}`);
+}
+if (normalizedDistNames.includes(`tinymce/${STOCK_EMOTICONS_DATABASE_ASSET}`)) {
+  failures.push('production dist contains the stock TinyMCE emoji database');
+}
+if (!normalizedDistNames.includes(`tinymce/${CUSTOM_EMOTICONS_DATABASE_ASSET}`)) {
+  failures.push('production dist does not contain the custom TinyMCE emoji database');
+}
 for (const [key, entry] of Object.entries(manifest)) {
   const manifestText = `${key} ${entry?.src ?? ''} ${entry?.file ?? ''}`;
-  if (/(?:mammoth|\.docx|fixture)/i.test(manifestText)) {
-    failures.push(`production manifest contains an E0/E3-only resource: ${manifestText}`);
+  if (/(?:\.docx|fixture)/i.test(manifestText)) {
+    failures.push(`production manifest contains a diagnostic fixture: ${manifestText}`);
   }
 }
 
@@ -88,10 +121,13 @@ const assertReportShape = (name, report, scenario) => {
   if (typeof report.capturedAt !== 'string' || Number.isNaN(Date.parse(report.capturedAt))) {
     failures.push(`${name}: capturedAt is missing or invalid`);
   }
-  if (report.stage !== 'E2') failures.push(`${name}: stage must be E2`);
+  if (report.stage !== 'E3') failures.push(`${name}: stage must be E3`);
   if (report.scenario !== scenario) failures.push(`${name}: scenario must be ${scenario}`);
   if (report.manifestSha256 !== manifestSha256) {
     failures.push(`${name}: capture manifest hash does not match current dist`);
+  }
+  if (report.docxFixtureSha256 !== docxFixtureSha256) {
+    failures.push(`${name}: capture DOCX fixture hash does not match tests/fixtures/mammoth-fixture.docx`);
   }
   for (const [index, request] of report.requests.entries()) {
     if (!request || typeof request !== 'object' || typeof request.url !== 'string') {
@@ -177,6 +213,7 @@ const appPath = typeof appEntry?.file === 'string' ? `/${appEntry.file}` : null;
 const appCssPaths = Array.isArray(appEntry?.css) ? appEntry.css.map((file) => `/${file}`) : [];
 const sourceRichPath = typeof sourceRichEntry?.file === 'string' ? `/${sourceRichEntry.file}` : null;
 const safeReplacePath = typeof safeReplaceEntry?.file === 'string' ? `/${safeReplaceEntry.file}` : null;
+const mammothPath = typeof mammothEntry?.file === 'string' ? `/${mammothEntry.file}` : null;
 const regexWorkerPath = regexWorkerAssetNames.length === 1 ? `/assets/${regexWorkerAssetNames[0]}` : null;
 const regexWorkerRawSize = regexWorkerPath
   ? (await readFile(resolve(distRoot, `.${regexWorkerPath}`))).byteLength
@@ -213,6 +250,12 @@ if (safeReplacePath && countPath(coldReport, safeReplacePath) !== 0) {
 if (safeReplacePath && countPath(cumulativeReport, safeReplacePath) !== 1) {
   failures.push(`cumulative: expected safe replacement module exactly once: ${safeReplacePath}`);
 }
+if (mammothPath && countPath(coldReport, mammothPath) !== 0) {
+  failures.push(`cold: Mammoth loaded before a DOCX import: ${mammothPath}`);
+}
+if (mammothPath && countPath(cumulativeReport, mammothPath) !== 1) {
+  failures.push(`cumulative: expected Mammoth exactly once after the DOCX import: ${mammothPath}`);
+}
 if (regexWorkerPath && countPath(coldReport, regexWorkerPath) !== 0) {
   failures.push(`cold: regex Worker loaded before a regex action: ${regexWorkerPath}`);
 }
@@ -220,7 +263,12 @@ if (regexWorkerPath && countPath(cumulativeReport, regexWorkerPath) !== 1) {
   failures.push(`cumulative: expected regex Worker exactly once: ${regexWorkerPath}`);
 }
 const cumulativeOnlyJavaScriptPaths = cumulativeOnlyPaths.filter((path) => path.endsWith('.js')).sort();
-const expectedCumulativeOnlyJavaScriptPaths = [sourceRichPath, safeReplacePath, regexWorkerPath]
+const expectedCumulativeOnlyJavaScriptPaths = [
+  sourceRichPath,
+  safeReplacePath,
+  mammothPath,
+  regexWorkerPath,
+]
   .filter((path) => typeof path === 'string')
   .sort();
 if (
@@ -228,7 +276,7 @@ if (
   JSON.stringify(expectedCumulativeOnlyJavaScriptPaths)
 ) {
   failures.push(
-    `cumulative: expected only source-rich, safe and regex-worker JavaScript; got ${cumulativeOnlyJavaScriptPaths.join(', ')}`,
+    `cumulative: expected only source-rich, safe, Mammoth and regex-worker JavaScript; got ${cumulativeOnlyJavaScriptPaths.join(', ')}`,
   );
 }
 if (
@@ -239,6 +287,13 @@ if (
   !cumulativeReport.regexActionRequestPaths.includes(regexWorkerPath)
 ) {
   failures.push('cumulative: regex action did not request both safe replacement and regex Worker');
+}
+if (
+  !Array.isArray(cumulativeReport.docxImportRequestPaths) ||
+  !mammothPath ||
+  !cumulativeReport.docxImportRequestPaths.includes(mammothPath)
+) {
+  failures.push('cumulative: the actual DOCX import did not request the lazy Mammoth chunk');
 }
 const workerLifecycle = cumulativeReport.workerNetworkLifecycle;
 if (
@@ -272,6 +327,19 @@ const requiredUiFlags = [
   'applyAllReplacements',
   'replacementRuleRemoved',
   'commonMassUndo',
+  'emojiDialogOpened',
+  'emojiSearchFiltered',
+  'emojiInserted',
+  'htmlImported',
+  'docxDroppedIntoTinyMce',
+  'docxImported',
+  'mammothRequestedByDocxImport',
+  'htmlExportDownloaded',
+  'htmlCopied',
+  'textCopied',
+  'sampleLoaded',
+  'draftAutosaved',
+  'newDocumentCreated',
 ];
 if (
   !ui ||
@@ -281,11 +349,11 @@ if (
   typeof ui.largeDocumentCleanDurationMs !== 'number' ||
   ui.largeDocumentCleanDurationMs > 500
 ) {
-  failures.push('cumulative: complete E2 UI action inventory or 100,000-character timing is missing');
+  failures.push('cumulative: complete E3 UI action inventory or 100,000-character timing is missing');
 }
 for (const path of [...coldReport.requests, ...cumulativeReport.requests].map(pathname)) {
-  if (isDiagnosticFixturePath(path) || /mammoth/i.test(path)) {
-    failures.push(`E2 production capture contains a diagnostic or future-stage resource: ${path}`);
+  if (isDiagnosticFixturePath(path)) {
+    failures.push(`E3 production capture contains a diagnostic fixture request: ${path}`);
   }
 }
 if (Date.parse(cumulativeReport.capturedAt) < Date.parse(coldReport.capturedAt)) {
@@ -323,12 +391,12 @@ const metrics = [
     budget: BYTE_BUDGETS.cold.brotli,
   },
   {
-    name: 'Cumulative E2 transfer (gzip)',
+    name: 'Cumulative E3 transfer (gzip)',
     actual: cumulativeTransfer.gzip,
     budget: BYTE_BUDGETS.cumulative.gzip,
   },
   {
-    name: 'Cumulative E2 transfer (brotli)',
+    name: 'Cumulative E3 transfer (brotli)',
     actual: cumulativeTransfer.brotli,
     budget: BYTE_BUDGETS.cumulative.brotli,
   },
@@ -375,6 +443,15 @@ const coldCustomIconRequests = coldReport.requests.filter(
 const cumulativeCustomIconRequests = cumulativeReport.requests.filter(
   ({ url }) => new URL(url).pathname === '/tinymce/icons/phphtmledit/icons.min.js',
 );
+const stockEmoticonRequests = allUrls.filter(
+  (rawUrl) => new URL(rawUrl).pathname === `/tinymce/${STOCK_EMOTICONS_DATABASE_ASSET}`,
+);
+const coldCustomEmoticonRequests = coldReport.requests.filter(
+  ({ url }) => new URL(url).pathname === `/tinymce/${CUSTOM_EMOTICONS_DATABASE_ASSET}`,
+);
+const cumulativeCustomEmoticonRequests = cumulativeReport.requests.filter(
+  ({ url }) => new URL(url).pathname === `/tinymce/${CUSTOM_EMOTICONS_DATABASE_ASSET}`,
+);
 if (defaultIconRequests.length > 0) {
   failures.push('Stock TinyMCE default icon bundle was requested');
 }
@@ -384,6 +461,15 @@ if (coldCustomIconRequests.length !== 1) {
 if (cumulativeCustomIconRequests.length !== 1) {
   failures.push(`Expected exactly one cumulative custom-icon request, got ${cumulativeCustomIconRequests.length}`);
 }
+if (stockEmoticonRequests.length > 0) {
+  failures.push('Stock TinyMCE emoji database was requested');
+}
+if (coldCustomEmoticonRequests.length !== 1) {
+  failures.push(`Expected exactly one cold custom-emoji request, got ${coldCustomEmoticonRequests.length}`);
+}
+if (cumulativeCustomEmoticonRequests.length !== 1) {
+  failures.push(`Expected exactly one cumulative custom-emoji request, got ${cumulativeCustomEmoticonRequests.length}`);
+}
 const tinyDomainRequests = allUrls.filter((rawUrl) => {
   const hostname = new URL(rawUrl).hostname.toLowerCase();
   return hostname === 'tiny.cloud' || hostname.endsWith('.tiny.cloud')
@@ -392,12 +478,13 @@ const tinyDomainRequests = allUrls.filter((rawUrl) => {
 if (tinyDomainRequests.length > 0) failures.push('Tiny Cloud/domain requests were observed');
 
 const output = {
-  stage: 'E2',
+  stage: 'E3',
   origin: expectedOrigin,
   manifestSha256,
+  docxFixtureSha256,
   definitions: {
     cold: 'All production HTTP resources requested from navigation through editor-ready.',
-    cumulative: 'A separate fresh production load containing every cold URL, first source focus, and the complete E2 document-tools inventory; the only cumulative JavaScript additions are source-rich, safe replacement and the isolated regex Worker.',
+    cumulative: 'A separate fresh production load containing every cold URL, first source focus, the complete E2 document-tools inventory, custom emoji search/insert, actual HTML and DOCX imports, HTML export, clipboard actions, product sample, draft autosave and new document; the only cumulative JavaScript additions are source-rich, safe replacement, Mammoth and the isolated regex Worker.',
     requestCount: 'Cold load through editor-ready only, including the HTML document.',
     initialJs: 'Supplementary, non-budget detail: cold-load JavaScript outside /tinymce; lazy source-editor tools are excluded.',
   },
@@ -424,6 +511,6 @@ const output = {
   failures,
 };
 
-await writeFile(resolve(reportsRoot, 'size-e2-result.json'), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+await writeFile(resolve(reportsRoot, 'size-e3-result.json'), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
 console.log(JSON.stringify(output, null, 2));
 if (failures.length > 0) process.exitCode = 1;

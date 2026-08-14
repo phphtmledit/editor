@@ -37,7 +37,7 @@ input { font: inherit; }
   margin: 0 auto;
   padding: 20px clamp(14px, 2.4vw, 34px) 24px;
   display: grid;
-  grid-template-rows: auto minmax(560px, 1fr) auto;
+  grid-template-rows: auto auto minmax(560px, 1fr) auto;
   gap: 14px;
 }
 
@@ -60,6 +60,66 @@ h1 {
   color: var(--phe-text-muted);
   font-size: .92rem;
   text-align: right;
+}
+
+.io-tools {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--phe-border);
+  border-radius: var(--phe-radius);
+  background: var(--phe-surface);
+}
+
+.io-actions,
+.io-feedback,
+.draft-notice {
+  display: flex;
+  align-items: center;
+}
+
+.io-actions {
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.io-action-separator {
+  width: 1px;
+  height: 28px;
+  margin-inline: 3px;
+  background: var(--phe-border);
+}
+
+.io-feedback {
+  min-height: 1.25rem;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--phe-text-muted);
+  font-size: .8rem;
+}
+
+.io-feedback p,
+.io-feedback output { margin: 0; }
+.io-feedback output { text-align: end; }
+
+.draft-notice {
+  justify-content: space-between;
+  gap: 14px;
+  padding: 8px 10px;
+  border: 1px solid #d6b661;
+  border-radius: 7px;
+  color: #574512;
+  background: #fff8db;
+  font-size: .84rem;
+}
+
+.io-tools[aria-busy="true"] .io-actions,
+.io-tools[aria-busy="true"] .io-feedback { opacity: .6; }
+
+.editor-workspace.is-file-dragover {
+  outline: 3px solid var(--phe-accent);
+  outline-offset: -4px;
 }
 
 .editor-workspace {
@@ -356,11 +416,13 @@ button:disabled { cursor: not-allowed; opacity: .55; }
     height: var(--phe-viewport-height);
     min-height: 520px;
     padding: 12px;
-    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
     gap: 9px;
   }
   .app-header { align-items: start; }
   .privacy-note { max-width: 21rem; font-size: .78rem; }
+  .io-feedback { align-items: flex-start; flex-direction: column; gap: 3px; }
+  .io-feedback output { text-align: start; }
   .mobile-tabs { display: grid; }
   .editor-workspace,
   .editor-workspace.is-mobile {
@@ -382,7 +444,9 @@ button:disabled { cursor: not-allowed; opacity: .55; }
   .wrap-control input { width: 20px; height: 20px; }
   .tools-header,
   .tool-panel-header,
-  .mass-undo { align-items: stretch; flex-direction: column; }
+  .mass-undo,
+  .draft-notice { align-items: stretch; flex-direction: column; }
+  .io-action-separator { display: none; }
   .replacement-fields { grid-template-columns: 1fr; }
 }
 

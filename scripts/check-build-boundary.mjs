@@ -1,6 +1,11 @@
 import { createHash } from 'node:crypto';
-import { readdir, readFile } from 'node:fs/promises';
+import { access, readdir, readFile } from 'node:fs/promises';
 import { extname, relative, resolve } from 'node:path';
+import {
+  CUSTOM_EMOTICONS_DATABASE_ASSET,
+  STOCK_EMOTICONS_DATABASE_ASSET,
+  TINYMCE_VENDOR_ASSETS,
+} from './tinymce-assets.mjs';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const PROD_ROOT = resolve(ROOT, 'dist');
@@ -39,6 +44,73 @@ const fixtureHashes = new Set(fixtureBytes.map(sha256));
 const diagnosticFixtureHashes = diagnosticFixtureBytes.map(sha256);
 const errors = [];
 
+const exists = async (path) => {
+  try {
+    await access(path);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+if (TINYMCE_VENDOR_ASSETS.includes(STOCK_EMOTICONS_DATABASE_ASSET)) {
+  errors.push('stock TinyMCE emoji database remains in the vendor allow-list');
+}
+const expectedEmoticonsHash =
+  'ae44bba7002ff59b2ffcd17b96bcd7b51c39dbbe4a07c767b1bab5c9201f4b19';
+for (const [name, root] of [
+  ['public', resolve(ROOT, 'public')],
+  ['production', PROD_ROOT],
+  ['diagnostic', DIAGNOSTIC_ROOT],
+]) {
+  const stockPath = resolve(root, 'tinymce', STOCK_EMOTICONS_DATABASE_ASSET);
+  if (await exists(stockPath)) errors.push(`${name} contains the stock TinyMCE emoji database`);
+
+  const customPath = resolve(root, 'tinymce', CUSTOM_EMOTICONS_DATABASE_ASSET);
+  if (!(await exists(customPath))) {
+    errors.push(`${name} is missing the generated common emoji database`);
+  } else {
+    const digest = sha256(await readFile(customPath));
+    if (digest !== expectedEmoticonsHash) {
+      errors.push(`${name} common emoji database SHA-256 differs: ${digest}`);
+    }
+  }
+}
+
+const emoticonsReportText = await readFile(resolve(ROOT, 'reports', 'emoticons-subset.json'), 'utf8');
+const emoticonsReport = JSON.parse(emoticonsReportText);
+if (/\b[A-Z]:\\/i.test(emoticonsReportText) || /"(?:capturedAt|generatedAt)"/.test(emoticonsReportText)) {
+  errors.push('emoji reduction report contains a machine path or nondeterministic timestamp');
+}
+const expectedEmoticonsReport = {
+  source: {
+    entries: 1570,
+    sha256: '66f71a7fc7094165772664ff37a327c75090fbc646186b7e89c6e39d0676cdf1',
+    raw: 192805,
+    gzip9: 28872,
+    brotli11: 24449,
+  },
+  subset: {
+    entries: 300,
+    inventorySha256: '1f9d92018d716f1dcf03f9d506c1c4acc9b81737ccee9a0099e4b63288803ccc',
+    sha256: expectedEmoticonsHash,
+    raw: 38728,
+    gzip9: 7244,
+    brotli11: 6059,
+  },
+  coldSavings: { raw: 154077, gzip9: 21628, brotli11: 18390 },
+};
+for (const section of ['source', 'subset', 'coldSavings']) {
+  for (const [key, expected] of Object.entries(expectedEmoticonsReport[section])) {
+    if (emoticonsReport?.[section]?.[key] !== expected) {
+      errors.push(
+        `emoji reduction report ${section}.${key} differs: ` +
+          `${JSON.stringify(emoticonsReport?.[section]?.[key])}/${JSON.stringify(expected)}`,
+      );
+    }
+  }
+}
+
 for (const path of productionFiles) {
   const bytes = await readFile(path);
   const displayPath = relative(PROD_ROOT, path).replaceAll('\\', '/');
@@ -70,6 +142,13 @@ for (const [index, fixtureHash] of diagnosticFixtureHashes.entries()) {
 const result = {
   productionFiles: productionFiles.length,
   diagnosticFiles: diagnosticFiles.length,
+  emoticons: {
+    stockAsset: STOCK_EMOTICONS_DATABASE_ASSET,
+    customAsset: CUSTOM_EMOTICONS_DATABASE_ASSET,
+    source: emoticonsReport.source,
+    subset: emoticonsReport.subset,
+    coldSavings: emoticonsReport.coldSavings,
+  },
   fixtureFiles: fixtureFiles.map((path) => relative(ROOT, path).replaceAll('\\', '/')),
   fixtureHashes: [...fixtureHashes],
   errors,

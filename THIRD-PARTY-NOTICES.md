@@ -1,16 +1,16 @@
 # Third-party notices
 
 This notice covers the complete production dependency closure rooted at the six
-declared CodeMirror packages, `tinymce@8.8.2`, and `mammoth@1.12.1`, as locked by
-`package-lock.json`, plus third-party components embedded in the selected TinyMCE
-files. Build-only `typescript@7.0.2` and `vite@8.2.1`, and their dependency trees,
+declared CodeMirror packages, `tinymce@8.8.2`, `mammoth@1.12.1`, and the directly
+used modular `underscore@1.13.8`, as locked by `package-lock.json`, plus third-party
+components embedded in the selected TinyMCE files. Build-only `typescript@7.0.2`
+and `vite@8.2.1`, and their dependency trees,
 are intentionally excluded: they are development tools and are not part of the
 distributed browser runtime.
 
-The E1 product bundle contains CodeMirror. Mammoth is reserved for the E3 product
-feature and is currently exercised by the separate E0 diagnostic build; it remains
-listed because it is a declared production dependency and part of the strict
-runtime closure.
+The product bundle contains CodeMirror. Mammoth is loaded lazily only after a
+validated `.docx` import begins; the E0 diagnostic build exercises the same browser
+wrapper and optimized dependency path. Both are covered by this inventory.
 
 The corresponding source distribution is licensed under
 `GPL-2.0-or-later`. A package's inclusion below does not change its own license.
@@ -87,6 +87,7 @@ Only files in `scripts/tinymce-assets.mjs` are copied from TinyMCE. The original
 | Component | Distribution status | Selected license | Copyright notice |
 | --- | --- | --- | --- |
 | Derived TinyMCE icon pack (`phphtmledit`) | Generated from the TinyMCE 8.8.2 default icon pack; contains 68 selected icons, with artwork unaltered | GPL-2.0-or-later | Copyright (c) 2025 Ephox Corporation DBA Tiny Technologies, Inc. |
+| Derived common emoji database (`emojis-common`) | Generated from the TinyMCE 8.8.2 emoji database (source data: `emojilib@2.4.0`); contains 300 selected entries; names, keywords, Unicode characters, categories and Fitzpatrick metadata are unaltered | MIT (emojilib data) AND GPL-2.0-or-later (TinyMCE Resource wrapper and phphtmledit modifications) | Emoji data Copyright (c) 2014 Mu-An Chiou; TinyMCE wrapper Copyright (c) 2025 Ephox Corporation DBA Tiny Technologies, Inc. |
 | DOMPurify 3.4.12 | Executable code is embedded in `tinymce.min.js` and `themes/silver/theme.min.js` | MPL-2.0, selected from `(MPL-2.0 OR Apache-2.0)` | Copyright (c) Cure53 and other contributors |
 | prism-themes 1.9.0 | CSS is embedded in the selected Oxide skin assets | MIT | Copyright (c) 2015 PrismJS |
 | PrismJS 1.25.0 | Listed by TinyMCE upstream, but its `codesample` plugin is excluded from the selected asset allow-list | MIT | Copyright (c) 2012 Lea Verou |

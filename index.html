@@ -15,6 +15,32 @@
         <p class="privacy-note">Текст обрабатывается только в браузере и не отправляется на сервер.</p>
       </header>
 
+      <section id="io-tools" class="io-tools" aria-label="Файлы, буфер обмена и черновик" aria-busy="false">
+        <div class="io-actions">
+          <input
+            id="import-file-input"
+            type="file"
+            hidden
+            accept=".html,.htm,.docx,text/html,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          />
+          <button id="choose-import-file" type="button" class="primary-action">Открыть файл</button>
+          <button id="export-html" type="button">Скачать HTML</button>
+          <button id="copy-html" type="button">Копировать HTML</button>
+          <button id="copy-text" type="button">Копировать текст</button>
+          <span class="io-action-separator" aria-hidden="true"></span>
+          <button id="load-example" type="button">Пример</button>
+          <button id="new-document" type="button">Новый документ</button>
+        </div>
+        <div class="io-feedback">
+          <p id="drop-file-hint">Перетащите сюда файл .html, .htm или .docx размером до 5 МБ.</p>
+          <output id="io-result" role="status" aria-live="polite"></output>
+        </div>
+        <aside id="draft-notice" class="draft-notice" role="status" aria-live="polite" hidden>
+          <span id="draft-message"></span>
+          <button id="discard-restored-draft" type="button">Начать заново</button>
+        </aside>
+      </section>
+
       <nav class="mobile-tabs" role="tablist" aria-label="Режим редактора" hidden>
         <button id="visual-tab" type="button" role="tab" aria-selected="true" aria-controls="visual-panel" tabindex="0">Визуально</button>
         <button id="source-tab" type="button" role="tab" aria-selected="false" aria-controls="source-panel" tabindex="-1">Код</button>

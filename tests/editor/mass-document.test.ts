@@ -57,12 +57,14 @@ const createFakeEditors = (initialHtml: string): FakeEditors => {
 
   const visual: VisualEditorController = {
     getHtml: () => visualHtml,
+    getText: () => visualHtml.replace(/<[^>]+>/g, ''),
     setHtml: normalVisualWrite,
     setHtmlAndResetHistory: massVisualWrite,
     hasFocus: () => visualFocused,
     onChange: (listener) => subscribe(visualChanges, listener),
     onFocus: (listener) => subscribe(visualFocuses, listener),
     onBlur: (listener) => subscribe(visualBlurs, listener),
+    onFileDrop: () => () => undefined,
     destroy: () => undefined,
   };
   const source: SourceEditorController = {

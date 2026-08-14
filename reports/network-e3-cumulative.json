@@ -1,0 +1,231 @@
+{
+  "stage": "E3",
+  "scenario": "cumulative",
+  "manifestSha256": "01024a4ce4f2bfa3ae99705448ad9aa1c0b72cfc66e5657cca12002f24ebbb6f",
+  "pageUrl": "http://127.0.0.1:4173/",
+  "capturedAt": "2026-08-14T10:24:52.257Z",
+  "uiActionInventory": {
+    "cleanupRuleButtonsExpected": 10,
+    "cleanupRuleButtonsApplied": 10,
+    "largeDocumentClean100k": true,
+    "largeDocumentCleanDurationMs": 179.7,
+    "largeDocumentCleanWithin500ms": true,
+    "cleanSelected": true,
+    "format": true,
+    "minify": true,
+    "replacementRuleAdded": true,
+    "individualLiteralRuleApplied": true,
+    "pathologicalRegexTimeoutVisible": true,
+    "pathologicalRegexDocumentUnchanged": true,
+    "applyAllReplacements": true,
+    "replacementRuleRemoved": true,
+    "commonMassUndo": true,
+    "emojiDialogOpened": true,
+    "emojiSearchFiltered": true,
+    "emojiInserted": true,
+    "htmlImported": true,
+    "docxDroppedIntoTinyMce": true,
+    "docxImported": true,
+    "mammothRequestedByDocxImport": true,
+    "htmlExportDownloaded": true,
+    "htmlCopied": true,
+    "textCopied": true,
+    "sampleLoaded": true,
+    "draftAutosaved": true,
+    "newDocumentCreated": true
+  },
+  "regexActionRequestPaths": [
+    "/assets/safe-BOEoeD2i.js",
+    "/assets/regex-worker-BSN1lRMf.js"
+  ],
+  "docxImportRequestPaths": [
+    "/assets/mammoth-browser-Dfu_XTS9.js"
+  ],
+  "docxFixtureSha256": "c96400f26ebef8f76b7a859909583f8ea3f9d6760a60512a54b7d800eaf8bfcc",
+  "attachedWorkerTargets": [
+    {
+      "sessionId": "A396B0FFE104FE54783AF0022EDA126B",
+      "targetId": "DF3349251663E011D441FD716DEEBB9A",
+      "type": "worker",
+      "url": "http://127.0.0.1:4173/assets/regex-worker-BSN1lRMf.js",
+      "detached": true
+    }
+  ],
+  "workerNetworkLifecycle": [
+    {
+      "url": "http://127.0.0.1:4173/assets/regex-worker-BSN1lRMf.js",
+      "sessions": [
+        "page",
+        "A396B0FFE104FE54783AF0022EDA126B"
+      ],
+      "requestWillBeSentEvents": 1,
+      "dataReceivedEvents": 1,
+      "terminalEvent": "Network.loadingFinished",
+      "status": 200,
+      "decodedContentSize": 1655,
+      "encodedTransferSize": 301,
+      "wireBodySizeKnown": false,
+      "headersSize": -1,
+      "bodySize": -1,
+      "compression": null,
+      "failure": null
+    }
+  ],
+  "workerSessionSetupErrors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4173/",
+      "status": 200,
+      "resourceType": "document",
+      "initiatorType": "other",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-BhyA9RZh.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DPoKXSj4.css",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/themes/silver/theme.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/models/dom/model.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/link/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/image/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/table/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "editor-frame"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/content/default/content.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "editor-frame"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/source-rich-CynfQBFv.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/safe-BOEoeD2i.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/regex-worker-BSN1lRMf.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "other",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/mammoth-browser-Dfu_XTS9.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    }
+  ]
+}

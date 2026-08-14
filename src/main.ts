@@ -8,7 +8,9 @@ import {
   createDocumentToolsController,
   type DocumentToolsController,
 } from './ui/document-tools';
+import { createIoToolsController, type IoToolsController } from './ui/io-tools';
 import { createLayoutController, type LayoutController } from './ui/layout';
+import { loadDraft } from './storage/draft';
 import './styles/app.css';
 
 const element = <T extends HTMLElement>(id: string): T => {
@@ -29,6 +31,7 @@ let source: SourceEditorController | null = null;
 let sync: SyncController | null = null;
 let layout: LayoutController | null = null;
 let documentTools: DocumentToolsController | null = null;
+let ioTools: IoToolsController | null = null;
 
 const showNormalizationNotice = (): void => {
   normalizationNote.hidden = false;
@@ -38,16 +41,32 @@ const showNormalizationNotice = (): void => {
 };
 
 const initialise = async (): Promise<void> => {
+  const draftLoadResult = loadDraft();
+  const visualTextarea = element<HTMLTextAreaElement>('visual-editor');
+  const restoredHtml = draftLoadResult.status === 'loaded' ? draftLoadResult.draft.html : null;
+  if (restoredHtml !== null) visualTextarea.value = restoredHtml;
+
   visual = await createVisualEditor(element('visual-panel'));
+  const normalizedInitialHtml = visual.getHtml();
+  const sourceInitialHtml = restoredHtml ?? normalizedInitialHtml;
   source = createSourceEditor(
     element('source-editor'),
     element<HTMLOutputElement>('character-count'),
-    visual.getHtml(),
+    sourceInitialHtml,
   );
   const mutationGuard = createProgrammaticMutationGuard();
-  sync = createSyncController(visual, source, showNormalizationNotice, mutationGuard);
+  sync = createSyncController(
+    visual,
+    source,
+    showNormalizationNotice,
+    mutationGuard,
+    restoredHtml === null
+      ? undefined
+      : { raw: restoredHtml, normalized: normalizedInitialHtml, userAuthored: true },
+  );
   const massDocument = createMassDocumentController(visual, source, mutationGuard);
   documentTools = createDocumentToolsController(source, sync, massDocument);
+  ioTools = createIoToolsController(source, visual, sync, massDocument, { draftLoadResult });
   layout = createLayoutController(
     {
       workspace: element('editor-workspace'),
@@ -69,6 +88,7 @@ const initialise = async (): Promise<void> => {
 };
 
 const destroy = (): void => {
+  ioTools?.destroy();
   documentTools?.destroy();
   layout?.destroy();
   sync?.destroy();
@@ -77,7 +97,12 @@ const destroy = (): void => {
 };
 
 window.addEventListener('pagehide', (event: PageTransitionEvent) => {
-  if (!event.persisted) destroy();
+  if (event.persisted) {
+    ioTools?.saveDraftNow();
+    return;
+  }
+  ioTools?.saveDraftFinal();
+  destroy();
 });
 
 void initialise().catch((error: unknown) => {

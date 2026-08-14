@@ -12,6 +12,7 @@ const PLUGINS = [
 ] as const;
 
 type Listener = () => void;
+export type FileDropListener = (files: readonly File[]) => void;
 
 interface TextSelectionSnapshot {
   start: number;
@@ -21,12 +22,14 @@ interface TextSelectionSnapshot {
 
 export interface VisualEditorController {
   getHtml: () => string;
+  getText: () => string;
   setHtml: (html: string) => string;
   setHtmlAndResetHistory: (html: string) => string;
   hasFocus: () => boolean;
   onChange: (listener: Listener) => () => void;
   onFocus: (listener: Listener) => () => void;
   onBlur: (listener: Listener) => () => void;
+  onFileDrop: (listener: FileDropListener) => () => void;
   destroy: () => void;
 }
 
@@ -37,6 +40,14 @@ declare global {
 }
 
 const subscribe = (listeners: Set<Listener>, listener: Listener): (() => void) => {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+};
+
+const subscribeFileDrop = (
+  listeners: Set<FileDropListener>,
+  listener: FileDropListener,
+): (() => void) => {
   listeners.add(listener);
   return () => listeners.delete(listener);
 };
@@ -125,6 +136,8 @@ export const createVisualEditor = async (
     model: 'dom',
     icons: 'phphtmledit',
     icons_url: '/tinymce/icons/phphtmledit/icons.min.js',
+    emoticons_database_url: '/tinymce/plugins/emoticons/js/emojis-common.min.js',
+    emoticons_database_id: 'tinymce.plugins.emoticons',
     cache_suffix: '?v=8.8.2',
     language: 'en',
     skin: 'oxide',
@@ -152,6 +165,7 @@ export const createVisualEditor = async (
   const changeListeners = new Set<Listener>();
   const focusListeners = new Set<Listener>();
   const blurListeners = new Set<Listener>();
+  const fileDropListeners = new Set<FileDropListener>();
   let destroyed = false;
   let applyingContent = false;
   let lastBookmark: Bookmark | null = null;
@@ -198,6 +212,33 @@ export const createVisualEditor = async (
   const handleDocumentPointer = (event: PointerEvent): void => {
     if (isVisualTarget(event.target)) emit(focusListeners);
   };
+  const filesFromDrag = (event: DragEvent): File[] => {
+    const files = event.dataTransfer?.files;
+    return files && files.length > 0 ? Array.from(files) : [];
+  };
+  const isFileDrag = (event: DragEvent): boolean => {
+    const transfer = event.dataTransfer;
+    if (!transfer) return false;
+    // During dragover browsers keep File objects in protected mode, so
+    // `files` may be empty until drop. The Files type still distinguishes an
+    // OS file drag from TinyMCE's ordinary text drag-and-drop.
+    return transfer.files.length > 0 || Array.from(transfer.types).includes('Files');
+  };
+  const handleFileDragOver = (event: DragEvent): void => {
+    if (!isFileDrag(event)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.dataTransfer) event.dataTransfer.dropEffect = 'copy';
+  };
+  const handleFileDrop = (event: DragEvent): void => {
+    const files = filesFromDrag(event);
+    if (files.length === 0) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (!destroyed) fileDropListeners.forEach((listener) => listener(files));
+  };
+
+  const editorDocument = editor.getDoc();
 
   editor.on('input change undo redo', handleEditorChange);
   editor.on('focus', handleEditorFocus);
@@ -205,6 +246,8 @@ export const createVisualEditor = async (
   editor.on('SelectionChange NodeChange', rememberSelection);
   document.addEventListener('focusin', handleDocumentFocus, true);
   document.addEventListener('pointerdown', handleDocumentPointer, true);
+  editorDocument.addEventListener('dragover', handleFileDragOver, true);
+  editorDocument.addEventListener('drop', handleFileDrop, true);
   rememberSelection();
 
   const setHtml = (html: string): string => {
@@ -267,17 +310,21 @@ export const createVisualEditor = async (
 
   return {
     getHtml: () => editor.getContent({ format: 'html' }),
+    getText: () => editor.getContent({ format: 'text' }),
     setHtml,
     setHtmlAndResetHistory,
     hasFocus,
     onChange: (listener) => subscribe(changeListeners, listener),
     onFocus: (listener) => subscribe(focusListeners, listener),
     onBlur: (listener) => subscribe(blurListeners, listener),
+    onFileDrop: (listener) => subscribeFileDrop(fileDropListeners, listener),
     destroy: () => {
       if (destroyed) return;
       destroyed = true;
       document.removeEventListener('focusin', handleDocumentFocus, true);
       document.removeEventListener('pointerdown', handleDocumentPointer, true);
+      editorDocument.removeEventListener('dragover', handleFileDragOver, true);
+      editorDocument.removeEventListener('drop', handleFileDrop, true);
       editor.off('input change undo redo', handleEditorChange);
       editor.off('focus', handleEditorFocus);
       editor.off('blur', handleEditorBlur);
@@ -285,6 +332,7 @@ export const createVisualEditor = async (
       changeListeners.clear();
       focusListeners.clear();
       blurListeners.clear();
+      fileDropListeners.clear();
       editor.remove();
     },
   };

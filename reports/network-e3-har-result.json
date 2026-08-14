@@ -1,0 +1,155 @@
+{
+  "capturedAt": "2026-08-14T10:24:52.787Z",
+  "browser": "Chrome/151.0.7922.138",
+  "protocol": "Chrome DevTools Protocol 1.3",
+  "source": "Network domain used by DevTools Network panel",
+  "cacheDisabled": true,
+  "serviceWorkerBypassed": true,
+  "responseBodiesIncluded": false,
+  "sensitiveHeadersIncluded": false,
+  "sanitized": true,
+  "journalTruncated": false,
+  "manifestSha256": "01024a4ce4f2bfa3ae99705448ad9aa1c0b72cfc66e5657cca12002f24ebbb6f",
+  "sourceRichPath": "/assets/source-rich-CynfQBFv.js",
+  "safeReplacePath": "/assets/safe-BOEoeD2i.js",
+  "mammothPath": "/assets/mammoth-browser-Dfu_XTS9.js",
+  "customEmoticonsPath": "/tinymce/plugins/emoticons/js/emojis-common.min.js",
+  "stockEmoticonsPath": "/tinymce/plugins/emoticons/js/emojis.min.js",
+  "docxFixtureSha256": "c96400f26ebef8f76b7a859909583f8ea3f9d6760a60512a54b7d800eaf8bfcc",
+  "regexWorkerPath": "/assets/regex-worker-BSN1lRMf.js",
+  "regexWorkerRawSize": 1655,
+  "buildRegexWorkerPaths": [
+    "/assets/regex-worker-BSN1lRMf.js"
+  ],
+  "observedRegexWorkerPaths": [
+    "/assets/regex-worker-BSN1lRMf.js"
+  ],
+  "cold": {
+    "scenario": "cold",
+    "entries": 18,
+    "applicationRequests": 18,
+    "onlyGet": true,
+    "originOk": true,
+    "failures": [],
+    "cacheHits": [],
+    "thirdParty": [],
+    "defaultIcons": [],
+    "customIcons": 1,
+    "customEmoticons": 1,
+    "stockEmoticons": 0,
+    "sourceRich": [],
+    "safeReplace": [],
+    "regexWorker": [],
+    "regexActionRequestPaths": [],
+    "docxImportRequestPaths": [],
+    "attachedWorkerTargets": [],
+    "workerNetworkLifecycle": [],
+    "workerSessionSetupErrors": [],
+    "mammoth": [],
+    "fixtures": [],
+    "consoleProblems": 0
+  },
+  "cumulative": {
+    "scenario": "cumulative",
+    "entries": 22,
+    "applicationRequests": 22,
+    "onlyGet": true,
+    "originOk": true,
+    "failures": [],
+    "cacheHits": [],
+    "thirdParty": [],
+    "defaultIcons": [],
+    "customIcons": 1,
+    "customEmoticons": 1,
+    "stockEmoticons": 0,
+    "sourceRich": [
+      "/assets/source-rich-CynfQBFv.js"
+    ],
+    "safeReplace": [
+      "/assets/safe-BOEoeD2i.js"
+    ],
+    "regexWorker": [
+      "/assets/regex-worker-BSN1lRMf.js"
+    ],
+    "regexActionRequestPaths": [
+      "/assets/safe-BOEoeD2i.js",
+      "/assets/regex-worker-BSN1lRMf.js"
+    ],
+    "docxImportRequestPaths": [
+      "/assets/mammoth-browser-Dfu_XTS9.js"
+    ],
+    "attachedWorkerTargets": [
+      {
+        "sessionId": "A396B0FFE104FE54783AF0022EDA126B",
+        "targetId": "DF3349251663E011D441FD716DEEBB9A",
+        "type": "worker",
+        "url": "http://127.0.0.1:4173/assets/regex-worker-BSN1lRMf.js",
+        "detached": true
+      }
+    ],
+    "workerNetworkLifecycle": [
+      {
+        "url": "http://127.0.0.1:4173/assets/regex-worker-BSN1lRMf.js",
+        "sessions": [
+          "page",
+          "A396B0FFE104FE54783AF0022EDA126B"
+        ],
+        "requestWillBeSentEvents": 1,
+        "dataReceivedEvents": 1,
+        "terminalEvent": "Network.loadingFinished",
+        "status": 200,
+        "decodedContentSize": 1655,
+        "encodedTransferSize": 301,
+        "wireBodySizeKnown": false,
+        "headersSize": -1,
+        "bodySize": -1,
+        "compression": null,
+        "failure": null
+      }
+    ],
+    "workerSessionSetupErrors": [],
+    "mammoth": [
+      "/assets/mammoth-browser-Dfu_XTS9.js"
+    ],
+    "fixtures": [],
+    "consoleProblems": 0
+  },
+  "assertions": {
+    "coldApplicationRequests": true,
+    "coldRequestBudget": true,
+    "cumulativeApplicationRequests": true,
+    "cumulativeContainsCold": true,
+    "onlyLocal": true,
+    "onlyGet": true,
+    "noCacheOrServiceWorker": true,
+    "defaultIconsAbsent": true,
+    "customIconsOnce": true,
+    "customEmoticonsOnce": true,
+    "stockEmoticonsAbsent": true,
+    "sourceRichLazyOnlyInCumulative": true,
+    "safeReplaceLazyOnlyInCumulative": true,
+    "mammothLazyOnlyInCumulative": true,
+    "mammothRequestedByActualDocxImport": true,
+    "regexWorkerOnlyInCumulative": true,
+    "workerTargetOnlyInCumulative": true,
+    "workerSessionSetupClean": true,
+    "workerLifecycleCompleteWithoutDuplicate": true,
+    "regexLifecycleRequestedSafeAndWorker": true,
+    "onlyExpectedCumulativeJavaScript": true,
+    "eagerHighlightBeforeSourceFocus": true,
+    "fullE3UiActionInventory": true,
+    "fixturesAbsent": true,
+    "consoleClean": true,
+    "noApplicationFailures": true,
+    "decodedContentSizes": true,
+    "exactHarTimingSums": true,
+    "noSensitiveHeadersOrBodies": true
+  },
+  "timeoutEvidence": {
+    "visibleUiAssertion": "aria-invalid=true, visible message contains 500, and the source document is unchanged",
+    "exactErrorCodeEvidence": "tests/replace/safe.test.ts asserts regex-timeout; the internal code is intentionally not exposed in production DOM or inferred from HAR"
+  },
+  "workerDeduplicationRule": "Flattened page/worker Network events are coalesced only by the documented CDP requestId. No URL- or size-based merge and no synthetic response/data/terminal event is used.",
+  "workerWireSizeLimitation": "The split page/worker CDP lifecycle reports the complete decoded Worker size (1655 B) and a real loadingFinished event, but encodedDataLength does not separate HTTP headers from the gzip body. The HAR preserves the observed _encodedDataLength, sets Worker response.headersSize/bodySize to -1, omits content.compression and marks _wireBodySizeKnown=false. Byte budgets are calculated independently from current dist.",
+  "note": "Live CDP WebSocket capture; no event ring buffer was used. Successful HTTP resources are the size inventory. The cumulative scenario executes the complete E2 document-tool inventory plus E3 emoji, HTML/DOCX import, HTML export, clipboard, sample, draft and new-document actions."
+}

@@ -13,6 +13,12 @@ export interface SyncController {
   destroy: () => void;
 }
 
+export interface InitialSourceProjection {
+  readonly raw: string;
+  readonly normalized: string;
+  readonly userAuthored: boolean;
+}
+
 interface PendingSync {
   timer: ReturnType<typeof setTimeout>;
   revision: number;
@@ -42,12 +48,18 @@ export const createSyncController = (
   source: SourceEditorController,
   showNormalizationNotice: () => void,
   mutationGuard: ProgrammaticMutationGuard = createProgrammaticMutationGuard(),
+  initialSourceProjection?: InitialSourceProjection,
 ): SyncController => {
   let authority: Panel | null = null;
   let disposed = false;
   let nextToken = 0;
   let normalizationNoticeShown = hasShownNotice();
-  let sourceProjection: { raw: string; normalized: string; userAuthored: boolean } | null = null;
+  let sourceProjection: InitialSourceProjection | null =
+    initialSourceProjection &&
+      source.getHtml() === initialSourceProjection.raw &&
+      visual.getHtml() === initialSourceProjection.normalized
+      ? { ...initialSourceProjection }
+      : null;
   const revisions: Record<Panel, number> = { visual: 0, source: 0 };
   const pending: Record<Panel, PendingSync | null> = { visual: null, source: null };
   const unsubscribers: Array<() => void> = [];

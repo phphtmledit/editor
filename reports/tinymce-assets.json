@@ -68,12 +68,6 @@
       "sha256": "b6216af035612be534757ffb0b78d10044c447ad7b5d8677ad1eae15abd29411"
     },
     {
-      "path": "plugins/emoticons/js/emojis.min.js",
-      "kind": "vendor-byte-identical",
-      "bytes": 192805,
-      "sha256": "66f71a7fc7094165772664ff37a327c75090fbc646186b7e89c6e39d0676cdf1"
-    },
-    {
       "path": "plugins/insertdatetime/plugin.min.js",
       "kind": "vendor-byte-identical",
       "bytes": 3033,
@@ -121,6 +115,14 @@
       "icons": 68,
       "bytes": 23785,
       "sha256": "d76c40de675fc6b40151003e691a3332c60779ca802678971b816ed89dd83b2c"
+    },
+    {
+      "path": "plugins/emoticons/js/emojis-common.min.js",
+      "kind": "project-generated-from-tinymce-emojilib",
+      "entries": 300,
+      "inventorySha256": "1f9d92018d716f1dcf03f9d506c1c4acc9b81737ccee9a0099e4b63288803ccc",
+      "bytes": 38728,
+      "sha256": "ae44bba7002ff59b2ffcd17b96bcd7b51c39dbbe4a07c767b1bab5c9201f4b19"
     }
   ]
 }

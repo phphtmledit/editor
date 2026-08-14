@@ -250,6 +250,8 @@ const initialise = async (): Promise<void> => {
     model: 'dom',
     icons: 'phphtmledit',
     icons_url: '/tinymce/icons/phphtmledit/icons.min.js',
+    emoticons_database_url: '/tinymce/plugins/emoticons/js/emojis-common.min.js',
+    emoticons_database_id: 'tinymce.plugins.emoticons',
     cache_suffix: '?v=8.8.2',
     language: 'en',
     skin: 'oxide',

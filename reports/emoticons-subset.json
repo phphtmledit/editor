@@ -1,0 +1,49 @@
+{
+  "tinymceVersion": "8.8.2",
+  "source": {
+    "path": "node_modules/tinymce/plugins/emoticons/js/emojis.min.js",
+    "resourceId": "tinymce.plugins.emoticons",
+    "entries": 1570,
+    "categoryCounts": {
+      "people": 346,
+      "animals_and_nature": 177,
+      "food_and_drink": 105,
+      "activity": 95,
+      "travel_and_places": 119,
+      "objects": 202,
+      "symbols": 274,
+      "flags": 252
+    },
+    "fitzpatrickScaleEntries": 178,
+    "sha256": "66f71a7fc7094165772664ff37a327c75090fbc646186b7e89c6e39d0676cdf1",
+    "raw": 192805,
+    "gzip9": 28872,
+    "brotli11": 24449
+  },
+  "subset": {
+    "path": "public/tinymce/plugins/emoticons/js/emojis-common.min.js",
+    "resourceId": "tinymce.plugins.emoticons",
+    "entries": 300,
+    "categoryQuotas": {
+      "people": 95,
+      "animals_and_nature": 40,
+      "food_and_drink": 35,
+      "activity": 25,
+      "travel_and_places": 30,
+      "objects": 35,
+      "symbols": 25,
+      "flags": 15
+    },
+    "fitzpatrickScaleEntries": 34,
+    "inventorySha256": "1f9d92018d716f1dcf03f9d506c1c4acc9b81737ccee9a0099e4b63288803ccc",
+    "sha256": "ae44bba7002ff59b2ffcd17b96bcd7b51c39dbbe4a07c767b1bab5c9201f4b19",
+    "raw": 38728,
+    "gzip9": 7244,
+    "brotli11": 6059
+  },
+  "coldSavings": {
+    "raw": 154077,
+    "gzip9": 21628,
+    "brotli11": 18390
+  }
+}

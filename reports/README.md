@@ -40,7 +40,7 @@ The E1 JSON captures include the SHA-256 of their `dist/.vite/manifest.json`.
 They preserve the accepted E1 baseline and are no longer inputs to the current
 `npm run size`.
 
-## Current E2 evidence
+## Immutable E2 evidence
 
 - `network-e2-cold.har` and `network-e2-cold.json` — fresh production load
   through editor-ready, before source focus or any regex action.
@@ -55,11 +55,8 @@ They preserve the accepted E1 baseline and are no longer inputs to the current
 - `size-e2-result.json` — the current-dist SHA-256 inventory, all four byte
   budgets, cold request-count gate and the 100,000-character browser timing.
 
-The E2 captures include the SHA-256 of the current manifest. `npm run size`
-refuses stale captures, requires exactly two dynamic entries (`source-rich` and
-`safe`), allows exactly one emitted `regex-worker` asset, requires those three
-JavaScript resources only in cumulative, and rejects TinyMCE default icons,
-Mammoth, DOCX and fixture requests.
+The E2 captures include the SHA-256 of their manifest. They preserve the
+accepted E2 baseline and are no longer inputs to the current `npm run size`.
 
 The flattened Worker lifecycle provides its complete decoded size and a real
 terminal event, but Chrome does not expose a byte-accurate split between HTTP
@@ -68,3 +65,37 @@ the observed encoded length, marks `headersSize` and `bodySize` as unknown
 (`-1`), omits `content.compression`, and records the limitation explicitly.
 The four budget values never use HAR wire sizes: `npm run size` deterministically
 compresses the exact current `dist` files with gzip level 9 and Brotli quality 11.
+
+## Current E3 evidence
+
+- `network-e3-cold.har` and `network-e3-cold.json` — fresh production load
+  through editor-ready, before source focus, regex replacement or DOCX import.
+- `network-e3-cumulative.har` and `network-e3-cumulative.json` — a separate
+  fresh load containing every cold request, eager highlighting and first source
+  focus, the complete E2 cleaning/replacement inventory, custom emoji dialog
+  search and insertion, HTML import, an actual drop of
+  `tests/fixtures/mammoth-fixture.docx` into the TinyMCE iframe, HTML download,
+  HTML/text clipboard actions, product sample, draft autosave and new document.
+- `network-e3-har-result.json` — sanitized HAR 1.2 assertions over both captures,
+  bound to the production manifest and DOCX-fixture SHA-256 values. It verifies
+  local GET-only traffic, disabled cache/service worker, custom icons and emoji,
+  lazy entries, the real regex Worker lifecycle, the actual DOCX-triggered
+  Mammoth request, absence of fixtures and a clean console.
+- `size-e3-result.json` — exact current-dist SHA-256 inventory, the four byte
+  budgets, cold request-count gate, complete UI-action inventory and the
+  100,000-character cleaning timing.
+
+`npm run size` refuses stale E3 captures. The product manifest must have exactly
+three dynamic entries: `source-rich`, `safe` and `mammoth-browser`. Those three
+files plus the single emitted `regex-worker` are the only JavaScript additions
+allowed in the cumulative scenario. Mammoth must be absent from cold and loaded
+exactly once by the recorded DOCX drop. The custom emoji database must be loaded
+exactly once in both scenarios; the stock database must be absent from both the
+network and `dist`. DOCX/fixture files are rejected from `dist` and the network.
+
+As in E2, the split page/Worker lifecycle exposes an exact decoded Worker size
+but no reliable encoded header/body split. The E3 HAR therefore preserves the
+observed encoded length, records `headersSize` and `bodySize` as `-1`, omits
+`content.compression`, and keeps byte-budget calculation independent by
+compressing the exact manifest-bound `dist` files with gzip level 9 and Brotli
+quality 11.

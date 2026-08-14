@@ -1,0 +1,21 @@
+/*! @license GPL-2.0-or-later | https://github.com/phphtmledit/editor */
+export { default as any } from 'underscore/modules/some.js';
+export { default as clone } from 'underscore/modules/clone.js';
+export { default as extend } from 'underscore/modules/extend.js';
+export { default as filter } from 'underscore/modules/filter.js';
+export { default as find } from 'underscore/modules/find.js';
+export { default as findIndex } from 'underscore/modules/findIndex.js';
+export { default as flatten } from 'underscore/modules/flatten.js';
+export { default as foldl } from 'underscore/modules/reduce.js';
+export { default as forEach } from 'underscore/modules/each.js';
+export { default as indexBy } from 'underscore/modules/indexBy.js';
+export { default as invert } from 'underscore/modules/invert.js';
+export { default as isArray } from 'underscore/modules/isArray.js';
+export { default as isEqual } from 'underscore/modules/isEqual.js';
+export { default as isFunction } from 'underscore/modules/isFunction.js';
+export { default as isString } from 'underscore/modules/isString.js';
+export { default as last } from 'underscore/modules/last.js';
+export { default as map } from 'underscore/modules/map.js';
+export { default as pluck } from 'underscore/modules/pluck.js';
+export { default as some } from 'underscore/modules/some.js';
+export { default as values } from 'underscore/modules/values.js';

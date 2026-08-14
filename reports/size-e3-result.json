@@ -1,0 +1,532 @@
+{
+  "stage": "E3",
+  "origin": "http://127.0.0.1:4173",
+  "manifestSha256": "01024a4ce4f2bfa3ae99705448ad9aa1c0b72cfc66e5657cca12002f24ebbb6f",
+  "docxFixtureSha256": "c96400f26ebef8f76b7a859909583f8ea3f9d6760a60512a54b7d800eaf8bfcc",
+  "definitions": {
+    "cold": "All production HTTP resources requested from navigation through editor-ready.",
+    "cumulative": "A separate fresh production load containing every cold URL, first source focus, the complete E2 document-tools inventory, custom emoji search/insert, actual HTML and DOCX imports, HTML export, clipboard actions, product sample, draft autosave and new document; the only cumulative JavaScript additions are source-rich, safe replacement, Mammoth and the isolated regex Worker.",
+    "requestCount": "Cold load through editor-ready only, including the HTML document.",
+    "initialJs": "Supplementary, non-budget detail: cold-load JavaScript outside /tinymce; lazy source-editor tools are excluded."
+  },
+  "metrics": [
+    {
+      "name": "Cold editor-ready transfer (gzip)",
+      "actual": 569631,
+      "budget": 600000,
+      "margin": 30369,
+      "status": "PASS"
+    },
+    {
+      "name": "Cold editor-ready transfer (brotli)",
+      "actual": 484561,
+      "budget": 500000,
+      "margin": 15439,
+      "status": "PASS"
+    },
+    {
+      "name": "Cumulative E3 transfer (gzip)",
+      "actual": 713603,
+      "budget": 750000,
+      "margin": 36397,
+      "status": "PASS"
+    },
+    {
+      "name": "Cumulative E3 transfer (brotli)",
+      "actual": 601697,
+      "budget": 630000,
+      "margin": 28303,
+      "status": "PASS"
+    },
+    {
+      "name": "Cold-load HTTP requests",
+      "actual": 18,
+      "budget": 25,
+      "margin": 7,
+      "status": "PASS"
+    }
+  ],
+  "coldEditorReadyTransfer": {
+    "requests": 18,
+    "gzip": 569631,
+    "brotli": 484561
+  },
+  "cumulativeTransfer": {
+    "requests": 22,
+    "gzip": 713603,
+    "brotli": 601697
+  },
+  "supplementary": {
+    "initialJsWithoutTinyMCE": {
+      "gzip": 133693,
+      "brotli": 115081
+    },
+    "largeDocumentCleanDurationMs": 179.7
+  },
+  "activeLightTinyStaticFootprint": {
+    "files": 17,
+    "raw": 1425123,
+    "gzip": 431188,
+    "brotli": 365500
+  },
+  "tinyStaticFootprint": {
+    "files": 20,
+    "raw": 1648032,
+    "gzip": 464506,
+    "brotli": 393573
+  },
+  "tinyDomainRequests": [],
+  "scenarios": {
+    "cold": {
+      "capturedAt": "2026-08-14T10:24:39.177Z",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:4173/",
+          "path": "index.html",
+          "status": 200,
+          "initiatorType": "other",
+          "context": "page",
+          "sha256": "d79dcac6bffda0578cda938cdc2aa8a0844257765183b4332c467f9629e16fb4",
+          "raw": 8044,
+          "gzip": 2674,
+          "brotli": 2059
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "path": "tinymce/tinymce.min.js",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "e68a8e0787cf2aafc7041c9141c8ec04019a7762f8ead6417061593be1219e9d",
+          "raw": 486491,
+          "gzip": 169991,
+          "brotli": 142494
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/index-BhyA9RZh.js",
+          "path": "assets/index-BhyA9RZh.js",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "72004ac70020310de8b40d9b4124fc7203a1f4f98d0192c7ea00132d8d78dd5d",
+          "raw": 414287,
+          "gzip": 133693,
+          "brotli": 115081
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/index-DPoKXSj4.css",
+          "path": "assets/index-DPoKXSj4.css",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "78c9e7088128d5da96b8bfba25fd80f34c6c7ded70ab8122a742464c93bdb7df",
+          "raw": 9302,
+          "gzip": 2777,
+          "brotli": 2422
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/themes/silver/theme.min.js?v=8.8.2",
+          "path": "tinymce/themes/silver/theme.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "9702cda396b031988da9c922c9eae2be57ebe5455d33e4662f64241ffeda5182",
+          "raw": 446315,
+          "gzip": 143384,
+          "brotli": 120347
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/models/dom/model.min.js?v=8.8.2",
+          "path": "tinymce/models/dom/model.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c3321c3f9fe38550441922c64a8f8a358e660b25ccd4cd206cf73a4c13db3465",
+          "raw": 95936,
+          "gzip": 32586,
+          "brotli": 29012
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
+          "path": "tinymce/icons/phphtmledit/icons.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "d76c40de675fc6b40151003e691a3332c60779ca802678971b816ed89dd83b2c",
+          "raw": 23785,
+          "gzip": 6196,
+          "brotli": 5270
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/lists/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "66d451d56c8f22bfd8f864b146dbf35851a8848dd8ab92c962bc988f59d145d5",
+          "raw": 5001,
+          "gzip": 2092,
+          "brotli": 1885
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/link/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/link/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "2694078aad82b21daaab1f469122d9e2e3675c42ffc8ebbedec2694e7ec9f5a4",
+          "raw": 18679,
+          "gzip": 6923,
+          "brotli": 6248
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/image/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/image/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "91fb5ecc1341997f45d7ef6904eddc1304c6cb7090cdb034c1c6c0d91ecad8b9",
+          "raw": 19063,
+          "gzip": 6719,
+          "brotli": 6043
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/table/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/table/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c6250646b1f5df33993602fbd0156ce629b00b87532e3c0a0776e17dac864ed9",
+          "raw": 46473,
+          "gzip": 13652,
+          "brotli": 12264
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/charmap/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "fcec7012f02f28a9154d81b6a0877805b0a791a1eba9427a0deda6058483067c",
+          "raw": 11102,
+          "gzip": 4416,
+          "brotli": 3714
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/emoticons/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "b6216af035612be534757ffb0b78d10044c447ad7b5d8677ad1eae15abd29411",
+          "raw": 6570,
+          "gzip": 2817,
+          "brotli": 2526
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/insertdatetime/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c2cf4c6da8d47af65eff9629bb9f60dcceebf9f093784d29b5421aa972d72db1",
+          "raw": 3033,
+          "gzip": 1252,
+          "brotli": 1133
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
+          "path": "tinymce/skins/ui/oxide/skin.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "098e47b9e8da9007d88464a24f80ab171bb5ec4821f5a840e5d84e9e80bb4550",
+          "raw": 178210,
+          "gzip": 24691,
+          "brotli": 20552
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
+          "path": "tinymce/skins/ui/oxide/content.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "editor-frame",
+          "sha256": "b2430740ad7dfe91bab74cd0626d1330e813b643a0f3bfc0b496b122b8cf07ee",
+          "raw": 43102,
+          "gzip": 7895,
+          "brotli": 6959
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/content/default/content.min.css?v=8.8.2",
+          "path": "tinymce/skins/content/default/content.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "editor-frame",
+          "sha256": "8fbc7f18efefe59b8b7d692d25e0c4283aa4100eaba292e1cdda0cd32e20fc88",
+          "raw": 1403,
+          "gzip": 629,
+          "brotli": 493
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
+          "path": "tinymce/plugins/emoticons/js/emojis-common.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "ae44bba7002ff59b2ffcd17b96bcd7b51c39dbbe4a07c767b1bab5c9201f4b19",
+          "raw": 38728,
+          "gzip": 7244,
+          "brotli": 6059
+        }
+      ]
+    },
+    "cumulative": {
+      "capturedAt": "2026-08-14T10:24:52.257Z",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:4173/",
+          "path": "index.html",
+          "status": 200,
+          "initiatorType": "other",
+          "context": "page",
+          "sha256": "d79dcac6bffda0578cda938cdc2aa8a0844257765183b4332c467f9629e16fb4",
+          "raw": 8044,
+          "gzip": 2674,
+          "brotli": 2059
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "path": "tinymce/tinymce.min.js",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "e68a8e0787cf2aafc7041c9141c8ec04019a7762f8ead6417061593be1219e9d",
+          "raw": 486491,
+          "gzip": 169991,
+          "brotli": 142494
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/index-BhyA9RZh.js",
+          "path": "assets/index-BhyA9RZh.js",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "72004ac70020310de8b40d9b4124fc7203a1f4f98d0192c7ea00132d8d78dd5d",
+          "raw": 414287,
+          "gzip": 133693,
+          "brotli": 115081
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/index-DPoKXSj4.css",
+          "path": "assets/index-DPoKXSj4.css",
+          "status": 200,
+          "initiatorType": "parser",
+          "context": "page",
+          "sha256": "78c9e7088128d5da96b8bfba25fd80f34c6c7ded70ab8122a742464c93bdb7df",
+          "raw": 9302,
+          "gzip": 2777,
+          "brotli": 2422
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/themes/silver/theme.min.js?v=8.8.2",
+          "path": "tinymce/themes/silver/theme.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "9702cda396b031988da9c922c9eae2be57ebe5455d33e4662f64241ffeda5182",
+          "raw": 446315,
+          "gzip": 143384,
+          "brotli": 120347
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/models/dom/model.min.js?v=8.8.2",
+          "path": "tinymce/models/dom/model.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c3321c3f9fe38550441922c64a8f8a358e660b25ccd4cd206cf73a4c13db3465",
+          "raw": 95936,
+          "gzip": 32586,
+          "brotli": 29012
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
+          "path": "tinymce/icons/phphtmledit/icons.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "d76c40de675fc6b40151003e691a3332c60779ca802678971b816ed89dd83b2c",
+          "raw": 23785,
+          "gzip": 6196,
+          "brotli": 5270
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/lists/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "66d451d56c8f22bfd8f864b146dbf35851a8848dd8ab92c962bc988f59d145d5",
+          "raw": 5001,
+          "gzip": 2092,
+          "brotli": 1885
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/link/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/link/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "2694078aad82b21daaab1f469122d9e2e3675c42ffc8ebbedec2694e7ec9f5a4",
+          "raw": 18679,
+          "gzip": 6923,
+          "brotli": 6248
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/image/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/image/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "91fb5ecc1341997f45d7ef6904eddc1304c6cb7090cdb034c1c6c0d91ecad8b9",
+          "raw": 19063,
+          "gzip": 6719,
+          "brotli": 6043
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/table/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/table/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c6250646b1f5df33993602fbd0156ce629b00b87532e3c0a0776e17dac864ed9",
+          "raw": 46473,
+          "gzip": 13652,
+          "brotli": 12264
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/charmap/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "fcec7012f02f28a9154d81b6a0877805b0a791a1eba9427a0deda6058483067c",
+          "raw": 11102,
+          "gzip": 4416,
+          "brotli": 3714
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/emoticons/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "b6216af035612be534757ffb0b78d10044c447ad7b5d8677ad1eae15abd29411",
+          "raw": 6570,
+          "gzip": 2817,
+          "brotli": 2526
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
+          "path": "tinymce/plugins/insertdatetime/plugin.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "c2cf4c6da8d47af65eff9629bb9f60dcceebf9f093784d29b5421aa972d72db1",
+          "raw": 3033,
+          "gzip": 1252,
+          "brotli": 1133
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
+          "path": "tinymce/skins/ui/oxide/skin.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "098e47b9e8da9007d88464a24f80ab171bb5ec4821f5a840e5d84e9e80bb4550",
+          "raw": 178210,
+          "gzip": 24691,
+          "brotli": 20552
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
+          "path": "tinymce/skins/ui/oxide/content.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "editor-frame",
+          "sha256": "b2430740ad7dfe91bab74cd0626d1330e813b643a0f3bfc0b496b122b8cf07ee",
+          "raw": 43102,
+          "gzip": 7895,
+          "brotli": 6959
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/skins/content/default/content.min.css?v=8.8.2",
+          "path": "tinymce/skins/content/default/content.min.css",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "editor-frame",
+          "sha256": "8fbc7f18efefe59b8b7d692d25e0c4283aa4100eaba292e1cdda0cd32e20fc88",
+          "raw": 1403,
+          "gzip": 629,
+          "brotli": 493
+        },
+        {
+          "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
+          "path": "tinymce/plugins/emoticons/js/emojis-common.min.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "ae44bba7002ff59b2ffcd17b96bcd7b51c39dbbe4a07c767b1bab5c9201f4b19",
+          "raw": 38728,
+          "gzip": 7244,
+          "brotli": 6059
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/source-rich-CynfQBFv.js",
+          "path": "assets/source-rich-CynfQBFv.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "a249689102dd825494589daf1a4f9b6511c9878716b312e606cf567350d8cab1",
+          "raw": 134425,
+          "gzip": 53140,
+          "brotli": 43721
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/safe-BOEoeD2i.js",
+          "path": "assets/safe-BOEoeD2i.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "662f969c71f860ce8aef03afd0ef0883b94e39b519b8b8838c0ef7774fda06a3",
+          "raw": 1998,
+          "gzip": 1096,
+          "brotli": 913
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/regex-worker-BSN1lRMf.js",
+          "path": "assets/regex-worker-BSN1lRMf.js",
+          "status": 200,
+          "initiatorType": "other",
+          "context": "page",
+          "sha256": "e2bbe6555c881222c19931131e51c2c981521b2d0fe253fce0ca4f91b1f3a10a",
+          "raw": 1655,
+          "gzip": 792,
+          "brotli": 668
+        },
+        {
+          "url": "http://127.0.0.1:4173/assets/mammoth-browser-Dfu_XTS9.js",
+          "path": "assets/mammoth-browser-Dfu_XTS9.js",
+          "status": 200,
+          "initiatorType": "script",
+          "context": "page",
+          "sha256": "7fc187c18c44e6e0c1933f7be650b0d2931503500fc06f09efaf6a434bf3c29f",
+          "raw": 355543,
+          "gzip": 88944,
+          "brotli": 71834
+        }
+      ]
+    }
+  },
+  "failures": []
+}

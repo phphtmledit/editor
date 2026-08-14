@@ -1,9 +1,11 @@
 /*! @license GPL-2.0-or-later | https://github.com/phphtmledit/editor */
 
-let mammothModule: Promise<typeof import('mammoth')> | undefined;
+type MammothBrowserModule = typeof import('../import/mammoth-browser');
 
-const getMammoth = (): Promise<typeof import('mammoth')> => {
-  mammothModule ??= import('mammoth');
+let mammothModule: Promise<MammothBrowserModule> | undefined;
+
+const getMammoth = (): Promise<MammothBrowserModule> => {
+  mammothModule ??= import('../import/mammoth-browser');
   return mammothModule;
 };
 
@@ -13,5 +15,5 @@ export const loadMammoth = async (): Promise<void> => {
 
 export const convertDocx = async (arrayBuffer: ArrayBuffer) => {
   const mammoth = await getMammoth();
-  return mammoth.convertToHtml({ arrayBuffer });
+  return mammoth.convertToHtml(arrayBuffer);
 };

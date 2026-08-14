@@ -1,6 +1,10 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { appendEmojilibToCanonicalLicenses } from './scripts/embedded-licenses.mjs';
+import { mammothBrowserAliases } from './scripts/mammoth-browser-aliases.mjs';
 
+const projectRoot = fileURLToPath(new URL('.', import.meta.url));
 const sourceUrl = 'https://github.com/phphtmledit/editor';
 const noticesUrl = '/licenses.txt';
 const bundleBanner = `/*! @license GPL-2.0-or-later
@@ -8,15 +12,31 @@ const bundleBanner = `/*! @license GPL-2.0-or-later
  * Third-party notices: ${noticesUrl}
  */`;
 
+const embeddedLicensesPlugin = (outDir: string): Plugin => ({
+  name: 'phphtmledit-embedded-licenses',
+  apply: 'build',
+  writeBundle: async (outputOptions) => {
+    await appendEmojilibToCanonicalLicenses(
+      projectRoot,
+      typeof outputOptions.dir === 'string' ? outputOptions.dir : outDir,
+    );
+  },
+});
+
 export default defineConfig(({ mode }) => {
   const diagnostic = mode === 'e0';
+  const outDir = diagnostic ? 'dist-e0' : 'dist';
   const diagnosticHtml = diagnostic
     ? readFileSync(new URL('./src/e0/index.html', import.meta.url), 'utf8')
     : '';
 
   return {
-    plugins: diagnostic
-      ? [
+    resolve: {
+      alias: mammothBrowserAliases(projectRoot),
+    },
+    plugins: [
+      ...(diagnostic
+        ? [
           {
             name: 'phphtmledit-e0-html',
             transformIndexHtml: {
@@ -25,7 +45,9 @@ export default defineConfig(({ mode }) => {
             },
           },
         ]
-      : [],
+        : []),
+      embeddedLicensesPlugin(outDir),
+    ],
     define: {
       __E0_DIAGNOSTIC__: JSON.stringify(diagnostic),
     },
@@ -42,7 +64,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      outDir: diagnostic ? 'dist-e0' : 'dist',
+      outDir,
       emptyOutDir: true,
       manifest: true,
       target: ['es2020', 'chrome111', 'edge111', 'firefox114', 'safari16'],

@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { applyCleanRule, cleanHtml } from '../../src/clean';
 
 const sha256 = (value: string): string => createHash('sha256').update(value, 'utf8').digest('hex');
+const normalizeFixtureNewlines = (value: string): string => value.replace(/\r\n?/g, '\n');
 
 describe('word-junk cleaning rule', () => {
   it('removes representative Office metadata without deleting document text', () => {
@@ -29,10 +30,11 @@ describe('word-junk cleaning rule', () => {
   });
 
   it('cleans the exact real Word clipboard fixture to its reviewed output', () => {
-    const input = readFileSync(resolve('tests/fixtures/word-clipboard.html'), 'utf8');
-    const expected = readFileSync(
-      resolve('tests/fixtures/word-clipboard.expected.html'),
-      'utf8',
+    const input = normalizeFixtureNewlines(
+      readFileSync(resolve('tests/fixtures/word-clipboard.html'), 'utf8'),
+    );
+    const expected = normalizeFixtureNewlines(
+      readFileSync(resolve('tests/fixtures/word-clipboard.expected.html'), 'utf8'),
     );
     const metadata = JSON.parse(
       readFileSync(resolve('tests/fixtures/word-clipboard.meta.json'), 'utf8'),
