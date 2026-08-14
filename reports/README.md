@@ -122,6 +122,9 @@ current `npm run size`.
   Worker, Mammoth, custom-icon, custom-emoji, fixture-boundary and UI assertions.
 - `size-e4-result.json` - exact current-dist SHA-256 inventory, the four byte
   budgets, cold request-count gate, UI evidence and browser timing.
+- `performance-e4-4g-diagnostic.json` - a separate 1.6 Mbps down / 750 Kbps up /
+  150 ms latency loading profile. It is not a HAR, is not a byte-budget input,
+  and does not replace either canonical Network capture.
 
 The isolated E4 UI audit runs in a separate CDP browser without `Network.enable`,
 so it cannot add URLs to either byte inventory. It verifies light-only handling
@@ -133,10 +136,20 @@ pairs at or above 4.5:1; solid accent keyboard focus; `visualViewport` resize
 variables; DOCX busy-state restoration; and the intentional absence of About
 before E5.
 
-Loading-state proof comes from a document-start state sampler plus buffered
-`PerformancePaintTiming`. Both fresh network scenarios record nonzero skeleton
-geometry and require `visibleFrom <= first-paint < firstHiddenAt`; first paint
-and first contentful paint timestamps are preserved in the JSON evidence.
+Loading-state proof comes from a document-start state sampler, buffered
+`PerformancePaintTiming`, Resource Timing, and five fixed product marks. Built
+HTML must contain exactly one preload for
+`/tinymce/tinymce.min.js?v=8.8.2` and no executable TinyMCE core script. Both
+fresh Network scenarios require the nonzero busy skeleton to span FP and FCP,
+then require the exact mark order paint handoff → dynamic script insertion →
+runtime loaded → initialization started → editor ready. The executable script,
+load event, initialization call, and exact Tiny core network resource each occur
+once. Three diagnostic durations are preserved: navigation to first skeleton
+paint, skeleton paint to the product editor-ready mark, and their exact total.
+
+The separate 4G report applies CDP network throttling without CPU throttling and
+records the same preload, paint, dynamic-loader, runtime, initialization, and
+ready ordering. Its `budgetInput` and `canonicalHar` fields are both false.
 
 `npm run size` now refuses stale or non-E4 captures. The captures must match the
 current manifest and DOCX fixture, retain exactly the three dynamic entries and

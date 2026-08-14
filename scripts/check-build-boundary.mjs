@@ -21,8 +21,46 @@ const FORBIDDEN_MARKERS = [
   Buffer.from('mammoth-fixture'),
   Buffer.from('tests/fixtures'),
 ];
+const TINYMCE_RUNTIME_URL = '/tinymce/tinymce.min.js?v=8.8.2';
 
 const sha256 = (bytes) => createHash('sha256').update(bytes).digest('hex');
+
+const htmlAttribute = (tag, name) => {
+  const match = tag.match(new RegExp(`\\b${name}\\s*=\\s*(["'])(.*?)\\1`, 'i'));
+  return match?.[2] ?? null;
+};
+
+const verifyProductionBootstrapHtml = (html) => {
+  const tags = html.match(/<(?:link|script)\b[^>]*>/gi) ?? [];
+  const runtimePreloads = tags.filter((tag) => {
+    if (!/^<link\b/i.test(tag)) return false;
+    const relationships = (htmlAttribute(tag, 'rel') ?? '').toLowerCase().split(/\s+/);
+    return relationships.includes('preload') &&
+      htmlAttribute(tag, 'as')?.toLowerCase() === 'script' &&
+      htmlAttribute(tag, 'href') === TINYMCE_RUNTIME_URL;
+  });
+  const executableRuntimeScripts = tags.filter((tag) => {
+    if (!/^<script\b/i.test(tag)) return false;
+    const src = htmlAttribute(tag, 'src');
+    if (!src) return false;
+    try {
+      return new URL(src, 'https://phphtmledit.invalid').pathname === '/tinymce/tinymce.min.js';
+    } catch {
+      return src.includes('/tinymce/tinymce.min.js');
+    }
+  });
+
+  if (runtimePreloads.length !== 1) {
+    errors.push(
+      `production index.html must contain the exact TinyMCE preload once; found ${runtimePreloads.length}`,
+    );
+  }
+  if (executableRuntimeScripts.length !== 0) {
+    errors.push(
+      `production index.html contains ${executableRuntimeScripts.length} parser/executable TinyMCE script tag(s)`,
+    );
+  }
+};
 
 const walk = async (directory) => {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -171,6 +209,9 @@ for (const path of productionFiles) {
   }
   if (displayPath === 'index.html' && bytes.includes(Buffer.from('{{phe:'))) {
     errors.push('production index.html contains an unresolved static UI copy token');
+  }
+  if (displayPath === 'index.html') {
+    verifyProductionBootstrapHtml(bytes.toString('utf8'));
   }
   for (const marker of FORBIDDEN_MARKERS) {
     if (bytes.includes(marker)) {

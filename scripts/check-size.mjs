@@ -12,6 +12,28 @@ const projectRoot = resolve(import.meta.dirname, '..');
 const distRoot = resolve(projectRoot, 'dist');
 const reportsRoot = resolve(projectRoot, 'reports');
 const expectedOrigin = 'http://127.0.0.1:4173';
+const tinyCoreHref = '/tinymce/tinymce.min.js?v=8.8.2';
+const tinyCorePath = '/tinymce/tinymce.min.js';
+const tinyCoreUrl = new URL(tinyCoreHref, expectedOrigin).href;
+const expectedBootMarkNames = Object.freeze([
+  'phe:bootstrap:paint-handoff-complete',
+  'phe:bootstrap:tinymce-script-inserted',
+  'phe:bootstrap:tinymce-runtime-loaded',
+  'phe:bootstrap:initialise-started',
+  'phe:bootstrap:editor-ready',
+]);
+const expectedBootOrderingKeys = Object.freeze([
+  'preloadFetchStartedBeforeDynamicInsertion',
+  'skeletonPaintedBeforeDynamicInsertion',
+  'contentfulPaintBeforeDynamicInsertion',
+  'dynamicInsertionBeforeLoad',
+  'runtimeAvailableAtLoad',
+  'loadBeforeInitialise',
+  'runtimeAvailableAtInitialise',
+  'initialiseBeforeEditorReady',
+  'performanceMarkSequenceExact',
+  'editorReadyMarkReconcilesWithDom',
+]);
 const failures = [];
 const BYTE_BUDGETS = Object.freeze({
   cold: Object.freeze({ gzip: 600_000, brotli: 500_000 }),
@@ -42,6 +64,7 @@ const [
   coldReport,
   cumulativeReport,
   manifestBytes,
+  distIndexBytes,
   distAssetNames,
   distNames,
   docxFixtureBytes,
@@ -49,11 +72,33 @@ const [
   readFile(resolve(reportsRoot, 'network-e4-cold.json'), 'utf8').then(JSON.parse),
   readFile(resolve(reportsRoot, 'network-e4-cumulative.json'), 'utf8').then(JSON.parse),
   readFile(resolve(distRoot, '.vite', 'manifest.json')),
+  readFile(resolve(distRoot, 'index.html')),
   readdir(resolve(distRoot, 'assets')),
   readdir(distRoot, { recursive: true }),
   readFile(resolve(projectRoot, 'tests', 'fixtures', 'mammoth-fixture.docx')),
 ]);
 const manifestSha256 = createHash('sha256').update(manifestBytes).digest('hex');
+const distIndexSha256 = createHash('sha256').update(distIndexBytes).digest('hex');
+const initialTagInventory = (html) => [...html.matchAll(/<(link|script)\b[^>]*>/gi)].map((match) => {
+  const attributes = {};
+  for (const attribute of match[0].matchAll(/\s([^\s=/>]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g)) {
+    attributes[attribute[1].toLowerCase()] = attribute[2] ?? attribute[3] ?? attribute[4] ?? '';
+  }
+  return { tagName: match[1].toLowerCase(), attributes };
+});
+const distIndexTags = initialTagInventory(distIndexBytes.toString('utf8'));
+const distTinyPreloads = distIndexTags.filter(({ tagName, attributes }) =>
+  tagName === 'link' &&
+  (attributes.rel ?? '').toLowerCase().split(/\s+/).includes('preload') &&
+  (attributes.as ?? '').toLowerCase() === 'script' &&
+  typeof attributes.href === 'string' &&
+  new URL(attributes.href, expectedOrigin).href === tinyCoreUrl
+);
+const distTinyScripts = distIndexTags.filter(({ tagName, attributes }) =>
+  tagName === 'script' &&
+  typeof attributes.src === 'string' &&
+  new URL(attributes.src, expectedOrigin).pathname === tinyCorePath
+);
 const docxFixtureSha256 = createHash('sha256').update(docxFixtureBytes).digest('hex');
 const manifest = JSON.parse(manifestBytes.toString('utf8'));
 const appEntry = manifest['index.html'];
@@ -113,12 +158,66 @@ if (!normalizedDistNames.includes(`tinymce/${CUSTOM_EMOTICONS_DATABASE_ASSET}`))
 if (darkTinyDistNames.length > 0) {
   failures.push(`production dist contains excluded dark TinyMCE assets: ${darkTinyDistNames.join(', ')}`);
 }
+if (distTinyPreloads.length !== 1 || distTinyScripts.length !== 0) {
+  failures.push(`built HTML must contain exactly one ${tinyCoreUrl} preload and zero executable Tiny core scripts`);
+}
 for (const [key, entry] of Object.entries(manifest)) {
   const manifestText = `${key} ${entry?.src ?? ''} ${entry?.file ?? ''}`;
   if (/(?:\.docx|fixture)/i.test(manifestText)) {
     failures.push(`production manifest contains a diagnostic fixture: ${manifestText}`);
   }
 }
+
+const bootOrderingOk = (proof) => proof?.tinyCoreUrl === tinyCoreUrl &&
+  proof.dynamicTinyScriptCount === 1 &&
+  proof.tinyScriptLoadEventCount === 1 &&
+  proof.tinyInitCallCount === 1 &&
+  proof.tinyResourceEntryCount === 1 &&
+  proof.dynamicTinyScripts?.[0]?.src === tinyCoreUrl &&
+  proof.tinyScriptLoadEvents?.[0]?.src === tinyCoreUrl &&
+  proof.resourceEntries?.[0]?.name === tinyCoreUrl &&
+  proof.resourceEntries?.[0]?.initiatorType === 'link' &&
+  JSON.stringify(proof.expectedBootMarkNames) === JSON.stringify(expectedBootMarkNames) &&
+  JSON.stringify(proof.performanceMarks?.map(({ name }) => name)) ===
+    JSON.stringify(expectedBootMarkNames) &&
+  proof.performanceMarks.every((mark, index) => index === 0 ||
+    proof.performanceMarks[index - 1].entryOrder < mark.entryOrder) &&
+  proof.performanceMarks.every((mark, index) => index === 0 ||
+    proof.performanceMarks[index - 1].startTime <= mark.startTime) &&
+  proof.performanceMarkSequenceExact === true &&
+  proof.editorReadyMarkReconcilesWithDom === true &&
+  typeof proof.editorReadyMarkDomDeltaMs === 'number' &&
+  proof.editorReadyMarkDomDeltaMs <= 100 &&
+  proof.tinyRuntimeAvailableAtLoad === true &&
+  proof.tinyInitWrapped === true &&
+  proof.tinyInitWrapError === null &&
+  JSON.stringify(Object.keys(proof.ordering ?? {}).sort()) ===
+    JSON.stringify([...expectedBootOrderingKeys].sort()) &&
+  Object.values(proof.ordering).every((value) => value === true);
+
+const loadingPerformanceOk = (proof, metrics) =>
+  typeof proof?.visibleFrom === 'number' &&
+  typeof proof?.firstPaintStartTime === 'number' &&
+  typeof proof?.firstContentfulPaintStartTime === 'number' &&
+  typeof proof?.firstHiddenAt === 'number' &&
+  typeof proof?.editorReadyAt === 'number' &&
+  proof.visibleFrom <= proof.firstPaintStartTime &&
+  proof.firstPaintStartTime < proof.firstHiddenAt &&
+  proof.visibleFrom <= proof.firstContentfulPaintStartTime &&
+  proof.firstContentfulPaintStartTime < proof.firstHiddenAt &&
+  proof.firstHiddenAt <= proof.editorReadyAt &&
+  typeof metrics?.navigationToFirstSkeletonPaintMs === 'number' &&
+  typeof metrics?.skeletonPaintToEditorReadyMs === 'number' &&
+  typeof metrics?.navigationToEditorReadyMs === 'number' &&
+  typeof proof?.editorReadyMarkStartTime === 'number' &&
+  typeof proof?.editorReadyMarkDomDeltaMs === 'number' &&
+  proof.editorReadyMarkDomDeltaMs <= 100 &&
+  Math.abs(metrics.navigationToFirstSkeletonPaintMs - proof.firstPaintStartTime) <= 0.001 &&
+  Math.abs(metrics.skeletonPaintToEditorReadyMs -
+    (proof.editorReadyMarkStartTime - proof.firstPaintStartTime)) <= 0.001 &&
+  Math.abs(metrics.navigationToEditorReadyMs - proof.editorReadyMarkStartTime) <= 0.001 &&
+  Math.abs(metrics.navigationToFirstSkeletonPaintMs +
+    metrics.skeletonPaintToEditorReadyMs - metrics.navigationToEditorReadyMs) <= 0.001;
 
 const assertReportShape = (name, report, scenario) => {
   if (!report || typeof report !== 'object') throw new TypeError(`${name}: report must be an object`);
@@ -135,6 +234,37 @@ const assertReportShape = (name, report, scenario) => {
   }
   if (report.docxFixtureSha256 !== docxFixtureSha256) {
     failures.push(`${name}: capture DOCX fixture hash does not match tests/fixtures/mammoth-fixture.docx`);
+  }
+  const initialHtml = report.initialHtmlContract;
+  if (
+    initialHtml?.status !== 200 ||
+    initialHtml?.sha256 !== distIndexSha256 ||
+    initialHtml?.distIndexSha256 !== distIndexSha256 ||
+    initialHtml?.matchesCurrentDist !== true ||
+    initialHtml?.tinyCoreUrl !== tinyCoreUrl ||
+    initialHtml?.exactTinyPreloadCount !== 1 ||
+    initialHtml?.initialExecutableTinyScriptCount !== 0 ||
+    !Array.isArray(initialHtml?.tinyPreloads) ||
+    initialHtml.tinyPreloads.length !== 1 ||
+    new URL(initialHtml.tinyPreloads[0]?.attributes?.href ?? '/', expectedOrigin).href !== tinyCoreUrl ||
+    !Array.isArray(initialHtml?.tinyScripts) ||
+    initialHtml.tinyScripts.length !== 0
+  ) {
+    failures.push(`${name}: served HTML must match current dist, preload the exact Tiny core URL once and contain zero executable Tiny core scripts`);
+  }
+  if (!bootOrderingOk(report.bootOrdering)) {
+    failures.push(`${name}: Tiny preload/resource/runtime/initialise ordering proof is incomplete`);
+  }
+  if (JSON.stringify(report.bootOrdering) !== JSON.stringify(report.uiActionInventory?.bootOrdering)) {
+    failures.push(`${name}: top-level and UI-inventory Tiny ordering proofs differ`);
+  }
+  const paintProof = report.uiActionInventory?.loadingPaintProof;
+  if (!loadingPerformanceOk(paintProof, report.loadingPerformanceMetrics)) {
+    failures.push(`${name}: the three navigation/skeleton/editor-ready metrics are missing or arithmetically inconsistent`);
+  }
+  if (JSON.stringify(report.loadingPerformanceMetrics) !==
+      JSON.stringify(report.uiActionInventory?.loadingPerformanceMetrics)) {
+    failures.push(`${name}: top-level and UI-inventory loading metrics differ`);
   }
   for (const [index, request] of report.requests.entries()) {
     if (!request || typeof request !== 'object' || typeof request.url !== 'string') {
@@ -227,12 +357,20 @@ const regexWorkerRawSize = regexWorkerPath
   : null;
 const countPath = (report, expectedPath) =>
   report.requests.filter((request) => pathname(request) === expectedPath).length;
+const countUrl = (report, expectedUrl) =>
+  report.requests.filter(({ url }) => url === expectedUrl).length;
 
 for (const requiredPath of REQUIRED_COLD_PATHS) {
   if (!coldPaths.has(requiredPath)) failures.push(`cold: required request is missing: ${requiredPath}`);
 }
 if (appPath && countPath(coldReport, appPath) !== 1) {
   failures.push(`cold: expected the manifest application entry exactly once: ${appPath}`);
+}
+if (countPath(coldReport, tinyCorePath) !== 1 || countUrl(coldReport, tinyCoreUrl) !== 1) {
+  failures.push(`cold: expected the exact Tiny core query URL once: ${tinyCoreUrl}`);
+}
+if (countPath(cumulativeReport, tinyCorePath) !== 1 || countUrl(cumulativeReport, tinyCoreUrl) !== 1) {
+  failures.push(`cumulative: expected the exact Tiny core query URL once: ${tinyCoreUrl}`);
 }
 for (const cssPath of appCssPaths) {
   if (countPath(coldReport, cssPath) !== 1) {
@@ -470,12 +608,8 @@ const paintProofOk =
   e4Ui?.loadingPaintProof &&
   ['cold', 'cumulative'].every((scenario) => {
     const proof = e4Ui.loadingPaintProof[scenario];
-    return typeof proof?.visibleFrom === 'number' &&
-      typeof proof.firstPaintStartTime === 'number' &&
-      typeof proof.firstContentfulPaintStartTime === 'number' &&
-      typeof proof.firstHiddenAt === 'number' &&
-      proof.visibleFrom <= proof.firstPaintStartTime &&
-      proof.firstPaintStartTime < proof.firstHiddenAt &&
+    const metrics = e4Ui.loadingPerformanceMetrics?.[scenario];
+    return loadingPerformanceOk(proof, metrics) &&
       Math.abs(proof.visibleDurationMs - (proof.firstHiddenAt - proof.visibleFrom)) <= 0.001 &&
       Math.abs(proof.firstPaintOffsetFromVisibleMs -
         (proof.firstPaintStartTime - proof.visibleFrom)) <= 0.001 &&
@@ -485,6 +619,10 @@ const paintProofOk =
       (proof.firstNonzeroGeometry?.geometry?.height ?? 0) > 0 &&
       proof.firstNonzeroGeometry?.appBusy === 'true' &&
       proof.firstNonzeroGeometry?.skeletonHidden === false &&
+      (proof.editorReadyState?.editors?.visual?.width ?? 0) > 0 &&
+      (proof.editorReadyState?.editors?.visual?.height ?? 0) > 0 &&
+      (proof.editorReadyState?.editors?.source?.width ?? 0) > 0 &&
+      (proof.editorReadyState?.editors?.source?.height ?? 0) > 0 &&
       (proof.hiddenState?.skeletonHidden === true || proof.hiddenState?.display === 'none') &&
       Array.isArray(proof.paintEntries) &&
       proof.paintEntries.some(({ name }) => name === 'first-paint') &&
@@ -492,7 +630,13 @@ const paintProofOk =
       proof.paintObserverError === null;
   });
 if (!paintProofOk) {
-  failures.push('E4 UI audit must prove visibleFrom <= first-paint < firstHiddenAt with nonzero skeleton geometry and real buffered paint/FCP entries');
+  failures.push('E4 UI audit must prove the skeleton spans FP and FCP, reaches two ready editors, and records all three exact navigation/skeleton/editor-ready metrics');
+}
+const bootOrderingAuditOk = ['cold', 'cumulative'].every((scenario) =>
+  bootOrderingOk(e4Ui?.bootOrdering?.[scenario])
+);
+if (!bootOrderingAuditOk) {
+  failures.push('E4 canonical audit must prove one preloaded Tiny resource, one post-paint runtime script and runtime availability before initialise');
 }
 if (
   !e4Ui?.docxBusyLifecycle ||
@@ -633,6 +777,7 @@ const output = {
     cumulative: 'A separate fresh production load containing every cold URL, first source focus, the complete E2 document-tools inventory, custom emoji search/insert, actual HTML and DOCX imports, HTML export, clipboard actions, product sample, draft autosave and new document; the only cumulative JavaScript additions are source-rich, safe replacement, Mammoth and the isolated regex Worker. E4 responsive/theme/accessibility checks run in a separate browser without Network enabled and cannot contaminate this byte inventory.',
     requestCount: 'Cold load through editor-ready only, including the HTML document.',
     initialJs: 'Supplementary, non-budget detail: cold-load JavaScript outside /tinymce; lazy source-editor tools are excluded.',
+    loadingPerformance: 'Diagnostic navigation timeline in milliseconds: navigation start to the first skeleton paint, first skeleton paint to the fixed phe:bootstrap:editor-ready product mark, and their exact total. The product mark is reconciled to the sampled nonzero DOM-ready state within 100 ms. These timing values are not byte-budget inputs.',
   },
   metrics,
   coldEditorReadyTransfer: {
@@ -646,6 +791,8 @@ const output = {
   supplementary: {
     initialJsWithoutTinyMCE: initialJsTransfer,
     largeDocumentCleanDurationMs: cumulativeReport.uiActionInventory?.largeDocumentCleanDurationMs ?? null,
+    loadingPerformanceMetrics: e4Ui?.loadingPerformanceMetrics ?? null,
+    tinyBootOrdering: e4Ui?.bootOrdering ?? null,
     e4UiValidation: e4Ui,
   },
   activeLightTinyStaticFootprint,

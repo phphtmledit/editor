@@ -13,6 +13,13 @@ import { createLayoutController, type LayoutController } from './ui/layout';
 import { loadDraft } from './storage/draft';
 import { appConfig } from './config';
 import { applyStaticUi, STATIC_UI } from './ui/strings';
+import {
+  handleBootstrapFailure,
+  runEditorBootstrap,
+  showFatalError,
+  waitForPaintHandoff,
+} from './bootstrap';
+import { loadTinyMce } from './tinymce-loader';
 import './styles/app.css';
 
 void appConfig;
@@ -44,13 +51,14 @@ const showNormalizationNotice = (): void => {
   }, 8000);
 };
 
-const initialise = async (): Promise<void> => {
+const initialise = async (signal?: AbortSignal): Promise<void> => {
   const draftLoadResult = loadDraft();
   const visualTextarea = element<HTMLTextAreaElement>('visual-editor');
   const restoredHtml = draftLoadResult.status === 'loaded' ? draftLoadResult.draft.html : null;
   if (restoredHtml !== null) visualTextarea.value = restoredHtml;
 
   visual = await createVisualEditor(element('visual-panel'));
+  if (signal?.aborted) return;
   const normalizedInitialHtml = visual.getHtml();
   const sourceInitialHtml = restoredHtml ?? normalizedInitialHtml;
   source = createSourceEditor(
@@ -93,34 +101,27 @@ const initialise = async (): Promise<void> => {
 };
 
 const destroy = (): void => {
-  ioTools?.destroy();
-  documentTools?.destroy();
-  layout?.destroy();
-  sync?.destroy();
-  source?.destroy();
-  visual?.destroy();
+  const controllers = [ioTools, documentTools, layout, sync, source, visual] as const;
+  ioTools = null;
+  documentTools = null;
+  layout = null;
+  sync = null;
+  source = null;
+  visual = null;
+  controllers.forEach((controller) => {
+    try {
+      controller?.destroy();
+    } catch (error: unknown) {
+      console.error('Editor controller teardown failed', error);
+    }
+  });
 };
 
-const waitForInitialPaint = (): Promise<void> => new Promise((resolve) => {
-  requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
-});
-
-const showFatalError = (error: unknown): void => {
-  console.error('Editor initialisation failed', error);
-  const shell = document.getElementById('app');
-  const loading = document.getElementById('loading-skeleton');
-  const errorElement = document.getElementById('app-error');
-  const statusElement = document.getElementById('app-status');
-  if (loading instanceof HTMLElement) loading.hidden = true;
-  if (errorElement instanceof HTMLElement) {
-    errorElement.classList.remove('bootstrap-fallback');
-    errorElement.hidden = false;
-  }
-  if (shell instanceof HTMLElement) {
-    shell.classList.add('has-fatal-error');
-    shell.setAttribute('aria-busy', 'false');
-  }
-  if (statusElement instanceof HTMLElement) statusElement.textContent = STATIC_UI.appStatusFailed;
+const handleFailure = (error: unknown): void => {
+  handleBootstrapFailure(error, {
+    destroy,
+    showFatal: (cause) => showFatalError(cause, STATIC_UI.appStatusFailed),
+  });
 };
 
 try {
@@ -133,6 +134,7 @@ try {
   wrapSource = element<HTMLInputElement>('wrap-source');
   errorPanel.hidden = true;
   errorPanel.classList.remove('bootstrap-fallback');
+  const bootstrapAbortController = new AbortController();
 
   window.addEventListener('pagehide', (event: PageTransitionEvent) => {
     if (event.persisted) {
@@ -140,10 +142,15 @@ try {
       return;
     }
     ioTools?.saveDraftFinal();
+    bootstrapAbortController.abort();
     destroy();
   });
 
-  void waitForInitialPaint().then(initialise).catch(showFatalError);
+  void runEditorBootstrap({
+    waitForPaintHandoff,
+    loadTinyMce,
+    initialise,
+  }, bootstrapAbortController.signal).catch(handleFailure);
 } catch (error: unknown) {
-  showFatalError(error);
+  handleFailure(error);
 }
