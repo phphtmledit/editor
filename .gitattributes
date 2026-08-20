@@ -1,4 +1,13 @@
-reports/lighthouse-host-baseline-e5-run-*.json text eol=lf
+reports/lighthouse-host-baseline-e5-run-1.json text eol=lf
+reports/lighthouse-host-baseline-e5-run-2.json text eol=lf
+reports/lighthouse-host-baseline-e5-run-3.json text eol=lf
+reports/lighthouse-host-baseline-e5-run-4.json text eol=lf
+reports/lighthouse-host-baseline-e5-run-5.json text eol=lf
 reports/network-e5-*.har text eol=lf
 reports/network-e5-*.json text eol=lf
 reports/size-e5-result.json text eol=lf
+reports/performance-e5-desktop-gate.json text eol=lf
+reports/performance-e5-slow4g-comparison.json text eol=lf
+reports/delivery-e5-production-wire.json text eol=lf
+reports/performance-e5-ready-gap.json text eol=lf
+reports/performance-e5-ready-gap-invalid-attempt.json text eol=lf

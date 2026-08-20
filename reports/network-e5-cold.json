@@ -1,0 +1,762 @@
+{
+  "stage": "E5",
+  "scenario": "cold",
+  "manifestSha256": "52c60de747a4849f5a3030d0446d4d6432e5f51a544de1f14e4392c8d5dc3ed4",
+  "pageUrl": "http://127.0.0.1:4173/",
+  "capturedAt": "2026-08-20T21:16:12.858Z",
+  "initialHtmlContract": {
+    "source": "HTTP preflight response from the same preview origin before fresh-profile CDP capture",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "byteLength": 9545,
+    "sha256": "4d1b4b61ec24ff1af892e9588451efa6fd4cd37d89c2a8cdddefaf534dba1fba",
+    "distIndexSha256": "4d1b4b61ec24ff1af892e9588451efa6fd4cd37d89c2a8cdddefaf534dba1fba",
+    "matchesCurrentDist": true,
+    "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+    "exactTinyPreloadCount": 1,
+    "initialExecutableTinyScriptCount": 0,
+    "tinyPreloads": [
+      {
+        "tagName": "link",
+        "attributes": {
+          "rel": "preload",
+          "href": "/tinymce/tinymce.min.js?v=8.8.2",
+          "as": "script"
+        }
+      }
+    ],
+    "tinyScripts": []
+  },
+  "bootOrdering": {
+    "source": "document-start DOM/load instrumentation plus Resource Timing in the canonical CDP page",
+    "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+    "dynamicTinyScriptCount": 1,
+    "tinyScriptLoadEventCount": 1,
+    "tinyInitCallCount": 1,
+    "tinyResourceEntryCount": 1,
+    "dynamicTinyScripts": [
+      {
+        "source": "mutation",
+        "insertedAt": 462.3,
+        "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+        "type": "",
+        "async": true,
+        "defer": false,
+        "connected": true
+      }
+    ],
+    "tinyScriptLoadEvents": [
+      {
+        "at": 476.3,
+        "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+        "runtimeAvailable": true
+      }
+    ],
+    "tinyInitCalls": [
+      {
+        "at": 477.1,
+        "runtimeAvailable": true,
+        "source": "instrumented tinymce.init"
+      }
+    ],
+    "resourceEntries": [
+      {
+        "name": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+        "initiatorType": "link",
+        "startTime": 21.8,
+        "responseEnd": 113,
+        "transferSize": 486791,
+        "encodedBodySize": 486491,
+        "decodedBodySize": 486491
+      }
+    ],
+    "expectedBootMarkNames": [
+      "phe:bootstrap:paint-handoff-complete",
+      "phe:bootstrap:tinymce-script-inserted",
+      "phe:bootstrap:tinymce-runtime-loaded",
+      "phe:bootstrap:initialise-started",
+      "phe:bootstrap:editor-ready"
+    ],
+    "performanceMarks": [
+      {
+        "name": "phe:bootstrap:paint-handoff-complete",
+        "startTime": 461.8,
+        "duration": 0,
+        "entryOrder": 0
+      },
+      {
+        "name": "phe:bootstrap:tinymce-script-inserted",
+        "startTime": 462.3,
+        "duration": 0,
+        "entryOrder": 1
+      },
+      {
+        "name": "phe:bootstrap:tinymce-runtime-loaded",
+        "startTime": 476.5,
+        "duration": 0,
+        "entryOrder": 2
+      },
+      {
+        "name": "phe:bootstrap:initialise-started",
+        "startTime": 476.5,
+        "duration": 0,
+        "entryOrder": 3
+      },
+      {
+        "name": "phe:bootstrap:editor-ready",
+        "startTime": 811.2,
+        "duration": 0,
+        "entryOrder": 4
+      }
+    ],
+    "performanceMarkSequenceExact": true,
+    "editorReadyMarkStartTime": 811.2,
+    "sampledDomEditorReadyAt": 808.5,
+    "editorReadyMarkDomDeltaMs": 2.7,
+    "editorReadyMarkReconcilesWithDom": true,
+    "loadingPerformanceMetrics": {
+      "navigationToFirstSkeletonPaintMs": 440,
+      "skeletonPaintToEditorReadyMs": 371.2,
+      "navigationToEditorReadyMs": 811.2
+    },
+    "firstPaintStartTime": 440,
+    "firstContentfulPaintStartTime": 440,
+    "editorReadyAt": 808.5,
+    "tinyRuntimeAvailableAt": 476.4,
+    "tinyRuntimeAvailableAtLoad": true,
+    "tinyInitWrapped": true,
+    "tinyInitWrapError": null,
+    "ordering": {
+      "preloadFetchStartedBeforeDynamicInsertion": true,
+      "skeletonPaintedBeforeDynamicInsertion": true,
+      "contentfulPaintBeforeDynamicInsertion": true,
+      "dynamicInsertionBeforeLoad": true,
+      "runtimeAvailableAtLoad": true,
+      "loadBeforeInitialise": true,
+      "runtimeAvailableAtInitialise": true,
+      "initialiseBeforeEditorReady": true,
+      "performanceMarkSequenceExact": true,
+      "editorReadyMarkReconcilesWithDom": true
+    }
+  },
+  "loadingPerformanceMetrics": {
+    "navigationToFirstSkeletonPaintMs": 440,
+    "skeletonPaintToEditorReadyMs": 371.2,
+    "navigationToEditorReadyMs": 811.2
+  },
+  "uiActionInventory": {
+    "cleanupRuleButtonsExpected": 10,
+    "cleanupRuleButtonsApplied": 0,
+    "largeDocumentClean100k": false,
+    "largeDocumentCleanDurationMs": null,
+    "largeDocumentCleanWithin500ms": false,
+    "cleanSelected": false,
+    "format": false,
+    "minify": false,
+    "replacementRuleAdded": false,
+    "individualLiteralRuleApplied": false,
+    "pathologicalRegexTimeoutVisible": false,
+    "pathologicalRegexDocumentUnchanged": false,
+    "applyAllReplacements": false,
+    "replacementRuleRemoved": false,
+    "commonMassUndo": false,
+    "emojiDialogOpened": false,
+    "emojiSearchFiltered": false,
+    "emojiInserted": false,
+    "htmlImported": false,
+    "docxDroppedIntoTinyMce": false,
+    "docxImported": false,
+    "mammothRequestedByDocxImport": false,
+    "htmlExportDownloaded": false,
+    "htmlCopied": false,
+    "textCopied": false,
+    "sampleLoaded": false,
+    "draftAutosaved": false,
+    "newDocumentCreated": false,
+    "loadingSkeletonObserved": true,
+    "loadingPaintProof": {
+      "visibleFrom": 29.9,
+      "firstHiddenAt": 808.5,
+      "editorReadyAt": 808.5,
+      "visibleState": {
+        "source": "mutation",
+        "at": 29.9,
+        "readyState": "loading",
+        "visibilityState": "visible",
+        "appBusy": "true",
+        "skeletonPresent": true,
+        "skeletonHidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "geometry": {
+          "x": 8,
+          "y": 468.5,
+          "width": 1424,
+          "height": 18
+        },
+        "editors": {
+          "visual": null,
+          "source": null
+        }
+      },
+      "firstNonzeroGeometry": {
+        "source": "mutation",
+        "at": 29.9,
+        "readyState": "loading",
+        "visibilityState": "visible",
+        "appBusy": "true",
+        "skeletonPresent": true,
+        "skeletonHidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "geometry": {
+          "x": 8,
+          "y": 468.5,
+          "width": 1424,
+          "height": 18
+        },
+        "editors": {
+          "visual": null,
+          "source": null
+        }
+      },
+      "hiddenState": {
+        "source": "mutation",
+        "at": 808.5,
+        "readyState": "complete",
+        "visibilityState": "visible",
+        "appBusy": "false",
+        "skeletonPresent": true,
+        "skeletonHidden": true,
+        "display": "none",
+        "visibility": "visible",
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "editors": {
+          "visual": {
+            "width": 677.5,
+            "height": 520
+          },
+          "source": {
+            "width": 665.5,
+            "height": 517
+          }
+        }
+      },
+      "editorReadyState": {
+        "source": "mutation",
+        "at": 808.5,
+        "readyState": "complete",
+        "visibilityState": "visible",
+        "appBusy": "false",
+        "skeletonPresent": true,
+        "skeletonHidden": true,
+        "display": "none",
+        "visibility": "visible",
+        "geometry": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "editors": {
+          "visual": {
+            "width": 677.5,
+            "height": 520
+          },
+          "source": {
+            "width": 665.5,
+            "height": 517
+          }
+        }
+      },
+      "firstPaintStartTime": 440,
+      "firstContentfulPaintStartTime": 440,
+      "paintEntries": [
+        {
+          "name": "first-paint",
+          "startTime": 440,
+          "duration": 0
+        },
+        {
+          "name": "first-contentful-paint",
+          "startTime": 440,
+          "duration": 0
+        }
+      ],
+      "paintObserverError": null,
+      "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+      "dynamicTinyScripts": [
+        {
+          "source": "mutation",
+          "insertedAt": 462.3,
+          "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "type": "",
+          "async": true,
+          "defer": false,
+          "connected": true
+        }
+      ],
+      "tinyScriptLoadEvents": [
+        {
+          "at": 476.3,
+          "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "runtimeAvailable": true
+        }
+      ],
+      "tinyRuntimeAvailableAt": 476.4,
+      "tinyRuntimeAvailableAtLoad": true,
+      "tinyInitWrapped": true,
+      "tinyInitWrapError": null,
+      "tinyInitCalls": [
+        {
+          "at": 477.1,
+          "runtimeAvailable": true,
+          "source": "instrumented tinymce.init"
+        }
+      ],
+      "samples": [
+        {
+          "source": "document-start",
+          "at": 25.2,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": null,
+          "skeletonPresent": false,
+          "skeletonHidden": null,
+          "display": null,
+          "visibility": null,
+          "geometry": null,
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        {
+          "source": "mutation",
+          "at": 29.9,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 8,
+            "y": 468.5,
+            "width": 1424,
+            "height": 18
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        {
+          "source": "readystatechange",
+          "at": 109.3,
+          "readyState": "interactive",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        {
+          "source": "readystatechange",
+          "at": 185,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        {
+          "source": "paint:first-paint",
+          "at": 461.6,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        {
+          "source": "paint:first-contentful-paint",
+          "at": 461.6,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        {
+          "source": "mutation",
+          "at": 663.8,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          },
+          "editors": {
+            "visual": {
+              "width": 677.5,
+              "height": 520
+            },
+            "source": null
+          }
+        },
+        {
+          "source": "mutation",
+          "at": 808.5,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "editors": {
+            "visual": {
+              "width": 677.5,
+              "height": 520
+            },
+            "source": {
+              "width": 665.5,
+              "height": 517
+            }
+          }
+        }
+      ],
+      "visibleDurationMs": 778.6,
+      "firstPaintOffsetFromVisibleMs": 410.1,
+      "hiddenAfterFirstPaintMs": 368.5,
+      "editorReadyMarkStartTime": 811.2,
+      "editorReadyMarkDomDeltaMs": 2.7,
+      "performanceMetrics": {
+        "navigationToFirstSkeletonPaintMs": 440,
+        "skeletonPaintToEditorReadyMs": 371.2,
+        "navigationToEditorReadyMs": 811.2
+      }
+    },
+    "loadingPerformanceMetrics": {
+      "navigationToFirstSkeletonPaintMs": 440,
+      "skeletonPaintToEditorReadyMs": 371.2,
+      "navigationToEditorReadyMs": 811.2
+    },
+    "bootOrdering": {
+      "source": "document-start DOM/load instrumentation plus Resource Timing in the canonical CDP page",
+      "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+      "dynamicTinyScriptCount": 1,
+      "tinyScriptLoadEventCount": 1,
+      "tinyInitCallCount": 1,
+      "tinyResourceEntryCount": 1,
+      "dynamicTinyScripts": [
+        {
+          "source": "mutation",
+          "insertedAt": 462.3,
+          "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "type": "",
+          "async": true,
+          "defer": false,
+          "connected": true
+        }
+      ],
+      "tinyScriptLoadEvents": [
+        {
+          "at": 476.3,
+          "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "runtimeAvailable": true
+        }
+      ],
+      "tinyInitCalls": [
+        {
+          "at": 477.1,
+          "runtimeAvailable": true,
+          "source": "instrumented tinymce.init"
+        }
+      ],
+      "resourceEntries": [
+        {
+          "name": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "initiatorType": "link",
+          "startTime": 21.8,
+          "responseEnd": 113,
+          "transferSize": 486791,
+          "encodedBodySize": 486491,
+          "decodedBodySize": 486491
+        }
+      ],
+      "expectedBootMarkNames": [
+        "phe:bootstrap:paint-handoff-complete",
+        "phe:bootstrap:tinymce-script-inserted",
+        "phe:bootstrap:tinymce-runtime-loaded",
+        "phe:bootstrap:initialise-started",
+        "phe:bootstrap:editor-ready"
+      ],
+      "performanceMarks": [
+        {
+          "name": "phe:bootstrap:paint-handoff-complete",
+          "startTime": 461.8,
+          "duration": 0,
+          "entryOrder": 0
+        },
+        {
+          "name": "phe:bootstrap:tinymce-script-inserted",
+          "startTime": 462.3,
+          "duration": 0,
+          "entryOrder": 1
+        },
+        {
+          "name": "phe:bootstrap:tinymce-runtime-loaded",
+          "startTime": 476.5,
+          "duration": 0,
+          "entryOrder": 2
+        },
+        {
+          "name": "phe:bootstrap:initialise-started",
+          "startTime": 476.5,
+          "duration": 0,
+          "entryOrder": 3
+        },
+        {
+          "name": "phe:bootstrap:editor-ready",
+          "startTime": 811.2,
+          "duration": 0,
+          "entryOrder": 4
+        }
+      ],
+      "performanceMarkSequenceExact": true,
+      "editorReadyMarkStartTime": 811.2,
+      "sampledDomEditorReadyAt": 808.5,
+      "editorReadyMarkDomDeltaMs": 2.7,
+      "editorReadyMarkReconcilesWithDom": true,
+      "loadingPerformanceMetrics": {
+        "navigationToFirstSkeletonPaintMs": 440,
+        "skeletonPaintToEditorReadyMs": 371.2,
+        "navigationToEditorReadyMs": 811.2
+      },
+      "firstPaintStartTime": 440,
+      "firstContentfulPaintStartTime": 440,
+      "editorReadyAt": 808.5,
+      "tinyRuntimeAvailableAt": 476.4,
+      "tinyRuntimeAvailableAtLoad": true,
+      "tinyInitWrapped": true,
+      "tinyInitWrapError": null,
+      "ordering": {
+        "preloadFetchStartedBeforeDynamicInsertion": true,
+        "skeletonPaintedBeforeDynamicInsertion": true,
+        "contentfulPaintBeforeDynamicInsertion": true,
+        "dynamicInsertionBeforeLoad": true,
+        "runtimeAvailableAtLoad": true,
+        "loadBeforeInitialise": true,
+        "runtimeAvailableAtInitialise": true,
+        "initialiseBeforeEditorReady": true,
+        "performanceMarkSequenceExact": true,
+        "editorReadyMarkReconcilesWithDom": true
+      }
+    },
+    "editorReadyAfterSkeleton": true,
+    "docxBusyStateVisible": false,
+    "docxBusyStateRestored": false
+  },
+  "regexActionRequestPaths": [],
+  "docxImportRequestPaths": [],
+  "docxFixtureSha256": "c96400f26ebef8f76b7a859909583f8ea3f9d6760a60512a54b7d800eaf8bfcc",
+  "attachedWorkerTargets": [],
+  "workerNetworkLifecycle": [],
+  "workerSessionSetupErrors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4173/",
+      "status": 200,
+      "resourceType": "document",
+      "initiatorType": "other",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-MGNfDvKy.js",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/index-DG8Rux8G.css",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "parser",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/themes/silver/theme.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/models/dom/model.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/link/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/image/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/table/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "page"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "editor-frame"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/skins/content/default/content.min.css?v=8.8.2",
+      "status": 200,
+      "resourceType": "stylesheet",
+      "initiatorType": "script",
+      "context": "editor-frame"
+    },
+    {
+      "url": "http://127.0.0.1:4173/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
+      "status": 200,
+      "resourceType": "script",
+      "initiatorType": "script",
+      "context": "page"
+    }
+  ]
+}

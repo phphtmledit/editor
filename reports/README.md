@@ -163,18 +163,69 @@ records the same preload, paint, dynamic-loader, runtime, initialization, and
 ready ordering. Its `budgetInput` and `canonicalHar` fields are both false.
 
 These E4 captures preserve the accepted interface baseline and are no longer
-inputs to the current `npm run size`. Fresh E5 captures must retain the same
-manifest, DOCX, dynamic-entry, Worker, fixture, dark-skin, action, paint, budget,
-and request-count invariants while adding the E5 legal-link assertions.
+inputs to the current `npm run size`. The E5 captures retain the same manifest,
+DOCX, dynamic-entry, Worker, fixture, dark-skin, action, paint, budget, and
+request-count invariants while adding the E5 legal-link assertions.
+
+## Current E5 evidence
+
+- `network-e5-cold.har` and `network-e5-cold.json` — fresh production load
+  through editor-ready, bound to the current production manifest and served
+  HTML.
+- `network-e5-cumulative.har` and `network-e5-cumulative.json` — separate fresh
+  load with the complete E2/E3/E4 action inventory plus the E5 About menu and
+  legal-link checks.
+- `network-e5-har-result.json` — 52 successful Network, lifecycle, lazy-entry,
+  Worker, fixture-boundary, About-popup, license-delivery, palette, contrast,
+  touch-target, and clean-console assertions.
+- `size-e5-result.json` — current-dist hashes and local gzip-9/Brotli-11 lower
+  estimates: 574,704/488,744 B cold, 719,394/606,421 B cumulative, with 18/22
+  requests.
+- `performance-e5-desktop-gate.json` — blocking three-run medians from a
+  dedicated CDP harness using the exact Lighthouse desktop transport settings,
+  not Lighthouse CLI audits: 10,240 kbit/s, 40 ms latency, no CPU slowdown,
+  928.0 ms to skeleton, 1,600.9 ms to trusted input, and 586,054 B full wire.
+- `performance-e5-slow4g-comparison.json` — published non-absolute-threshold
+  diagnostic: accepted E4 trusted-input readiness 8,529.3 ms versus E5
+  7,601.7 ms (−10.875%). E4 skeleton timing is not comparable because only one
+  of three runs proved the skeleton at FCP; E5 proves it in all three.
+- `performance-e5-ready-gap.json` — one same-navigation comparison of the
+  5,222.0 ms product editor-ready mark and 5,397.5 ms trusted input, a 175.5 ms
+  gap with no rich-source request.
+- `performance-e5-ready-gap-invalid-attempt.json` — preserved audit of the
+  unparsable first harness readback. It contributes no metric and records why
+  one replacement run was necessary.
+- `delivery-e5-production-wire.json` — three deployed runs and 54/54 Brotli
+  response observations; the full-wire median is 586,042 B against 650,000 B.
+- `e5-palette-visual.json`, `e5-about-menu.png`, and `e5-link-dialog.png` — exact
+  accent/soft-accent, native-control, Oxide, contrast, and reviewed visual
+  evidence.
+
+The local Brotli-11 value and deployed full-wire value are deliberately
+different measurements. The former recompresses a manifest-bound local graph
+and is a lower estimate; the latter observes a separate deployed graph at a
+different capture time and includes hosting compression plus HTTP/2 overhead.
+Neither value may be substituted for the other.
 
 ## E5 host baseline before embedding
 
-- `lighthouse-host-baseline-e5.json` — the English three-run summary and median
+- `lighthouse-host-baseline-e5.json` — the English five-run summary and medians
   for `https://phphtmledit.com/` before any iframe was inserted.
 - `lighthouse-host-baseline-e5-run-1.json` through
-  `lighthouse-host-baseline-e5-run-3.json` — complete portable Lighthouse JSON
+  `lighthouse-host-baseline-e5-run-5.json` — complete portable Lighthouse JSON
   inputs whose SHA-256 values are pinned by the summary.
 
 The page contained zero iframes and made zero requests to
-`app.phphtmledit.com` in all three runs. This baseline is immutable: the
+`app.phphtmledit.com` in all five runs. Median FCP/LCP is 1,753.5425 ms, Speed
+Index is 1,988.316824 ms, TBT is 0 ms, and CLS is 0.0000592733; the median
+Performance score of 99 is reference-only. This baseline is immutable: the
 post-embedding comparison must be stored separately and must not overwrite it.
+
+The Cloudflare Pages custom-domain status is **Active**, SSL is enabled, and the
+public URL loads successfully. Production `main` still serves accepted E4—the
+E5 About menu is absent—so the live domain is not E5 production evidence. E5
+acceptance and merge/deployment, live E5 header verification, iframe insertion,
+the matching five-run post-embed Lighthouse series, allowed-origin
+clipboard/framing checks, and the denied `phe-preview.com` framing check remain
+pending manual E5 work. Their absence is not represented as a passed acceptance
+criterion.

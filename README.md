@@ -2,16 +2,22 @@
 
 Browser-only WYSIWYG HTML editor focused on cleaning copied and generated markup. The application uses a self-hosted TinyMCE 8 visual editor and does not send document contents to a backend or to Tiny Cloud.
 
-The canonical application URL is `https://app.phphtmledit.com/`; the public
-source repository is `https://github.com/phphtmledit/editor`.
+The deployment target `https://app.phphtmledit.com/` is live. Its Cloudflare
+Pages custom-domain status is **Active** and SSL is enabled. The public endpoint
+currently serves the accepted E4 build from production `main`—the E5 About menu
+is absent—so domain availability is not evidence of an E5 production
+deployment. The public source repository is
+`https://github.com/phphtmledit/editor`.
 
-**E5 adds embedding, browser-visible legal links, and a Cloudflare Pages
-delivery policy to the completed E4 interface.**
+**The current E5 branch adds embedding, browser-visible legal links, action
+icons, and a Cloudflare Pages delivery policy to the accepted E4 interface.**
 TinyMCE and CodeMirror 6 share one HTML fragment, while ten independently
 testable cleaning rules remove Word/Office markup, presentation attributes,
 empty structures and typographic artifacts. The verified stage evidence is
-documented in `docs/E4.md`; the accepted E0–E3 reports remain unchanged in
-`docs/E0.md`, `docs/E1.md`, `docs/E2.md`, and `docs/E3.md`.
+documented in `docs/E5.md`; the accepted E0–E4 reports remain unchanged in
+`docs/E0.md` through `docs/E4.md`. E5 still requires acceptance and deployment
+from `main`, live E5 header verification, host embedding, post-embed Lighthouse,
+and framing checks listed in its report.
 
 On desktop the visual and source panels share a keyboard- and pointer-adjustable
 splitter. Below 900 px they become accessible tabs. TinyMCE-to-source updates
@@ -77,6 +83,7 @@ npm run legal
 npm run icons
 npm run hosting
 npm run size
+npm run performance
 npm audit --audit-level=high
 ```
 
@@ -88,22 +95,26 @@ Mammoth DOCX/golden pair exactly once. Every other test fixture remains absent
 from both builds.
 
 For Cloudflare Pages, use `npm run build` as the build command and `dist` as the
-output directory. Associate `app.phphtmledit.com` through the Pages custom
-domains settings; adding DNS alone does not attach a domain to a Pages project.
+output directory. The Pages custom-domain association for
+`app.phphtmledit.com` is **Active** and SSL is enabled. It currently serves the
+accepted E4 build from production `main`; E5 acceptance, merge/deployment, and
+verification of the live E5 headers remain pending.
 
-`npm run size` consumes the sanitized E4 production-preview captures in
-`reports/network-e4-cold.json` and `reports/network-e4-cumulative.json`, checks
+`npm run size` consumes the sanitized E5 production captures in
+`reports/network-e5-cold.json` and `reports/network-e5-cumulative.json`, checks
 their manifest fingerprint against the current `dist`, and applies the four
-byte budgets plus the request-count limit. See `docs/E4.md` for the current
-measurements.
+local byte budgets plus the request-count limit. `npm run performance` checks
+the blocking desktop startup medians, the non-blocking Slow 4G regression
+diagnostic, and the deployed 650,000-byte full-wire ceiling. See `docs/E5.md`
+for the current measurements.
 
-The accepted E0–E3 stage-specific Network, size, and report evidence is
+The accepted E0–E4 stage-specific Network, size, and report evidence is
 preserved unchanged. `reports/tinymce-assets.json` is deliberately a rolling,
 reproducible inventory of the current vendored distribution; the E4 reduction
 report pins the accepted E3 inventory hash used as its baseline. Current
 independent DevTools Network-domain evidence is in
-`reports/network-e4-cold.har` and `reports/network-e4-cumulative.har`;
-`reports/network-e4-har-result.json` records its assertions.
+`reports/network-e5-cold.har` and `reports/network-e5-cumulative.har`;
+`reports/network-e5-har-result.json` records its 52 successful assertions.
 
 `npm run vendor:tinymce` deterministically generates the 300-entry common emoji
 database from TinyMCE 8.8.2/emojilib data. The stock database is not shipped.

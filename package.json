@@ -28,6 +28,7 @@
     "legal": "node scripts/check-legal-comments.mjs && node scripts/check-notices-delivery.mjs",
     "icons": "node scripts/check-icon-visual.mjs",
     "size": "node scripts/check-size.mjs",
+    "performance": "node scripts/check-performance.mjs",
     "licenses": "node scripts/check-licenses.mjs"
   },
   "dependencies": {

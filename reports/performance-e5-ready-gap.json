@@ -1,0 +1,514 @@
+{
+  "schemaVersion": 1,
+  "reportType": "one-run non-canonical E5 readiness-gap diagnostic",
+  "capturedAt": "2026-08-20T20:48:30.292Z",
+  "runCount": 1,
+  "targetUrl": "https://b200e6d7.phphtmledit-editor.pages.dev/",
+  "targetRevision": "dc818598d16003aed8fe7b429303077a508c22c9",
+  "browser": "Chrome/151.0.7922.169",
+  "protocolVersion": "1.3",
+  "profile": {
+    "name": "Lighthouse Slow 4G, DevTools exact transport with CPU x4",
+    "latencyMs": 150,
+    "downloadBytesPerSecond": 200000,
+    "uploadBytesPerSecond": 93750,
+    "connectionType": "cellular4g",
+    "cpuSlowdownMultiplier": 4
+  },
+  "viewport": {
+    "width": 1440,
+    "height": 1000,
+    "deviceScaleFactor": 1,
+    "mobile": false
+  },
+  "coldLoad": {
+    "freshChromeProfile": true,
+    "cacheDisabled": true,
+    "cookiesCleared": true,
+    "serviceWorkerBypassed": true
+  },
+  "pageTimelineMs": {
+    "firstContentfulPaintAt": 992,
+    "productEditorReadyMarkAt": 5222,
+    "productMarkObserverCallbackAt": 5321.2,
+    "passiveStateDetectedAt": 5319.9,
+    "passiveSignalEmittedAt": 5320.3,
+    "armEvaluationEnteredAt": 5337.5,
+    "armStateCheckedAt": 5337.9,
+    "focusStartedAt": 5338.3,
+    "focusCompletedAt": 5339.3,
+    "inputListenerArmedAt": 5339.3,
+    "trustedInputAcceptedAt": 5397.5,
+    "acceptanceConfirmedAt": 5444.3,
+    "markToPassiveDetectionMs": 97.9,
+    "passiveDetectionToArmEvaluationMs": 17.6,
+    "armEvaluationToListenerMs": 1.8,
+    "listenerToTrustedAcceptanceMs": 58.2,
+    "productMarkToTrustedAcceptanceMs": 175.5,
+    "passiveDetectionToTrustedAcceptanceMs": 77.6
+  },
+  "cdpHarnessTimelineMsFromNavigationSend": {
+    "navigationReturnedAt": 238.978,
+    "passiveSignalReceivedAt": 5326.131,
+    "armSentAt": 5326.148,
+    "armReturnedAt": 5345.129,
+    "keyDownSentAt": 5345.134,
+    "keyDownReturnedAt": 5386.889,
+    "insertTextSentAt": 5386.889,
+    "insertTextReturnedAt": 5408.968,
+    "keyUpReturnedAt": 5434.971,
+    "confirmationSentAt": 5434.971,
+    "confirmationReturnedAt": 5450.171
+  },
+  "currentStateAtArm": {
+    "stateCheckedAt": 5337.9,
+    "markAt": 5222,
+    "appBusy": "false",
+    "skeletonHidden": true,
+    "skeletonVisible": false,
+    "skeletonBlocksHitTesting": false,
+    "tinyHitTestPass": true,
+    "tinyEditableAndNonzero": true,
+    "codeMirrorEditableAndNonzero": true,
+    "editorContainersNonzero": true,
+    "fatalVisible": false
+  },
+  "acceptedInput": {
+    "sentinel": "PHE_GAP_mt1zt51k",
+    "event": {
+      "isTrusted": true,
+      "inputType": "insertText",
+      "data": "PHE_GAP_mt1zt51k"
+    },
+    "currentStateAfterAcceptance": {
+      "url": "https://b200e6d7.phphtmledit-editor.pages.dev/",
+      "appBusy": "false",
+      "skeletonHidden": true,
+      "activeElementInTinyFrame": "BODY",
+      "tinyTextContainsSentinel": true
+    }
+  },
+  "productBootstrapMarks": [
+    {
+      "name": "phe:bootstrap:paint-handoff-complete",
+      "startTime": 2001.3
+    },
+    {
+      "name": "phe:bootstrap:tinymce-script-inserted",
+      "startTime": 2005.4
+    },
+    {
+      "name": "phe:bootstrap:tinymce-runtime-loaded",
+      "startTime": 2105.9
+    },
+    {
+      "name": "phe:bootstrap:initialise-started",
+      "startTime": 2106
+    },
+    {
+      "name": "phe:bootstrap:editor-ready",
+      "startTime": 5222
+    }
+  ],
+  "observationDetails": {
+    "installedAt": 263.7,
+    "marksSeenByObserver": [
+      {
+        "name": "phe:bootstrap:paint-handoff-complete",
+        "startTime": 2001.3,
+        "callbackAt": 2010.7
+      },
+      {
+        "name": "phe:bootstrap:tinymce-script-inserted",
+        "startTime": 2005.4,
+        "callbackAt": 2010.7
+      },
+      {
+        "name": "phe:bootstrap:tinymce-runtime-loaded",
+        "startTime": 2105.9,
+        "callbackAt": 2163.9
+      },
+      {
+        "name": "phe:bootstrap:initialise-started",
+        "startTime": 2106,
+        "callbackAt": 2163.9
+      },
+      {
+        "name": "phe:bootstrap:editor-ready",
+        "startTime": 5222,
+        "callbackAt": 5321.2
+      }
+    ],
+    "relevantMutations": [
+      {
+        "at": 1976.1,
+        "id": "app-error",
+        "attributeName": "hidden"
+      },
+      {
+        "at": 1976.1,
+        "id": "app-error",
+        "attributeName": "class"
+      },
+      {
+        "at": 5221.8,
+        "id": "loading-skeleton",
+        "attributeName": "hidden"
+      },
+      {
+        "at": 5221.8,
+        "id": "app",
+        "attributeName": "aria-busy"
+      }
+    ],
+    "stateChecks": [
+      {
+        "checkedAt": 266.8,
+        "reason": "installed",
+        "markAt": null,
+        "appBusy": null,
+        "skeletonHidden": null,
+        "skeletonVisible": false,
+        "skeletonBlocksHitTesting": false,
+        "tinyHitTestPass": true,
+        "tinyEditableAndNonzero": false,
+        "codeMirrorEditableAndNonzero": false,
+        "editorContainersNonzero": false,
+        "fatalVisible": false,
+        "tinyFrameGeometry": null,
+        "tinyBodyGeometry": null,
+        "codeMirrorGeometry": null,
+        "tinyContainerGeometry": null,
+        "sourceContainerGeometry": null
+      },
+      {
+        "checkedAt": 456.9,
+        "reason": "shell-discovery",
+        "markAt": null,
+        "appBusy": "true",
+        "skeletonHidden": false,
+        "skeletonVisible": true,
+        "skeletonBlocksHitTesting": true,
+        "tinyHitTestPass": true,
+        "tinyEditableAndNonzero": false,
+        "codeMirrorEditableAndNonzero": false,
+        "editorContainersNonzero": false,
+        "fatalVisible": false,
+        "tinyFrameGeometry": null,
+        "tinyBodyGeometry": null,
+        "codeMirrorGeometry": null,
+        "tinyContainerGeometry": null,
+        "sourceContainerGeometry": null
+      },
+      {
+        "checkedAt": 4110.6,
+        "reason": "editor-dom-mutation",
+        "markAt": null,
+        "appBusy": "true",
+        "skeletonHidden": false,
+        "skeletonVisible": true,
+        "skeletonBlocksHitTesting": true,
+        "tinyHitTestPass": false,
+        "tinyEditableAndNonzero": false,
+        "codeMirrorEditableAndNonzero": false,
+        "editorContainersNonzero": false,
+        "fatalVisible": false,
+        "tinyFrameGeometry": {
+          "x": 35,
+          "y": 209.484,
+          "width": 300,
+          "height": 150
+        },
+        "tinyBodyGeometry": {
+          "x": 8,
+          "y": 8,
+          "width": 284,
+          "height": 134
+        },
+        "codeMirrorGeometry": null,
+        "tinyContainerGeometry": {
+          "x": 35,
+          "y": 209.484,
+          "width": 677.5,
+          "height": 520
+        },
+        "sourceContainerGeometry": null
+      },
+      {
+        "checkedAt": 4232.2,
+        "reason": "editor-dom-mutation",
+        "markAt": null,
+        "appBusy": "true",
+        "skeletonHidden": false,
+        "skeletonVisible": true,
+        "skeletonBlocksHitTesting": true,
+        "tinyHitTestPass": false,
+        "tinyEditableAndNonzero": true,
+        "codeMirrorEditableAndNonzero": false,
+        "editorContainersNonzero": false,
+        "fatalVisible": false,
+        "tinyFrameGeometry": {
+          "x": 35,
+          "y": 209.484,
+          "width": 300,
+          "height": 150
+        },
+        "tinyBodyGeometry": {
+          "x": 8,
+          "y": 8,
+          "width": 284,
+          "height": 18
+        },
+        "codeMirrorGeometry": null,
+        "tinyContainerGeometry": {
+          "x": 35,
+          "y": 209.484,
+          "width": 677.5,
+          "height": 520
+        },
+        "sourceContainerGeometry": null
+      },
+      {
+        "checkedAt": 5319.9,
+        "reason": "editor-dom-mutation",
+        "markAt": 5222,
+        "appBusy": "false",
+        "skeletonHidden": true,
+        "skeletonVisible": false,
+        "skeletonBlocksHitTesting": false,
+        "tinyHitTestPass": true,
+        "tinyEditableAndNonzero": true,
+        "codeMirrorEditableAndNonzero": true,
+        "editorContainersNonzero": true,
+        "fatalVisible": false,
+        "tinyFrameGeometry": {
+          "x": 35,
+          "y": 297.484,
+          "width": 677.5,
+          "height": 407
+        },
+        "tinyBodyGeometry": {
+          "x": 16,
+          "y": 16,
+          "width": 646,
+          "height": 22.391
+        },
+        "codeMirrorGeometry": {
+          "x": 745.5,
+          "y": 212.484,
+          "width": 644.5,
+          "height": 517
+        },
+        "tinyContainerGeometry": {
+          "x": 35,
+          "y": 209.484,
+          "width": 677.5,
+          "height": 520
+        },
+        "sourceContainerGeometry": {
+          "x": 724.5,
+          "y": 212.484,
+          "width": 665.5,
+          "height": 517
+        }
+      }
+    ],
+    "passiveState": {
+      "checkedAt": 5319.9,
+      "reason": "editor-dom-mutation",
+      "markAt": 5222,
+      "appBusy": "false",
+      "skeletonHidden": true,
+      "skeletonVisible": false,
+      "skeletonBlocksHitTesting": false,
+      "tinyHitTestPass": true,
+      "tinyEditableAndNonzero": true,
+      "codeMirrorEditableAndNonzero": true,
+      "editorContainersNonzero": true,
+      "fatalVisible": false,
+      "tinyFrameGeometry": {
+        "x": 35,
+        "y": 297.484,
+        "width": 677.5,
+        "height": 407
+      },
+      "tinyBodyGeometry": {
+        "x": 16,
+        "y": 16,
+        "width": 646,
+        "height": 22.391
+      },
+      "codeMirrorGeometry": {
+        "x": 745.5,
+        "y": 212.484,
+        "width": 644.5,
+        "height": 517
+      },
+      "tinyContainerGeometry": {
+        "x": 35,
+        "y": 209.484,
+        "width": 677.5,
+        "height": 520
+      },
+      "sourceContainerGeometry": {
+        "x": 724.5,
+        "y": 212.484,
+        "width": 665.5,
+        "height": 517
+      }
+    },
+    "fatal": null
+  },
+  "network": {
+    "requestCountThroughAcceptance": 18,
+    "sourceRichRequestCount": 0,
+    "sourceRichRequests": [],
+    "resources": [
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/tinymce.min.js?v=8.8.2",
+        "initiatorType": "link",
+        "startTime": 249.1,
+        "responseEnd": 2023,
+        "transferSize": 169586,
+        "encodedBodySize": 169286,
+        "decodedBodySize": 486491
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/assets/index-MGNfDvKy.js",
+        "initiatorType": "script",
+        "startTime": 254.5,
+        "responseEnd": 1865.6,
+        "transferSize": 140756,
+        "encodedBodySize": 140456,
+        "decodedBodySize": 426133
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/assets/index-DG8Rux8G.css",
+        "initiatorType": "link",
+        "startTime": 254.7,
+        "responseEnd": 464,
+        "transferSize": 4040,
+        "encodedBodySize": 3740,
+        "decodedBodySize": 15268
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/themes/silver/theme.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 2147.6,
+        "responseEnd": 3477.8,
+        "transferSize": 141995,
+        "encodedBodySize": 141695,
+        "decodedBodySize": 446315
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/models/dom/model.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 2148.7,
+        "responseEnd": 2929.9,
+        "transferSize": 33869,
+        "encodedBodySize": 33569,
+        "decodedBodySize": 95936
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 2149.9,
+        "responseEnd": 2585.2,
+        "transferSize": 6600,
+        "encodedBodySize": 6300,
+        "decodedBodySize": 23785
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 2150.9,
+        "responseEnd": 2412.9,
+        "transferSize": 2405,
+        "encodedBodySize": 2105,
+        "decodedBodySize": 5001
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/plugins/link/plugin.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 2152,
+        "responseEnd": 2630.2,
+        "transferSize": 7433,
+        "encodedBodySize": 7133,
+        "decodedBodySize": 18679
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/plugins/image/plugin.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 2153,
+        "responseEnd": 2661.6,
+        "transferSize": 7223,
+        "encodedBodySize": 6923,
+        "decodedBodySize": 19063
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/plugins/table/plugin.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 2153.9,
+        "responseEnd": 2756.9,
+        "transferSize": 14560,
+        "encodedBodySize": 14260,
+        "decodedBodySize": 46473
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 2154.6,
+        "responseEnd": 2585,
+        "transferSize": 4794,
+        "encodedBodySize": 4494,
+        "decodedBodySize": 11102
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 2155.6,
+        "responseEnd": 2537.1,
+        "transferSize": 3127,
+        "encodedBodySize": 2827,
+        "decodedBodySize": 6570
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 2156.4,
+        "responseEnd": 2490.1,
+        "transferSize": 1551,
+        "encodedBodySize": 1251,
+        "decodedBodySize": 3033
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
+        "initiatorType": "link",
+        "startTime": 4053.6,
+        "responseEnd": 4349.4,
+        "transferSize": 26162,
+        "encodedBodySize": 25862,
+        "decodedBodySize": 178210
+      },
+      {
+        "name": "https://b200e6d7.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
+        "initiatorType": "script",
+        "startTime": 4470.5,
+        "responseEnd": 4670,
+        "transferSize": 7625,
+        "encodedBodySize": 7325,
+        "decodedBodySize": 38728
+      }
+    ]
+  },
+  "assertions": {
+    "sameNavigationContainsMarkPassiveAndTrustedInput": true,
+    "passiveStateStillCurrentAtArm": true,
+    "trustedTinyInputAccepted": true,
+    "codeMirrorNeverFocused": true,
+    "sourceRichNeverRequested": true,
+    "noFatalFallback": true,
+    "exactlyOneRun": true
+  },
+  "interpretationPolicy": "Only productEditorReadyMarkAt and trustedInputAcceptedAt from this same navigation may be compared. Cross-series medians and a no-focus transport run are contextual evidence, not endpoints of this gap."
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "reportType": "invalid one-run E5 readiness-gap harness attempt",
+  "capturedAt": "2026-08-20T20:46:14.326Z",
+  "validMeasurement": false,
+  "discardedResult": false,
+  "replacementAuthorised": true,
+  "runCount": 1,
+  "targetUrl": "https://b200e6d7.phphtmledit-editor.pages.dev/",
+  "targetRevision": "dc818598d16003aed8fe7b429303077a508c22c9",
+  "profile": {
+    "name": "Lighthouse Slow 4G, DevTools exact transport with CPU x4",
+    "latencyMs": 150,
+    "downloadBytesPerSecond": 200000,
+    "uploadBytesPerSecond": 93750,
+    "connectionType": "cellular4g",
+    "cpuSlowdownMultiplier": 4
+  },
+  "failurePhase": "final Runtime.evaluate readback after trusted TinyMCE input had been accepted and confirmed",
+  "error": {
+    "name": "Error",
+    "message": "SyntaxError: missing ) after argument list",
+    "stack": "Error: SyntaxError: missing ) after argument list\n    at evaluate (work/diagnose-e5-ready-gap.mjs:136:11)\n    at async work/diagnose-e5-ready-gap.mjs:567:25"
+  },
+  "cause": "A RegExp literal embedded in finalEvidenceExpression was under-escaped by the outer template literal. Runtime.evaluate received a double-slash line-comment opener and could not parse the generated expression.",
+  "evidenceLimit": "The pre-failure confirmation returned accepted=true, but page timestamps were not persisted before final readback. This attempt provides no valid readiness metric and was replaced only after the harness gained a static generated-expression parse check.",
+  "replacementOutput": "work/e5-ready-gap-one-run.json"
+}

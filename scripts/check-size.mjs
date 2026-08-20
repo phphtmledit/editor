@@ -12,6 +12,15 @@ const projectRoot = resolve(import.meta.dirname, '..');
 const distRoot = resolve(projectRoot, 'dist');
 const reportsRoot = resolve(projectRoot, 'reports');
 const expectedOrigin = 'http://127.0.0.1:4173';
+const expectedSourceUrl = 'https://github.com/phphtmledit/editor';
+const expectedNoticesHref = '/licenses.txt';
+const expectedNoticesUrl = new URL(expectedNoticesHref, expectedOrigin).href;
+const expectedAccent = 'rgb(11, 107, 203)';
+const expectedAccentSoft = 'rgb(230, 241, 251)';
+const expectedText = 'rgb(23, 32, 51)';
+const expectedTinyLinkSaveButtonSelector =
+  'button.tox-button:not(.tox-button--secondary):not(.tox-button--naked)';
+const expectedTinyLinkSaveButtonLabel = 'Save';
 const tinyCoreHref = '/tinymce/tinymce.min.js?v=8.8.2';
 const tinyCorePath = '/tinymce/tinymce.min.js';
 const tinyCoreUrl = new URL(tinyCoreHref, expectedOrigin).href;
@@ -33,6 +42,60 @@ const expectedBootOrderingKeys = Object.freeze([
   'initialiseBeforeEditorReady',
   'performanceMarkSequenceExact',
   'editorReadyMarkReconcilesWithDom',
+]);
+const expectedE5AssertionNames = Object.freeze([
+  'coldApplicationRequests',
+  'coldRequestBudget',
+  'cumulativeApplicationRequests',
+  'cumulativeContainsCold',
+  'onlyLocal',
+  'onlyGet',
+  'noCacheOrServiceWorker',
+  'legalTopLevelNavigationsOutsideEditorPayload',
+  'initialHtmlUsesTinyPreloadOnly',
+  'tinyCoreExactlyOnce',
+  'preloadRuntimeOrdering',
+  'loadingPerformanceMetricsExact',
+  'defaultIconsAbsent',
+  'customIconsOnce',
+  'customEmoticonsOnce',
+  'stockEmoticonsAbsent',
+  'darkTinyAssetsAbsent',
+  'sourceRichLazyOnlyInCumulative',
+  'safeReplaceLazyOnlyInCumulative',
+  'mammothLazyOnlyInCumulative',
+  'mammothRequestedByActualDocxImport',
+  'regexWorkerOnlyInCumulative',
+  'workerTargetOnlyInCumulative',
+  'workerSessionSetupClean',
+  'workerLifecycleCompleteWithoutDuplicate',
+  'workerTargetSessionProofExact',
+  'regexLifecycleRequestedSafeAndWorker',
+  'onlyExpectedCumulativeJavaScript',
+  'eagerHighlightBeforeSourceFocus',
+  'fullE3UiActionInventory',
+  'e5LifecycleInventory',
+  'aboutVisibleExactlyOncePerTheme',
+  'aboutItemsExactlySourceAndNotices',
+  'aboutActiveItemUsesExactAccentSoft',
+  'aboutSourceLinkExact',
+  'aboutNoticesLinkExact',
+  'aboutTemporaryAnchorsRemoved',
+  'aboutSourceNativePopupExactlyOne',
+  'aboutNoticesNativePopupExactlyOne',
+  'noticesHttp200TextPlainUtf8NoAttachment',
+  'exactE5Palette',
+  'tinyLinkDialogUsesExactAccent',
+  'contrastAtLeast4_5',
+  'nativeControlAccent',
+  'coarseTouchTargetsAtLeast44',
+  'fullE5UiAudit',
+  'fixturesAbsent',
+  'consoleClean',
+  'noApplicationFailures',
+  'decodedContentSizes',
+  'exactHarTimingSums',
+  'noSensitiveHeadersOrBodies',
 ]);
 const failures = [];
 const BYTE_BUDGETS = Object.freeze({
@@ -61,22 +124,33 @@ const REQUIRED_COLD_PATHS = [
 ];
 
 const [
-  coldReport,
-  cumulativeReport,
+  coldReportBytes,
+  cumulativeReportBytes,
+  coldHarBytes,
+  cumulativeHarBytes,
+  harResultBytes,
   manifestBytes,
   distIndexBytes,
   distAssetNames,
   distNames,
   docxFixtureBytes,
 ] = await Promise.all([
-  readFile(resolve(reportsRoot, 'network-e4-cold.json'), 'utf8').then(JSON.parse),
-  readFile(resolve(reportsRoot, 'network-e4-cumulative.json'), 'utf8').then(JSON.parse),
+  readFile(resolve(reportsRoot, 'network-e5-cold.json')),
+  readFile(resolve(reportsRoot, 'network-e5-cumulative.json')),
+  readFile(resolve(reportsRoot, 'network-e5-cold.har')),
+  readFile(resolve(reportsRoot, 'network-e5-cumulative.har')),
+  readFile(resolve(reportsRoot, 'network-e5-har-result.json')),
   readFile(resolve(distRoot, '.vite', 'manifest.json')),
   readFile(resolve(distRoot, 'index.html')),
   readdir(resolve(distRoot, 'assets')),
   readdir(distRoot, { recursive: true }),
   readFile(resolve(projectRoot, 'tests', 'fixtures', 'mammoth-fixture.docx')),
 ]);
+const coldReport = JSON.parse(coldReportBytes.toString('utf8'));
+const cumulativeReport = JSON.parse(cumulativeReportBytes.toString('utf8'));
+const coldHar = JSON.parse(coldHarBytes.toString('utf8'));
+const cumulativeHar = JSON.parse(cumulativeHarBytes.toString('utf8'));
+const harResultReport = JSON.parse(harResultBytes.toString('utf8'));
 const manifestSha256 = createHash('sha256').update(manifestBytes).digest('hex');
 const distIndexSha256 = createHash('sha256').update(distIndexBytes).digest('hex');
 const initialTagInventory = (html) => [...html.matchAll(/<(link|script)\b[^>]*>/gi)].map((match) => {
@@ -100,6 +174,45 @@ const distTinyScripts = distIndexTags.filter(({ tagName, attributes }) =>
   new URL(attributes.src, expectedOrigin).pathname === tinyCorePath
 );
 const docxFixtureSha256 = createHash('sha256').update(docxFixtureBytes).digest('hex');
+const reportArtifactBindings = {
+  coldHarSha256: createHash('sha256').update(coldHarBytes).digest('hex'),
+  coldReportSha256: createHash('sha256').update(coldReportBytes).digest('hex'),
+  cumulativeHarSha256: createHash('sha256').update(cumulativeHarBytes).digest('hex'),
+  cumulativeReportSha256: createHash('sha256').update(cumulativeReportBytes).digest('hex'),
+};
+if (
+  harResultReport?.stage !== 'E5' ||
+  typeof harResultReport.capturedAt !== 'string' ||
+  Number.isNaN(Date.parse(harResultReport.capturedAt)) ||
+  harResultReport.manifestSha256 !== manifestSha256 ||
+  harResultReport.distIndexSha256 !== distIndexSha256 ||
+  harResultReport.docxFixtureSha256 !== docxFixtureSha256 ||
+  harResultReport.expectedSourceUrl !== expectedSourceUrl ||
+  harResultReport.expectedNoticesUrl !== expectedNoticesUrl ||
+  harResultReport.journalTruncated !== false ||
+  JSON.stringify(harResultReport.artifactBindings) !== JSON.stringify(reportArtifactBindings)
+) {
+  failures.push('network-e5-har-result.json is not byte-bound to the four fresh E5 HAR/JSON artifacts and current dist/fixture hashes');
+}
+const expectedLegalNavigationBudgetScope = {
+  includedInEditorColdOrCumulativePayload: false,
+  noticesRequestedByEditorDocumentGraph: false,
+  sourceRequestedByEditorDocumentGraph: false,
+  rationale: 'Both About links create independent top-level browsing contexts. Neither destination is a resource consumed by the editor document graph, so the notices delivery check and native-tab proofs stay separate from editor cold/cumulative payload accounting.',
+};
+if (
+  JSON.stringify(harResultReport?.legalNavigationBudgetScope) !==
+    JSON.stringify(expectedLegalNavigationBudgetScope)
+) {
+  failures.push('E5 result must explicitly keep independent About-tab destinations outside editor document-graph byte accounting');
+}
+const harResultAssertionNames = Object.keys(harResultReport?.assertions ?? {}).sort();
+if (
+  JSON.stringify(harResultAssertionNames) !== JSON.stringify([...expectedE5AssertionNames].sort()) ||
+  expectedE5AssertionNames.some((name) => harResultReport.assertions?.[name] !== true)
+) {
+  failures.push('network-e5-har-result.json must contain the exact named E5 assertion set with every assertion true');
+}
 const manifest = JSON.parse(manifestBytes.toString('utf8'));
 const appEntry = manifest['index.html'];
 const sourceRichEntry = manifest['src/editor/source-rich.ts'];
@@ -138,10 +251,10 @@ if (
   !Array.isArray(appEntry?.dynamicImports) ||
   JSON.stringify([...appEntry.dynamicImports].sort()) !== JSON.stringify(expectedDynamicEntryKeys)
 ) {
-  failures.push('product entry must dynamically import only source-rich, safe replacement and Mammoth in E4');
+  failures.push('product entry must dynamically import only source-rich, safe replacement and Mammoth in E5');
 }
 if (JSON.stringify(dynamicEntryKeys) !== JSON.stringify(expectedDynamicEntryKeys)) {
-  failures.push(`dist manifest must have exactly the three E4 dynamic entries, got ${dynamicEntryKeys.join(', ')}`);
+  failures.push(`dist manifest must have exactly the three E5 dynamic entries, got ${dynamicEntryKeys.join(', ')}`);
 }
 if (regexWorkerAssetNames.length !== 1) {
   failures.push(`dist must contain exactly one regex-worker asset, got ${regexWorkerAssetNames.length}`);
@@ -227,7 +340,7 @@ const assertReportShape = (name, report, scenario) => {
   if (typeof report.capturedAt !== 'string' || Number.isNaN(Date.parse(report.capturedAt))) {
     failures.push(`${name}: capturedAt is missing or invalid`);
   }
-  if (report.stage !== 'E4') failures.push(`${name}: stage must be E4`);
+  if (report.stage !== 'E5') failures.push(`${name}: stage must be E5`);
   if (report.scenario !== scenario) failures.push(`${name}: scenario must be ${scenario}`);
   if (report.manifestSha256 !== manifestSha256) {
     failures.push(`${name}: capture manifest hash does not match current dist`);
@@ -346,6 +459,14 @@ const isDiagnosticFixturePath = (path) =>
 const coldPaths = new Set(coldReport.requests.map(pathname));
 const coldUrls = new Set(coldReport.requests.map(({ url }) => url));
 const cumulativeUrls = new Set(cumulativeReport.requests.map(({ url }) => url));
+if (
+  coldUrls.has(expectedNoticesUrl) ||
+  cumulativeUrls.has(expectedNoticesUrl) ||
+  coldUrls.has(expectedSourceUrl) ||
+  cumulativeUrls.has(expectedSourceUrl)
+) {
+  failures.push('About destinations must remain outside the editor cold/cumulative document-graph inventories');
+}
 const appPath = typeof appEntry?.file === 'string' ? `/${appEntry.file}` : null;
 const appCssPaths = Array.isArray(appEntry?.css) ? appEntry.css.map((file) => `/${file}`) : [];
 const sourceRichPath = typeof sourceRichEntry?.file === 'string' ? `/${sourceRichEntry.file}` : null;
@@ -441,11 +562,44 @@ if (
   failures.push('cumulative: the actual DOCX import did not request the lazy Mammoth chunk');
 }
 const workerLifecycle = cumulativeReport.workerNetworkLifecycle;
+const workerTarget = cumulativeReport.attachedWorkerTargets?.[0];
+const expectedWorkerUrl = regexWorkerPath ? new URL(regexWorkerPath, expectedOrigin).href : null;
+const expectedWorkerSessions = ['page', workerTarget?.sessionId].filter(Boolean).sort();
+const observedWorkerSessions = [...(workerLifecycle?.[0]?.sessions ?? [])].sort();
+const coldWorkerHarEntries = (coldHar?.log?.entries ?? []).filter((entry) =>
+  regexWorkerPath && new URL(entry.request.url).pathname === regexWorkerPath
+);
+const cumulativeWorkerHarEntries = (cumulativeHar?.log?.entries ?? []).filter((entry) =>
+  regexWorkerPath && new URL(entry.request.url).pathname === regexWorkerPath
+);
+const workerHarEntry = cumulativeWorkerHarEntries[0];
 if (
+  !Array.isArray(coldReport.attachedWorkerTargets) ||
+  coldReport.attachedWorkerTargets.length !== 0 ||
+  !Array.isArray(coldReport.workerSessionSetupErrors) ||
+  coldReport.workerSessionSetupErrors.length !== 0 ||
   !Array.isArray(coldReport.workerNetworkLifecycle) ||
   coldReport.workerNetworkLifecycle.length !== 0 ||
+  !Array.isArray(cumulativeReport.attachedWorkerTargets) ||
+  cumulativeReport.attachedWorkerTargets.length !== 1 ||
+  !Array.isArray(cumulativeReport.workerSessionSetupErrors) ||
+  cumulativeReport.workerSessionSetupErrors.length !== 0 ||
   !Array.isArray(workerLifecycle) ||
   workerLifecycle.length !== 1 ||
+  workerTarget?.type !== 'worker' ||
+  workerTarget?.url !== expectedWorkerUrl ||
+  !regexWorkerPath ||
+  new URL(workerTarget.url).pathname !== regexWorkerPath ||
+  workerLifecycle[0]?.url !== expectedWorkerUrl ||
+  workerLifecycle[0]?.requestWillBeSentEvents !== 1 ||
+  expectedWorkerSessions.length !== 2 ||
+  JSON.stringify(observedWorkerSessions) !== JSON.stringify(expectedWorkerSessions) ||
+  coldWorkerHarEntries.length !== 0 ||
+  cumulativeWorkerHarEntries.length !== 1 ||
+  workerHarEntry?.request?.url !== expectedWorkerUrl ||
+  workerHarEntry?._requestWillBeSentEvents !== 1 ||
+  JSON.stringify([...(workerHarEntry?._sessionIds ?? [])].sort()) !==
+    JSON.stringify(expectedWorkerSessions) ||
   workerLifecycle[0]?.terminalEvent !== 'Network.loadingFinished' ||
   workerLifecycle[0]?.status !== 200 ||
   workerLifecycle[0]?.failure !== null ||
@@ -456,7 +610,7 @@ if (
   workerLifecycle[0]?.bodySize !== -1 ||
   workerLifecycle[0]?.compression !== null
 ) {
-  failures.push('cumulative: regex Worker lacks one complete, decoded, non-duplicated Network lifecycle');
+  failures.push('cumulative: regex Worker must have one exact attached target/session pair and one complete, decoded, non-duplicated Network lifecycle');
 }
 const ui = cumulativeReport.uiActionInventory;
 const requiredUiFlags = [
@@ -498,24 +652,45 @@ if (
   typeof ui.largeDocumentCleanDurationMs !== 'number' ||
   ui.largeDocumentCleanDurationMs > 500
 ) {
-  failures.push('cumulative: complete E3 action inventory, E4 lifecycle proof or 100,000-character timing is missing');
+  failures.push('cumulative: complete E3 action inventory, E5 lifecycle proof or 100,000-character timing is missing');
 }
 for (const path of [...coldReport.requests, ...cumulativeReport.requests].map(pathname)) {
   if (isDiagnosticFixturePath(path)) {
-    failures.push(`E4 production capture contains a diagnostic fixture request: ${path}`);
+    failures.push(`E5 production capture contains a diagnostic fixture request: ${path}`);
   }
   if (
     path.includes('/tinymce/skins/ui/oxide-dark/') ||
     path.includes('/tinymce/skins/content/dark/')
   ) {
-    failures.push(`E4 production capture contains an excluded dark TinyMCE request: ${path}`);
+    failures.push(`E5 production capture contains an excluded dark TinyMCE request: ${path}`);
   }
 }
 if (Date.parse(cumulativeReport.capturedAt) < Date.parse(coldReport.capturedAt)) {
   failures.push('cumulative: capture predates the cold capture');
 }
+if (Date.parse(harResultReport.capturedAt) < Date.parse(cumulativeReport.capturedAt)) {
+  failures.push('network-e5-har-result.json predates the cumulative capture');
+}
 
-const e4Ui = cumulativeReport.e4UiValidation;
+const e5Ui = cumulativeReport.e5UiValidation;
+if (
+  JSON.stringify(harResultReport?.e5UiValidation) !== JSON.stringify(e5Ui) ||
+  JSON.stringify(harResultReport?.initialHtmlContract) !== JSON.stringify(coldReport.initialHtmlContract) ||
+  JSON.stringify(coldReport.initialHtmlContract) !== JSON.stringify(cumulativeReport.initialHtmlContract) ||
+  JSON.stringify(harResultReport?.noticesHttpContract) !==
+    JSON.stringify(e5Ui?.aboutMenu?.noticesHttp) ||
+  harResultReport?.cold?.scenario !== 'cold' ||
+  harResultReport?.cumulative?.scenario !== 'cumulative' ||
+  coldHar?.log?.pages?.[0]?._scenario !== 'cold' ||
+  cumulativeHar?.log?.pages?.[0]?._scenario !== 'cumulative' ||
+  harResultReport?.cold?.entries !== coldHar?.log?.entries?.length ||
+  harResultReport?.cumulative?.entries !== cumulativeHar?.log?.entries?.length ||
+  harResultReport?.cold?.applicationRequests !== coldReport.requests.length ||
+  harResultReport?.cumulative?.applicationRequests !== cumulativeReport.requests.length ||
+  JSON.stringify(cumulativeHar?.log?.pages?.[0]?._e5UiValidation) !== JSON.stringify(e5Ui)
+) {
+  failures.push('network-e5-har-result.json summary is not structurally bound to the fresh cold/cumulative E5 reports and UI/notices evidence');
+}
 const expectedThemeQueries = ['', '?theme=light', '?theme=dark', '?theme=auto', '?theme=unexpected'];
 const expectedViewports = [
   { width: 1440, expectedMode: 'desktop' },
@@ -527,9 +702,9 @@ const expectedViewports = [
   { width: 320, expectedMode: 'mobile' },
 ];
 const themeAuditOk =
-  Array.isArray(e4Ui?.themeQueries) &&
-  JSON.stringify(e4Ui.themeQueries.map(({ query }) => query)) === JSON.stringify(expectedThemeQueries) &&
-  e4Ui.themeQueries.every((state) =>
+  Array.isArray(e5Ui?.themeQueries) &&
+  JSON.stringify(e5Ui.themeQueries.map(({ query }) => query)) === JSON.stringify(expectedThemeQueries) &&
+  e5Ui.themeQueries.every((state) =>
     state.passed === true &&
     state.dataTheme === 'light' &&
     state.colorScheme === 'light' &&
@@ -537,16 +712,188 @@ const themeAuditOk =
     state.tinySkin === 'oxide' &&
     Array.isArray(state.darkReferences) &&
     state.darkReferences.length === 0 &&
-    state.aboutVisible === false
+    state.aboutVisible === true &&
+    state.aboutCount === 1 &&
+    state.accent === expectedAccent &&
+    state.accentSoft === expectedAccentSoft &&
+    state.palettePassed === true &&
+    Array.isArray(state.nativeControls) &&
+    state.nativeControls.length > 0 &&
+    state.nativeControls.every(({ accentColor }) => accentColor === expectedAccent) &&
+    Array.isArray(state.tinyAccentValues) &&
+    state.tinyAccentValues.length === 4 &&
+    state.tinyAccentValues.every(({ value, resolvedColor }) =>
+      typeof value === 'string' && value.length > 0 && resolvedColor === expectedAccent)
   );
 if (!themeAuditOk) {
-  failures.push('E4 UI audit must prove that every supported/unsupported ?theme= query resolves to the light app and oxide TinyMCE skin without dark assets or About');
+  failures.push('E5 UI audit must prove every ?theme= query resolves to the exact light palette, native/Tiny accents and one visible About menu without dark assets');
+}
+
+const expectedAboutItems = ['Source code', 'Third-party notices'];
+const expectedAboutActivations = [
+  {
+    href: expectedSourceUrl,
+    absoluteHref: expectedSourceUrl,
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    connectedAtActivation: true,
+    nativeClickReturned: true,
+  },
+  {
+    href: expectedNoticesHref,
+    absoluteHref: expectedNoticesUrl,
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    connectedAtActivation: true,
+    nativeClickReturned: true,
+  },
+];
+const sourcePopup = e5Ui?.aboutMenu?.popupTargets?.source;
+const noticesPopup = e5Ui?.aboutMenu?.popupTargets?.notices;
+const sourceFinalUrlAllowed = (() => {
+  if (typeof sourcePopup?.finalUrl !== 'string') return false;
+  if (sourcePopup.finalUrl === expectedSourceUrl) return true;
+  if (
+    sourcePopup.redirect?.from !== expectedSourceUrl ||
+    sourcePopup.redirect?.to !== sourcePopup.finalUrl
+  ) return false;
+  try {
+    const finalUrl = new URL(sourcePopup.finalUrl);
+    const expectedFinalUrl = new URL(expectedSourceUrl);
+    return finalUrl.origin === expectedFinalUrl.origin &&
+      finalUrl.pathname.replace(/\/+$/, '') === expectedFinalUrl.pathname.replace(/\/+$/, '') &&
+      finalUrl.search === '' &&
+      finalUrl.hash === '';
+  } catch {
+    return false;
+  }
+})();
+const aboutMenuAuditOk =
+  e5Ui?.aboutMenu?.passed === true &&
+  e5Ui.aboutMenu.visible === true &&
+  e5Ui.aboutMenu.itemCount === 2 &&
+  Array.isArray(e5Ui.aboutMenu.items) &&
+  JSON.stringify(e5Ui.aboutMenu.items.map(({ text }) => text)) ===
+    JSON.stringify(expectedAboutItems) &&
+  e5Ui.aboutMenu.items.every(({ role }) => role === 'menuitem') &&
+  e5Ui.aboutMenu.activeStyle?.active === true &&
+  e5Ui.aboutMenu.activeStyle?.exactSoftWithText === true &&
+  e5Ui.aboutMenu.activeStyle?.color === expectedText &&
+  e5Ui.aboutMenu.activeStyle?.backgroundColor === expectedAccentSoft &&
+  e5Ui.aboutMenu.sourceUrl === expectedSourceUrl &&
+  e5Ui.aboutMenu.noticesUrl === expectedNoticesUrl &&
+  Array.isArray(e5Ui.aboutMenu.activations) &&
+  JSON.stringify(e5Ui.aboutMenu.activations) === JSON.stringify(expectedAboutActivations) &&
+  sourcePopup?.createdPageTargetCount === 1 &&
+  typeof sourcePopup?.createdPageTargetId === 'string' &&
+  sourcePopup?.targetType === 'page' &&
+  sourcePopup?.requestedUrl === expectedSourceUrl &&
+  sourcePopup?.activationRequestedUrl === expectedSourceUrl &&
+  [expectedSourceUrl, sourcePopup?.finalUrl].includes(sourcePopup?.targetInitialUrl) &&
+  sourcePopup?.targetFinalUrl === sourcePopup?.finalUrl &&
+  sourceFinalUrlAllowed === true &&
+  e5Ui.aboutMenu.popupTargets?.sourceFinalUrlAllowed === true &&
+  sourcePopup?.targetOpenerId === null &&
+  sourcePopup?.targetOpenerFrameId === null &&
+  sourcePopup?.windowOpenerIsNull === true &&
+  sourcePopup?.documentReadyState === 'complete' &&
+  sourcePopup?.closed === true &&
+  noticesPopup?.createdPageTargetCount === 1 &&
+  typeof noticesPopup?.createdPageTargetId === 'string' &&
+  noticesPopup?.targetType === 'page' &&
+  noticesPopup?.requestedUrl === expectedNoticesUrl &&
+  noticesPopup?.activationRequestedUrl === expectedNoticesUrl &&
+  noticesPopup?.targetInitialUrl === expectedNoticesUrl &&
+  noticesPopup?.finalUrl === expectedNoticesUrl &&
+  noticesPopup?.targetFinalUrl === expectedNoticesUrl &&
+  noticesPopup?.targetOpenerId === null &&
+  noticesPopup?.targetOpenerFrameId === null &&
+  noticesPopup?.windowOpenerIsNull === true &&
+  noticesPopup?.documentReadyState === 'complete' &&
+  noticesPopup?.closed === true &&
+  e5Ui.aboutMenu.temporaryAnchorsRemaining === 0;
+if (!aboutMenuAuditOk) {
+  failures.push('E5 UI audit must prove one About menu with exactly Source code and Third-party notices, each activated through the exact safe new-tab link contract');
+}
+
+const noticesHttpAuditOk =
+  e5Ui?.aboutMenu?.noticesHttp?.status === 200 &&
+  e5Ui.aboutMenu.noticesHttp.url === expectedNoticesUrl &&
+  typeof e5Ui.aboutMenu.noticesHttp.contentType === 'string' &&
+  /^text\/plain(?:\s*;|$)/i.test(e5Ui.aboutMenu.noticesHttp.contentType) &&
+  e5Ui.aboutMenu.noticesHttp.textPlain === true &&
+  e5Ui.aboutMenu.noticesHttp.utf8 === true &&
+  e5Ui.aboutMenu.noticesHttp.noAttachment === true &&
+  !/attachment/i.test(e5Ui.aboutMenu.noticesHttp.contentDisposition ?? '');
+if (!noticesHttpAuditOk) {
+  failures.push('E5 notices URL must return HTTP 200 as UTF-8 text/plain without an attachment disposition');
+}
+const e5LegalUiAssertions = {
+  aboutVisibleExactlyOncePerTheme:
+    e5Ui?.themeQueries?.every(({ aboutVisible, aboutCount }) =>
+      aboutVisible === true && aboutCount === 1) === true,
+  aboutItemsExactlySourceAndNotices:
+    e5Ui?.aboutMenu?.itemCount === 2 &&
+    JSON.stringify(e5Ui.aboutMenu.items?.map(({ text }) => text)) === JSON.stringify(expectedAboutItems) &&
+    e5Ui.aboutMenu.items?.every(({ role }) => role === 'menuitem') === true,
+  aboutActiveItemUsesExactAccentSoft:
+    e5Ui?.aboutMenu?.activeStyle?.active === true &&
+    e5Ui.aboutMenu.activeStyle.exactSoftWithText === true &&
+    e5Ui.aboutMenu.activeStyle.color === expectedText &&
+    e5Ui.aboutMenu.activeStyle.backgroundColor === expectedAccentSoft,
+  aboutSourceLinkExact:
+    JSON.stringify(e5Ui?.aboutMenu?.activations?.[0]) === JSON.stringify(expectedAboutActivations[0]),
+  aboutNoticesLinkExact:
+    JSON.stringify(e5Ui?.aboutMenu?.activations?.[1]) === JSON.stringify(expectedAboutActivations[1]),
+  aboutTemporaryAnchorsRemoved: e5Ui?.aboutMenu?.temporaryAnchorsRemaining === 0,
+  aboutSourceNativePopupExactlyOne:
+    sourcePopup?.createdPageTargetCount === 1 &&
+    typeof sourcePopup.createdPageTargetId === 'string' &&
+    sourcePopup.targetType === 'page' &&
+    sourcePopup.requestedUrl === expectedSourceUrl &&
+    sourcePopup.activationRequestedUrl === expectedSourceUrl &&
+    [expectedSourceUrl, sourcePopup.finalUrl].includes(sourcePopup.targetInitialUrl) &&
+    sourcePopup.targetFinalUrl === sourcePopup.finalUrl &&
+    sourceFinalUrlAllowed === true &&
+    sourcePopup.targetOpenerId === null &&
+    sourcePopup.targetOpenerFrameId === null &&
+    sourcePopup.windowOpenerIsNull === true &&
+    sourcePopup.documentReadyState === 'complete' &&
+    sourcePopup.closed === true,
+  aboutNoticesNativePopupExactlyOne:
+    noticesPopup?.createdPageTargetCount === 1 &&
+    typeof noticesPopup.createdPageTargetId === 'string' &&
+    noticesPopup.targetType === 'page' &&
+    noticesPopup.requestedUrl === expectedNoticesUrl &&
+    noticesPopup.activationRequestedUrl === expectedNoticesUrl &&
+    noticesPopup.targetInitialUrl === expectedNoticesUrl &&
+    noticesPopup.finalUrl === expectedNoticesUrl &&
+    noticesPopup.targetFinalUrl === expectedNoticesUrl &&
+    noticesPopup.targetOpenerId === null &&
+    noticesPopup.targetOpenerFrameId === null &&
+    noticesPopup.windowOpenerIsNull === true &&
+    noticesPopup.documentReadyState === 'complete' &&
+    noticesPopup.closed === true,
+  noticesHttp200TextPlainUtf8NoAttachment: noticesHttpAuditOk,
+  tinyLinkDialogUsesExactAccent:
+    e5Ui?.tinyLinkDialogPalette?.exactAccent === true &&
+    e5Ui.tinyLinkDialogPalette.focusedField === true &&
+    e5Ui.tinyLinkDialogPalette.fieldBorderColor === expectedAccent &&
+    typeof e5Ui.tinyLinkDialogPalette.fieldBoxShadow === 'string' &&
+    e5Ui.tinyLinkDialogPalette.fieldBoxShadow.includes(expectedAccent) &&
+    e5Ui.tinyLinkDialogPalette.saveButtonSelector === expectedTinyLinkSaveButtonSelector &&
+    e5Ui.tinyLinkDialogPalette.saveButtonLabel === expectedTinyLinkSaveButtonLabel &&
+    e5Ui.tinyLinkDialogPalette.saveButtonBackgroundColor === expectedAccent &&
+    e5Ui.tinyLinkDialogPalette.saveButtonBorderColor === expectedAccent,
+};
+if (Object.values(e5LegalUiAssertions).some((value) => value !== true)) {
+  failures.push('E5 named About/notices and Tiny dialog palette evidence assertions must all pass');
 }
 
 const viewportAuditOk =
-  Array.isArray(e4Ui?.viewports) &&
-  e4Ui.viewports.length === expectedViewports.length &&
-  e4Ui.viewports.every((state, index) => {
+  Array.isArray(e5Ui?.viewports) &&
+  e5Ui.viewports.length === expectedViewports.length &&
+  e5Ui.viewports.every((state, index) => {
     const expected = expectedViewports[index];
     const common = state.width === expected.width &&
       state.expectedMode === expected.expectedMode &&
@@ -564,51 +911,65 @@ const viewportAuditOk =
       : state.tabsHidden === false && state.splitterHidden === true && state.mobileTabSwitchWorked === true;
   });
 if (!viewportAuditOk) {
-  failures.push('E4 UI audit must prove desktop split at 1440/1024/900 and mobile tabs at 899/768/390/320 with nonzero editors and no horizontal overflow');
+  failures.push('E5 UI audit must prove desktop split at 1440/1024/900 and mobile tabs at 899/768/390/320 with nonzero editors and no horizontal overflow');
 }
 
 const coarseAuditOk =
-  e4Ui?.coarsePointer?.emulated === true &&
-  e4Ui.coarsePointer.hoverNone === true &&
-  e4Ui.coarsePointer.emulationError === null &&
-  Array.isArray(e4Ui.coarsePointer.controls) &&
-  e4Ui.coarsePointer.controls.length > 0 &&
-  e4Ui.coarsePointer.controls.every(({ atLeast44, width, height }) =>
+  e5Ui?.coarsePointer?.emulated === true &&
+  e5Ui.coarsePointer.hoverNone === true &&
+  e5Ui.coarsePointer.emulationError === null &&
+  Array.isArray(e5Ui.coarsePointer.controls) &&
+  e5Ui.coarsePointer.controls.length > 0 &&
+  e5Ui.coarsePointer.controls.every(({ atLeast44, width, height }) =>
     atLeast44 === true && width >= 43.5 && height >= 43.5) &&
-  Array.isArray(e4Ui.coarsePointer.failures) &&
-  e4Ui.coarsePointer.failures.length === 0 &&
-  e4Ui.coarsePointer.allAtLeast44 === true;
+  Array.isArray(e5Ui.coarsePointer.failures) &&
+  e5Ui.coarsePointer.failures.length === 0 &&
+  e5Ui.coarsePointer.allAtLeast44 === true;
 if (!coarseAuditOk) {
-  failures.push('E4 UI audit must prove every visible app/TinyMCE button is at least 44x44 under emulated coarse pointer input');
+  failures.push('E5 UI audit must prove every visible app/TinyMCE button is at least 44x44 under emulated coarse pointer input');
 }
 
+const expectedContrastPairs = [
+  'text-on-surface',
+  'text-on-background',
+  'muted-on-surface',
+  'muted-on-background',
+  'surface-on-accent',
+  'text-on-accent-soft',
+  'muted-on-accent-soft',
+];
 const contrastAuditOk =
-  e4Ui?.contrast?.allAtLeast4_5 === true &&
-  Array.isArray(e4Ui.contrast.pairs) &&
-  e4Ui.contrast.pairs.length === 5 &&
-  e4Ui.contrast.pairs.every(({ ratio }) => typeof ratio === 'number' && ratio >= 4.5);
-if (!contrastAuditOk) failures.push('E4 UI audit must prove all five computed text/background pairs are at least 4.5:1');
+  e5Ui?.contrast?.allAtLeast4_5 === true &&
+  e5Ui.contrast.paletteExact === true &&
+  e5Ui.contrast.tokens?.accent === expectedAccent &&
+  e5Ui.contrast.tokens?.['accent-soft'] === expectedAccentSoft &&
+  Array.isArray(e5Ui.contrast.pairs) &&
+  JSON.stringify(e5Ui.contrast.pairs.map(({ name }) => name)) === JSON.stringify(expectedContrastPairs) &&
+  e5Ui.contrast.pairs.every(({ ratio }) => typeof ratio === 'number' && ratio >= 4.5) &&
+  typeof e5Ui.contrast.minimum?.ratio === 'number' &&
+  e5Ui.contrast.minimum.ratio >= 4.5;
+if (!contrastAuditOk) failures.push('E5 UI audit must prove all seven permitted computed palette pairs, including text on accent-soft surfaces, are at least 4.5:1 and report the minimum');
 
-if (e4Ui?.focus?.productButton !== true || e4Ui.focus.solidAccent !== true) {
-  failures.push('E4 UI audit must prove a keyboard focus-visible outline is solid, at least 3px and uses --phe-accent');
+if (e5Ui?.focus?.productButton !== true || e5Ui.focus.solidAccent !== true) {
+  failures.push('E5 UI audit must prove a keyboard focus-visible outline is solid, at least 3px and uses --phe-accent');
 }
 if (
-  e4Ui?.visualViewport?.available !== true ||
-  e4Ui.visualViewport.resizeUpdated !== true
+  e5Ui?.visualViewport?.available !== true ||
+  e5Ui.visualViewport.resizeUpdated !== true
 ) {
-  failures.push('E4 UI audit must prove visualViewport resize updates --phe-viewport-height and --phe-viewport-offset-top');
+  failures.push('E5 UI audit must prove visualViewport resize updates --phe-viewport-height and --phe-viewport-offset-top');
 }
 if (
-  !e4Ui?.loadingLifecycle ||
-  !Object.values(e4Ui.loadingLifecycle).every((value) => value === true)
+  !e5Ui?.loadingLifecycle ||
+  !Object.values(e5Ui.loadingLifecycle).every((value) => value === true)
 ) {
-  failures.push('E4 UI audit must prove the visible busy skeleton transitions to two ready editors in both network scenarios');
+  failures.push('E5 UI audit must prove the visible busy skeleton transitions to two ready editors in both network scenarios');
 }
 const paintProofOk =
-  e4Ui?.loadingPaintProof &&
+  e5Ui?.loadingPaintProof &&
   ['cold', 'cumulative'].every((scenario) => {
-    const proof = e4Ui.loadingPaintProof[scenario];
-    const metrics = e4Ui.loadingPerformanceMetrics?.[scenario];
+    const proof = e5Ui.loadingPaintProof[scenario];
+    const metrics = e5Ui.loadingPerformanceMetrics?.[scenario];
     return loadingPerformanceOk(proof, metrics) &&
       Math.abs(proof.visibleDurationMs - (proof.firstHiddenAt - proof.visibleFrom)) <= 0.001 &&
       Math.abs(proof.firstPaintOffsetFromVisibleMs -
@@ -630,25 +991,24 @@ const paintProofOk =
       proof.paintObserverError === null;
   });
 if (!paintProofOk) {
-  failures.push('E4 UI audit must prove the skeleton spans FP and FCP, reaches two ready editors, and records all three exact navigation/skeleton/editor-ready metrics');
+  failures.push('E5 UI audit must prove the skeleton spans FP and FCP, reaches two ready editors, and records all three exact navigation/skeleton/editor-ready metrics');
 }
 const bootOrderingAuditOk = ['cold', 'cumulative'].every((scenario) =>
-  bootOrderingOk(e4Ui?.bootOrdering?.[scenario])
+  bootOrderingOk(e5Ui?.bootOrdering?.[scenario])
 );
 if (!bootOrderingAuditOk) {
-  failures.push('E4 canonical audit must prove one preloaded Tiny resource, one post-paint runtime script and runtime availability before initialise');
+  failures.push('E5 canonical audit must prove one preloaded Tiny resource, one post-paint runtime script and runtime availability before initialise');
 }
 if (
-  !e4Ui?.docxBusyLifecycle ||
-  !Object.values(e4Ui.docxBusyLifecycle).every((value) => value === true)
+  !e5Ui?.docxBusyLifecycle ||
+  !Object.values(e5Ui.docxBusyLifecycle).every((value) => value === true)
 ) {
-  failures.push('E4 UI audit must prove the DOCX busy/disabled state is painted before parsing and restored afterward');
+  failures.push('E5 UI audit must prove the DOCX busy/disabled state is painted before parsing and restored afterward');
 }
-if (e4Ui?.aboutAbsent !== true) failures.push('E4 UI audit must prove About is absent before E5');
-if (!Array.isArray(e4Ui?.consoleProblems) || e4Ui.consoleProblems.length !== 0) {
-  failures.push('E4 isolated UI audit contains console errors or warnings');
+if (!Array.isArray(e5Ui?.consoleProblems) || e5Ui.consoleProblems.length !== 0) {
+  failures.push('E5 isolated UI audit contains console errors or warnings');
 }
-if (e4Ui?.allPassed !== true) failures.push('E4 isolated UI audit did not pass every strict assertion');
+if (e5Ui?.allPassed !== true) failures.push('E5 isolated UI audit did not pass every strict assertion');
 
 const sum = (items, key) => items.reduce((total, item) => total + item[key], 0);
 const initialJs = coldRows.filter((row) => {
@@ -681,12 +1041,12 @@ const metrics = [
     budget: BYTE_BUDGETS.cold.brotli,
   },
   {
-    name: 'Cumulative E4 transfer (gzip)',
+    name: 'Cumulative E5 transfer (gzip)',
     actual: cumulativeTransfer.gzip,
     budget: BYTE_BUDGETS.cumulative.gzip,
   },
   {
-    name: 'Cumulative E4 transfer (brotli)',
+    name: 'Cumulative E5 transfer (brotli)',
     actual: cumulativeTransfer.brotli,
     budget: BYTE_BUDGETS.cumulative.brotli,
   },
@@ -768,16 +1128,25 @@ const tinyDomainRequests = allUrls.filter((rawUrl) => {
 if (tinyDomainRequests.length > 0) failures.push('Tiny Cloud/domain requests were observed');
 
 const output = {
-  stage: 'E4',
+  stage: 'E5',
   origin: expectedOrigin,
   manifestSha256,
   docxFixtureSha256,
+  legalNavigationBudgetScope: expectedLegalNavigationBudgetScope,
+  networkEvidenceBinding: {
+    harResultSha256: createHash('sha256').update(harResultBytes).digest('hex'),
+    artifactBindings: reportArtifactBindings,
+    assertionNames: [...expectedE5AssertionNames],
+    allAssertionsTrue: expectedE5AssertionNames.every((name) =>
+      harResultReport.assertions?.[name] === true),
+  },
   definitions: {
     cold: 'All production HTTP resources requested from navigation through editor-ready.',
-    cumulative: 'A separate fresh production load containing every cold URL, first source focus, the complete E2 document-tools inventory, custom emoji search/insert, actual HTML and DOCX imports, HTML export, clipboard actions, product sample, draft autosave and new document; the only cumulative JavaScript additions are source-rich, safe replacement, Mammoth and the isolated regex Worker. E4 responsive/theme/accessibility checks run in a separate browser without Network enabled and cannot contaminate this byte inventory.',
+    cumulative: 'A separate fresh production load containing every cold URL, first source focus, the complete E2 document-tools inventory, custom emoji search/insert, actual HTML and DOCX imports, HTML export, clipboard actions, product sample, draft autosave and new document; the only cumulative JavaScript additions are source-rich, safe replacement, Mammoth and the isolated regex Worker. E5 responsive/theme/accessibility checks run in a separate browser without Network enabled and cannot contaminate this byte inventory.',
     requestCount: 'Cold load through editor-ready only, including the HTML document.',
     initialJs: 'Supplementary, non-budget detail: cold-load JavaScript outside /tinymce; lazy source-editor tools are excluded.',
-    loadingPerformance: 'Diagnostic navigation timeline in milliseconds: navigation start to the first skeleton paint, first skeleton paint to the fixed phe:bootstrap:editor-ready product mark, and their exact total. The product mark is reconciled to the sampled nonzero DOM-ready state within 100 ms. These timing values are not byte-budget inputs.',
+    legalTopLevelNavigations: 'Source code and Third-party notices open as independent top-level browsing contexts, not resources in the editor document graph. Their native-tab and HTTP-delivery proofs are validated separately and their bytes are intentionally excluded from editor cold/cumulative payload totals.',
+    loadingPerformance: 'Local diagnostic navigation timeline in milliseconds: navigation start to the first skeleton paint, first skeleton paint to the fixed phe:bootstrap:editor-ready mark, and their exact total. The mark is reconciled to sampled nonzero DOM-ready state within 100 ms. These values are neither byte-budget inputs nor the deployed Slow-4G §7 input-readiness measurement.',
   },
   metrics,
   coldEditorReadyTransfer: {
@@ -788,12 +1157,13 @@ const output = {
     requests: cumulativeReport.requests.length,
     ...cumulativeTransfer,
   },
+  e5LegalUiAssertions,
   supplementary: {
     initialJsWithoutTinyMCE: initialJsTransfer,
     largeDocumentCleanDurationMs: cumulativeReport.uiActionInventory?.largeDocumentCleanDurationMs ?? null,
-    loadingPerformanceMetrics: e4Ui?.loadingPerformanceMetrics ?? null,
-    tinyBootOrdering: e4Ui?.bootOrdering ?? null,
-    e4UiValidation: e4Ui,
+    loadingPerformanceMetrics: e5Ui?.loadingPerformanceMetrics ?? null,
+    tinyBootOrdering: e5Ui?.bootOrdering ?? null,
+    e5UiValidation: e5Ui,
   },
   activeLightTinyStaticFootprint,
   tinyStaticFootprint,
@@ -805,6 +1175,6 @@ const output = {
   failures,
 };
 
-await writeFile(resolve(reportsRoot, 'size-e4-result.json'), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+await writeFile(resolve(reportsRoot, 'size-e5-result.json'), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
 console.log(JSON.stringify(output, null, 2));
 if (failures.length > 0) process.exitCode = 1;

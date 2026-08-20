@@ -1,0 +1,2558 @@
+{
+  "stage": "E5",
+  "capturedAt": "2026-08-20T21:16:33.709Z",
+  "browser": "Chrome/151.0.7922.169",
+  "protocol": "Chrome DevTools Protocol 1.3",
+  "source": "Network domain used by DevTools Network panel",
+  "cacheDisabled": true,
+  "serviceWorkerBypassed": true,
+  "responseBodiesIncluded": false,
+  "sensitiveHeadersIncluded": false,
+  "sanitized": true,
+  "journalTruncated": false,
+  "artifactBindings": {
+    "coldHarSha256": "4d7a0559485d11a8084d630fac97013b874648567b393fba3bd240abe7a5dbb9",
+    "coldReportSha256": "0ee96500e239b38c41c3dc01901c3ab59b629f4cdf0c9d91f7505a371b6f7614",
+    "cumulativeHarSha256": "55b1c7ae6a1fde9b7a6574fa3c503ec15f938f9381ef8644b9b38a16e485240c",
+    "cumulativeReportSha256": "a3d0c50f388f3b4e6d2a2c0841f22af413bf070e1e5abfcd4876738a575cedd4"
+  },
+  "legalNavigationBudgetScope": {
+    "includedInEditorColdOrCumulativePayload": false,
+    "noticesRequestedByEditorDocumentGraph": false,
+    "sourceRequestedByEditorDocumentGraph": false,
+    "rationale": "Both About links create independent top-level browsing contexts. Neither destination is a resource consumed by the editor document graph, so the notices delivery check and native-tab proofs stay separate from editor cold/cumulative payload accounting."
+  },
+  "manifestSha256": "52c60de747a4849f5a3030d0446d4d6432e5f51a544de1f14e4392c8d5dc3ed4",
+  "distIndexSha256": "4d1b4b61ec24ff1af892e9588451efa6fd4cd37d89c2a8cdddefaf534dba1fba",
+  "initialHtmlContract": {
+    "source": "HTTP preflight response from the same preview origin before fresh-profile CDP capture",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "byteLength": 9545,
+    "sha256": "4d1b4b61ec24ff1af892e9588451efa6fd4cd37d89c2a8cdddefaf534dba1fba",
+    "distIndexSha256": "4d1b4b61ec24ff1af892e9588451efa6fd4cd37d89c2a8cdddefaf534dba1fba",
+    "matchesCurrentDist": true,
+    "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+    "exactTinyPreloadCount": 1,
+    "initialExecutableTinyScriptCount": 0,
+    "tinyPreloads": [
+      {
+        "tagName": "link",
+        "attributes": {
+          "rel": "preload",
+          "href": "/tinymce/tinymce.min.js?v=8.8.2",
+          "as": "script"
+        }
+      }
+    ],
+    "tinyScripts": []
+  },
+  "expectedSourceUrl": "https://github.com/phphtmledit/editor",
+  "expectedNoticesUrl": "http://127.0.0.1:4173/licenses.txt",
+  "noticesHttpContract": {
+    "source": "HTTP preflight outside the two CDP byte inventories",
+    "url": "http://127.0.0.1:4173/licenses.txt",
+    "status": 200,
+    "contentType": "text/plain; charset=utf-8",
+    "contentDisposition": null,
+    "textPlain": true,
+    "utf8": true,
+    "noAttachment": true
+  },
+  "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+  "expectedBootMarkNames": [
+    "phe:bootstrap:paint-handoff-complete",
+    "phe:bootstrap:tinymce-script-inserted",
+    "phe:bootstrap:tinymce-runtime-loaded",
+    "phe:bootstrap:initialise-started",
+    "phe:bootstrap:editor-ready"
+  ],
+  "expectedBootOrderingKeys": [
+    "preloadFetchStartedBeforeDynamicInsertion",
+    "skeletonPaintedBeforeDynamicInsertion",
+    "contentfulPaintBeforeDynamicInsertion",
+    "dynamicInsertionBeforeLoad",
+    "runtimeAvailableAtLoad",
+    "loadBeforeInitialise",
+    "runtimeAvailableAtInitialise",
+    "initialiseBeforeEditorReady",
+    "performanceMarkSequenceExact",
+    "editorReadyMarkReconcilesWithDom"
+  ],
+  "sourceRichPath": "/assets/source-rich-BXljL5b_.js",
+  "safeReplacePath": "/assets/safe-DItRtEPX.js",
+  "mammothPath": "/assets/mammoth-browser-Dfu_XTS9.js",
+  "customEmoticonsPath": "/tinymce/plugins/emoticons/js/emojis-common.min.js",
+  "stockEmoticonsPath": "/tinymce/plugins/emoticons/js/emojis.min.js",
+  "docxFixtureSha256": "c96400f26ebef8f76b7a859909583f8ea3f9d6760a60512a54b7d800eaf8bfcc",
+  "regexWorkerPath": "/assets/regex-worker-CWfjSjbr.js",
+  "regexWorkerRawSize": 3970,
+  "buildRegexWorkerPaths": [
+    "/assets/regex-worker-CWfjSjbr.js"
+  ],
+  "observedRegexWorkerPaths": [
+    "/assets/regex-worker-CWfjSjbr.js"
+  ],
+  "cold": {
+    "scenario": "cold",
+    "entries": 18,
+    "applicationRequests": 18,
+    "onlyGet": true,
+    "originOk": true,
+    "failures": [],
+    "cacheHits": [],
+    "thirdParty": [],
+    "defaultIcons": [],
+    "tinyCore": 1,
+    "exactTinyCore": 1,
+    "tinyCoreUrls": [
+      "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2"
+    ],
+    "customIcons": 1,
+    "customEmoticons": 1,
+    "stockEmoticons": 0,
+    "darkTinyAssets": [],
+    "sourceRich": [],
+    "safeReplace": [],
+    "regexWorker": [],
+    "regexActionRequestPaths": [],
+    "docxImportRequestPaths": [],
+    "attachedWorkerTargets": [],
+    "workerNetworkLifecycle": [],
+    "workerSessionSetupErrors": [],
+    "mammoth": [],
+    "fixtures": [],
+    "consoleProblems": 0
+  },
+  "cumulative": {
+    "scenario": "cumulative",
+    "entries": 22,
+    "applicationRequests": 22,
+    "onlyGet": true,
+    "originOk": true,
+    "failures": [],
+    "cacheHits": [],
+    "thirdParty": [],
+    "defaultIcons": [],
+    "tinyCore": 1,
+    "exactTinyCore": 1,
+    "tinyCoreUrls": [
+      "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2"
+    ],
+    "customIcons": 1,
+    "customEmoticons": 1,
+    "stockEmoticons": 0,
+    "darkTinyAssets": [],
+    "sourceRich": [
+      "/assets/source-rich-BXljL5b_.js"
+    ],
+    "safeReplace": [
+      "/assets/safe-DItRtEPX.js"
+    ],
+    "regexWorker": [
+      "/assets/regex-worker-CWfjSjbr.js"
+    ],
+    "regexActionRequestPaths": [
+      "/assets/safe-DItRtEPX.js",
+      "/assets/regex-worker-CWfjSjbr.js"
+    ],
+    "docxImportRequestPaths": [
+      "/assets/mammoth-browser-Dfu_XTS9.js"
+    ],
+    "attachedWorkerTargets": [
+      {
+        "sessionId": "6FB41D5B00428CBDED8B447DB4D1BB8B",
+        "targetId": "947961FF483774FF0E4F51C6A593D037",
+        "type": "worker",
+        "url": "http://127.0.0.1:4173/assets/regex-worker-CWfjSjbr.js",
+        "detached": true
+      }
+    ],
+    "workerNetworkLifecycle": [
+      {
+        "url": "http://127.0.0.1:4173/assets/regex-worker-CWfjSjbr.js",
+        "sessions": [
+          "page",
+          "6FB41D5B00428CBDED8B447DB4D1BB8B"
+        ],
+        "requestWillBeSentEvents": 1,
+        "dataReceivedEvents": 1,
+        "terminalEvent": "Network.loadingFinished",
+        "status": 200,
+        "decodedContentSize": 3970,
+        "encodedTransferSize": 376,
+        "wireBodySizeKnown": false,
+        "headersSize": -1,
+        "bodySize": -1,
+        "compression": null,
+        "failure": null
+      }
+    ],
+    "workerSessionSetupErrors": [],
+    "mammoth": [
+      "/assets/mammoth-browser-Dfu_XTS9.js"
+    ],
+    "fixtures": [],
+    "consoleProblems": 0
+  },
+  "performanceMetrics": {
+    "cold": {
+      "navigationToFirstSkeletonPaintMs": 440,
+      "skeletonPaintToEditorReadyMs": 371.2,
+      "navigationToEditorReadyMs": 811.2
+    },
+    "cumulative": {
+      "navigationToFirstSkeletonPaintMs": 476,
+      "skeletonPaintToEditorReadyMs": 371,
+      "navigationToEditorReadyMs": 847
+    }
+  },
+  "bootOrdering": {
+    "cold": {
+      "source": "document-start DOM/load instrumentation plus Resource Timing in the canonical CDP page",
+      "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+      "dynamicTinyScriptCount": 1,
+      "tinyScriptLoadEventCount": 1,
+      "tinyInitCallCount": 1,
+      "tinyResourceEntryCount": 1,
+      "dynamicTinyScripts": [
+        {
+          "source": "mutation",
+          "insertedAt": 462.3,
+          "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "type": "",
+          "async": true,
+          "defer": false,
+          "connected": true
+        }
+      ],
+      "tinyScriptLoadEvents": [
+        {
+          "at": 476.3,
+          "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "runtimeAvailable": true
+        }
+      ],
+      "tinyInitCalls": [
+        {
+          "at": 477.1,
+          "runtimeAvailable": true,
+          "source": "instrumented tinymce.init"
+        }
+      ],
+      "resourceEntries": [
+        {
+          "name": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "initiatorType": "link",
+          "startTime": 21.8,
+          "responseEnd": 113,
+          "transferSize": 486791,
+          "encodedBodySize": 486491,
+          "decodedBodySize": 486491
+        }
+      ],
+      "expectedBootMarkNames": [
+        "phe:bootstrap:paint-handoff-complete",
+        "phe:bootstrap:tinymce-script-inserted",
+        "phe:bootstrap:tinymce-runtime-loaded",
+        "phe:bootstrap:initialise-started",
+        "phe:bootstrap:editor-ready"
+      ],
+      "performanceMarks": [
+        {
+          "name": "phe:bootstrap:paint-handoff-complete",
+          "startTime": 461.8,
+          "duration": 0,
+          "entryOrder": 0
+        },
+        {
+          "name": "phe:bootstrap:tinymce-script-inserted",
+          "startTime": 462.3,
+          "duration": 0,
+          "entryOrder": 1
+        },
+        {
+          "name": "phe:bootstrap:tinymce-runtime-loaded",
+          "startTime": 476.5,
+          "duration": 0,
+          "entryOrder": 2
+        },
+        {
+          "name": "phe:bootstrap:initialise-started",
+          "startTime": 476.5,
+          "duration": 0,
+          "entryOrder": 3
+        },
+        {
+          "name": "phe:bootstrap:editor-ready",
+          "startTime": 811.2,
+          "duration": 0,
+          "entryOrder": 4
+        }
+      ],
+      "performanceMarkSequenceExact": true,
+      "editorReadyMarkStartTime": 811.2,
+      "sampledDomEditorReadyAt": 808.5,
+      "editorReadyMarkDomDeltaMs": 2.7,
+      "editorReadyMarkReconcilesWithDom": true,
+      "loadingPerformanceMetrics": {
+        "navigationToFirstSkeletonPaintMs": 440,
+        "skeletonPaintToEditorReadyMs": 371.2,
+        "navigationToEditorReadyMs": 811.2
+      },
+      "firstPaintStartTime": 440,
+      "firstContentfulPaintStartTime": 440,
+      "editorReadyAt": 808.5,
+      "tinyRuntimeAvailableAt": 476.4,
+      "tinyRuntimeAvailableAtLoad": true,
+      "tinyInitWrapped": true,
+      "tinyInitWrapError": null,
+      "ordering": {
+        "preloadFetchStartedBeforeDynamicInsertion": true,
+        "skeletonPaintedBeforeDynamicInsertion": true,
+        "contentfulPaintBeforeDynamicInsertion": true,
+        "dynamicInsertionBeforeLoad": true,
+        "runtimeAvailableAtLoad": true,
+        "loadBeforeInitialise": true,
+        "runtimeAvailableAtInitialise": true,
+        "initialiseBeforeEditorReady": true,
+        "performanceMarkSequenceExact": true,
+        "editorReadyMarkReconcilesWithDom": true
+      }
+    },
+    "cumulative": {
+      "source": "document-start DOM/load instrumentation plus Resource Timing in the canonical CDP page",
+      "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+      "dynamicTinyScriptCount": 1,
+      "tinyScriptLoadEventCount": 1,
+      "tinyInitCallCount": 1,
+      "tinyResourceEntryCount": 1,
+      "dynamicTinyScripts": [
+        {
+          "source": "mutation",
+          "insertedAt": 497.5,
+          "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "type": "",
+          "async": true,
+          "defer": false,
+          "connected": true
+        }
+      ],
+      "tinyScriptLoadEvents": [
+        {
+          "at": 511.7,
+          "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "runtimeAvailable": true
+        }
+      ],
+      "tinyInitCalls": [
+        {
+          "at": 512.6,
+          "runtimeAvailable": true,
+          "source": "instrumented tinymce.init"
+        }
+      ],
+      "resourceEntries": [
+        {
+          "name": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+          "initiatorType": "link",
+          "startTime": 25.4,
+          "responseEnd": 94.3,
+          "transferSize": 486791,
+          "encodedBodySize": 486491,
+          "decodedBodySize": 486491
+        }
+      ],
+      "expectedBootMarkNames": [
+        "phe:bootstrap:paint-handoff-complete",
+        "phe:bootstrap:tinymce-script-inserted",
+        "phe:bootstrap:tinymce-runtime-loaded",
+        "phe:bootstrap:initialise-started",
+        "phe:bootstrap:editor-ready"
+      ],
+      "performanceMarks": [
+        {
+          "name": "phe:bootstrap:paint-handoff-complete",
+          "startTime": 497,
+          "duration": 0,
+          "entryOrder": 0
+        },
+        {
+          "name": "phe:bootstrap:tinymce-script-inserted",
+          "startTime": 497.4,
+          "duration": 0,
+          "entryOrder": 1
+        },
+        {
+          "name": "phe:bootstrap:tinymce-runtime-loaded",
+          "startTime": 511.9,
+          "duration": 0,
+          "entryOrder": 2
+        },
+        {
+          "name": "phe:bootstrap:initialise-started",
+          "startTime": 511.9,
+          "duration": 0,
+          "entryOrder": 3
+        },
+        {
+          "name": "phe:bootstrap:editor-ready",
+          "startTime": 847,
+          "duration": 0,
+          "entryOrder": 4
+        }
+      ],
+      "performanceMarkSequenceExact": true,
+      "editorReadyMarkStartTime": 847,
+      "sampledDomEditorReadyAt": 844.2,
+      "editorReadyMarkDomDeltaMs": 2.8,
+      "editorReadyMarkReconcilesWithDom": true,
+      "loadingPerformanceMetrics": {
+        "navigationToFirstSkeletonPaintMs": 476,
+        "skeletonPaintToEditorReadyMs": 371,
+        "navigationToEditorReadyMs": 847
+      },
+      "firstPaintStartTime": 476,
+      "firstContentfulPaintStartTime": 476,
+      "editorReadyAt": 844.2,
+      "tinyRuntimeAvailableAt": 511.8,
+      "tinyRuntimeAvailableAtLoad": true,
+      "tinyInitWrapped": true,
+      "tinyInitWrapError": null,
+      "ordering": {
+        "preloadFetchStartedBeforeDynamicInsertion": true,
+        "skeletonPaintedBeforeDynamicInsertion": true,
+        "contentfulPaintBeforeDynamicInsertion": true,
+        "dynamicInsertionBeforeLoad": true,
+        "runtimeAvailableAtLoad": true,
+        "loadBeforeInitialise": true,
+        "runtimeAvailableAtInitialise": true,
+        "initialiseBeforeEditorReady": true,
+        "performanceMarkSequenceExact": true,
+        "editorReadyMarkReconcilesWithDom": true
+      }
+    }
+  },
+  "e5UiValidation": {
+    "themeQueries": [
+      {
+        "query": "",
+        "dataTheme": "light",
+        "colorScheme": "light",
+        "editorColorScheme": "light",
+        "tinySkin": "oxide",
+        "contentCss": [
+          "default"
+        ],
+        "darkReferences": [],
+        "accent": "rgb(11, 107, 203)",
+        "accentSoft": "rgb(230, 241, 251)",
+        "nativeControls": [
+          {
+            "id": "wrap-source",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-inline-styles",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-classes-and-ids",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-empty-elements",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-single-space-elements",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-repeated-spaces",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-comments",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-tag-attributes",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-plain-text",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-ai-symbols",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-word-junk",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          }
+        ],
+        "tinyAccentValues": [
+          {
+            "name": "--tox-private-color-tint",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-keyboard-focus-outline-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-button-primary-background-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-checkbox-selected-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          }
+        ],
+        "aboutCount": 1,
+        "aboutVisible": true,
+        "palettePassed": true,
+        "passed": true
+      },
+      {
+        "query": "?theme=light",
+        "dataTheme": "light",
+        "colorScheme": "light",
+        "editorColorScheme": "light",
+        "tinySkin": "oxide",
+        "contentCss": [
+          "default"
+        ],
+        "darkReferences": [],
+        "accent": "rgb(11, 107, 203)",
+        "accentSoft": "rgb(230, 241, 251)",
+        "nativeControls": [
+          {
+            "id": "wrap-source",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-inline-styles",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-classes-and-ids",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-empty-elements",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-single-space-elements",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-repeated-spaces",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-comments",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-tag-attributes",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-plain-text",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-ai-symbols",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-word-junk",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          }
+        ],
+        "tinyAccentValues": [
+          {
+            "name": "--tox-private-color-tint",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-keyboard-focus-outline-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-button-primary-background-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-checkbox-selected-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          }
+        ],
+        "aboutCount": 1,
+        "aboutVisible": true,
+        "palettePassed": true,
+        "passed": true
+      },
+      {
+        "query": "?theme=dark",
+        "dataTheme": "light",
+        "colorScheme": "light",
+        "editorColorScheme": "light",
+        "tinySkin": "oxide",
+        "contentCss": [
+          "default"
+        ],
+        "darkReferences": [],
+        "accent": "rgb(11, 107, 203)",
+        "accentSoft": "rgb(230, 241, 251)",
+        "nativeControls": [
+          {
+            "id": "wrap-source",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-inline-styles",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-classes-and-ids",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-empty-elements",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-single-space-elements",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-repeated-spaces",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-comments",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-tag-attributes",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-plain-text",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-ai-symbols",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-word-junk",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          }
+        ],
+        "tinyAccentValues": [
+          {
+            "name": "--tox-private-color-tint",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-keyboard-focus-outline-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-button-primary-background-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-checkbox-selected-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          }
+        ],
+        "aboutCount": 1,
+        "aboutVisible": true,
+        "palettePassed": true,
+        "passed": true
+      },
+      {
+        "query": "?theme=auto",
+        "dataTheme": "light",
+        "colorScheme": "light",
+        "editorColorScheme": "light",
+        "tinySkin": "oxide",
+        "contentCss": [
+          "default"
+        ],
+        "darkReferences": [],
+        "accent": "rgb(11, 107, 203)",
+        "accentSoft": "rgb(230, 241, 251)",
+        "nativeControls": [
+          {
+            "id": "wrap-source",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-inline-styles",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-classes-and-ids",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-empty-elements",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-single-space-elements",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-repeated-spaces",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-comments",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-tag-attributes",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-plain-text",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-ai-symbols",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-word-junk",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          }
+        ],
+        "tinyAccentValues": [
+          {
+            "name": "--tox-private-color-tint",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-keyboard-focus-outline-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-button-primary-background-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-checkbox-selected-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          }
+        ],
+        "aboutCount": 1,
+        "aboutVisible": true,
+        "palettePassed": true,
+        "passed": true
+      },
+      {
+        "query": "?theme=unexpected",
+        "dataTheme": "light",
+        "colorScheme": "light",
+        "editorColorScheme": "light",
+        "tinySkin": "oxide",
+        "contentCss": [
+          "default"
+        ],
+        "darkReferences": [],
+        "accent": "rgb(11, 107, 203)",
+        "accentSoft": "rgb(230, 241, 251)",
+        "nativeControls": [
+          {
+            "id": "wrap-source",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-inline-styles",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-classes-and-ids",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-empty-elements",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-single-space-elements",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-repeated-spaces",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-comments",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-tag-attributes",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-plain-text",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-ai-symbols",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          },
+          {
+            "id": "clean-rule-word-junk",
+            "type": "checkbox",
+            "accentColor": "rgb(11, 107, 203)"
+          }
+        ],
+        "tinyAccentValues": [
+          {
+            "name": "--tox-private-color-tint",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-keyboard-focus-outline-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-button-primary-background-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          },
+          {
+            "name": "--tox-private-checkbox-selected-color",
+            "value": "#0b6bcb",
+            "resolvedColor": "rgb(11, 107, 203)"
+          }
+        ],
+        "aboutCount": 1,
+        "aboutVisible": true,
+        "palettePassed": true,
+        "passed": true
+      }
+    ],
+    "aboutMenu": {
+      "visible": true,
+      "topLevelCountByTheme": [
+        {
+          "query": "",
+          "aboutCount": 1
+        },
+        {
+          "query": "?theme=light",
+          "aboutCount": 1
+        },
+        {
+          "query": "?theme=dark",
+          "aboutCount": 1
+        },
+        {
+          "query": "?theme=auto",
+          "aboutCount": 1
+        },
+        {
+          "query": "?theme=unexpected",
+          "aboutCount": 1
+        }
+      ],
+      "itemCount": 2,
+      "items": [
+        {
+          "text": "Source code",
+          "role": "menuitem"
+        },
+        {
+          "text": "Third-party notices",
+          "role": "menuitem"
+        }
+      ],
+      "activeStyle": {
+        "classNames": [
+          "tox-mbtn",
+          "tox-mbtn--select",
+          "tox-mbtn--active"
+        ],
+        "active": true,
+        "ariaExpanded": "true",
+        "color": "rgb(23, 32, 51)",
+        "backgroundColor": "rgb(230, 241, 251)",
+        "exactSoftWithText": true
+      },
+      "sourceUrl": "https://github.com/phphtmledit/editor",
+      "noticesUrl": "http://127.0.0.1:4173/licenses.txt",
+      "activations": [
+        {
+          "href": "https://github.com/phphtmledit/editor",
+          "absoluteHref": "https://github.com/phphtmledit/editor",
+          "target": "_blank",
+          "rel": "noopener noreferrer",
+          "connectedAtActivation": true,
+          "nativeClickReturned": true
+        },
+        {
+          "href": "/licenses.txt",
+          "absoluteHref": "http://127.0.0.1:4173/licenses.txt",
+          "target": "_blank",
+          "rel": "noopener noreferrer",
+          "connectedAtActivation": true,
+          "nativeClickReturned": true
+        }
+      ],
+      "popupTargets": {
+        "source": {
+          "label": "Source code",
+          "requestedUrl": "https://github.com/phphtmledit/editor",
+          "createdPageTargetCount": 1,
+          "createdPageTargetId": "BEB24BE72D7BAF7A7F18FBE602E77A7B",
+          "targetType": "page",
+          "targetInitialUrl": "https://github.com/phphtmledit/editor",
+          "targetFinalUrl": "https://github.com/phphtmledit/editor",
+          "finalUrl": "https://github.com/phphtmledit/editor",
+          "redirect": null,
+          "targetOpenerId": null,
+          "targetOpenerFrameId": null,
+          "windowOpenerIsNull": true,
+          "documentReadyState": "complete",
+          "closed": true,
+          "activationRequestedUrl": "https://github.com/phphtmledit/editor"
+        },
+        "notices": {
+          "label": "Third-party notices",
+          "requestedUrl": "http://127.0.0.1:4173/licenses.txt",
+          "createdPageTargetCount": 1,
+          "createdPageTargetId": "6BD1D3D3C1BA3A47726FEFADB9B28C8F",
+          "targetType": "page",
+          "targetInitialUrl": "http://127.0.0.1:4173/licenses.txt",
+          "targetFinalUrl": "http://127.0.0.1:4173/licenses.txt",
+          "finalUrl": "http://127.0.0.1:4173/licenses.txt",
+          "redirect": null,
+          "targetOpenerId": null,
+          "targetOpenerFrameId": null,
+          "windowOpenerIsNull": true,
+          "documentReadyState": "complete",
+          "closed": true,
+          "activationRequestedUrl": "http://127.0.0.1:4173/licenses.txt"
+        },
+        "sourceFinalUrlAllowed": true
+      },
+      "temporaryAnchorsRemaining": 0,
+      "noticesHttp": {
+        "source": "HTTP preflight outside the two CDP byte inventories",
+        "url": "http://127.0.0.1:4173/licenses.txt",
+        "status": 200,
+        "contentType": "text/plain; charset=utf-8",
+        "contentDisposition": null,
+        "textPlain": true,
+        "utf8": true,
+        "noAttachment": true
+      },
+      "passed": true
+    },
+    "tinyLinkDialogPalette": {
+      "dialogVisible": true,
+      "focusedField": true,
+      "fieldBorderColor": "rgb(11, 107, 203)",
+      "fieldBoxShadow": "rgb(11, 107, 203) 0px 0px 0px 1px",
+      "saveButtonSelector": "button.tox-button:not(.tox-button--secondary):not(.tox-button--naked)",
+      "saveButtonBackgroundColor": "rgb(11, 107, 203)",
+      "saveButtonBorderColor": "rgb(11, 107, 203)",
+      "saveButtonLabel": "Save",
+      "exactAccent": true
+    },
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 900,
+        "expectedMode": "desktop",
+        "mode": "desktop",
+        "tabsHidden": true,
+        "splitterHidden": false,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": true,
+        "desktopSplit": true,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "900px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 1024,
+        "height": 900,
+        "expectedMode": "desktop",
+        "mode": "desktop",
+        "tabsHidden": true,
+        "splitterHidden": false,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": true,
+        "desktopSplit": true,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "900px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 900,
+        "height": 900,
+        "expectedMode": "desktop",
+        "mode": "desktop",
+        "tabsHidden": true,
+        "splitterHidden": false,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": true,
+        "desktopSplit": true,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "900px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 899,
+        "height": 844,
+        "expectedMode": "mobile",
+        "mode": "mobile",
+        "tabsHidden": false,
+        "splitterHidden": true,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": false,
+        "desktopSplit": false,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "844px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 768,
+        "height": 844,
+        "expectedMode": "mobile",
+        "mode": "mobile",
+        "tabsHidden": false,
+        "splitterHidden": true,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": false,
+        "desktopSplit": false,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "844px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "expectedMode": "mobile",
+        "mode": "mobile",
+        "tabsHidden": false,
+        "splitterHidden": true,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": false,
+        "desktopSplit": false,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "844px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      },
+      {
+        "width": 320,
+        "height": 844,
+        "expectedMode": "mobile",
+        "mode": "mobile",
+        "tabsHidden": false,
+        "splitterHidden": true,
+        "workspaceNonzero": true,
+        "visualNonzero": true,
+        "sourceInitiallyNonzero": false,
+        "desktopSplit": false,
+        "noHorizontalOverflow": true,
+        "viewportHeightCss": "844px",
+        "viewportOffsetCss": "0px",
+        "sourceNonzero": true,
+        "mobileTabSwitchWorked": true,
+        "passed": true
+      }
+    ],
+    "coarsePointer": {
+      "emulated": true,
+      "hoverNone": true,
+      "controls": [
+        {
+          "index": 0,
+          "id": "choose-import-file",
+          "label": "Open file",
+          "width": 111.406,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 1,
+          "id": "export-html",
+          "label": "Download HTML",
+          "width": 165.047,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 2,
+          "id": "copy-html",
+          "label": "Copy HTML",
+          "width": 129.453,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 3,
+          "id": "copy-text",
+          "label": "Copy text",
+          "width": 114.375,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 4,
+          "id": "load-example",
+          "label": "Example",
+          "width": 106.016,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 5,
+          "id": "new-document",
+          "label": "New document",
+          "width": 155.156,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 6,
+          "id": null,
+          "label": "File",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 7,
+          "id": null,
+          "label": "Edit",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 8,
+          "id": null,
+          "label": "View",
+          "width": 45.516,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 9,
+          "id": null,
+          "label": "Insert",
+          "width": 50.516,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 10,
+          "id": null,
+          "label": "Format",
+          "width": 59.844,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 11,
+          "id": null,
+          "label": "Table",
+          "width": 47.813,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 12,
+          "id": null,
+          "label": "About",
+          "width": 54.125,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 13,
+          "id": null,
+          "label": "Undo",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 14,
+          "id": null,
+          "label": "Redo",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 15,
+          "id": null,
+          "label": "Block Paragraph",
+          "width": 130,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 16,
+          "id": null,
+          "label": "Reveal or hide additional toolbar items",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 17,
+          "id": null,
+          "label": "p",
+          "width": 44,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 18,
+          "id": "undo-mass-operation",
+          "label": "Undo",
+          "width": 60.844,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 19,
+          "id": null,
+          "label": "Apply the “Inline styles” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 20,
+          "id": null,
+          "label": "Apply the “Classes and IDs” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 21,
+          "id": null,
+          "label": "Apply the “Empty elements” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 22,
+          "id": null,
+          "label": "Apply the “Single-space elements” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 23,
+          "id": null,
+          "label": "Apply the “Repeated spaces” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 24,
+          "id": null,
+          "label": "Apply the “Comments” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 25,
+          "id": null,
+          "label": "Apply the “Tag attributes” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 26,
+          "id": null,
+          "label": "Apply the “Plain text” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 27,
+          "id": null,
+          "label": "Apply the “AI symbols” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 28,
+          "id": null,
+          "label": "Apply the “Word cleanup” rule",
+          "width": 62.75,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 29,
+          "id": "clean-selected-rules",
+          "label": "Clean selected",
+          "width": 123.734,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 30,
+          "id": "format-html",
+          "label": "Format",
+          "width": 72.094,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 31,
+          "id": "minify-html",
+          "label": "Minify",
+          "width": 65.922,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 32,
+          "id": "add-replacement-rule",
+          "label": "Add rule",
+          "width": 82.406,
+          "height": 44,
+          "atLeast44": true
+        },
+        {
+          "index": 33,
+          "id": "apply-all-replacements",
+          "label": "Apply all",
+          "width": 83.031,
+          "height": 44,
+          "atLeast44": true
+        }
+      ],
+      "failures": [],
+      "allAtLeast44": true,
+      "emulationError": null
+    },
+    "contrast": {
+      "tokens": {
+        "accent": "rgb(11, 107, 203)",
+        "accent-soft": "rgb(230, 241, 251)",
+        "bg": "rgb(244, 246, 249)",
+        "surface": "rgb(255, 255, 255)",
+        "text": "rgb(23, 32, 51)",
+        "text-muted": "rgb(94, 104, 121)"
+      },
+      "pairs": [
+        {
+          "name": "text-on-surface",
+          "foregroundToken": "text",
+          "backgroundToken": "surface",
+          "foreground": "rgb(23, 32, 51)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 16.268
+        },
+        {
+          "name": "text-on-background",
+          "foregroundToken": "text",
+          "backgroundToken": "bg",
+          "foreground": "rgb(23, 32, 51)",
+          "background": "rgb(244, 246, 249)",
+          "ratio": 15.027
+        },
+        {
+          "name": "muted-on-surface",
+          "foregroundToken": "text-muted",
+          "backgroundToken": "surface",
+          "foreground": "rgb(94, 104, 121)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.627
+        },
+        {
+          "name": "muted-on-background",
+          "foregroundToken": "text-muted",
+          "backgroundToken": "bg",
+          "foreground": "rgb(94, 104, 121)",
+          "background": "rgb(244, 246, 249)",
+          "ratio": 5.197
+        },
+        {
+          "name": "surface-on-accent",
+          "foregroundToken": "surface",
+          "backgroundToken": "accent",
+          "foreground": "rgb(255, 255, 255)",
+          "background": "rgb(11, 107, 203)",
+          "ratio": 5.277
+        },
+        {
+          "name": "text-on-accent-soft",
+          "foregroundToken": "text",
+          "backgroundToken": "accent-soft",
+          "foreground": "rgb(23, 32, 51)",
+          "background": "rgb(230, 241, 251)",
+          "ratio": 14.208
+        },
+        {
+          "name": "muted-on-accent-soft",
+          "foregroundToken": "text-muted",
+          "backgroundToken": "accent-soft",
+          "foreground": "rgb(94, 104, 121)",
+          "background": "rgb(230, 241, 251)",
+          "ratio": 4.914
+        }
+      ],
+      "minimum": {
+        "name": "muted-on-accent-soft",
+        "foregroundToken": "text-muted",
+        "backgroundToken": "accent-soft",
+        "foreground": "rgb(94, 104, 121)",
+        "background": "rgb(230, 241, 251)",
+        "ratio": 4.914
+      },
+      "paletteExact": true,
+      "allAtLeast4_5": true
+    },
+    "focus": {
+      "element": "choose-import-file",
+      "productButton": true,
+      "focusVisible": true,
+      "outlineStyle": "solid",
+      "outlineWidth": "3px",
+      "outlineColor": "rgb(11, 107, 203)",
+      "accentColor": "rgb(11, 107, 203)",
+      "solidAccent": true
+    },
+    "visualViewport": {
+      "available": true,
+      "initial": {
+        "available": true,
+        "innerHeight": 844,
+        "viewportHeight": 844,
+        "viewportOffsetTop": 0,
+        "cssHeight": 844,
+        "cssOffset": 0
+      },
+      "resized": {
+        "innerHeight": 700,
+        "viewportHeight": 700,
+        "viewportOffsetTop": 0,
+        "cssHeight": 700,
+        "cssOffset": 0
+      },
+      "resizeUpdated": true
+    },
+    "consoleProblems": [],
+    "allPassed": true,
+    "loadingLifecycle": {
+      "coldSkeletonVisibleWhileBusy": true,
+      "coldEditorsReadyAfterSkeleton": true,
+      "cumulativeSkeletonVisibleWhileBusy": true,
+      "cumulativeEditorsReadyAfterSkeleton": true
+    },
+    "loadingPaintProof": {
+      "cold": {
+        "visibleFrom": 29.9,
+        "firstHiddenAt": 808.5,
+        "editorReadyAt": 808.5,
+        "visibleState": {
+          "source": "mutation",
+          "at": 29.9,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 8,
+            "y": 468.5,
+            "width": 1424,
+            "height": 18
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        "firstNonzeroGeometry": {
+          "source": "mutation",
+          "at": 29.9,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 8,
+            "y": 468.5,
+            "width": 1424,
+            "height": 18
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        "hiddenState": {
+          "source": "mutation",
+          "at": 808.5,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "editors": {
+            "visual": {
+              "width": 677.5,
+              "height": 520
+            },
+            "source": {
+              "width": 665.5,
+              "height": 517
+            }
+          }
+        },
+        "editorReadyState": {
+          "source": "mutation",
+          "at": 808.5,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "editors": {
+            "visual": {
+              "width": 677.5,
+              "height": 520
+            },
+            "source": {
+              "width": 665.5,
+              "height": 517
+            }
+          }
+        },
+        "firstPaintStartTime": 440,
+        "firstContentfulPaintStartTime": 440,
+        "paintEntries": [
+          {
+            "name": "first-paint",
+            "startTime": 440,
+            "duration": 0
+          },
+          {
+            "name": "first-contentful-paint",
+            "startTime": 440,
+            "duration": 0
+          }
+        ],
+        "paintObserverError": null,
+        "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+        "dynamicTinyScripts": [
+          {
+            "source": "mutation",
+            "insertedAt": 462.3,
+            "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+            "type": "",
+            "async": true,
+            "defer": false,
+            "connected": true
+          }
+        ],
+        "tinyScriptLoadEvents": [
+          {
+            "at": 476.3,
+            "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+            "runtimeAvailable": true
+          }
+        ],
+        "tinyRuntimeAvailableAt": 476.4,
+        "tinyRuntimeAvailableAtLoad": true,
+        "tinyInitWrapped": true,
+        "tinyInitWrapError": null,
+        "tinyInitCalls": [
+          {
+            "at": 477.1,
+            "runtimeAvailable": true,
+            "source": "instrumented tinymce.init"
+          }
+        ],
+        "samples": [
+          {
+            "source": "document-start",
+            "at": 25.2,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": null,
+            "skeletonPresent": false,
+            "skeletonHidden": null,
+            "display": null,
+            "visibility": null,
+            "geometry": null,
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "mutation",
+            "at": 29.9,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 8,
+              "y": 468.5,
+              "width": 1424,
+              "height": 18
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "readystatechange",
+            "at": 109.3,
+            "readyState": "interactive",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "readystatechange",
+            "at": 185,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "paint:first-paint",
+            "at": 461.6,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "paint:first-contentful-paint",
+            "at": 461.6,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "mutation",
+            "at": 663.8,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": {
+                "width": 677.5,
+                "height": 520
+              },
+              "source": null
+            }
+          },
+          {
+            "source": "mutation",
+            "at": 808.5,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "false",
+            "skeletonPresent": true,
+            "skeletonHidden": true,
+            "display": "none",
+            "visibility": "visible",
+            "geometry": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            },
+            "editors": {
+              "visual": {
+                "width": 677.5,
+                "height": 520
+              },
+              "source": {
+                "width": 665.5,
+                "height": 517
+              }
+            }
+          }
+        ],
+        "visibleDurationMs": 778.6,
+        "firstPaintOffsetFromVisibleMs": 410.1,
+        "hiddenAfterFirstPaintMs": 368.5,
+        "editorReadyMarkStartTime": 811.2,
+        "editorReadyMarkDomDeltaMs": 2.7,
+        "performanceMetrics": {
+          "navigationToFirstSkeletonPaintMs": 440,
+          "skeletonPaintToEditorReadyMs": 371.2,
+          "navigationToEditorReadyMs": 811.2
+        }
+      },
+      "cumulative": {
+        "visibleFrom": 39.1,
+        "firstHiddenAt": 844.2,
+        "editorReadyAt": 844.2,
+        "visibleState": {
+          "source": "mutation",
+          "at": 39.1,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 8,
+            "y": 468.5,
+            "width": 1424,
+            "height": 18
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        "firstNonzeroGeometry": {
+          "source": "mutation",
+          "at": 39.1,
+          "readyState": "loading",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "geometry": {
+            "x": 8,
+            "y": 468.5,
+            "width": 1424,
+            "height": 18
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        "hiddenState": {
+          "source": "mutation",
+          "at": 844.2,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "editors": {
+            "visual": {
+              "width": 677.5,
+              "height": 520
+            },
+            "source": {
+              "width": 665.5,
+              "height": 517
+            }
+          }
+        },
+        "editorReadyState": {
+          "source": "mutation",
+          "at": 844.2,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "false",
+          "skeletonPresent": true,
+          "skeletonHidden": true,
+          "display": "none",
+          "visibility": "visible",
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "editors": {
+            "visual": {
+              "width": 677.5,
+              "height": 520
+            },
+            "source": {
+              "width": 665.5,
+              "height": 517
+            }
+          }
+        },
+        "firstPaintStartTime": 476,
+        "firstContentfulPaintStartTime": 476,
+        "paintEntries": [
+          {
+            "name": "first-paint",
+            "startTime": 476,
+            "duration": 0
+          },
+          {
+            "name": "first-contentful-paint",
+            "startTime": 476,
+            "duration": 0
+          }
+        ],
+        "paintObserverError": null,
+        "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+        "dynamicTinyScripts": [
+          {
+            "source": "mutation",
+            "insertedAt": 497.5,
+            "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+            "type": "",
+            "async": true,
+            "defer": false,
+            "connected": true
+          }
+        ],
+        "tinyScriptLoadEvents": [
+          {
+            "at": 511.7,
+            "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+            "runtimeAvailable": true
+          }
+        ],
+        "tinyRuntimeAvailableAt": 511.8,
+        "tinyRuntimeAvailableAtLoad": true,
+        "tinyInitWrapped": true,
+        "tinyInitWrapError": null,
+        "tinyInitCalls": [
+          {
+            "at": 512.6,
+            "runtimeAvailable": true,
+            "source": "instrumented tinymce.init"
+          }
+        ],
+        "samples": [
+          {
+            "source": "document-start",
+            "at": 30.9,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": null,
+            "skeletonPresent": false,
+            "skeletonHidden": null,
+            "display": null,
+            "visibility": null,
+            "geometry": null,
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "mutation",
+            "at": 39.1,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 8,
+              "y": 468.5,
+              "width": 1424,
+              "height": 18
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "state-sampler",
+            "at": 152.3,
+            "readyState": "loading",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "readystatechange",
+            "at": 153,
+            "readyState": "interactive",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "readystatechange",
+            "at": 167.8,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "paint:first-paint",
+            "at": 496.7,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "paint:first-contentful-paint",
+            "at": 496.8,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": null,
+              "source": null
+            }
+          },
+          {
+            "source": "mutation",
+            "at": 689.2,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "true",
+            "skeletonPresent": true,
+            "skeletonHidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "x": 35,
+              "y": 171.484,
+              "width": 1355,
+              "height": 558
+            },
+            "editors": {
+              "visual": {
+                "width": 677.5,
+                "height": 520
+              },
+              "source": null
+            }
+          },
+          {
+            "source": "mutation",
+            "at": 844.2,
+            "readyState": "complete",
+            "visibilityState": "visible",
+            "appBusy": "false",
+            "skeletonPresent": true,
+            "skeletonHidden": true,
+            "display": "none",
+            "visibility": "visible",
+            "geometry": {
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            },
+            "editors": {
+              "visual": {
+                "width": 677.5,
+                "height": 520
+              },
+              "source": {
+                "width": 665.5,
+                "height": 517
+              }
+            }
+          }
+        ],
+        "visibleDurationMs": 805.1,
+        "firstPaintOffsetFromVisibleMs": 436.9,
+        "hiddenAfterFirstPaintMs": 368.2,
+        "editorReadyMarkStartTime": 847,
+        "editorReadyMarkDomDeltaMs": 2.8,
+        "performanceMetrics": {
+          "navigationToFirstSkeletonPaintMs": 476,
+          "skeletonPaintToEditorReadyMs": 371,
+          "navigationToEditorReadyMs": 847
+        }
+      }
+    },
+    "loadingPerformanceMetrics": {
+      "cold": {
+        "navigationToFirstSkeletonPaintMs": 440,
+        "skeletonPaintToEditorReadyMs": 371.2,
+        "navigationToEditorReadyMs": 811.2
+      },
+      "cumulative": {
+        "navigationToFirstSkeletonPaintMs": 476,
+        "skeletonPaintToEditorReadyMs": 371,
+        "navigationToEditorReadyMs": 847
+      }
+    },
+    "bootOrdering": {
+      "cold": {
+        "source": "document-start DOM/load instrumentation plus Resource Timing in the canonical CDP page",
+        "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+        "dynamicTinyScriptCount": 1,
+        "tinyScriptLoadEventCount": 1,
+        "tinyInitCallCount": 1,
+        "tinyResourceEntryCount": 1,
+        "dynamicTinyScripts": [
+          {
+            "source": "mutation",
+            "insertedAt": 462.3,
+            "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+            "type": "",
+            "async": true,
+            "defer": false,
+            "connected": true
+          }
+        ],
+        "tinyScriptLoadEvents": [
+          {
+            "at": 476.3,
+            "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+            "runtimeAvailable": true
+          }
+        ],
+        "tinyInitCalls": [
+          {
+            "at": 477.1,
+            "runtimeAvailable": true,
+            "source": "instrumented tinymce.init"
+          }
+        ],
+        "resourceEntries": [
+          {
+            "name": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+            "initiatorType": "link",
+            "startTime": 21.8,
+            "responseEnd": 113,
+            "transferSize": 486791,
+            "encodedBodySize": 486491,
+            "decodedBodySize": 486491
+          }
+        ],
+        "expectedBootMarkNames": [
+          "phe:bootstrap:paint-handoff-complete",
+          "phe:bootstrap:tinymce-script-inserted",
+          "phe:bootstrap:tinymce-runtime-loaded",
+          "phe:bootstrap:initialise-started",
+          "phe:bootstrap:editor-ready"
+        ],
+        "performanceMarks": [
+          {
+            "name": "phe:bootstrap:paint-handoff-complete",
+            "startTime": 461.8,
+            "duration": 0,
+            "entryOrder": 0
+          },
+          {
+            "name": "phe:bootstrap:tinymce-script-inserted",
+            "startTime": 462.3,
+            "duration": 0,
+            "entryOrder": 1
+          },
+          {
+            "name": "phe:bootstrap:tinymce-runtime-loaded",
+            "startTime": 476.5,
+            "duration": 0,
+            "entryOrder": 2
+          },
+          {
+            "name": "phe:bootstrap:initialise-started",
+            "startTime": 476.5,
+            "duration": 0,
+            "entryOrder": 3
+          },
+          {
+            "name": "phe:bootstrap:editor-ready",
+            "startTime": 811.2,
+            "duration": 0,
+            "entryOrder": 4
+          }
+        ],
+        "performanceMarkSequenceExact": true,
+        "editorReadyMarkStartTime": 811.2,
+        "sampledDomEditorReadyAt": 808.5,
+        "editorReadyMarkDomDeltaMs": 2.7,
+        "editorReadyMarkReconcilesWithDom": true,
+        "loadingPerformanceMetrics": {
+          "navigationToFirstSkeletonPaintMs": 440,
+          "skeletonPaintToEditorReadyMs": 371.2,
+          "navigationToEditorReadyMs": 811.2
+        },
+        "firstPaintStartTime": 440,
+        "firstContentfulPaintStartTime": 440,
+        "editorReadyAt": 808.5,
+        "tinyRuntimeAvailableAt": 476.4,
+        "tinyRuntimeAvailableAtLoad": true,
+        "tinyInitWrapped": true,
+        "tinyInitWrapError": null,
+        "ordering": {
+          "preloadFetchStartedBeforeDynamicInsertion": true,
+          "skeletonPaintedBeforeDynamicInsertion": true,
+          "contentfulPaintBeforeDynamicInsertion": true,
+          "dynamicInsertionBeforeLoad": true,
+          "runtimeAvailableAtLoad": true,
+          "loadBeforeInitialise": true,
+          "runtimeAvailableAtInitialise": true,
+          "initialiseBeforeEditorReady": true,
+          "performanceMarkSequenceExact": true,
+          "editorReadyMarkReconcilesWithDom": true
+        }
+      },
+      "cumulative": {
+        "source": "document-start DOM/load instrumentation plus Resource Timing in the canonical CDP page",
+        "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+        "dynamicTinyScriptCount": 1,
+        "tinyScriptLoadEventCount": 1,
+        "tinyInitCallCount": 1,
+        "tinyResourceEntryCount": 1,
+        "dynamicTinyScripts": [
+          {
+            "source": "mutation",
+            "insertedAt": 497.5,
+            "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+            "type": "",
+            "async": true,
+            "defer": false,
+            "connected": true
+          }
+        ],
+        "tinyScriptLoadEvents": [
+          {
+            "at": 511.7,
+            "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+            "runtimeAvailable": true
+          }
+        ],
+        "tinyInitCalls": [
+          {
+            "at": 512.6,
+            "runtimeAvailable": true,
+            "source": "instrumented tinymce.init"
+          }
+        ],
+        "resourceEntries": [
+          {
+            "name": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
+            "initiatorType": "link",
+            "startTime": 25.4,
+            "responseEnd": 94.3,
+            "transferSize": 486791,
+            "encodedBodySize": 486491,
+            "decodedBodySize": 486491
+          }
+        ],
+        "expectedBootMarkNames": [
+          "phe:bootstrap:paint-handoff-complete",
+          "phe:bootstrap:tinymce-script-inserted",
+          "phe:bootstrap:tinymce-runtime-loaded",
+          "phe:bootstrap:initialise-started",
+          "phe:bootstrap:editor-ready"
+        ],
+        "performanceMarks": [
+          {
+            "name": "phe:bootstrap:paint-handoff-complete",
+            "startTime": 497,
+            "duration": 0,
+            "entryOrder": 0
+          },
+          {
+            "name": "phe:bootstrap:tinymce-script-inserted",
+            "startTime": 497.4,
+            "duration": 0,
+            "entryOrder": 1
+          },
+          {
+            "name": "phe:bootstrap:tinymce-runtime-loaded",
+            "startTime": 511.9,
+            "duration": 0,
+            "entryOrder": 2
+          },
+          {
+            "name": "phe:bootstrap:initialise-started",
+            "startTime": 511.9,
+            "duration": 0,
+            "entryOrder": 3
+          },
+          {
+            "name": "phe:bootstrap:editor-ready",
+            "startTime": 847,
+            "duration": 0,
+            "entryOrder": 4
+          }
+        ],
+        "performanceMarkSequenceExact": true,
+        "editorReadyMarkStartTime": 847,
+        "sampledDomEditorReadyAt": 844.2,
+        "editorReadyMarkDomDeltaMs": 2.8,
+        "editorReadyMarkReconcilesWithDom": true,
+        "loadingPerformanceMetrics": {
+          "navigationToFirstSkeletonPaintMs": 476,
+          "skeletonPaintToEditorReadyMs": 371,
+          "navigationToEditorReadyMs": 847
+        },
+        "firstPaintStartTime": 476,
+        "firstContentfulPaintStartTime": 476,
+        "editorReadyAt": 844.2,
+        "tinyRuntimeAvailableAt": 511.8,
+        "tinyRuntimeAvailableAtLoad": true,
+        "tinyInitWrapped": true,
+        "tinyInitWrapError": null,
+        "ordering": {
+          "preloadFetchStartedBeforeDynamicInsertion": true,
+          "skeletonPaintedBeforeDynamicInsertion": true,
+          "contentfulPaintBeforeDynamicInsertion": true,
+          "dynamicInsertionBeforeLoad": true,
+          "runtimeAvailableAtLoad": true,
+          "loadBeforeInitialise": true,
+          "runtimeAvailableAtInitialise": true,
+          "initialiseBeforeEditorReady": true,
+          "performanceMarkSequenceExact": true,
+          "editorReadyMarkReconcilesWithDom": true
+        }
+      }
+    },
+    "docxBusyLifecycle": {
+      "busyObservedBeforeParse": true,
+      "controlsRestoredAfterParse": true
+    }
+  },
+  "assertions": {
+    "coldApplicationRequests": true,
+    "coldRequestBudget": true,
+    "cumulativeApplicationRequests": true,
+    "cumulativeContainsCold": true,
+    "onlyLocal": true,
+    "onlyGet": true,
+    "noCacheOrServiceWorker": true,
+    "legalTopLevelNavigationsOutsideEditorPayload": true,
+    "initialHtmlUsesTinyPreloadOnly": true,
+    "tinyCoreExactlyOnce": true,
+    "preloadRuntimeOrdering": true,
+    "loadingPerformanceMetricsExact": true,
+    "defaultIconsAbsent": true,
+    "customIconsOnce": true,
+    "customEmoticonsOnce": true,
+    "stockEmoticonsAbsent": true,
+    "darkTinyAssetsAbsent": true,
+    "sourceRichLazyOnlyInCumulative": true,
+    "safeReplaceLazyOnlyInCumulative": true,
+    "mammothLazyOnlyInCumulative": true,
+    "mammothRequestedByActualDocxImport": true,
+    "regexWorkerOnlyInCumulative": true,
+    "workerTargetOnlyInCumulative": true,
+    "workerSessionSetupClean": true,
+    "workerLifecycleCompleteWithoutDuplicate": true,
+    "workerTargetSessionProofExact": true,
+    "regexLifecycleRequestedSafeAndWorker": true,
+    "onlyExpectedCumulativeJavaScript": true,
+    "eagerHighlightBeforeSourceFocus": true,
+    "fullE3UiActionInventory": true,
+    "e5LifecycleInventory": true,
+    "aboutVisibleExactlyOncePerTheme": true,
+    "aboutItemsExactlySourceAndNotices": true,
+    "aboutActiveItemUsesExactAccentSoft": true,
+    "aboutSourceLinkExact": true,
+    "aboutNoticesLinkExact": true,
+    "aboutTemporaryAnchorsRemoved": true,
+    "aboutSourceNativePopupExactlyOne": true,
+    "aboutNoticesNativePopupExactlyOne": true,
+    "noticesHttp200TextPlainUtf8NoAttachment": true,
+    "exactE5Palette": true,
+    "tinyLinkDialogUsesExactAccent": true,
+    "contrastAtLeast4_5": true,
+    "nativeControlAccent": true,
+    "coarseTouchTargetsAtLeast44": true,
+    "fullE5UiAudit": true,
+    "fixturesAbsent": true,
+    "consoleClean": true,
+    "noApplicationFailures": true,
+    "decodedContentSizes": true,
+    "exactHarTimingSums": true,
+    "noSensitiveHeadersOrBodies": true
+  },
+  "timeoutEvidence": {
+    "visibleUiAssertion": "aria-invalid=true, visible message contains 500, and the source document is unchanged",
+    "exactErrorCodeEvidence": "tests/replace/safe.test.ts asserts regex-timeout; the internal code is intentionally not exposed in production DOM or inferred from HAR"
+  },
+  "workerDeduplicationRule": "Flattened page/worker Network events are coalesced only by the documented CDP requestId. No URL- or size-based merge and no synthetic response/data/terminal event is used.",
+  "workerWireSizeLimitation": "The split page/worker CDP lifecycle reports the complete decoded Worker size (3970 B) and a real loadingFinished event, but encodedDataLength does not separate HTTP headers from the gzip body. The HAR preserves the observed _encodedDataLength, sets Worker response.headersSize/bodySize to -1, omits content.compression and marks _wireBodySizeKnown=false. Byte budgets are calculated independently from current dist.",
+  "note": "Live CDP WebSocket capture; no event ring buffer was used. Successful HTTP resources are the editor document-graph size inventory. Served HTML is byte-bound to current dist and contains one exact Tiny core preload with no executable Tiny script; document-start instrumentation plus the fixed phe:bootstrap:* PerformanceMark sequence prove one runtime script and one preloaded resource become available before initialise after skeleton FP/FCP. The three local timing metrics end at the diagnostic phe:bootstrap:editor-ready mark and reconcile that mark to sampled nonzero DOM-ready state within 100 ms; they are not labelled as the deployed Slow-4G §7 input-readiness measurement. The cumulative scenario executes the complete E2 document-tool inventory plus E3 emoji, HTML/DOCX import, HTML export, clipboard, sample, draft and new-document actions. The isolated E5 browser proves the single About menu, real native new-page targets with null openers for both links, inline UTF-8 text/plain notices, light-only theme queries, exact About/Link-dialog blue and soft-blue states, native accent-color, responsive layouts, 44px coarse-pointer targets, computed contrast, focus, loading and DOCX busy states, and visualViewport updates without adding requests to either byte inventory. Both About destinations are independent top-level browsing contexts rather than resources consumed by the editor document graph, so their native-tab and HTTP-delivery proofs are deliberately separate from editor cold/cumulative payload accounting."
+}

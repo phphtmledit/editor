@@ -79,15 +79,21 @@ attempt to read or mirror editor state.
 
 ## Lighthouse comparison
 
-Measure the public host **before** inserting the iframe. Run Lighthouse three
-times with one fixed profile and record the median Performance score and CLS.
-After adding the exact iframe, repeat the same three-run profile on the same
-page. The median Performance score may fall by no more than two points, and the
+Measure the public host **before** inserting the iframe. Run Lighthouse five
+times with one fixed profile and calculate independent medians for FCP, LCP,
+Speed Index, TBT, and CLS. After adding the exact iframe, repeat the same
+five-run profile on the same page and compare those five median metrics. The
 iframe must add zero CLS.
 
+Publish the composite Performance score for reference only. Do not use it as
+an acceptance gate: its run-to-run variance is larger than the former
+two-point allowance.
+
 The pre-iframe baseline for `https://phphtmledit.com/` is recorded in
-`reports/lighthouse-host-baseline-e5.json`. Do not overwrite it with the
-post-embed measurement.
+`reports/lighthouse-host-baseline-e5.json`. Its five-run medians are
+1,753.5425 ms FCP, 1,753.5425 ms LCP, 1,988.3168240007462 ms Speed Index,
+0 ms TBT, and 0.00005927330338111205 CLS; the reference Performance score is
+99. Do not overwrite this baseline with the post-embed measurement.
 
 ## Deployment checks
 
