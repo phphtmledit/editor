@@ -8,6 +8,11 @@ interface TinyHarness {
   readonly remove: ReturnType<typeof vi.fn>;
 }
 
+const LEGAL_LINKS = {
+  sourceUrl: 'https://github.com/phphtmledit/editor',
+  noticesUrl: '/licenses.txt',
+} as const;
+
 const installTinyHarness = (): TinyHarness => {
   const frameDocument = document.implementation.createHTMLDocument('Tiny frame');
   frameDocument.body.innerHTML = '<p>Hello <strong>world</strong></p>';
@@ -74,7 +79,7 @@ describe('visual editor export and iframe drop port', () => {
     const harness = installTinyHarness();
     const panel = document.createElement('section');
     document.body.append(panel);
-    const visual = await createVisualEditor(panel);
+    const visual = await createVisualEditor(panel, LEGAL_LINKS);
     const listener = vi.fn();
     const unsubscribe = visual.onFileDrop(listener);
     const file = new File(['<p>import</p>'], 'document.html', { type: 'text/html' });
@@ -102,7 +107,7 @@ describe('visual editor export and iframe drop port', () => {
     const harness = installTinyHarness();
     const panel = document.createElement('section');
     document.body.append(panel);
-    const visual = await createVisualEditor(panel);
+    const visual = await createVisualEditor(panel, LEGAL_LINKS);
     const listener = vi.fn();
     visual.onFileDrop(listener);
 
@@ -121,7 +126,7 @@ describe('visual editor export and iframe drop port', () => {
     const harness = installTinyHarness();
     const panel = document.createElement('section');
     document.body.append(panel);
-    const visual = await createVisualEditor(panel);
+    const visual = await createVisualEditor(panel, LEGAL_LINKS);
 
     const dragover = dragEvent('dragover', [], ['Files']);
     harness.frameDocument.dispatchEvent(dragover);

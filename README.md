@@ -2,7 +2,11 @@
 
 Browser-only WYSIWYG HTML editor focused on cleaning copied and generated markup. The application uses a self-hosted TinyMCE 8 visual editor and does not send document contents to a backend or to Tiny Cloud.
 
-**E4 — the final application interface, accessibility, and responsive layout are implemented.**
+The canonical application URL is `https://app.phphtmledit.com/`; the public
+source repository is `https://github.com/phphtmledit/editor`.
+
+**E5 adds embedding, browser-visible legal links, and a Cloudflare Pages
+delivery policy to the completed E4 interface.**
 TinyMCE and CodeMirror 6 share one HTML fragment, while ten independently
 testable cleaning rules remove Word/Office markup, presentation attributes,
 empty structures and typographic artifacts. The verified stage evidence is
@@ -25,7 +29,30 @@ switches to 44 px touch targets and editor tabs below 900 px, follows the mobile
 `visualViewport`, and exposes loading, DOCX progress, and fatal-error states.
 The `?theme=` parameter remains stable, but every value resolves to the light
 theme in the MVP; `color-scheme: light` is applied to the shell and editor frame.
-Embedding, interface legal links, and E6 manual acceptance remain later stages.
+The TinyMCE `About` menu opens the public source repository and the generated
+third-party notices in new tabs. Cross-origin embedding is documented in
+[`docs/EMBEDDING.md`](docs/EMBEDDING.md); E6 remains the final manual acceptance
+stage.
+
+## Embedding and hosting
+
+Use the exact lazy iframe contract in [`docs/EMBEDDING.md`](docs/EMBEDDING.md).
+The production build emits a Cloudflare Pages `_headers` artifact that keeps
+the application out of search indexes, limits `frame-ancestors`, applies
+immutable caching only to hashed `/assets/*`, and serves `/licenses.txt` as
+UTF-8 plain text. It deliberately does not emit `X-Frame-Options`.
+
+The build accepts three public configuration values:
+
+```text
+VITE_SOURCE_URL=https://github.com/phphtmledit/editor
+VITE_NOTICES_URL=/licenses.txt
+FRAME_ANCESTORS="'self' https://phphtmledit.com https://www.phphtmledit.com http://localhost:*"
+```
+
+`FRAME_ANCESTORS` is validated at build time. It must retain all four required
+sources, cannot contain additional CSP directives, and must never include
+`phe-preview.com`, which is reserved for the negative framing test.
 
 ## License
 
@@ -46,6 +73,7 @@ npm run test
 npm run licenses
 npm run legal
 npm run icons
+npm run e5:hosting
 npm run size
 npm audit --audit-level=high
 ```
@@ -56,6 +84,10 @@ check: the production graph contains the lazy Mammoth runtime used by DOCX
 import but no DOCX/golden fixture, while the diagnostic graph contains the
 Mammoth DOCX/golden pair exactly once. Every other test fixture remains absent
 from both builds.
+
+For Cloudflare Pages, use `npm run build` as the build command and `dist` as the
+output directory. Associate `app.phphtmledit.com` through the Pages custom
+domains settings; adding DNS alone does not attach a domain to a Pages project.
 
 `npm run size` consumes the sanitized E4 production-preview captures in
 `reports/network-e4-cold.json` and `reports/network-e4-cumulative.json`, checks

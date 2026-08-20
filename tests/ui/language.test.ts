@@ -108,7 +108,17 @@ describe('English application copy', () => {
     expect(visualSource).not.toMatch(/langs\//);
   });
 
-  it('does not introduce the E5 About menu early', () => {
-    expect(productSource).not.toMatch(/\bAbout\b|О программе/iu);
+  it('centralizes the English copy for the E5 About menu', () => {
+    expect(VISUAL_UI).toMatchObject({
+      aboutMenu: 'About',
+      sourceCode: 'Source code',
+      thirdPartyNotices: 'Third-party notices',
+    });
+
+    const visualSource = readFileSync(join(root, 'src/editor/visual.ts'), 'utf8');
+    expect(visualSource).toContain('VISUAL_UI.aboutMenu');
+    expect(visualSource).toContain('VISUAL_UI.sourceCode');
+    expect(visualSource).toContain('VISUAL_UI.thirdPartyNotices');
+    expect(visualSource).not.toMatch(/['"](?:About|Source code|Third-party notices)['"]/);
   });
 });

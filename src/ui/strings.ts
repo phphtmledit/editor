@@ -133,6 +133,9 @@ export const SOURCE_UI = {
 } as const;
 
 export const VISUAL_UI = {
+  aboutMenu: 'About',
+  sourceCode: 'Source code',
+  thirdPartyNotices: 'Third-party notices',
   blockFormats:
     'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; ' +
     'Quote=blockquote; Preformatted=pre',

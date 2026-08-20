@@ -57,7 +57,7 @@ const initialise = async (signal?: AbortSignal): Promise<void> => {
   const restoredHtml = draftLoadResult.status === 'loaded' ? draftLoadResult.draft.html : null;
   if (restoredHtml !== null) visualTextarea.value = restoredHtml;
 
-  visual = await createVisualEditor(element('visual-panel'));
+  visual = await createVisualEditor(element('visual-panel'), appConfig.legalLinks);
   if (signal?.aborted) return;
   const normalizedInitialHtml = visual.getHtml();
   const sourceInitialHtml = restoredHtml ?? normalizedInitialHtml;

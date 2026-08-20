@@ -1,5 +1,6 @@
 /*! @license GPL-2.0-or-later | https://github.com/phphtmledit/editor */
 import type { Bookmark, Editor, TinyMCE } from 'tinymce';
+import type { LegalLinks } from '../config';
 import { VISUAL_UI } from '../ui/strings';
 
 const PLUGINS = [
@@ -54,6 +55,34 @@ const contentTokenStyle = (): string => {
   const styles = getComputedStyle(document.documentElement);
   const declarations = CONTENT_TOKEN_NAMES.map((name) => `${name}: ${styles.getPropertyValue(name).trim()};`);
   return `:root { color-scheme: light; ${declarations.join(' ')} }`;
+};
+
+const isHttpUrl = (value: string): boolean => {
+  try {
+    const parsed = new URL(value, window.location.href);
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+  } catch {
+    return false;
+  }
+};
+
+const assertSafeLegalLinks = (links: LegalLinks): void => {
+  if (!isHttpUrl(links.sourceUrl)) throw new Error('The source-code URL must use HTTP or HTTPS');
+  if (!isHttpUrl(links.noticesUrl)) throw new Error('The notices URL must use HTTP or HTTPS');
+};
+
+const openExternalLink = (url: string): void => {
+  const anchor = document.createElement('a');
+  anchor.setAttribute('href', url);
+  anchor.setAttribute('target', '_blank');
+  anchor.setAttribute('rel', 'noopener noreferrer');
+  anchor.hidden = true;
+  document.body.append(anchor);
+  try {
+    anchor.click();
+  } finally {
+    anchor.remove();
+  }
 };
 
 const subscribe = (listeners: Set<Listener>, listener: Listener): (() => void) => {
@@ -138,9 +167,11 @@ const restoreTextSelection = (
 
 export const createVisualEditor = async (
   panel: HTMLElement,
+  legalLinks: LegalLinks,
 ): Promise<VisualEditorController> => {
   const tiny = window.tinymce;
   if (!tiny) throw new Error('TinyMCE runtime is unavailable');
+  assertSafeLegalLinks(legalLinks);
 
   if (!tiny.IconManager.has('default')) tiny.IconManager.add('default', { icons: {} });
 
@@ -161,7 +192,23 @@ export const createVisualEditor = async (
     content_css: 'default',
     content_style: contentTokenStyle(),
     plugins: [...PLUGINS],
-    menubar: 'file edit view insert format table',
+    menubar: 'file edit view insert format table about',
+    menu: {
+      about: {
+        title: VISUAL_UI.aboutMenu,
+        items: 'phesourcecode phethirdpartynotices',
+      },
+    },
+    setup: (editor) => {
+      editor.ui.registry.addMenuItem('phesourcecode', {
+        text: VISUAL_UI.sourceCode,
+        onAction: () => openExternalLink(legalLinks.sourceUrl),
+      });
+      editor.ui.registry.addMenuItem('phethirdpartynotices', {
+        text: VISUAL_UI.thirdPartyNotices,
+        onAction: () => openExternalLink(legalLinks.noticesUrl),
+      });
+    },
     toolbar:
       'undo redo | blocks | bold italic underline strikethrough | forecolor backcolor | ' +
       'alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ' +

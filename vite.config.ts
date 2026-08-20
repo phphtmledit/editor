@@ -1,9 +1,10 @@
-import { defineConfig, type Plugin } from 'vite';
+import { defineConfig, loadEnv, type Plugin } from 'vite';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { appendEmojilibToCanonicalLicenses } from './scripts/embedded-licenses.mjs';
 import { mammothBrowserAliases } from './scripts/mammoth-browser-aliases.mjs';
 import { STATIC_UI } from './src/ui/strings.ts';
+import { DEFAULT_FRAME_ANCESTORS, pagesHeadersPlugin } from './scripts/pages-headers.mjs';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
 const sourceUrl = 'https://github.com/phphtmledit/editor';
@@ -52,6 +53,8 @@ const staticUiHtmlPlugin = (): Plugin => ({
 export default defineConfig(({ mode }) => {
   const diagnostic = mode === 'e0';
   const outDir = diagnostic ? 'dist-e0' : 'dist';
+  const environment = loadEnv(mode, projectRoot, '');
+  const frameAncestors = environment.FRAME_ANCESTORS || DEFAULT_FRAME_ANCESTORS;
   const diagnosticHtml = diagnostic
     ? readFileSync(new URL('./src/e0/index.html', import.meta.url), 'utf8')
     : '';
@@ -74,6 +77,7 @@ export default defineConfig(({ mode }) => {
         ]
         : []),
       embeddedLicensesPlugin(outDir),
+      pagesHeadersPlugin(frameAncestors),
     ],
     define: {
       __E0_DIAGNOSTIC__: JSON.stringify(diagnostic),

@@ -32,6 +32,10 @@ describe('application theme configuration', () => {
     expect(readAppConfig(search)).toEqual({
       requestedTheme: requested,
       resolvedTheme: 'light',
+      legalLinks: {
+        sourceUrl: 'https://github.com/phphtmledit/editor',
+        noticesUrl: '/licenses.txt',
+      },
     });
   });
 
@@ -53,6 +57,10 @@ describe('application theme configuration', () => {
     expect(appConfig).toEqual({
       requestedTheme: 'unknown',
       resolvedTheme: 'light',
+      legalLinks: {
+        sourceUrl: 'https://github.com/phphtmledit/editor',
+        noticesUrl: '/licenses.txt',
+      },
     });
     expect(document.documentElement.dataset.theme).toBe('light');
   });
