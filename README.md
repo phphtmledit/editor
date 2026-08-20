@@ -53,6 +53,8 @@ FRAME_ANCESTORS="'self' https://phphtmledit.com https://www.phphtmledit.com http
 `FRAME_ANCESTORS` is validated at build time. It must retain all four required
 sources, cannot contain additional CSP directives, and must never include
 `phe-preview.com`, which is reserved for the negative framing test.
+In the Cloudflare dashboard, enter the value itself without the outer double
+quotes used by dotenv syntax.
 
 ## License
 
@@ -73,7 +75,7 @@ npm run test
 npm run licenses
 npm run legal
 npm run icons
-npm run e5:hosting
+npm run hosting
 npm run size
 npm audit --audit-level=high
 ```

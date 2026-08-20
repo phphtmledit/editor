@@ -61,6 +61,10 @@ does not duplicate it in JavaScript. `phe-preview.com` is deliberately absent:
 that origin is reserved for the negative framing test and must never be added,
 even temporarily.
 
+When entering `FRAME_ANCESTORS` in the Cloudflare dashboard, use the value
+itself (`'self' https://...`) without wrapping the complete value in double
+quotes. The outer double quotes in `.env.example` are dotenv file syntax.
+
 If a browser refuses to render the editor, inspect the editor document's
 `Content-Security-Policy` response header and the exact host origin. Do not add
 `X-Frame-Options`; it cannot express the required multi-origin policy and may

@@ -1,5 +1,17 @@
 # Stage evidence
 
+## Rolling permanent evidence
+
+- `icon-visual-result.json` — rolling toolbar/menu/dialog visual icon checklist,
+  fallback assertions, and the six project-authored file/clipboard action-icon
+  contracts; accepted stage extensions are appended without discarding the
+  earlier scenarios.
+- `e5-about-menu.png`, `e5-link-dialog.png` — reviewed E5 Chromium captures for
+  the About menu and token-driven Oxide focus/primary states; SHA-256 values are
+  pinned by the rolling icon report.
+- `e5-palette-visual.json` — computed native-control and Oxide menu/dialog
+  colors, the reviewed screenshot hashes, and the post-change contrast minimum.
+
 ## Immutable E0 evidence
 
 - `network-cold.har` — Chrome DevTools Protocol Network-domain capture through
@@ -9,7 +21,6 @@
 - `network-har-result.json` — assertions over both sanitized HAR 1.2 files.
 
 - `mammoth-result.json` — golden-output comparison and semantic tag inventory.
-- `icon-visual-result.json` — toolbar/menu/dialog visual icon checklist and fallback assertions.
 - `network-cold.json` — sanitized editor-ready `PerformanceResourceTiming` inventory.
 - `network-full.json` — sanitized production timing inventory after dialogs and lazy Mammoth load; no fixture request.
 - `size-result.json` — current `dist` SHA-256 values, the four byte-budget checks
@@ -102,7 +113,7 @@ quality 11.
 The E3 files preserve the accepted baseline and are no longer inputs to the
 current `npm run size`.
 
-## Current E4 evidence
+## Immutable E4 evidence
 
 - `dark-assets-removal-e4.json` - reproducible before/after measurement for the
   three excluded TinyMCE dark-skin assets. It pins the accepted E3
@@ -151,8 +162,19 @@ The separate 4G report applies CDP network throttling without CPU throttling and
 records the same preload, paint, dynamic-loader, runtime, initialization, and
 ready ordering. Its `budgetInput` and `canonicalHar` fields are both false.
 
-`npm run size` now refuses stale or non-E4 captures. The captures must match the
-current manifest and DOCX fixture, retain exactly the three dynamic entries and
-single regex Worker, contain no fixture or dark-skin request, and pass the full
-E3 action inventory plus every E4 UI and paint assertion before the four byte
-budgets and 25-request ceiling can pass.
+These E4 captures preserve the accepted interface baseline and are no longer
+inputs to the current `npm run size`. Fresh E5 captures must retain the same
+manifest, DOCX, dynamic-entry, Worker, fixture, dark-skin, action, paint, budget,
+and request-count invariants while adding the E5 legal-link assertions.
+
+## E5 host baseline before embedding
+
+- `lighthouse-host-baseline-e5.json` — the English three-run summary and median
+  for `https://phphtmledit.com/` before any iframe was inserted.
+- `lighthouse-host-baseline-e5-run-1.json` through
+  `lighthouse-host-baseline-e5-run-3.json` — complete portable Lighthouse JSON
+  inputs whose SHA-256 values are pinned by the summary.
+
+The page contained zero iframes and made zero requests to
+`app.phphtmledit.com` in all three runs. This baseline is immutable: the
+post-embedding comparison must be stored separately and must not overwrite it.

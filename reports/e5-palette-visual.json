@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "stage": "E5",
+  "capturedAt": "2026-08-20T17:16:38.735Z",
+  "browserSurface": "in-app Chromium browser",
+  "pageUrl": "http://127.0.0.1:4173/?theme=auto",
+  "revision": "dca4b92b99bedb98f80d0424be05ed1d2cb8fdb5",
+  "screenshots": [
+    {
+      "path": "reports/e5-about-menu.png",
+      "sha256": "0a9621030ff24eeb88c897767022004d5951406b637c64d46cb96f40863eb259"
+    },
+    {
+      "path": "reports/e5-link-dialog.png",
+      "sha256": "8b7e7b007d8f44355175cb0d7c3de43a361311c8b5db8d25a93570aee96afb21"
+    }
+  ],
+  "tokens": {
+    "accent": "#0B6BCB",
+    "accentSoft": "#E6F1FB"
+  },
+  "computedStates": {
+    "nativeWrapAccentColor": "rgb(11, 107, 203)",
+    "tinyDialogFocusedFieldBorder": "rgb(11, 107, 203)",
+    "tinyDialogFocusedFieldBoxShadow": "rgb(11, 107, 203) 0px 0px 0px 1px",
+    "tinyDialogPrimaryBackground": "rgb(11, 107, 203)",
+    "tinyDialogPrimaryText": "rgb(255, 255, 255)",
+    "tinyAboutActiveBackground": "rgb(230, 241, 251)",
+    "tinyAboutActiveText": "rgb(23, 32, 51)"
+  },
+  "contrast": {
+    "minimumRatio": 4.914,
+    "minimumPair": "muted text on accent-soft",
+    "threshold": 4.5,
+    "passed": true
+  },
+  "assertions": {
+    "oldIndigoAbsent": true,
+    "nativeControlsUseProjectAccent": true,
+    "tinyFocusUsesProjectAccent": true,
+    "tinyPrimaryUsesProjectAccent": true,
+    "tinyActiveMenuUsesSoftToken": true,
+    "tinyActiveMenuLabelUsesTextColor": true
+  },
+  "result": "PASS"
+}

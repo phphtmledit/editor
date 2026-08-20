@@ -6,10 +6,10 @@
   "pack": "phphtmledit",
   "configuredIcons": 68,
   "customIconSha256": "d76c40de675fc6b40151003e691a3332c60779ca802678971b816ed89dd83b2c",
-  "observedUiStates": 27,
+  "observedUiStates": 28,
   "scenarios": [
     "toolbar including overflow",
-    "File/Edit/View/Insert/Format/Table menus",
+    "File/Edit/View/Insert/Format/Table/About menus",
     "text color palette and color picker",
     "link dialog and link context actions",
     "image dialog with lock and unlock states",
@@ -17,7 +17,7 @@
     "Table properties General and Advanced tabs",
     "Row/Column/Cell nested table menus",
     "character map dialog",
-    "emoji dialog with full unchanged database",
+    "emoji dialog with 300-entry common database",
     "date/time menu"
   ],
   "assertions": {
@@ -27,7 +27,35 @@
     "notFoundFallbackRendered": false,
     "stockDefaultIconRequestObserved": false,
     "customIconColdRequests": 1,
-    "consoleWarningsOrErrors": 0
+    "consoleWarningsOrErrors": 0,
+    "aboutItemsHaveNoIconSlots": true
   },
+  "extensions": [
+    {
+      "stage": "E3",
+      "evidence": "reports/network-e3-har-result.json",
+      "change": "The emoji dialog uses the reproducible 300-entry common database while retaining the original dialog, search, and icon behavior."
+    },
+    {
+      "stage": "E5",
+      "capturedAt": "2026-08-20T17:16:38.735Z",
+      "change": "The About menu was opened in the production build and contains exactly Source code and Third-party notices without icon slots or missing-icon fallbacks.",
+      "aboutMenuScreenshot": "reports/e5-about-menu.png",
+      "aboutMenuScreenshotSha256": "0a9621030ff24eeb88c897767022004d5951406b637c64d46cb96f40863eb259",
+      "linkDialogScreenshot": "reports/e5-link-dialog.png",
+      "linkDialogScreenshotSha256": "8b7e7b007d8f44355175cb0d7c3de43a361311c8b5db8d25a93570aee96afb21",
+      "paletteEvidence": "reports/e5-palette-visual.json",
+      "shellActionIconCount": 6,
+      "shellActionIcons": [
+        { "buttonId": "choose-import-file", "icon": "folder-open" },
+        { "buttonId": "export-html", "icon": "download" },
+        { "buttonId": "copy-html", "icon": "copy-code" },
+        { "buttonId": "copy-text", "icon": "copy-text" },
+        { "buttonId": "load-example", "icon": "sparkles" },
+        { "buttonId": "new-document", "icon": "file-plus" }
+      ],
+      "shellActionIconEvidence": "tests/ui/action-icons.test.ts"
+    }
+  ],
   "result": "PASS"
 }

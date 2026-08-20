@@ -150,7 +150,6 @@ describe('E4 visual contract', () => {
       ['surface', 'accent'],
       ['text', 'accent-soft'],
       ['text-muted', 'accent-soft'],
-      ['accent', 'accent-soft'],
     ] as const;
 
     pairs.forEach(([foreground, background]) => {
@@ -159,10 +158,12 @@ describe('E4 visual contract', () => {
   });
 
   it('uses the soft accent only for background states', () => {
-    const declarations = sourceFiles(join(root, 'src'))
+    const rules = sourceFiles(join(root, 'src'))
       .filter((path) => extname(path) === '.css')
       .flatMap((path) => [...readFileSync(path, 'utf8').matchAll(/([^{}]+)\{([^{}]*)\}/g)]
-        .flatMap((rule) => (rule[2] ?? '').split(';'))
+        .map((rule) => ({ selector: rule[1] ?? '', body: rule[2] ?? '', path })));
+    const declarations = rules
+      .flatMap(({ body, path }) => body.split(';')
         .map((declaration) => declaration.trim())
         .filter((declaration) => declaration.includes('var(--phe-accent-soft)'))
         .map((declaration) => ({ declaration, path })));
@@ -172,6 +173,14 @@ describe('E4 visual contract', () => {
       expect(declaration, relative(root, path).replaceAll('\\', '/'))
         .toMatch(/^background(?:-color)?\s*:/);
     });
+    rules
+      .filter(({ body }) => body.includes('var(--phe-accent-soft)'))
+      .forEach(({ body, path, selector }) => {
+        expect(body, `${relative(root, path).replaceAll('\\', '/')}: ${selector.trim()}`)
+          .not.toMatch(/(?:^|;)\s*color\s*:\s*var\(--phe-accent\)/);
+      });
+    expect(css).toMatch(/\.tox-dialog__body-nav-item:focus\s*\{[^}]*color:\s*var\(--phe-text\)[^}]*background-color:\s*var\(--phe-accent-soft\)/s);
+    expect(css).toMatch(/\.tox-mbtn--active,[^}]*\{[^}]*color:\s*var\(--phe-text\)[^}]*background:\s*var\(--phe-accent-soft\)/s);
   });
 
   it('pins native checkbox, radio and range controls to the application accent', () => {

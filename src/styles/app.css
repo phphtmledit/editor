@@ -94,6 +94,29 @@ h1 {
   gap: 7px;
 }
 
+.io-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.io-action-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.io-actions button:not(.primary-action) .io-action-icon { color: var(--phe-accent); }
+
 .io-action-separator {
   width: 1px;
   height: 28px;
@@ -243,7 +266,7 @@ body .tox .tox-collection--list .tox-collection__item--active:not(.tox-collectio
   background-color: var(--phe-accent-soft);
 }
 body .tox .tox-dialog__body-nav-item:focus {
-  color: var(--phe-accent);
+  color: var(--phe-text);
   background-color: var(--phe-accent-soft);
 }
 body .tox .tox-dialog__body-nav-item--active {
@@ -255,7 +278,7 @@ body .tox .tox-mbtn:not(:disabled).tox-mbtn--active:focus,
 body .tox .tox-tbtn--enabled,
 body .tox .tox-tbtn--enabled:hover,
 body .tox .tox-tbtn--enabled:focus {
-  color: var(--phe-accent);
+  color: var(--phe-text);
   background: var(--phe-accent-soft);
 }
 body .tox .tox-textfield:focus,

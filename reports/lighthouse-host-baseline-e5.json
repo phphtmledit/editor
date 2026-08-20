@@ -10,6 +10,15 @@
     "applicationDomainReferences": 0,
     "applicationDomainRequestsPerRun": [0, 0, 0]
   },
+  "rawArtifacts": {
+    "repositoryFiles": [
+      "reports/lighthouse-host-baseline-e5-run-1.json",
+      "reports/lighthouse-host-baseline-e5-run-2.json",
+      "reports/lighthouse-host-baseline-e5-run-3.json"
+    ],
+    "htmlReportsArchived": false,
+    "note": "The three complete Lighthouse JSON reports are the portable canonical inputs. HTML renderings are omitted because they duplicate the JSON payload."
+  },
   "tooling": {
     "lighthouse": "13.4.1",
     "chrome": "151.0.7922.169",

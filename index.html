@@ -24,13 +24,54 @@
             aria-label="{{phe:importFileAriaLabel}}"
             accept=".html,.htm,.docx,text/html,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           />
-          <button id="choose-import-file" type="button" class="primary-action">{{phe:openFile}}</button>
-          <button id="export-html" type="button">{{phe:downloadHtml}}</button>
-          <button id="copy-html" type="button">{{phe:copyHtml}}</button>
-          <button id="copy-text" type="button">{{phe:copyText}}</button>
+          <button id="choose-import-file" type="button" class="primary-action">
+            <svg class="io-action-icon" data-icon="folder-open" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M3.5 10.75V6.5A1.5 1.5 0 0 1 5 5h4.25l2 2.25H19a1.5 1.5 0 0 1 1.5 1.5v2" />
+              <path d="M3.5 10.75h18l-2.16 6.48a1.85 1.85 0 0 1-1.76 1.27H6.42a1.85 1.85 0 0 1-1.76-1.27Z" />
+            </svg>
+            <span class="io-action-label">{{phe:openFile}}</span>
+          </button>
+          <button id="export-html" type="button">
+            <svg class="io-action-icon" data-icon="download" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 3.75v10.5" />
+              <path d="m8.25 10.75 3.75 3.75 3.75-3.75" />
+              <path d="M4.5 17.5v2h15v-2" />
+            </svg>
+            <span class="io-action-label">{{phe:downloadHtml}}</span>
+          </button>
+          <button id="copy-html" type="button">
+            <svg class="io-action-icon" data-icon="copy-code" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="7.5" y="6.5" width="12" height="14" rx="1.75" />
+              <path d="M4.5 17V5.25A1.75 1.75 0 0 1 6.25 3.5H16" />
+              <path d="m11.5 11-2 2 2 2m4-4 2 2-2 2" />
+            </svg>
+            <span class="io-action-label">{{phe:copyHtml}}</span>
+          </button>
+          <button id="copy-text" type="button">
+            <svg class="io-action-icon" data-icon="copy-text" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="7.5" y="6.5" width="12" height="14" rx="1.75" />
+              <path d="M4.5 17V5.25A1.75 1.75 0 0 1 6.25 3.5H16" />
+              <path d="M10.5 11h6m-6 3h6m-6 3h4" />
+            </svg>
+            <span class="io-action-label">{{phe:copyText}}</span>
+          </button>
           <span class="io-action-separator" aria-hidden="true"></span>
-          <button id="load-example" type="button">{{phe:loadExample}}</button>
-          <button id="new-document" type="button">{{phe:newDocument}}</button>
+          <button id="load-example" type="button">
+            <svg class="io-action-icon" data-icon="sparkles" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 3.5c.35 2.75 1.75 4.15 4.5 4.5-2.75.35-4.15 1.75-4.5 4.5-.35-2.75-1.75-4.15-4.5-4.5 2.75-.35 4.15-1.75 4.5-4.5Z" />
+              <path d="M18.25 13.5c.2 1.55 1 2.35 2.55 2.55-1.55.2-2.35 1-2.55 2.55-.2-1.55-1-2.35-2.55-2.55 1.55-.2 2.35-1 2.55-2.55Z" />
+              <path d="M5.25 4.5v3M3.75 6h3" />
+            </svg>
+            <span class="io-action-label">{{phe:loadExample}}</span>
+          </button>
+          <button id="new-document" type="button">
+            <svg class="io-action-icon" data-icon="file-plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6.25 3.5h7.5l4 4v13H6.25Z" />
+              <path d="M13.75 3.5v4h4" />
+              <path d="M12 11v6m-3-3h6" />
+            </svg>
+            <span class="io-action-label">{{phe:newDocument}}</span>
+          </button>
         </div>
         <div class="io-feedback">
           <span class="io-progress" aria-hidden="true"></span>

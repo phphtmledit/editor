@@ -13,7 +13,7 @@ const frameSourceHostname = (source) => {
   if (source === "'self'") return null;
   const withoutScheme = source.replace(/^https?:\/\//i, '');
   const withoutPort = withoutScheme.replace(/:(?:\*|\d+)$/, '');
-  return withoutPort.replace(/^\*\./, '').replace(/\.$/, '').toLowerCase();
+  return withoutPort.replace(/^\*\./, '').replace(/\.+$/, '').toLowerCase();
 };
 
 export const normalizeFrameAncestors = (input = DEFAULT_FRAME_ANCESTORS) => {

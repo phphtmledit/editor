@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import {
   DEFAULT_FRAME_ANCESTORS,
@@ -18,6 +20,15 @@ const defaultHeaders = `/*
 `;
 
 describe('Cloudflare Pages header artifact', () => {
+  it('keeps the production and diagnostic header checks on their build paths', () => {
+    const manifest = JSON.parse(readFileSync(join(process.cwd(), 'package.json'), 'utf8')) as {
+      scripts?: Record<string, string>;
+    };
+
+    expect(manifest.scripts?.build).toMatch(/vite build && npm run hosting$/);
+    expect(manifest.scripts?.['build:e0']).toContain('npm run hosting -- --include-diagnostic');
+  });
+
   it('renders the exact default allow-list and delivery policies', () => {
     expect(DEFAULT_FRAME_ANCESTORS)
       .toBe("'self' https://phphtmledit.com https://www.phphtmledit.com http://localhost:*");
@@ -41,6 +52,7 @@ describe('Cloudflare Pages header artifact', () => {
     ["'self' https://phphtmledit.com https://www.phphtmledit.com http://localhost:* https://phe-preview.com.", 'reserved fqdn'],
     ["'self' https://phphtmledit.com https://www.phphtmledit.com http://localhost:* https://foo.phe-preview.com.", 'reserved subdomain fqdn'],
     ["'self' https://phphtmledit.com https://www.phphtmledit.com http://localhost:* https://*.phe-preview.com.", 'reserved wildcard fqdn'],
+    ["'self' https://phphtmledit.com https://www.phphtmledit.com http://localhost:* https://phe-preview.com..", 'reserved malformed fqdn'],
     ["'self' https://phphtmledit.com https://www.phphtmledit.com", 'missing'],
     ["'self' https://phphtmledit.com/path https://www.phphtmledit.com http://localhost:*", 'invalid'],
   ])('rejects unsafe or incomplete FRAME_ANCESTORS (%s)', (value) => {
