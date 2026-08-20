@@ -42,6 +42,7 @@ declare global {
 
 const CONTENT_TOKEN_NAMES = [
   '--phe-accent',
+  '--phe-accent-soft',
   '--phe-bg',
   '--phe-surface',
   '--phe-border',

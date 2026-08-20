@@ -8,7 +8,8 @@
   --phe-viewport-height: 100vh;
   --phe-viewport-offset-top: 0px;
   --phe-visual-percent: 50%;
-  --phe-accent: #4F46E5;
+  --phe-accent: #0B6BCB;
+  --phe-accent-soft: #E6F1FB;
   --phe-bg: #F4F6F9;
   --phe-surface: #FFFFFF;
   --phe-border: #CCD3DF;
@@ -35,6 +36,9 @@ body {
 }
 button,
 input { font: inherit; }
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"] { accent-color: var(--phe-accent); }
 [hidden] { display: none !important; }
 
 .app-shell {
@@ -116,7 +120,7 @@ h1 {
   border: 1px solid var(--phe-accent);
   border-radius: var(--phe-radius);
   color: var(--phe-text);
-  background: var(--phe-bg);
+  background: var(--phe-accent-soft);
   font-size: .84rem;
 }
 
@@ -235,12 +239,12 @@ body .tox .tox-collection--toolbar .tox-collection__item--active:not(.tox-collec
   box-shadow: 0 0 0 2px var(--phe-accent);
 }
 body .tox .tox-collection--list .tox-collection__item--active:not(.tox-collection__item--state-disabled) {
-  color: var(--phe-surface);
-  background-color: var(--phe-accent);
+  color: var(--phe-text);
+  background-color: var(--phe-accent-soft);
 }
 body .tox .tox-dialog__body-nav-item:focus {
   color: var(--phe-accent);
-  background-color: var(--phe-bg);
+  background-color: var(--phe-accent-soft);
 }
 body .tox .tox-dialog__body-nav-item--active {
   color: var(--phe-accent);
@@ -252,7 +256,7 @@ body .tox .tox-tbtn--enabled,
 body .tox .tox-tbtn--enabled:hover,
 body .tox .tox-tbtn--enabled:focus {
   color: var(--phe-accent);
-  background: var(--phe-bg);
+  background: var(--phe-accent-soft);
 }
 body .tox .tox-textfield:focus,
 body .tox .tox-toolbar-textfield:focus,
@@ -332,11 +336,11 @@ body .tox .tox-selectfield select:focus { border-color: var(--phe-accent); box-s
   border: 1px solid var(--phe-accent);
   border-radius: var(--phe-radius);
   color: var(--phe-text);
-  background: var(--phe-bg);
+  background: var(--phe-accent-soft);
   font-size: .88rem;
 }
 
-.app-error { border-color: var(--phe-accent); color: var(--phe-text); background: var(--phe-bg); }
+.app-error { border-color: var(--phe-accent); color: var(--phe-text); background: var(--phe-accent-soft); }
 .app-error h2,
 .app-error p { margin: 0; }
 .app-error h2 { margin-bottom: 4px; font-size: 1rem; }
@@ -398,7 +402,7 @@ body .tox .tox-selectfield select:focus { border-color: var(--phe-accent); box-s
   padding: 8px 10px;
   border-inline-start: 3px solid var(--phe-accent);
   color: var(--phe-text-muted);
-  background: var(--phe-bg);
+  background: var(--phe-accent-soft);
   font-size: .82rem;
 }
 
@@ -422,7 +426,7 @@ body .tox .tox-selectfield select:focus { border-color: var(--phe-accent); box-s
 
 .cleaning-rule-name { font-size: .84rem; }
 .cleaning-rule-description { display: block; margin-top: 1px; color: var(--phe-text-muted); font-size: .73rem; }
-.cleaning-rule.is-priority { border-color: var(--phe-accent); }
+.cleaning-rule.is-priority { border-color: var(--phe-accent); background: var(--phe-accent-soft); }
 
 .replacement-rule {
   padding: 9px;

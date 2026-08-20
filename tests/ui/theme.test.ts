@@ -67,6 +67,7 @@ describe('application theme configuration', () => {
     expect(visualSource).toMatch(/content_style:\s*[A-Za-z_$][\w$]*\s*\(/);
     [
       '--phe-accent',
+      '--phe-accent-soft',
       '--phe-bg',
       '--phe-surface',
       '--phe-border',

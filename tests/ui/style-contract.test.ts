@@ -8,6 +8,7 @@ const css = readFileSync(cssPath, 'utf8');
 
 const REQUIRED_TOKENS = [
   'accent',
+  'accent-soft',
   'bg',
   'surface',
   'border',
@@ -17,7 +18,8 @@ const REQUIRED_TOKENS = [
 ] as const;
 
 const COLOR_TOKEN_VALUES = {
-  accent: '#4F46E5',
+  accent: '#0B6BCB',
+  'accent-soft': '#E6F1FB',
   bg: '#F4F6F9',
   surface: '#FFFFFF',
   border: '#CCD3DF',
@@ -26,13 +28,16 @@ const COLOR_TOKEN_VALUES = {
 } as const;
 
 const COLOR_LITERAL = /(?<!&)#[\da-f]{3,8}(?![\w-])|(?:rgb|hsl)a?\s*\(/gi;
+const OLD_ACCENT = /#4f46e5|rgba?\(\s*79(?:\s*,\s*|\s+)70(?:\s*,\s*|\s+)229\b/i;
 
-const productionFiles = (directory: string): string[] => readdirSync(directory, { withFileTypes: true })
+const sourceFiles = (directory: string): string[] => readdirSync(directory, { withFileTypes: true })
   .flatMap((entry) => {
     const path = join(directory, entry.name);
-    return entry.isDirectory() ? productionFiles(path) : [path];
+    return entry.isDirectory() ? sourceFiles(path) : [path];
   })
-  .filter((path) => ['.ts', '.css', '.js', '.cjs'].includes(extname(path)))
+  .filter((path) => ['.ts', '.css', '.js', '.cjs'].includes(extname(path)));
+
+const productionFiles = (directory: string): string[] => sourceFiles(directory)
   .filter((path) => !relative(root, path).replaceAll('\\', '/').startsWith('src/e0/'));
 
 const tokenValue = (name: string): string => {
@@ -110,6 +115,11 @@ describe('E4 visual contract', () => {
     expect(css).toContain('color-scheme: light;');
     expect(css).not.toContain('#818CF8');
 
+    const projectOwnedUiFiles = [join(root, 'index.html'), ...sourceFiles(join(root, 'src'))];
+    projectOwnedUiFiles.forEach((path) => {
+      expect(readFileSync(path, 'utf8'), relative(root, path).replaceAll('\\', '/')).not.toMatch(OLD_ACCENT);
+    });
+
     const rootRule = css.match(/:root\s*\{([^}]*)\}/s)?.[1] ?? '';
     let cssWithoutTokenDeclarations = css;
     for (const [name, value] of Object.entries(COLOR_TOKEN_VALUES)) {
@@ -129,7 +139,8 @@ describe('E4 visual contract', () => {
 
   it('keeps every application text pairing above 4.5:1', () => {
     const colors = Object.fromEntries(
-      ['accent', 'bg', 'surface', 'text', 'text-muted'].map((name) => [name, tokenValue(name)]),
+      ['accent', 'accent-soft', 'bg', 'surface', 'text', 'text-muted']
+        .map((name) => [name, tokenValue(name)]),
     );
     const pairs = [
       ['text', 'surface'],
@@ -137,11 +148,38 @@ describe('E4 visual contract', () => {
       ['text-muted', 'surface'],
       ['text-muted', 'bg'],
       ['surface', 'accent'],
+      ['text', 'accent-soft'],
+      ['text-muted', 'accent-soft'],
+      ['accent', 'accent-soft'],
     ] as const;
 
     pairs.forEach(([foreground, background]) => {
       expect(contrast(colors[foreground]!, colors[background]!)).toBeGreaterThanOrEqual(4.5);
     });
+  });
+
+  it('uses the soft accent only for background states', () => {
+    const declarations = sourceFiles(join(root, 'src'))
+      .filter((path) => extname(path) === '.css')
+      .flatMap((path) => [...readFileSync(path, 'utf8').matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+        .flatMap((rule) => (rule[2] ?? '').split(';'))
+        .map((declaration) => declaration.trim())
+        .filter((declaration) => declaration.includes('var(--phe-accent-soft)'))
+        .map((declaration) => ({ declaration, path })));
+
+    expect(declarations).not.toEqual([]);
+    declarations.forEach(({ declaration, path }) => {
+      expect(declaration, relative(root, path).replaceAll('\\', '/'))
+        .toMatch(/^background(?:-color)?\s*:/);
+    });
+  });
+
+  it('pins native checkbox, radio and range controls to the application accent', () => {
+    const nativeControlRule = css.match(
+      /input\[type="checkbox"\],\s*input\[type="radio"\],\s*input\[type="range"\]\s*\{([^}]*)\}/s,
+    )?.[1] ?? '';
+
+    expect(nativeControlRule).toContain('accent-color: var(--phe-accent);');
   });
 
   it('keeps live busy-state text above 4.5:1 after ancestor opacity is applied', () => {
