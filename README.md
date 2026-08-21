@@ -18,10 +18,13 @@ TinyMCE and CodeMirror 6 share one HTML fragment, while ten independently
 testable cleaning rules remove Word/Office markup, presentation attributes,
 empty structures and typographic artifacts. The verified stage evidence is
 documented in `docs/E5.md`; the accepted E0–E4 reports remain unchanged in
-`docs/E0.md` through `docs/E4.md`. The E5 implementation candidate is merged
-and deployed. Host integration still requires a new instrumented pre-iframe
-baseline, iframe insertion, post-embed Lighthouse, and framing checks listed in
-the E5 report.
+`docs/E0.md` through `docs/E4.md`. The first E5 production build from
+`b3dc011b5f3381e10237f6af6c2c7f7a55d9e955` is merged and deployed. The
+instrumented pre-iframe baseline and iframe insertion are complete. The first
+post-embed series exposed an application-subframe layout shift; corrective
+commit `f2d2909c87eeb63269e5804d86c0f8dbb047cbf7` is pending production
+deployment and a replacement series. The retained failure and framing checks
+are tracked in the E5 report.
 
 On desktop the visual and source panels share a keyboard- and pointer-adjustable
 splitter. Below 900 px they become accessible tabs. TinyMCE-to-source updates
