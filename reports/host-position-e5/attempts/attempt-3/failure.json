@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "scenario": "host-native-lazy-iframe-position",
+  "startedAt": "2026-08-21T16:12:06.349Z",
+  "failedAt": "2026-08-21T16:14:31.098Z",
+  "error": {
+    "name": "Error",
+    "message": "control series failed:\n- dom-content-loaded slotRect top varied by 171.65625 CSS px; limit is 0.5.\n- dom-content-loaded slotRect bottom varied by 171.65625 CSS px; limit is 0.5.\n- dom-content-loaded slotRect left varied by 8 CSS px; limit is 0.5.\n- dom-content-loaded slotRect right varied by 8 CSS px; limit is 0.5.\n- dom-content-loaded slotRect width varied by 16 CSS px; limit is 0.5.\n- dom-content-loaded iframeRect top varied by 171.65625 CSS px; limit is 0.5.\n- dom-content-loaded iframeRect bottom varied by 171.65625 CSS px; limit is 0.5.\n- dom-content-loaded iframeRect left varied by 8 CSS px; limit is 0.5.\n- dom-content-loaded iframeRect right varied by 8 CSS px; limit is 0.5.\n- dom-content-loaded iframeRect width varied by 16 CSS px; limit is 0.5.",
+    "code": null,
+    "stack": "<redacted-stack>"
+  },
+  "portableEvidence": {
+    "sourceOriginal": {
+      "relativePath": "failure.json",
+      "bytes": 2030,
+      "sha256": "195d0cae632a0a352bdd2764471efa733e94375a7930f61d004e06676e91c9fb"
+    },
+    "transformation": "sanitized-json-v1"
+  }
+}

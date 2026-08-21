@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "scenario": "host-native-lazy-iframe-position",
+  "startedAt": "2026-08-21T15:41:35.866Z",
+  "failedAt": "2026-08-21T15:41:56.312Z",
+  "error": {
+    "name": "Error",
+    "message": "below-fold run 1 failed:\n- Loaded iframe must make exactly 18 app requests.\n- Every loaded app request must return 200, finish, avoid redirects, and have no failure.\n- Loaded app request URL/type/status inventory differs from the accepted 18 responses.",
+    "code": null,
+    "stack": "<redacted-stack>"
+  },
+  "portableEvidence": {
+    "sourceOriginal": {
+      "relativePath": "failure.json",
+      "bytes": 989,
+      "sha256": "c7ac62fc1bf64abc10eb6ae38c6f257d49af0fe53c5235312585b754d2cf7d42"
+    },
+    "transformation": "sanitized-json-v1"
+  }
+}

@@ -266,3 +266,43 @@ package and requires that truthful result; default `npm run hosting` then exits
 nonzero on criterion 12. Allowed-origin clipboard/framing, the no-permission
 clipboard fallback, and the denied `phe-preview.com` framing check also remain
 pending under criteria 7 and 14.
+
+## E5 native lazy-loading position diagnostic
+
+`host-position-e5/` is a self-contained, 53-file evidence package for the
+three-position native-lazy experiment. It retains the five-file
+infrastructure-only attempt 1, the ten-file overconstrained attempt 2, and all
+36 attempt-3 source artifacts. The 15 attempt-3 Lighthouse reports and captured
+host HTML are byte-identical; probes, lifecycle markers, failures, and the
+derived summary are deterministically sanitized and bind original and portable
+size/SHA-256 values. No ignored `work/` path, OS PID, ephemeral DevTools port,
+stack, or secret/header value is required.
+
+Lighthouse 13.4.1 simulated Slow 4G with CPU slowdown ×4 at 412×823, DPR 1.75.
+The separate Chromium runtime flag forced effective connection type `4g` only
+for native lazy-load distance selection; it did not impose the transfer model.
+The balanced 15-run schedule used five fresh profiles per position.
+
+| Position | Final top / distance below fold | Loaded Document | Bootstrap | FCP/LCP median [range] | SI median [range] | TBT median [range] | CLS |
+| --- | --- | ---: | --- | ---: | ---: | ---: | ---: |
+| Control | 531.53125 / 0 px | 5/5 | 5× 18/18 | 1710.0496 [1662.9624–2052.0125] ms | 2948.7911 [2265.9921–3325.7334] ms | 409.5 [349.5–417.5] ms | 0 |
+| Below fold | 1148.78125 / 325.78125 px | 5/5 | 4× 4/18; 1× 18/18 | 1960.6250 [1690.5890–3307.1880] ms | 2452.9669 [1883.2116–4814.6321] ms | 0 [0–359] ms | 0 |
+| Three viewports down | 3000.53125 / 2177.53125 px | 5/5 | 5× 4/18 | 1705.8515 [1654.8565–1836.3531] ms | 1990.2850 [1736.3925–2325.9305] ms | 0 [0–0] ms | 0 |
+
+All 15 Documents were requested and loaded: six runs completed 18/18 assets
+and nine retained only the exact four-response paint shell. The study has no
+not-requested point, and each request preceded passive first-seen geometry, so
+it establishes no direct request-time cutoff or lower bound. At DOMContentLoaded
+each variant had three pre-host-CSS and two host-CSS-applied samples; the
+document-start margin, safety floors, equal slot/iframe rects, and stable
+first-seen/window-load/post-FCP/final states remained valid.
+
+The package manifest SHA-256 is
+`1b3fbaf63f8d08e6f20ed9075a6b75332898a6bc53824637937f4c5e64cb5a13`;
+the portable summary SHA-256 is
+`950725c9a933c9c46fe13a2b6e2c54af4d20f003851eb8b04a3cb5967c451aad`.
+Run `npm run host:position` for the standalone verifier. Both hosting modes also
+run it as evidence integrity without changing criterion-12 acceptance. The
+experiment records criterion 12 as not evaluated and leaves its existing
+first-fold FAIL untouched. Manual clipboard criterion 7 and framing criterion
+14 were not evaluated by this package.

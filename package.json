@@ -26,6 +26,7 @@
     "e4:dark-assets-removal": "node scripts/measure-dark-assets-removal.mjs",
     "hosting": "node scripts/check-hosting.mjs",
     "hosting:evidence": "node scripts/check-hosting.mjs --evidence-only",
+    "host:position": "node scripts/check-host-position.mjs",
     "legal": "node scripts/check-legal-comments.mjs && node scripts/check-notices-delivery.mjs",
     "icons": "node scripts/check-icon-visual.mjs",
     "size": "node scripts/check-size.mjs",

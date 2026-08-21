@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "variant": {
+    "id": "three-viewports-down",
+    "code": "F",
+    "marginTopVh": 300,
+    "expectedMarginPx": 2469,
+    "description": "Iframe shifted down in normal flow by exactly 300vh.",
+    "expectedFoldClass": "below-first-viewport"
+  },
+  "runCount": 5,
+  "profile": {
+    "formFactor": "mobile",
+    "throttlingMethod": "simulate",
+    "throttling": {
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "requestLatencyMs": 562.5,
+      "downloadThroughputKbps": 1474.5600000000002,
+      "uploadThroughputKbps": 675,
+      "cpuSlowdownMultiplier": 4
+    },
+    "screenEmulation": {
+      "mobile": true,
+      "width": 412,
+      "height": 823,
+      "deviceScaleFactor": 1.75,
+      "disabled": false
+    },
+    "locale": "en-US",
+    "onlyCategories": [
+      "performance"
+    ],
+    "channel": "cli",
+    "output": [
+      "json"
+    ]
+  },
+  "startedAt": "2026-08-21T16:12:06.349Z",
+  "tooling": {
+    "lighthouseVersion": "13.4.1",
+    "lighthousePackageRoot": "<local-lighthouse-package-root>",
+    "chromeLauncherVersion": "1.2.1",
+    "chromeExecutableFileName": "chrome.exe",
+    "chromeExecutableSha256": "e14885110934a79637fcd71d76b23040333911b49fadd1bd084cef6bff78ba3a",
+    "nodeVersion": "v24.19.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "harnessPath": "<source-harness>",
+    "harnessSha256AtStart": "02bcce80b6c9b491f0b54f3b872ca906a90237ba9e12d71bca05ee7b48ccc3f8",
+    "chromeProfilePolicy": "chrome-launcher default temporary user-data-dir; a new launcher instance and process is created for every run",
+    "command": "node <source-harness> --run --attempt=attempt-3",
+    "acceptedNonAppInventoryEvidence": {
+      "lhrPath": "reports/host-instrumented-e5-after-run-4.lhr.json",
+      "lhrSha256": "1964fea009f9cbcd14777439a566a4bdfc0d0c7d49b7728bcc3d6b88032f7cf0",
+      "probePath": "reports/host-instrumented-e5-after-run-4.probe.json",
+      "probeSha256": "ddac7b3549b263f62730ff4da840e3c11562606dbcd6455c4c0783f65c554bd0",
+      "explanation": "The accepted E5 post-embed run 4 contains 23 requests: 18 app responses and these five passive GET Document/Stylesheet/Font dependencies.",
+      "totalRequestCount": 23,
+      "appRequestCount": 18,
+      "nonAppRequestCount": 5,
+      "derivedInventory": [
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+          "method": "GET",
+          "resourceType": "Stylesheet",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/instrumentsans/v4/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2",
+          "method": "GET",
+          "resourceType": "Font",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+          "method": "GET",
+          "resourceType": "Font",
+          "status": 200
+        },
+        {
+          "url": "https://phphtmledit.com/",
+          "method": "GET",
+          "resourceType": "Document",
+          "status": 200
+        },
+        {
+          "url": "https://phphtmledit.com/styles.css",
+          "method": "GET",
+          "resourceType": "Stylesheet",
+          "status": 200
+        }
+      ]
+    },
+    "infrastructureAttempt1Evidence": {
+      "order": 1,
+      "attempt": "attempt-1",
+      "archivedPath": "<source-attempt-1>",
+      "disposition": "infrastructure-failure-no-measurement",
+      "measurementPerformed": false,
+      "reason": "The sandboxed first launch could not fetch the loopback DevTools WebSocket URL. It failed before navigation and produced no Lighthouse LHR or page probe.",
+      "failureStage": "loopback-devtools-websocket-discovery-before-navigation",
+      "measurementArtifactCount": 0,
+      "artifactCount": 5,
+      "files": [
+        {
+          "path": "below-fold/series-started.json",
+          "bytes": 3459,
+          "sha256": "0731efb9407160720582c4d425f681d7a8dd2d7c2889e107e4f59c048edbd160"
+        },
+        {
+          "path": "control/series-started.json",
+          "bytes": 3437,
+          "sha256": "66c436fb0f471dad75fe804f03158b000cac40e6903bdb38e3ecc3c136df5542"
+        },
+        {
+          "path": "failure.json",
+          "bytes": 451,
+          "sha256": "0211fe15aab59bc5e61bbc6083d9a0a6e9f5bc5e35f46f92c364015397c62c95"
+        },
+        {
+          "path": "study-started.json",
+          "bytes": 11019,
+          "sha256": "151e734b78c147c39007238575346504f3b91d86f1f62a177f4459171c0d9574"
+        },
+        {
+          "path": "three-viewports-down/series-started.json",
+          "bytes": 3451,
+          "sha256": "bfba2a90458084f67b07d4fca4a477e485da61729d80c1969bf4cdbc16571d23"
+        }
+      ]
+    },
+    "overconstrainedAttempt2Evidence": {
+      "order": 2,
+      "attempt": "attempt-2",
+      "archivedPath": "<source-attempt-2>",
+      "disposition": "measured-rejected-by-superseded-overconstraint",
+      "measurementPerformed": true,
+      "reason": "The old harness rejected a valid below-fold paint handoff because it required all 18 editor assets whenever the iframe Document loaded. The preserved run had the exact four-response paint-deferred shell and no failed request.",
+      "observedVariant": "below-fold",
+      "observedAppRequestCount": 4,
+      "observedBootstrapOutcome": "paint-deferred-shell",
+      "artifactCount": 10,
+      "files": [
+        {
+          "path": "below-fold/run-1.lhr.json",
+          "bytes": 385119,
+          "sha256": "4a3cb16752f78e652ad7d1e82c77fb0a7c75a2445a01c1a6235f68cfb1f56388"
+        },
+        {
+          "path": "below-fold/run-1.probe.json",
+          "bytes": 37344,
+          "sha256": "087efff3c9c8032d17922d7e93bd8bb747731604eb3b81638849464a47a4a67e"
+        },
+        {
+          "path": "below-fold/series-started.json",
+          "bytes": 3459,
+          "sha256": "a46a0b4afd18047c89c20f528911df47134ec623812901ceee79a1bee13087d6"
+        },
+        {
+          "path": "control/run-1.lhr.json",
+          "bytes": 654113,
+          "sha256": "7ea580cc906e314ace5ce86cbe7b8509397bca9830aaf97f930ea3490c2d8696"
+        },
+        {
+          "path": "control/run-1.probe.json",
+          "bytes": 61979,
+          "sha256": "39dbf523dae9a485f6dcc1209ee7d8f9b82d7d9ec3a0ed3ea70f692097d3d888"
+        },
+        {
+          "path": "control/series-started.json",
+          "bytes": 3437,
+          "sha256": "c5102d67f94f351bb9b1c82ae77720796a9c12fe62b075adc3e31934176ee79a"
+        },
+        {
+          "path": "failure.json",
+          "bytes": 989,
+          "sha256": "c7ac62fc1bf64abc10eb6ae38c6f257d49af0fe53c5235312585b754d2cf7d42"
+        },
+        {
+          "path": "host-main-document.html",
+          "bytes": 21846,
+          "sha256": "52bd72ef0d57ddff19b387c63c479eeae1ac1ad498afb85468870e9cd42ae048"
+        },
+        {
+          "path": "study-started.json",
+          "bytes": 11019,
+          "sha256": "e0c3efed8bfc35b344aba33cf571c205b32c844342d2c71d3b5e425d6f67e6d5"
+        },
+        {
+          "path": "three-viewports-down/series-started.json",
+          "bytes": 3451,
+          "sha256": "8ebd69b86dd782982dd92b38c19b2970bd690e22470b898d0e9fdd0254a8f4d9"
+        }
+      ]
+    },
+    "priorAttempts": [
+      {
+        "order": 1,
+        "attempt": "attempt-1",
+        "archivedPath": "<source-attempt-1>",
+        "disposition": "infrastructure-failure-no-measurement",
+        "measurementPerformed": false,
+        "reason": "The sandboxed first launch could not fetch the loopback DevTools WebSocket URL. It failed before navigation and produced no Lighthouse LHR or page probe.",
+        "failureStage": "loopback-devtools-websocket-discovery-before-navigation",
+        "measurementArtifactCount": 0,
+        "artifactCount": 5,
+        "files": [
+          {
+            "path": "below-fold/series-started.json",
+            "bytes": 3459,
+            "sha256": "0731efb9407160720582c4d425f681d7a8dd2d7c2889e107e4f59c048edbd160"
+          },
+          {
+            "path": "control/series-started.json",
+            "bytes": 3437,
+            "sha256": "66c436fb0f471dad75fe804f03158b000cac40e6903bdb38e3ecc3c136df5542"
+          },
+          {
+            "path": "failure.json",
+            "bytes": 451,
+            "sha256": "0211fe15aab59bc5e61bbc6083d9a0a6e9f5bc5e35f46f92c364015397c62c95"
+          },
+          {
+            "path": "study-started.json",
+            "bytes": 11019,
+            "sha256": "151e734b78c147c39007238575346504f3b91d86f1f62a177f4459171c0d9574"
+          },
+          {
+            "path": "three-viewports-down/series-started.json",
+            "bytes": 3451,
+            "sha256": "bfba2a90458084f67b07d4fca4a477e485da61729d80c1969bf4cdbc16571d23"
+          }
+        ]
+      },
+      {
+        "order": 2,
+        "attempt": "attempt-2",
+        "archivedPath": "<source-attempt-2>",
+        "disposition": "measured-rejected-by-superseded-overconstraint",
+        "measurementPerformed": true,
+        "reason": "The old harness rejected a valid below-fold paint handoff because it required all 18 editor assets whenever the iframe Document loaded. The preserved run had the exact four-response paint-deferred shell and no failed request.",
+        "observedVariant": "below-fold",
+        "observedAppRequestCount": 4,
+        "observedBootstrapOutcome": "paint-deferred-shell",
+        "artifactCount": 10,
+        "files": [
+          {
+            "path": "below-fold/run-1.lhr.json",
+            "bytes": 385119,
+            "sha256": "4a3cb16752f78e652ad7d1e82c77fb0a7c75a2445a01c1a6235f68cfb1f56388"
+          },
+          {
+            "path": "below-fold/run-1.probe.json",
+            "bytes": 37344,
+            "sha256": "087efff3c9c8032d17922d7e93bd8bb747731604eb3b81638849464a47a4a67e"
+          },
+          {
+            "path": "below-fold/series-started.json",
+            "bytes": 3459,
+            "sha256": "a46a0b4afd18047c89c20f528911df47134ec623812901ceee79a1bee13087d6"
+          },
+          {
+            "path": "control/run-1.lhr.json",
+            "bytes": 654113,
+            "sha256": "7ea580cc906e314ace5ce86cbe7b8509397bca9830aaf97f930ea3490c2d8696"
+          },
+          {
+            "path": "control/run-1.probe.json",
+            "bytes": 61979,
+            "sha256": "39dbf523dae9a485f6dcc1209ee7d8f9b82d7d9ec3a0ed3ea70f692097d3d888"
+          },
+          {
+            "path": "control/series-started.json",
+            "bytes": 3437,
+            "sha256": "c5102d67f94f351bb9b1c82ae77720796a9c12fe62b075adc3e31934176ee79a"
+          },
+          {
+            "path": "failure.json",
+            "bytes": 989,
+            "sha256": "c7ac62fc1bf64abc10eb6ae38c6f257d49af0fe53c5235312585b754d2cf7d42"
+          },
+          {
+            "path": "host-main-document.html",
+            "bytes": 21846,
+            "sha256": "52bd72ef0d57ddff19b387c63c479eeae1ac1ad498afb85468870e9cd42ae048"
+          },
+          {
+            "path": "study-started.json",
+            "bytes": 11019,
+            "sha256": "e0c3efed8bfc35b344aba33cf571c205b32c844342d2c71d3b5e425d6f67e6d5"
+          },
+          {
+            "path": "three-viewports-down/series-started.json",
+            "bytes": 3451,
+            "sha256": "8ebd69b86dd782982dd92b38c19b2970bd690e22470b898d0e9fdd0254a8f4d9"
+          }
+        ]
+      }
+    ]
+  },
+  "portableEvidence": {
+    "sourceOriginal": {
+      "relativePath": "three-viewports-down/series-started.json",
+      "bytes": 11655,
+      "sha256": "0ed7bcfa7c7b39b58db8afb04f38b811bf3cda953d36ba1620f876c769d24dfa"
+    },
+    "transformation": "sanitized-json-v1"
+  }
+}

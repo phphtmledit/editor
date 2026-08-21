@@ -1,0 +1,1144 @@
+{
+  "runNumber": 1,
+  "variant": {
+    "id": "below-fold",
+    "code": "B",
+    "marginTopVh": 75,
+    "expectedMarginPx": 617.25,
+    "description": "Iframe fully below the first viewport with a 75vh normal-flow margin.",
+    "expectedFoldClass": "below-first-viewport"
+  },
+  "runStartedAt": "2026-08-21T15:41:47.266Z",
+  "runCompletedAt": "2026-08-21T15:41:56.308Z",
+  "cleanupError": {
+    "name": "Error",
+    "message": "EPERM, Permission denied: <redacted-temp-profile>",
+    "code": "EPERM",
+    "stack": "<redacted-stack>",
+    "pid": "legacy-process-e7f63be25cae",
+    "positivelyGone": true,
+    "reason": "pid-not-found"
+  },
+  "chromeProcess": {
+    "pid": "legacy-process-e7f63be25cae",
+    "cleanupExitProof": {
+      "pid": "legacy-process-e7f63be25cae",
+      "positivelyGone": true,
+      "reason": "pid-not-found"
+    }
+  },
+  "tooling": {
+    "lighthouseVersion": "13.4.1",
+    "lighthousePackageRoot": "<local-lighthouse-package-root>",
+    "chromeLauncherVersion": "1.2.1",
+    "chromeExecutableFileName": "chrome.exe",
+    "chromeExecutableSha256": "e14885110934a79637fcd71d76b23040333911b49fadd1bd084cef6bff78ba3a",
+    "nodeVersion": "v24.19.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "harnessPath": "<source-harness>",
+    "harnessSha256AtStart": "0839dabc37b4af2bd810a0f745a19ed2a2423dc50854b590a76d156321925a45",
+    "chromeProfilePolicy": "chrome-launcher default temporary user-data-dir; a new launcher instance and process is created for every run",
+    "command": "node <source-harness> --run --attempt=attempt-2",
+    "acceptedNonAppInventoryEvidence": {
+      "lhrPath": "reports/host-instrumented-e5-after-run-4.lhr.json",
+      "lhrSha256": "1964fea009f9cbcd14777439a566a4bdfc0d0c7d49b7728bcc3d6b88032f7cf0",
+      "probePath": "reports/host-instrumented-e5-after-run-4.probe.json",
+      "probeSha256": "ddac7b3549b263f62730ff4da840e3c11562606dbcd6455c4c0783f65c554bd0",
+      "explanation": "The accepted E5 post-embed run 4 contains 23 requests: 18 app responses and these five passive GET Document/Stylesheet/Font dependencies.",
+      "totalRequestCount": 23,
+      "appRequestCount": 18,
+      "nonAppRequestCount": 5,
+      "derivedInventory": [
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+          "method": "GET",
+          "resourceType": "Stylesheet",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/instrumentsans/v4/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2",
+          "method": "GET",
+          "resourceType": "Font",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+          "method": "GET",
+          "resourceType": "Font",
+          "status": 200
+        },
+        {
+          "url": "https://phphtmledit.com/",
+          "method": "GET",
+          "resourceType": "Document",
+          "status": 200
+        },
+        {
+          "url": "https://phphtmledit.com/styles.css",
+          "method": "GET",
+          "resourceType": "Stylesheet",
+          "status": 200
+        }
+      ]
+    }
+  },
+  "rawLhr": {
+    "path": "reports/host-position-e5/attempts/attempt-2/below-fold/run-1.lhr.json",
+    "bytes": 385119,
+    "sha256": "4a3cb16752f78e652ad7d1e82c77fb0a7c75a2445a01c1a6235f68cfb1f56388"
+  },
+  "lhr": {
+    "requestedUrl": "https://phphtmledit.com/",
+    "mainDocumentUrl": "https://phphtmledit.com/",
+    "finalDisplayedUrl": "https://phphtmledit.com/",
+    "finalUrl": "https://phphtmledit.com/",
+    "fetchTime": "2026-08-21T15:41:49.131Z",
+    "lighthouseVersion": "13.4.1",
+    "runtimeError": null,
+    "runWarnings": [],
+    "performanceScorePercent": 88,
+    "metrics": {
+      "fcpMs": 3062.768,
+      "lcpMs": 3062.768,
+      "speedIndexMs": 3284.699455773647,
+      "tbtMs": 0,
+      "cls": 0
+    },
+    "network": {
+      "requestCount": 9,
+      "finishedRequestCount": 9,
+      "requests": [
+        {
+          "url": "https://phphtmledit.com/",
+          "protocol": "h2",
+          "finished": true,
+          "transferSize": 7291,
+          "resourceSize": 21846,
+          "statusCode": 200,
+          "mimeType": "text/html",
+          "resourceType": "Document"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+          "protocol": "h2",
+          "finished": true,
+          "transferSize": 1322,
+          "resourceSize": 8950,
+          "statusCode": 200,
+          "mimeType": "text/css",
+          "resourceType": "Stylesheet"
+        },
+        {
+          "url": "https://phphtmledit.com/styles.css",
+          "protocol": "h2",
+          "finished": true,
+          "transferSize": 4136,
+          "resourceSize": 13443,
+          "statusCode": 200,
+          "mimeType": "text/css",
+          "resourceType": "Stylesheet"
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/instrumentsans/v4/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2",
+          "protocol": "h3",
+          "finished": true,
+          "transferSize": 29933,
+          "resourceSize": 29904,
+          "statusCode": 200,
+          "mimeType": "font/woff2",
+          "resourceType": "Font"
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+          "protocol": "h3",
+          "finished": true,
+          "transferSize": 31369,
+          "resourceSize": 31340,
+          "statusCode": 200,
+          "mimeType": "font/woff2",
+          "resourceType": "Font"
+        },
+        {
+          "url": "https://app.phphtmledit.com/?theme=auto",
+          "protocol": "h2",
+          "finished": true,
+          "transferSize": 3213,
+          "resourceSize": 9464,
+          "statusCode": 200,
+          "mimeType": "text/html",
+          "resourceType": "Document"
+        },
+        {
+          "url": "https://app.phphtmledit.com/tinymce/tinymce.min.js?v=8.8.2",
+          "protocol": "h3",
+          "finished": true,
+          "transferSize": 169734,
+          "resourceSize": 486491,
+          "statusCode": 200,
+          "mimeType": "application/javascript",
+          "resourceType": "Script"
+        },
+        {
+          "url": "https://app.phphtmledit.com/assets/index-6_wYmLrV.js",
+          "protocol": "h3",
+          "finished": true,
+          "transferSize": 141147,
+          "resourceSize": 426133,
+          "statusCode": 200,
+          "mimeType": "application/javascript",
+          "resourceType": "Script"
+        },
+        {
+          "url": "https://app.phphtmledit.com/assets/index-BX4V7LXB.css",
+          "protocol": "h3",
+          "finished": true,
+          "transferSize": 4410,
+          "resourceSize": 15327,
+          "statusCode": 200,
+          "mimeType": "text/css",
+          "resourceType": "Stylesheet"
+        }
+      ]
+    },
+    "environment": {
+      "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36",
+      "hostUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+      "benchmarkIndex": 1906.5,
+      "credits": {}
+    },
+    "configSettings": {
+      "output": [
+        "json"
+      ],
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "cli",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance"
+      ],
+      "skipAudits": null
+    }
+  },
+  "pageProbe": {
+    "capturedAtIso": "2026-08-21T15:41:54.172Z",
+    "capturedAtMs": 4867.70000000298,
+    "href": "https://phphtmledit.com/",
+    "documentReadyState": "complete",
+    "visibilityState": "visible",
+    "networkInformation": {
+      "effectiveType": "4g",
+      "downlink": 0,
+      "rtt": 0,
+      "saveData": false
+    },
+    "viewport": {
+      "innerWidth": 412,
+      "innerHeight": 823,
+      "devicePixelRatio": 1.75,
+      "documentClientWidth": 412,
+      "documentClientHeight": 823
+    },
+    "scroll": {
+      "x": 0,
+      "y": 0
+    },
+    "slot": {
+      "present": true,
+      "id": "editor-frame",
+      "className": "editor-frame",
+      "rect": {
+        "top": 1148.78125,
+        "bottom": 1889.46875,
+        "left": 16,
+        "right": 396,
+        "width": 380,
+        "height": 740.6875
+      },
+      "foldClass": "below-first-viewport",
+      "intersectsFirstViewport": false,
+      "computedStyle": {
+        "display": "flex",
+        "marginTop": "617.25px",
+        "overflow": "hidden"
+      }
+    },
+    "iframePresent": true,
+    "totalIframeCount": 1,
+    "slotIframeCount": 1,
+    "iframes": [
+      {
+        "srcAttribute": "https://app.phphtmledit.com/?theme=auto",
+        "resolvedSrc": "https://app.phphtmledit.com/?theme=auto",
+        "title": "HTML editor",
+        "loadingAttribute": "lazy",
+        "loadingProperty": "lazy",
+        "allow": "clipboard-write",
+        "sandbox": null,
+        "inlineStyle": "width:100%;height:clamp(520px, 90vh, 760px);border:0;display:block",
+        "computedStyle": {
+          "position": "static",
+          "marginTop": "0px",
+          "display": "block"
+        },
+        "rect": {
+          "top": 1148.78125,
+          "bottom": 1889.46875,
+          "left": 16,
+          "right": 396,
+          "width": 380,
+          "height": 740.6875
+        },
+        "foldClass": "below-first-viewport",
+        "intersectsFirstViewport": false,
+        "fullyBelowFirstViewport": true,
+        "distanceBelowViewportPx": 325.78125
+      }
+    ],
+    "appResourceEntries": [
+      {
+        "name": "https://app.phphtmledit.com/?theme=auto",
+        "initiatorType": "iframe",
+        "startTime": 254.40000000596046,
+        "duration": 2093.8999999910593,
+        "transferSize": 0,
+        "responseEnd": 2348.2999999970198
+      }
+    ],
+    "documentStartProbe": {
+      "schemaVersion": 1,
+      "installedAtTimeOrigin": 1787326909304.7,
+      "installedAtMs": 250.29999999701977,
+      "initialHref": "https://phphtmledit.com/",
+      "appHost": "app.phphtmledit.com",
+      "variant": {
+        "id": "below-fold",
+        "code": "B",
+        "marginTopVh": 75,
+        "expectedMarginPx": 617.25,
+        "description": "Iframe fully below the first viewport with a 75vh normal-flow margin.",
+        "expectedFoldClass": "below-first-viewport"
+      },
+      "placementRule": "#editor-frame { margin-top: 75vh !important; }",
+      "stylesheetInstalledAtMs": 250.20000000298023,
+      "adoptedSheetCountBeforeInstallation": 0,
+      "adoptedSheetCountAfterInstallation": 1,
+      "adoptedSheetIndexAtInstallation": 0,
+      "placementSheetStillAdopted": true,
+      "placementSheetRuleCount": 1,
+      "placementSheetCssText": [
+        "#editor-frame { margin-top: 75vh !important; }"
+      ],
+      "documentChildCountAtInstallation": 0,
+      "documentElementPresentAtInstallation": false,
+      "observerInstalledAtMs": 250.79999999701977,
+      "iframeSeen": [
+        {
+          "atMs": 257.70000000298023,
+          "srcAttribute": "https://app.phphtmledit.com/?theme=auto",
+          "resolvedSrc": "https://app.phphtmledit.com/?theme=auto",
+          "title": "HTML editor",
+          "loadingAttribute": "lazy",
+          "loadingProperty": "lazy",
+          "allow": "clipboard-write",
+          "sandbox": null,
+          "inlineStyle": "width:100%;height:clamp(520px, 90vh, 760px);border:0;display:block",
+          "computedSlotMarginTop": "617.25px",
+          "computedSlotDisplay": "block",
+          "computedIframeDisplay": "block",
+          "stylesheetInstalledBeforeSeen": true,
+          "placementSheetAdopted": true,
+          "rect": {
+            "top": 977.125,
+            "bottom": 1717.8125,
+            "left": 8,
+            "right": 404,
+            "width": 396,
+            "height": 740.6875
+          }
+        }
+      ],
+      "iframeLoadEvents": [
+        {
+          "atMs": 2348.2999999970198,
+          "isTrusted": true,
+          "srcAttribute": "https://app.phphtmledit.com/?theme=auto",
+          "resolvedSrc": "https://app.phphtmledit.com/?theme=auto"
+        }
+      ],
+      "geometrySamples": [
+        {
+          "label": "first-seen",
+          "atMs": 303.79999999701977,
+          "slotRect": {
+            "top": 977.125,
+            "bottom": 1717.8125,
+            "left": 8,
+            "right": 404,
+            "width": 396,
+            "height": 740.6875
+          },
+          "iframeRect": {
+            "top": 977.125,
+            "bottom": 1717.8125,
+            "left": 8,
+            "right": 404,
+            "width": 396,
+            "height": 740.6875
+          },
+          "computedSlotMarginTop": "617.25px",
+          "computedSlotDisplay": "block",
+          "computedIframeDisplay": "block",
+          "placementSheetAdopted": true,
+          "connection": {
+            "label": "first-seen",
+            "atMs": 303.79999999701977,
+            "effectiveType": "4g",
+            "downlink": 0,
+            "rtt": 0,
+            "saveData": false
+          }
+        },
+        {
+          "label": "dom-content-loaded",
+          "atMs": 307.29999999701977,
+          "slotRect": {
+            "top": 977.125,
+            "bottom": 1717.8125,
+            "left": 8,
+            "right": 404,
+            "width": 396,
+            "height": 740.6875
+          },
+          "iframeRect": {
+            "top": 977.125,
+            "bottom": 1717.8125,
+            "left": 8,
+            "right": 404,
+            "width": 396,
+            "height": 740.6875
+          },
+          "computedSlotMarginTop": "617.25px",
+          "computedSlotDisplay": "block",
+          "computedIframeDisplay": "block",
+          "placementSheetAdopted": true,
+          "connection": {
+            "label": "dom-content-loaded",
+            "atMs": 307.40000000596046,
+            "effectiveType": "4g",
+            "downlink": 0,
+            "rtt": 0,
+            "saveData": false
+          }
+        },
+        {
+          "label": "window-load",
+          "atMs": 658.2999999970198,
+          "slotRect": {
+            "top": 1148.78125,
+            "bottom": 1889.46875,
+            "left": 16,
+            "right": 396,
+            "width": 380,
+            "height": 740.6875
+          },
+          "iframeRect": {
+            "top": 1148.78125,
+            "bottom": 1889.46875,
+            "left": 16,
+            "right": 396,
+            "width": 380,
+            "height": 740.6875
+          },
+          "computedSlotMarginTop": "617.25px",
+          "computedSlotDisplay": "flex",
+          "computedIframeDisplay": "block",
+          "placementSheetAdopted": true,
+          "connection": {
+            "label": "window-load",
+            "atMs": 760.7999999970198,
+            "effectiveType": "4g",
+            "downlink": 0,
+            "rtt": 0,
+            "saveData": false
+          }
+        },
+        {
+          "label": "after-first-contentful-paint",
+          "atMs": 1416.4000000059605,
+          "slotRect": {
+            "top": 1148.78125,
+            "bottom": 1889.46875,
+            "left": 16,
+            "right": 396,
+            "width": 380,
+            "height": 740.6875
+          },
+          "iframeRect": {
+            "top": 1148.78125,
+            "bottom": 1889.46875,
+            "left": 16,
+            "right": 396,
+            "width": 380,
+            "height": 740.6875
+          },
+          "computedSlotMarginTop": "617.25px",
+          "computedSlotDisplay": "flex",
+          "computedIframeDisplay": "block",
+          "placementSheetAdopted": true,
+          "connection": {
+            "label": "after-first-contentful-paint",
+            "atMs": 1416.4000000059605,
+            "effectiveType": "4g",
+            "downlink": 0,
+            "rtt": 0,
+            "saveData": false
+          }
+        },
+        {
+          "label": "final",
+          "atMs": 4867.5999999940395,
+          "slotRect": {
+            "top": 1148.78125,
+            "bottom": 1889.46875,
+            "left": 16,
+            "right": 396,
+            "width": 380,
+            "height": 740.6875
+          },
+          "iframeRect": {
+            "top": 1148.78125,
+            "bottom": 1889.46875,
+            "left": 16,
+            "right": 396,
+            "width": 380,
+            "height": 740.6875
+          },
+          "computedSlotMarginTop": "617.25px",
+          "computedSlotDisplay": "flex",
+          "computedIframeDisplay": "block",
+          "placementSheetAdopted": true,
+          "connection": {
+            "label": "final",
+            "atMs": 4867.5999999940395,
+            "effectiveType": "4g",
+            "downlink": 0,
+            "rtt": 0,
+            "saveData": false
+          }
+        }
+      ],
+      "connectionSamples": [
+        {
+          "label": "document-start",
+          "atMs": 250.79999999701977,
+          "effectiveType": "4g",
+          "downlink": 0,
+          "rtt": 0,
+          "saveData": false
+        },
+        {
+          "label": "dom-content-loaded",
+          "atMs": 307.5,
+          "effectiveType": "4g",
+          "downlink": 0,
+          "rtt": 0,
+          "saveData": false
+        },
+        {
+          "label": "window-load",
+          "atMs": 760.7999999970198,
+          "effectiveType": "4g",
+          "downlink": 0,
+          "rtt": 0,
+          "saveData": false
+        },
+        {
+          "label": "after-first-contentful-paint",
+          "atMs": 1416.4000000059605,
+          "effectiveType": "4g",
+          "downlink": 0,
+          "rtt": 0,
+          "saveData": false
+        },
+        {
+          "label": "final",
+          "atMs": 4867.5999999940395,
+          "effectiveType": "4g",
+          "downlink": 0,
+          "rtt": 0,
+          "saveData": false
+        }
+      ],
+      "connectionChanges": [],
+      "paintEntries": [
+        {
+          "name": "first-contentful-paint",
+          "startTime": 1404,
+          "duration": 0
+        }
+      ]
+    }
+  },
+  "lighthouseIFrameElements": [
+    {
+      "id": "",
+      "src": "https://app.phphtmledit.com/?theme=auto",
+      "clientRect": {
+        "top": 1148.78125,
+        "bottom": 1889.46875,
+        "left": 16,
+        "right": 396,
+        "width": 380,
+        "height": 740.6875
+      },
+      "isPositionFixed": false,
+      "node": {
+        "lhId": "1-0-IFRAME",
+        "devtoolsNodePath": "1,HTML,1,BODY,1,MAIN,1,SECTION,0,DIV,2,DIV,0,IFRAME",
+        "selector": "section#editor > div.editor__inner > div#editor-frame > iframe",
+        "boundingRect": {
+          "top": 1149,
+          "bottom": 1889,
+          "left": 16,
+          "right": 396,
+          "width": 380,
+          "height": 741
+        },
+        "snippet": "<iframe src=\"https://app.phphtmledit.com/?theme=auto\" style=\"width:100%;height:clamp(520px, 90vh, 760px);border:0;display:block\" loading=\"lazy\" allow=\"clipboard-write\">",
+        "nodeLabel": "section#editor > div.editor__inner > div#editor-frame > iframe"
+      }
+    }
+  ],
+  "lighthouseViewportDimensions": {
+    "innerWidth": 412,
+    "innerHeight": 823,
+    "outerWidth": 412,
+    "outerHeight": 823,
+    "devicePixelRatio": 1.75
+  },
+  "source": {
+    "bytes": 21846,
+    "sha256": "52bd72ef0d57ddff19b387c63c479eeae1ac1ad498afb85468870e9cd42ae048",
+    "iframeTagCount": 1,
+    "appHostLiteralCount": 1,
+    "placementMarkerCount": 0
+  },
+  "hostSourceArtifact": null,
+  "devtools": {
+    "totalRequestWillBeSentCount": 9,
+    "appRequestCount": 4,
+    "appSuccessfulRequestCount": 4,
+    "appLoadingFailedCount": 0,
+    "appDocumentRequestCount": 1,
+    "appDocumentLoadedCount": 1,
+    "iframeRequested": true,
+    "iframeNetworkLoaded": true,
+    "appRequests": [
+      {
+        "sequence": 6,
+        "requestId": "FCDE696CC75C3028837C770A11D5E658",
+        "loaderId": "FCDE696CC75C3028837C770A11D5E658",
+        "frameId": "5C6AA1B119D9D079CEF66314371910E8",
+        "documentURL": "https://app.phphtmledit.com/?theme=auto",
+        "url": "https://app.phphtmledit.com/?theme=auto",
+        "method": "GET",
+        "resourceType": "Document",
+        "initiatorType": "other",
+        "timestamp": 97882.943816,
+        "wallTime": 1787326910.728587,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://app.phphtmledit.com/?theme=auto",
+          "status": 200,
+          "mimeType": "text/html",
+          "protocol": "h2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 1901
+        },
+        "loadingFinished": {
+          "timestamp": 97883.4095,
+          "encodedDataLength": 3213
+        },
+        "loadingFailed": null
+      },
+      {
+        "sequence": 7,
+        "requestId": "1580.27",
+        "loaderId": "FCDE696CC75C3028837C770A11D5E658",
+        "frameId": "5C6AA1B119D9D079CEF66314371910E8",
+        "documentURL": "https://app.phphtmledit.com/?theme=auto",
+        "url": "https://app.phphtmledit.com/tinymce/tinymce.min.js?v=8.8.2",
+        "method": "GET",
+        "resourceType": "Script",
+        "initiatorType": "other",
+        "timestamp": 97883.412043,
+        "wallTime": 1787326911.196752,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://app.phphtmledit.com/tinymce/tinymce.min.js?v=8.8.2",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "protocol": "h3",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 510
+        },
+        "loadingFinished": {
+          "timestamp": 97883.857903,
+          "encodedDataLength": 169734
+        },
+        "loadingFailed": null
+      },
+      {
+        "sequence": 8,
+        "requestId": "1580.29",
+        "loaderId": "FCDE696CC75C3028837C770A11D5E658",
+        "frameId": "5C6AA1B119D9D079CEF66314371910E8",
+        "documentURL": "https://app.phphtmledit.com/?theme=auto",
+        "url": "https://app.phphtmledit.com/assets/index-6_wYmLrV.js",
+        "method": "GET",
+        "resourceType": "Script",
+        "initiatorType": "parser",
+        "timestamp": 97883.416429,
+        "wallTime": 1787326911.20115,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://app.phphtmledit.com/assets/index-6_wYmLrV.js",
+          "status": 200,
+          "mimeType": "application/javascript",
+          "protocol": "h3",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 599
+        },
+        "loadingFinished": {
+          "timestamp": 97883.836423,
+          "encodedDataLength": 141147
+        },
+        "loadingFailed": null
+      },
+      {
+        "sequence": 9,
+        "requestId": "1580.30",
+        "loaderId": "FCDE696CC75C3028837C770A11D5E658",
+        "frameId": "5C6AA1B119D9D079CEF66314371910E8",
+        "documentURL": "https://app.phphtmledit.com/?theme=auto",
+        "url": "https://app.phphtmledit.com/assets/index-BX4V7LXB.css",
+        "method": "GET",
+        "resourceType": "Stylesheet",
+        "initiatorType": "parser",
+        "timestamp": 97883.416539,
+        "wallTime": 1787326911.20123,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://app.phphtmledit.com/assets/index-BX4V7LXB.css",
+          "status": 200,
+          "mimeType": "text/css",
+          "protocol": "h3",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 658
+        },
+        "loadingFinished": {
+          "timestamp": 97883.462088,
+          "encodedDataLength": 4410
+        },
+        "loadingFailed": null
+      }
+    ],
+    "appRequestInventory": [
+      {
+        "sequence": 6,
+        "url": "https://app.phphtmledit.com/?theme=auto",
+        "method": "GET",
+        "resourceType": "Document",
+        "status": 200,
+        "responseReceived": true,
+        "loadingFinished": true,
+        "loadingFailed": null,
+        "redirected": false,
+        "successful": true
+      },
+      {
+        "sequence": 7,
+        "url": "https://app.phphtmledit.com/tinymce/tinymce.min.js?v=8.8.2",
+        "method": "GET",
+        "resourceType": "Script",
+        "status": 200,
+        "responseReceived": true,
+        "loadingFinished": true,
+        "loadingFailed": null,
+        "redirected": false,
+        "successful": true
+      },
+      {
+        "sequence": 8,
+        "url": "https://app.phphtmledit.com/assets/index-6_wYmLrV.js",
+        "method": "GET",
+        "resourceType": "Script",
+        "status": 200,
+        "responseReceived": true,
+        "loadingFinished": true,
+        "loadingFailed": null,
+        "redirected": false,
+        "successful": true
+      },
+      {
+        "sequence": 9,
+        "url": "https://app.phphtmledit.com/assets/index-BX4V7LXB.css",
+        "method": "GET",
+        "resourceType": "Stylesheet",
+        "status": 200,
+        "responseReceived": true,
+        "loadingFinished": true,
+        "loadingFailed": null,
+        "redirected": false,
+        "successful": true
+      }
+    ],
+    "nonAppRequestCount": 5,
+    "nonAppSuccessfulRequestCount": 5,
+    "nonAppLoadingFailedCount": 0,
+    "nonAppRequests": [
+      {
+        "sequence": 1,
+        "requestId": "98A16147672B263C557F35C60DD6D571",
+        "loaderId": "98A16147672B263C557F35C60DD6D571",
+        "frameId": "28E505ED80F362D80703B9CA8648C830",
+        "documentURL": "https://phphtmledit.com/",
+        "url": "https://phphtmledit.com/",
+        "method": "GET",
+        "resourceType": "Document",
+        "initiatorType": "other",
+        "timestamp": 97881.520761,
+        "wallTime": 1787326909.305486,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://phphtmledit.com/",
+          "status": 200,
+          "mimeType": "text/html",
+          "protocol": "h2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 1786
+        },
+        "loadingFinished": {
+          "timestamp": 97881.769021,
+          "encodedDataLength": 7291
+        },
+        "loadingFailed": null
+      },
+      {
+        "sequence": 2,
+        "requestId": "1580.2",
+        "loaderId": "98A16147672B263C557F35C60DD6D571",
+        "frameId": "28E505ED80F362D80703B9CA8648C830",
+        "documentURL": "https://phphtmledit.com/",
+        "url": "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+        "method": "GET",
+        "resourceType": "Stylesheet",
+        "initiatorType": "parser",
+        "timestamp": 97881.772506,
+        "wallTime": 1787326909.55725,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+          "status": 200,
+          "mimeType": "text/css",
+          "protocol": "h2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 1322
+        },
+        "loadingFinished": {
+          "timestamp": 97882.176965,
+          "encodedDataLength": 1322
+        },
+        "loadingFailed": null
+      },
+      {
+        "sequence": 3,
+        "requestId": "1580.3",
+        "loaderId": "98A16147672B263C557F35C60DD6D571",
+        "frameId": "28E505ED80F362D80703B9CA8648C830",
+        "documentURL": "https://phphtmledit.com/",
+        "url": "https://phphtmledit.com/styles.css",
+        "method": "GET",
+        "resourceType": "Stylesheet",
+        "initiatorType": "parser",
+        "timestamp": 97881.77286,
+        "wallTime": 1787326909.557556,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://phphtmledit.com/styles.css",
+          "status": 200,
+          "mimeType": "text/css",
+          "protocol": "h2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 1641
+        },
+        "loadingFinished": {
+          "timestamp": 97881.866119,
+          "encodedDataLength": 4136
+        },
+        "loadingFailed": null
+      },
+      {
+        "sequence": 4,
+        "requestId": "1580.7",
+        "loaderId": "98A16147672B263C557F35C60DD6D571",
+        "frameId": "28E505ED80F362D80703B9CA8648C830",
+        "documentURL": "https://phphtmledit.com/",
+        "url": "https://fonts.gstatic.com/s/instrumentsans/v4/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2",
+        "method": "GET",
+        "resourceType": "Font",
+        "initiatorType": "parser",
+        "timestamp": 97882.181238,
+        "wallTime": 1787326909.965974,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://fonts.gstatic.com/s/instrumentsans/v4/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "protocol": "h3",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 29
+        },
+        "loadingFinished": {
+          "timestamp": 97882.420971,
+          "encodedDataLength": 29933
+        },
+        "loadingFailed": null
+      },
+      {
+        "sequence": 5,
+        "requestId": "1580.19",
+        "loaderId": "98A16147672B263C557F35C60DD6D571",
+        "frameId": "28E505ED80F362D80703B9CA8648C830",
+        "documentURL": "https://phphtmledit.com/",
+        "url": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+        "method": "GET",
+        "resourceType": "Font",
+        "initiatorType": "parser",
+        "timestamp": 97882.181625,
+        "wallTime": 1787326909.96633,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+          "status": 200,
+          "mimeType": "font/woff2",
+          "protocol": "h3",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 29
+        },
+        "loadingFinished": {
+          "timestamp": 97882.404161,
+          "encodedDataLength": 31369
+        },
+        "loadingFailed": null
+      }
+    ],
+    "nonAppRequestInventory": [
+      {
+        "sequence": 1,
+        "url": "https://phphtmledit.com/",
+        "method": "GET",
+        "resourceType": "Document",
+        "status": 200,
+        "responseReceived": true,
+        "loadingFinished": true,
+        "loadingFailed": null,
+        "redirected": false,
+        "successful": true
+      },
+      {
+        "sequence": 2,
+        "url": "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+        "method": "GET",
+        "resourceType": "Stylesheet",
+        "status": 200,
+        "responseReceived": true,
+        "loadingFinished": true,
+        "loadingFailed": null,
+        "redirected": false,
+        "successful": true
+      },
+      {
+        "sequence": 3,
+        "url": "https://phphtmledit.com/styles.css",
+        "method": "GET",
+        "resourceType": "Stylesheet",
+        "status": 200,
+        "responseReceived": true,
+        "loadingFinished": true,
+        "loadingFailed": null,
+        "redirected": false,
+        "successful": true
+      },
+      {
+        "sequence": 4,
+        "url": "https://fonts.gstatic.com/s/instrumentsans/v4/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2",
+        "method": "GET",
+        "resourceType": "Font",
+        "status": 200,
+        "responseReceived": true,
+        "loadingFinished": true,
+        "loadingFailed": null,
+        "redirected": false,
+        "successful": true
+      },
+      {
+        "sequence": 5,
+        "url": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+        "method": "GET",
+        "resourceType": "Font",
+        "status": 200,
+        "responseReceived": true,
+        "loadingFinished": true,
+        "loadingFailed": null,
+        "redirected": false,
+        "successful": true
+      }
+    ],
+    "hostRequestCount": 2,
+    "hostRequests": [
+      {
+        "sequence": 1,
+        "requestId": "98A16147672B263C557F35C60DD6D571",
+        "loaderId": "98A16147672B263C557F35C60DD6D571",
+        "frameId": "28E505ED80F362D80703B9CA8648C830",
+        "documentURL": "https://phphtmledit.com/",
+        "url": "https://phphtmledit.com/",
+        "method": "GET",
+        "resourceType": "Document",
+        "initiatorType": "other",
+        "timestamp": 97881.520761,
+        "wallTime": 1787326909.305486,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://phphtmledit.com/",
+          "status": 200,
+          "mimeType": "text/html",
+          "protocol": "h2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 1786
+        },
+        "loadingFinished": {
+          "timestamp": 97881.769021,
+          "encodedDataLength": 7291
+        },
+        "loadingFailed": null
+      },
+      {
+        "sequence": 3,
+        "requestId": "1580.3",
+        "loaderId": "98A16147672B263C557F35C60DD6D571",
+        "frameId": "28E505ED80F362D80703B9CA8648C830",
+        "documentURL": "https://phphtmledit.com/",
+        "url": "https://phphtmledit.com/styles.css",
+        "method": "GET",
+        "resourceType": "Stylesheet",
+        "initiatorType": "parser",
+        "timestamp": 97881.77286,
+        "wallTime": 1787326909.557556,
+        "redirected": false,
+        "redirectResponse": null,
+        "response": {
+          "url": "https://phphtmledit.com/styles.css",
+          "status": 200,
+          "mimeType": "text/css",
+          "protocol": "h2",
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "encodedDataLengthAtResponse": 1641
+        },
+        "loadingFinished": {
+          "timestamp": 97881.866119,
+          "encodedDataLength": 4136
+        },
+        "loadingFailed": null
+      }
+    ]
+  },
+  "iframeRequested": true,
+  "iframeNetworkLoaded": true,
+  "iframeLoadEventObserved": true,
+  "iframeLoaded": true,
+  "loadState": "loaded",
+  "lazyOutcome": "loaded",
+  "validity": {
+    "passed": false,
+    "errors": [
+      "Loaded iframe must make exactly 18 app requests.",
+      "Every loaded app request must return 200, finish, avoid redirects, and have no failure.",
+      "Loaded app request URL/type/status inventory differs from the accepted 18 responses."
+    ]
+  },
+  "portableEvidence": {
+    "sourceOriginal": {
+      "relativePath": "below-fold/run-1.probe.json",
+      "bytes": 37344,
+      "sha256": "087efff3c9c8032d17922d7e93bd8bb747731604eb3b81638849464a47a4a67e"
+    },
+    "transformation": "sanitized-json-v1"
+  }
+}

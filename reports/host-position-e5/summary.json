@@ -1,0 +1,4357 @@
+{
+  "aggregate": {
+    "documentLoadedRunCount": 15,
+    "fullEditorAssetsRunCount": 6,
+    "notRequestedRunCount": 0,
+    "paintDeferredShellRunCount": 9,
+    "rawRunCount": 15,
+    "requestedRunCount": 15,
+    "runLevelPassedCount": 15
+  },
+  "artifactType": "portable-derived-correction-evaluation",
+  "correction": {
+    "browserStarted": false,
+    "domContentLoadedTreatment": "published observed two-state host-CSS race; not used as a position invalidity",
+    "evaluatorPath": "<source-evaluator>",
+    "evaluatorSha256": "0d9bc46263f5b614cfcec9e0232f7c5a21ea4d0cbbfbac84803a26ceeeeaa684",
+    "rawInputsModified": false,
+    "retainedGuards": [
+      "all 36 source files exact size/hash bound",
+      "all 15 original run-level guards passed",
+      "constructable placement stylesheet installed before iframe observation/request",
+      "exact injected margin and slot==iframe at every geometry sample",
+      "below-fold and far safety floors at every sample",
+      "first-seen/window-load/post-FCP/final stability",
+      "final canonical production rects and exact position deltas",
+      "canonical completed app/non-app inventories and positive Chrome PID exit proof"
+    ],
+    "supersededAssumption": "DOMContentLoaded was incorrectly required to have one stable production-CSS geometry. The immutable runs show two canonical states depending on whether the external host stylesheet had applied at that milestone."
+  },
+  "executionProfile": {
+    "caveat": "The 4g runtime ECT stabilizes Chromium native lazy-load distance selection; it is not the transfer profile. Lighthouse computes the published metrics with its separate simulated Slow 4G / CPU x4 model.",
+    "chromeFlags": [
+      "--headless=new",
+      "--disable-gpu",
+      "--force-effective-connection-type=4G"
+    ],
+    "chromiumNativeLazyRuntimeEffectiveType": "forced 4g by --force-effective-connection-type=4G",
+    "lighthouseMetrics": "simulated Slow 4G with Lighthouse CPU slowdown x4"
+  },
+  "measurementHistory": [
+    {
+      "attempt": "attempt-1",
+      "disposition": "infrastructure-failure-no-measurement",
+      "measurementPerformed": false,
+      "order": 1
+    },
+    {
+      "attempt": "attempt-2",
+      "disposition": "measured-rejected-by-superseded-overconstraint",
+      "measurementPerformed": true,
+      "order": 2
+    },
+    {
+      "attempt": "attempt-3",
+      "disposition": "measurement-complete-derived-after-superseded-dcl-gate",
+      "measurementPerformed": true,
+      "order": 3,
+      "originalFailureSha256": "195d0cae632a0a352bdd2764471efa733e94375a7930f61d004e06676e91c9fb",
+      "rawRunCount": 15
+    }
+  ],
+  "priorAttempts": [
+    {
+      "archivedPath": "<source-attempt-1>",
+      "artifactCount": 5,
+      "attempt": "attempt-1",
+      "disposition": "infrastructure-failure-no-measurement",
+      "failureStage": "loopback-devtools-websocket-discovery-before-navigation",
+      "files": [
+        {
+          "bytes": 3459,
+          "path": "below-fold/series-started.json",
+          "sha256": "0731efb9407160720582c4d425f681d7a8dd2d7c2889e107e4f59c048edbd160"
+        },
+        {
+          "bytes": 3437,
+          "path": "control/series-started.json",
+          "sha256": "66c436fb0f471dad75fe804f03158b000cac40e6903bdb38e3ecc3c136df5542"
+        },
+        {
+          "bytes": 451,
+          "path": "failure.json",
+          "sha256": "0211fe15aab59bc5e61bbc6083d9a0a6e9f5bc5e35f46f92c364015397c62c95"
+        },
+        {
+          "bytes": 11019,
+          "path": "study-started.json",
+          "sha256": "151e734b78c147c39007238575346504f3b91d86f1f62a177f4459171c0d9574"
+        },
+        {
+          "bytes": 3451,
+          "path": "three-viewports-down/series-started.json",
+          "sha256": "bfba2a90458084f67b07d4fca4a477e485da61729d80c1969bf4cdbc16571d23"
+        }
+      ],
+      "measurementArtifactCount": 0,
+      "measurementPerformed": false,
+      "order": 1,
+      "reason": "The sandboxed first launch could not fetch the loopback DevTools WebSocket URL. It failed before navigation and produced no Lighthouse LHR or page probe."
+    },
+    {
+      "archivedPath": "<source-attempt-2>",
+      "artifactCount": 10,
+      "attempt": "attempt-2",
+      "disposition": "measured-rejected-by-superseded-overconstraint",
+      "files": [
+        {
+          "bytes": 385119,
+          "path": "below-fold/run-1.lhr.json",
+          "sha256": "4a3cb16752f78e652ad7d1e82c77fb0a7c75a2445a01c1a6235f68cfb1f56388"
+        },
+        {
+          "bytes": 37344,
+          "path": "below-fold/run-1.probe.json",
+          "sha256": "087efff3c9c8032d17922d7e93bd8bb747731604eb3b81638849464a47a4a67e"
+        },
+        {
+          "bytes": 3459,
+          "path": "below-fold/series-started.json",
+          "sha256": "a46a0b4afd18047c89c20f528911df47134ec623812901ceee79a1bee13087d6"
+        },
+        {
+          "bytes": 654113,
+          "path": "control/run-1.lhr.json",
+          "sha256": "7ea580cc906e314ace5ce86cbe7b8509397bca9830aaf97f930ea3490c2d8696"
+        },
+        {
+          "bytes": 61979,
+          "path": "control/run-1.probe.json",
+          "sha256": "39dbf523dae9a485f6dcc1209ee7d8f9b82d7d9ec3a0ed3ea70f692097d3d888"
+        },
+        {
+          "bytes": 3437,
+          "path": "control/series-started.json",
+          "sha256": "c5102d67f94f351bb9b1c82ae77720796a9c12fe62b075adc3e31934176ee79a"
+        },
+        {
+          "bytes": 989,
+          "path": "failure.json",
+          "sha256": "c7ac62fc1bf64abc10eb6ae38c6f257d49af0fe53c5235312585b754d2cf7d42"
+        },
+        {
+          "bytes": 21846,
+          "path": "host-main-document.html",
+          "sha256": "52bd72ef0d57ddff19b387c63c479eeae1ac1ad498afb85468870e9cd42ae048"
+        },
+        {
+          "bytes": 11019,
+          "path": "study-started.json",
+          "sha256": "e0c3efed8bfc35b344aba33cf571c205b32c844342d2c71d3b5e425d6f67e6d5"
+        },
+        {
+          "bytes": 3451,
+          "path": "three-viewports-down/series-started.json",
+          "sha256": "8ebd69b86dd782982dd92b38c19b2970bd690e22470b898d0e9fdd0254a8f4d9"
+        }
+      ],
+      "measurementPerformed": true,
+      "observedAppRequestCount": 4,
+      "observedBootstrapOutcome": "paint-deferred-shell",
+      "observedVariant": "below-fold",
+      "order": 2,
+      "reason": "The old harness rejected a valid below-fold paint handoff because it required all 18 editor assets whenever the iframe Document loaded. The preserved run had the exact four-response paint-deferred shell and no failed request."
+    }
+  ],
+  "profile": {
+    "channel": "cli",
+    "formFactor": "mobile",
+    "locale": "en-US",
+    "onlyCategories": [
+      "performance"
+    ],
+    "output": [
+      "json"
+    ],
+    "screenEmulation": {
+      "deviceScaleFactor": 1.75,
+      "disabled": false,
+      "height": 823,
+      "mobile": true,
+      "width": 412
+    },
+    "throttling": {
+      "cpuSlowdownMultiplier": 4,
+      "downloadThroughputKbps": 1474.5600000000002,
+      "requestLatencyMs": 562.5,
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "uploadThroughputKbps": 675
+    },
+    "throttlingMethod": "simulate"
+  },
+  "schedule": [
+    [
+      "control",
+      "below-fold",
+      "three-viewports-down"
+    ],
+    [
+      "below-fold",
+      "three-viewports-down",
+      "control"
+    ],
+    [
+      "three-viewports-down",
+      "control",
+      "below-fold"
+    ],
+    [
+      "control",
+      "below-fold",
+      "three-viewports-down"
+    ],
+    [
+      "below-fold",
+      "three-viewports-down",
+      "control"
+    ]
+  ],
+  "scheduleProof": {
+    "chronologicalOrder": [
+      {
+        "completedAt": "2026-08-21T16:12:17.861Z",
+        "pid": "chrome-control-run-1",
+        "runNumber": 1,
+        "startedAt": "2026-08-21T16:12:06.381Z",
+        "variantId": "control"
+      },
+      {
+        "completedAt": "2026-08-21T16:12:26.898Z",
+        "pid": "chrome-below-fold-run-1",
+        "runNumber": 1,
+        "startedAt": "2026-08-21T16:12:17.895Z",
+        "variantId": "below-fold"
+      },
+      {
+        "completedAt": "2026-08-21T16:12:35.581Z",
+        "pid": "chrome-three-viewports-down-run-1",
+        "runNumber": 1,
+        "startedAt": "2026-08-21T16:12:26.903Z",
+        "variantId": "three-viewports-down"
+      },
+      {
+        "completedAt": "2026-08-21T16:12:45.886Z",
+        "pid": "chrome-below-fold-run-2",
+        "runNumber": 2,
+        "startedAt": "2026-08-21T16:12:35.586Z",
+        "variantId": "below-fold"
+      },
+      {
+        "completedAt": "2026-08-21T16:12:54.661Z",
+        "pid": "chrome-three-viewports-down-run-2",
+        "runNumber": 2,
+        "startedAt": "2026-08-21T16:12:45.891Z",
+        "variantId": "three-viewports-down"
+      },
+      {
+        "completedAt": "2026-08-21T16:13:04.346Z",
+        "pid": "chrome-control-run-2",
+        "runNumber": 2,
+        "startedAt": "2026-08-21T16:12:54.668Z",
+        "variantId": "control"
+      },
+      {
+        "completedAt": "2026-08-21T16:13:13.407Z",
+        "pid": "chrome-three-viewports-down-run-3",
+        "runNumber": 3,
+        "startedAt": "2026-08-21T16:13:04.355Z",
+        "variantId": "three-viewports-down"
+      },
+      {
+        "completedAt": "2026-08-21T16:13:24.264Z",
+        "pid": "chrome-control-run-3",
+        "runNumber": 3,
+        "startedAt": "2026-08-21T16:13:13.415Z",
+        "variantId": "control"
+      },
+      {
+        "completedAt": "2026-08-21T16:13:34.622Z",
+        "pid": "chrome-below-fold-run-3",
+        "runNumber": 3,
+        "startedAt": "2026-08-21T16:13:24.272Z",
+        "variantId": "below-fold"
+      },
+      {
+        "completedAt": "2026-08-21T16:13:44.816Z",
+        "pid": "chrome-control-run-4",
+        "runNumber": 4,
+        "startedAt": "2026-08-21T16:13:34.629Z",
+        "variantId": "control"
+      },
+      {
+        "completedAt": "2026-08-21T16:13:54.203Z",
+        "pid": "chrome-below-fold-run-4",
+        "runNumber": 4,
+        "startedAt": "2026-08-21T16:13:44.821Z",
+        "variantId": "below-fold"
+      },
+      {
+        "completedAt": "2026-08-21T16:14:03.573Z",
+        "pid": "chrome-three-viewports-down-run-4",
+        "runNumber": 4,
+        "startedAt": "2026-08-21T16:13:54.207Z",
+        "variantId": "three-viewports-down"
+      },
+      {
+        "completedAt": "2026-08-21T16:14:12.712Z",
+        "pid": "chrome-below-fold-run-5",
+        "runNumber": 5,
+        "startedAt": "2026-08-21T16:14:03.577Z",
+        "variantId": "below-fold"
+      },
+      {
+        "completedAt": "2026-08-21T16:14:21.243Z",
+        "pid": "chrome-three-viewports-down-run-5",
+        "runNumber": 5,
+        "startedAt": "2026-08-21T16:14:12.719Z",
+        "variantId": "three-viewports-down"
+      },
+      {
+        "completedAt": "2026-08-21T16:14:31.089Z",
+        "pid": "chrome-control-run-5",
+        "runNumber": 5,
+        "startedAt": "2026-08-21T16:14:21.247Z",
+        "variantId": "control"
+      }
+    ],
+    "exactRotatedOrder": true,
+    "expectedRounds": [
+      [
+        "control",
+        "below-fold",
+        "three-viewports-down"
+      ],
+      [
+        "below-fold",
+        "three-viewports-down",
+        "control"
+      ],
+      [
+        "three-viewports-down",
+        "control",
+        "below-fold"
+      ],
+      [
+        "control",
+        "below-fold",
+        "three-viewports-down"
+      ],
+      [
+        "below-fold",
+        "three-viewports-down",
+        "control"
+      ]
+    ],
+    "nonOverlapping": true,
+    "runCount": 15,
+    "uniqueChromePidCount": 15
+  },
+  "schemaVersion": 1,
+  "sourceStudy": {
+    "attempt": "attempt-3",
+    "directory": "<source-attempt-3>",
+    "exactInputFileCount": 36,
+    "exactInputTreeFingerprintSha256": "11daa05d44027a964f90e4ae5c831798ec4e23eae7f6069e9f221e846f867519",
+    "hostMainDocument": {
+      "bytes": 21846,
+      "path": "reports/host-position-e5/attempts/attempt-3/host-main-document.html",
+      "sha256": "52bd72ef0d57ddff19b387c63c479eeae1ac1ad498afb85468870e9cd42ae048"
+    },
+    "originalFailure": {
+      "bytes": 2030,
+      "failedAt": "2026-08-21T16:14:31.098Z",
+      "originalDisposition": "series-aggregation-rejected",
+      "path": "<source-attempt-3>/failure.json",
+      "rejectedGate": "dom-content-loaded-single-state-within-variant-range<=0.5px",
+      "sha256": "195d0cae632a0a352bdd2764471efa733e94375a7930f61d004e06676e91c9fb"
+    },
+    "originalHarness": {
+      "path": "<source-harness>",
+      "sha256": "02bcce80b6c9b491f0b54f3b872ca906a90237ba9e12d71bca05ee7b48ccc3f8"
+    },
+    "startedAt": "2026-08-21T16:12:06.349Z"
+  },
+  "thresholdResult": {
+    "farPosition": {
+      "documentLoadedRunCount": 5,
+      "earliestObservedPreHostCssDistanceBelowFoldPx": 2005.875,
+      "earliestObservedPreHostCssDistanceBelowFoldViewportHeights": 2.4372721749696233,
+      "finalDistanceBelowFoldPx": 2177.53125,
+      "finalDistanceBelowFoldViewportHeights": 2.6458459902794655,
+      "notRequestedRunCount": 0,
+      "requestedRunCount": 5
+    },
+    "interpretation": "The experiment proves that native lazy loading did not suppress the Document request at any tested position. It does not prove a numerical request cutoff.",
+    "reason": "Every tested position requested and loaded the iframe Document; the study contains no not-requested point, so it cannot bound the exact cutoff.",
+    "requestTimeGeometry": {
+      "allFarRequestsPrecededPassiveFirstSeen": true,
+      "directlyObserved": false,
+      "explanation": "The placement sheet was installed before every request, but Resource Timing shows each app request began before the passive first-seen geometry sample. Final and first-seen distances are therefore published separately and are not mislabeled as direct request-time geometry."
+    },
+    "result": "exact-native-lazy-request-cutoff-not-bracketed"
+  },
+  "validity": {
+    "criterion12Evaluated": false,
+    "criterion12Result": "not-evaluated",
+    "evaluationScope": "position-experiment-evidence-only",
+    "passed": true,
+    "reason": "This correction validates the requested lazy-iframe position experiment. It does not define or apply the future Criterion 12 acceptance budget."
+  },
+  "variants": [
+    {
+      "appDelivery": {
+        "bootstrapCounts": {
+          "full-editor-assets": 5,
+          "paint-deferred-shell": 0,
+          "partial-editor-assets": 0
+        },
+        "completedProgress": [
+          {
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "runNumber": 1
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "runNumber": 2
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "runNumber": 3
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "runNumber": 4
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "runNumber": 5
+          }
+        ],
+        "documentLoadedRunCount": 5,
+        "notRequestedRunCount": 0,
+        "requestedRunCount": 5
+      },
+      "geometry": {
+        "allSamplesRetainExactInjectedMargin": true,
+        "domContentLoaded": {
+          "counts": {
+            "hostCssApplied": 2,
+            "preHostCss": 3
+          },
+          "runs": [
+            {
+              "computedSlotDisplay": "flex",
+              "cssState": "host-css-applied",
+              "runNumber": 1,
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            {
+              "computedSlotDisplay": "flex",
+              "cssState": "host-css-applied",
+              "runNumber": 2,
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            {
+              "computedSlotDisplay": "block",
+              "cssState": "pre-host-css",
+              "runNumber": 3,
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            },
+            {
+              "computedSlotDisplay": "block",
+              "cssState": "pre-host-css",
+              "runNumber": 4,
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            },
+            {
+              "computedSlotDisplay": "block",
+              "cssState": "pre-host-css",
+              "runNumber": 5,
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            }
+          ],
+          "validityTreatment": "observed-two-state-host-css-race-not-a-position-invalidity"
+        },
+        "finalCanonicalRect": {
+          "bottom": 1272.21875,
+          "height": 740.6875,
+          "left": 16,
+          "right": 396,
+          "top": 531.53125,
+          "width": 380
+        },
+        "finalDistanceBelowViewportPx": 0,
+        "positionedFloorRetainedAtEverySample": true,
+        "slotEqualsIframeAtEverySample": true,
+        "stableMilestones": {
+          "after-first-contentful-paint": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 1272.21875,
+                "minimum": 1272.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 531.53125,
+                "minimum": 531.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 1272.21875,
+                "minimum": 1272.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 531.53125,
+                "minimum": 531.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            }
+          },
+          "final": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 1272.21875,
+                "minimum": 1272.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 531.53125,
+                "minimum": 531.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 1272.21875,
+                "minimum": 1272.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 531.53125,
+                "minimum": 531.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            }
+          },
+          "first-seen": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 1100.5625,
+                "minimum": 1100.5625,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 8,
+                "minimum": 8,
+                "range": 0
+              },
+              "right": {
+                "maximum": 404,
+                "minimum": 404,
+                "range": 0
+              },
+              "top": {
+                "maximum": 359.875,
+                "minimum": 359.875,
+                "range": 0
+              },
+              "width": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 1100.5625,
+                "minimum": 1100.5625,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 8,
+                "minimum": 8,
+                "range": 0
+              },
+              "right": {
+                "maximum": 404,
+                "minimum": 404,
+                "range": 0
+              },
+              "top": {
+                "maximum": 359.875,
+                "minimum": 359.875,
+                "range": 0
+              },
+              "width": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              }
+            }
+          },
+          "window-load": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 1272.21875,
+                "minimum": 1272.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 531.53125,
+                "minimum": 531.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 1272.21875,
+                "minimum": 1272.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 531.53125,
+                "minimum": 531.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            }
+          }
+        }
+      },
+      "metrics": {
+        "cls": {
+          "maximum": 0,
+          "median": 0,
+          "minimum": 0,
+          "range": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "fcpMs": {
+          "maximum": 2052.0125,
+          "median": 1710.0496000000003,
+          "minimum": 1662.9624000000001,
+          "range": 389.0500999999997,
+          "values": [
+            1675.5010000000002,
+            1662.9624000000001,
+            1959.8955,
+            1710.0496000000003,
+            2052.0125
+          ]
+        },
+        "lcpMs": {
+          "maximum": 2052.0125,
+          "median": 1710.0496000000003,
+          "minimum": 1662.9624000000001,
+          "range": 389.0500999999997,
+          "values": [
+            1675.5010000000002,
+            1662.9624000000001,
+            1959.8955,
+            1710.0496000000003,
+            2052.0125
+          ]
+        },
+        "speedIndexMs": {
+          "maximum": 3325.733352541226,
+          "median": 2948.7910992342104,
+          "minimum": 2265.992092750903,
+          "range": 1059.741259790323,
+          "values": [
+            2532.5947224226475,
+            2265.992092750903,
+            3325.733352541226,
+            3048.9065594974777,
+            2948.7910992342104
+          ]
+        },
+        "tbtMs": {
+          "maximum": 417.5,
+          "median": 409.5,
+          "minimum": 349.5,
+          "range": 68,
+          "values": [
+            394,
+            412,
+            417.5,
+            409.5,
+            349.5
+          ]
+        }
+      },
+      "performanceScoreReference": {
+        "median": 89,
+        "values": [
+          89,
+          89,
+          87,
+          88,
+          89
+        ]
+      },
+      "runs": [
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "full-editor-assets",
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-control-run-1",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 0,
+            "foldClass": "crosses-first-fold",
+            "iframeRect": {
+              "bottom": 1272.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 531.53125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 1272.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 531.53125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "0px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1675.5010000000002,
+            "lcpMs": 1675.5010000000002,
+            "speedIndexMs": 2532.5947224226475,
+            "tbtMs": 394
+          },
+          "performanceScorePercent": 89,
+          "rawLhr": {
+            "bytes": 687966,
+            "path": "reports/host-position-e5/attempts/attempt-3/control/run-1.lhr.json",
+            "sha256": "a99a54ce3988ad8de3fcc154dca395af4ea7ea3c7c875815684c885a1655569d"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 1,
+          "timing": {
+            "appRequestStartTimeMs": 506.79999999701977,
+            "passiveFirstSeenAtMs": 510.29999999701977,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 501.40000000596046
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "full-editor-assets",
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-control-run-2",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 0,
+            "foldClass": "crosses-first-fold",
+            "iframeRect": {
+              "bottom": 1272.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 531.53125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 1272.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 531.53125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "0px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1662.9624000000001,
+            "lcpMs": 1662.9624000000001,
+            "speedIndexMs": 2265.992092750903,
+            "tbtMs": 412
+          },
+          "performanceScorePercent": 89,
+          "rawLhr": {
+            "bytes": 710011,
+            "path": "reports/host-position-e5/attempts/attempt-3/control/run-2.lhr.json",
+            "sha256": "4a2f72cfe197670d3cd0d3274bf5396de76f02f373441f96165cf12eeea51eb5"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 2,
+          "timing": {
+            "appRequestStartTimeMs": 461.59999999403954,
+            "passiveFirstSeenAtMs": 464.40000000596046,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 457.40000000596046
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "full-editor-assets",
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-control-run-3",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 0,
+            "foldClass": "crosses-first-fold",
+            "iframeRect": {
+              "bottom": 1272.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 531.53125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 1272.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 531.53125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "0px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "0px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1959.8955,
+            "lcpMs": 1959.8955,
+            "speedIndexMs": 3325.733352541226,
+            "tbtMs": 417.5
+          },
+          "performanceScorePercent": 87,
+          "rawLhr": {
+            "bytes": 675441,
+            "path": "reports/host-position-e5/attempts/attempt-3/control/run-3.lhr.json",
+            "sha256": "7f6644842984761ad039a61071213c4d5f34b00caf3d88eba12c850bc9daf6be"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 3,
+          "timing": {
+            "appRequestStartTimeMs": 565.3999999910593,
+            "passiveFirstSeenAtMs": 568.5999999940395,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 560.1999999880791
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "full-editor-assets",
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-control-run-4",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 0,
+            "foldClass": "crosses-first-fold",
+            "iframeRect": {
+              "bottom": 1272.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 531.53125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 1272.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 531.53125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "0px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "0px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1710.0496000000003,
+            "lcpMs": 1710.0496000000003,
+            "speedIndexMs": 3048.9065594974777,
+            "tbtMs": 409.5
+          },
+          "performanceScorePercent": 88,
+          "rawLhr": {
+            "bytes": 676159,
+            "path": "reports/host-position-e5/attempts/attempt-3/control/run-4.lhr.json",
+            "sha256": "b701362f5dc058a0a7a67d645130cd0fd6e7ead12d458472cf695b42b5130a74"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 4,
+          "timing": {
+            "appRequestStartTimeMs": 687.4000000059605,
+            "passiveFirstSeenAtMs": 690.0999999940395,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 683.5
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "full-editor-assets",
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-control-run-5",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 0,
+            "foldClass": "crosses-first-fold",
+            "iframeRect": {
+              "bottom": 1272.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 531.53125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 1272.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 531.53125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "0px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "0px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1100.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 359.875,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "0px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1272.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 531.53125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 2052.0125,
+            "lcpMs": 2052.0125,
+            "speedIndexMs": 2948.7910992342104,
+            "tbtMs": 349.5
+          },
+          "performanceScorePercent": 89,
+          "rawLhr": {
+            "bytes": 675759,
+            "path": "reports/host-position-e5/attempts/attempt-3/control/run-5.lhr.json",
+            "sha256": "2cf495725bace9a3bbb2dd3ec5a970e1f49580bb01633ebdd532cbabf195a9a0"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 5,
+          "timing": {
+            "appRequestStartTimeMs": 374,
+            "passiveFirstSeenAtMs": 377.19999998807907,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 369
+          }
+        }
+      ],
+      "variant": {
+        "code": "C",
+        "expectedFoldClass": "crosses-first-fold",
+        "expectedMarginPx": 0,
+        "id": "control",
+        "marginTopVh": 0,
+        "sampleFloorPx": null
+      }
+    },
+    {
+      "appDelivery": {
+        "bootstrapCounts": {
+          "full-editor-assets": 1,
+          "paint-deferred-shell": 4,
+          "partial-editor-assets": 0
+        },
+        "completedProgress": [
+          {
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "runNumber": 1
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "runNumber": 2
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "runNumber": 3
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "runNumber": 4
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "runNumber": 5
+          }
+        ],
+        "documentLoadedRunCount": 5,
+        "notRequestedRunCount": 0,
+        "requestedRunCount": 5
+      },
+      "geometry": {
+        "allSamplesRetainExactInjectedMargin": true,
+        "domContentLoaded": {
+          "counts": {
+            "hostCssApplied": 2,
+            "preHostCss": 3
+          },
+          "runs": [
+            {
+              "computedSlotDisplay": "flex",
+              "cssState": "host-css-applied",
+              "runNumber": 1,
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            {
+              "computedSlotDisplay": "flex",
+              "cssState": "host-css-applied",
+              "runNumber": 2,
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            {
+              "computedSlotDisplay": "block",
+              "cssState": "pre-host-css",
+              "runNumber": 3,
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            },
+            {
+              "computedSlotDisplay": "block",
+              "cssState": "pre-host-css",
+              "runNumber": 4,
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            },
+            {
+              "computedSlotDisplay": "block",
+              "cssState": "pre-host-css",
+              "runNumber": 5,
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            }
+          ],
+          "validityTreatment": "observed-two-state-host-css-race-not-a-position-invalidity"
+        },
+        "finalCanonicalRect": {
+          "bottom": 1889.46875,
+          "height": 740.6875,
+          "left": 16,
+          "right": 396,
+          "top": 1148.78125,
+          "width": 380
+        },
+        "finalDistanceBelowViewportPx": 325.78125,
+        "positionedFloorRetainedAtEverySample": true,
+        "slotEqualsIframeAtEverySample": true,
+        "stableMilestones": {
+          "after-first-contentful-paint": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 1889.46875,
+                "minimum": 1889.46875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 1148.78125,
+                "minimum": 1148.78125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 1889.46875,
+                "minimum": 1889.46875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 1148.78125,
+                "minimum": 1148.78125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            }
+          },
+          "final": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 1889.46875,
+                "minimum": 1889.46875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 1148.78125,
+                "minimum": 1148.78125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 1889.46875,
+                "minimum": 1889.46875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 1148.78125,
+                "minimum": 1148.78125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            }
+          },
+          "first-seen": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 1717.8125,
+                "minimum": 1717.8125,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 8,
+                "minimum": 8,
+                "range": 0
+              },
+              "right": {
+                "maximum": 404,
+                "minimum": 404,
+                "range": 0
+              },
+              "top": {
+                "maximum": 977.125,
+                "minimum": 977.125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 1717.8125,
+                "minimum": 1717.8125,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 8,
+                "minimum": 8,
+                "range": 0
+              },
+              "right": {
+                "maximum": 404,
+                "minimum": 404,
+                "range": 0
+              },
+              "top": {
+                "maximum": 977.125,
+                "minimum": 977.125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              }
+            }
+          },
+          "window-load": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 1889.46875,
+                "minimum": 1889.46875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 1148.78125,
+                "minimum": 1148.78125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 1889.46875,
+                "minimum": 1889.46875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 1148.78125,
+                "minimum": 1148.78125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            }
+          }
+        }
+      },
+      "metrics": {
+        "cls": {
+          "maximum": 0,
+          "median": 0,
+          "minimum": 0,
+          "range": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "fcpMs": {
+          "maximum": 3307.188,
+          "median": 1960.6250000000002,
+          "minimum": 1690.589,
+          "range": 1616.5990000000002,
+          "values": [
+            1690.589,
+            3307.188,
+            1969.7689999999998,
+            1960.6250000000002,
+            1732.3413799999998
+          ]
+        },
+        "lcpMs": {
+          "maximum": 3307.188,
+          "median": 1960.6250000000002,
+          "minimum": 1690.589,
+          "range": 1616.5990000000002,
+          "values": [
+            1690.589,
+            3307.188,
+            1969.7689999999998,
+            1960.6250000000002,
+            1732.3413799999998
+          ]
+        },
+        "speedIndexMs": {
+          "maximum": 4814.632058636975,
+          "median": 2452.966938016504,
+          "minimum": 1883.2116082703415,
+          "range": 2931.4204503666333,
+          "values": [
+            1883.2116082703415,
+            4814.632058636975,
+            3901.5113617220013,
+            2452.966938016504,
+            2173.7880118617304
+          ]
+        },
+        "tbtMs": {
+          "maximum": 359,
+          "median": 0,
+          "minimum": 0,
+          "range": 359,
+          "values": [
+            0,
+            359,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "performanceScoreReference": {
+        "median": 98,
+        "values": [
+          99,
+          75,
+          96,
+          98,
+          99
+        ]
+      },
+      "runs": [
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "paint-deferred-shell",
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-below-fold-run-1",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 325.78125,
+            "foldClass": "below-first-viewport",
+            "iframeRect": {
+              "bottom": 1889.46875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 1148.78125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 1889.46875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 1148.78125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1690.589,
+            "lcpMs": 1690.589,
+            "speedIndexMs": 1883.2116082703415,
+            "tbtMs": 0
+          },
+          "performanceScorePercent": 99,
+          "rawLhr": {
+            "bytes": 406769,
+            "path": "reports/host-position-e5/attempts/attempt-3/below-fold/run-1.lhr.json",
+            "sha256": "48dae5529d52153b37cda0fc033e86367806794b5a1e58f68cadcb44d700e044"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 1,
+          "timing": {
+            "appRequestStartTimeMs": 509.70000000298023,
+            "passiveFirstSeenAtMs": 512.5999999940395,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 504.09999999403954
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "full-editor-assets",
+            "canonicalTotal": 18,
+            "completedCount": 18,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-below-fold-run-2",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 325.78125,
+            "foldClass": "below-first-viewport",
+            "iframeRect": {
+              "bottom": 1889.46875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 1148.78125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 1889.46875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 1148.78125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 3307.188,
+            "lcpMs": 3307.188,
+            "speedIndexMs": 4814.632058636975,
+            "tbtMs": 359
+          },
+          "performanceScorePercent": 75,
+          "rawLhr": {
+            "bytes": 340836,
+            "path": "reports/host-position-e5/attempts/attempt-3/below-fold/run-2.lhr.json",
+            "sha256": "d828f6823393d4f35f6f9f87c754a174c1331644e1a5f6421c39d4ccaf12b468"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 2,
+          "timing": {
+            "appRequestStartTimeMs": 176.20000000298023,
+            "passiveFirstSeenAtMs": 179.20000000298023,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 172.5
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "paint-deferred-shell",
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-below-fold-run-3",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 325.78125,
+            "foldClass": "below-first-viewport",
+            "iframeRect": {
+              "bottom": 1889.46875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 1148.78125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 1889.46875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 1148.78125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1969.7689999999998,
+            "lcpMs": 1969.7689999999998,
+            "speedIndexMs": 3901.5113617220013,
+            "tbtMs": 0
+          },
+          "performanceScorePercent": 96,
+          "rawLhr": {
+            "bytes": 341025,
+            "path": "reports/host-position-e5/attempts/attempt-3/below-fold/run-3.lhr.json",
+            "sha256": "9dbac3d7025a76d55380860b3130a635d0e546904132efac377e2457360c2660"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 3,
+          "timing": {
+            "appRequestStartTimeMs": 1621,
+            "passiveFirstSeenAtMs": 1625.2000000029802,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 1615.6000000089407
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "paint-deferred-shell",
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-below-fold-run-4",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 325.78125,
+            "foldClass": "below-first-viewport",
+            "iframeRect": {
+              "bottom": 1889.46875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 1148.78125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 1889.46875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 1148.78125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1960.6250000000002,
+            "lcpMs": 1960.6250000000002,
+            "speedIndexMs": 2452.966938016504,
+            "tbtMs": 0
+          },
+          "performanceScorePercent": 98,
+          "rawLhr": {
+            "bytes": 384546,
+            "path": "reports/host-position-e5/attempts/attempt-3/below-fold/run-4.lhr.json",
+            "sha256": "9e17d7c1732b67a190ae0442d7b9e0ebcaa74868088d4adad74478e3b59fca64"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 4,
+          "timing": {
+            "appRequestStartTimeMs": 708.7000000029802,
+            "passiveFirstSeenAtMs": 713,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 702.6000000089407
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "paint-deferred-shell",
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-below-fold-run-5",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 325.78125,
+            "foldClass": "below-first-viewport",
+            "iframeRect": {
+              "bottom": 1889.46875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 1148.78125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 1889.46875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 1148.78125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 1717.8125,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 977.125,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "617.25px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 1889.46875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 1148.78125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1732.3413799999998,
+            "lcpMs": 1732.3413799999998,
+            "speedIndexMs": 2173.7880118617304,
+            "tbtMs": 0
+          },
+          "performanceScorePercent": 99,
+          "rawLhr": {
+            "bytes": 406084,
+            "path": "reports/host-position-e5/attempts/attempt-3/below-fold/run-5.lhr.json",
+            "sha256": "4f32335fb0c266f54aadbb7cd194aa5601a61dd3dabe8bf767a7f1a810c42f7d"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 5,
+          "timing": {
+            "appRequestStartTimeMs": 551.6000000089407,
+            "passiveFirstSeenAtMs": 554.4000000059605,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 547.3000000119209
+          }
+        }
+      ],
+      "variant": {
+        "code": "B",
+        "expectedFoldClass": "below-first-viewport",
+        "expectedMarginPx": 617.25,
+        "id": "below-fold",
+        "marginTopVh": 75,
+        "sampleFloorPx": 823
+      }
+    },
+    {
+      "appDelivery": {
+        "bootstrapCounts": {
+          "full-editor-assets": 0,
+          "paint-deferred-shell": 5,
+          "partial-editor-assets": 0
+        },
+        "completedProgress": [
+          {
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "runNumber": 1
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "runNumber": 2
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "runNumber": 3
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "runNumber": 4
+          },
+          {
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "runNumber": 5
+          }
+        ],
+        "documentLoadedRunCount": 5,
+        "notRequestedRunCount": 0,
+        "requestedRunCount": 5
+      },
+      "geometry": {
+        "allSamplesRetainExactInjectedMargin": true,
+        "domContentLoaded": {
+          "counts": {
+            "hostCssApplied": 2,
+            "preHostCss": 3
+          },
+          "runs": [
+            {
+              "computedSlotDisplay": "block",
+              "cssState": "pre-host-css",
+              "runNumber": 1,
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            {
+              "computedSlotDisplay": "flex",
+              "cssState": "host-css-applied",
+              "runNumber": 2,
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            {
+              "computedSlotDisplay": "block",
+              "cssState": "pre-host-css",
+              "runNumber": 3,
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            {
+              "computedSlotDisplay": "block",
+              "cssState": "pre-host-css",
+              "runNumber": 4,
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            {
+              "computedSlotDisplay": "flex",
+              "cssState": "host-css-applied",
+              "runNumber": 5,
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            }
+          ],
+          "validityTreatment": "observed-two-state-host-css-race-not-a-position-invalidity"
+        },
+        "finalCanonicalRect": {
+          "bottom": 3741.21875,
+          "height": 740.6875,
+          "left": 16,
+          "right": 396,
+          "top": 3000.53125,
+          "width": 380
+        },
+        "finalDistanceBelowViewportPx": 2177.53125,
+        "positionedFloorRetainedAtEverySample": true,
+        "slotEqualsIframeAtEverySample": true,
+        "stableMilestones": {
+          "after-first-contentful-paint": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 3741.21875,
+                "minimum": 3741.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 3000.53125,
+                "minimum": 3000.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 3741.21875,
+                "minimum": 3741.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 3000.53125,
+                "minimum": 3000.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            }
+          },
+          "final": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 3741.21875,
+                "minimum": 3741.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 3000.53125,
+                "minimum": 3000.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 3741.21875,
+                "minimum": 3741.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 3000.53125,
+                "minimum": 3000.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            }
+          },
+          "first-seen": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 3569.5625,
+                "minimum": 3569.5625,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 8,
+                "minimum": 8,
+                "range": 0
+              },
+              "right": {
+                "maximum": 404,
+                "minimum": 404,
+                "range": 0
+              },
+              "top": {
+                "maximum": 2828.875,
+                "minimum": 2828.875,
+                "range": 0
+              },
+              "width": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 3569.5625,
+                "minimum": 3569.5625,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 8,
+                "minimum": 8,
+                "range": 0
+              },
+              "right": {
+                "maximum": 404,
+                "minimum": 404,
+                "range": 0
+              },
+              "top": {
+                "maximum": 2828.875,
+                "minimum": 2828.875,
+                "range": 0
+              },
+              "width": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              }
+            }
+          },
+          "window-load": {
+            "iframeRect": {
+              "bottom": {
+                "maximum": 3741.21875,
+                "minimum": 3741.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 3000.53125,
+                "minimum": 3000.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            },
+            "slotRect": {
+              "bottom": {
+                "maximum": 3741.21875,
+                "minimum": 3741.21875,
+                "range": 0
+              },
+              "height": {
+                "maximum": 740.6875,
+                "minimum": 740.6875,
+                "range": 0
+              },
+              "left": {
+                "maximum": 16,
+                "minimum": 16,
+                "range": 0
+              },
+              "right": {
+                "maximum": 396,
+                "minimum": 396,
+                "range": 0
+              },
+              "top": {
+                "maximum": 3000.53125,
+                "minimum": 3000.53125,
+                "range": 0
+              },
+              "width": {
+                "maximum": 380,
+                "minimum": 380,
+                "range": 0
+              }
+            }
+          }
+        }
+      },
+      "metrics": {
+        "cls": {
+          "maximum": 0,
+          "median": 0,
+          "minimum": 0,
+          "range": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "fcpMs": {
+          "maximum": 1836.3531000000003,
+          "median": 1705.8514999999998,
+          "minimum": 1654.8564999999999,
+          "range": 181.4966000000004,
+          "values": [
+            1687.0955,
+            1705.8514999999998,
+            1818.6814999999997,
+            1836.3531000000003,
+            1654.8564999999999
+          ]
+        },
+        "lcpMs": {
+          "maximum": 1836.3531000000003,
+          "median": 1705.8514999999998,
+          "minimum": 1654.8564999999999,
+          "range": 181.4966000000004,
+          "values": [
+            1687.0955,
+            1705.8514999999998,
+            1818.6814999999997,
+            1836.3531000000003,
+            1654.8564999999999
+          ]
+        },
+        "speedIndexMs": {
+          "maximum": 2325.9305467907334,
+          "median": 1990.2850469203213,
+          "minimum": 1736.392496104073,
+          "range": 589.5380506866604,
+          "values": [
+            1990.2850469203213,
+            1917.1399365061661,
+            2325.9305467907334,
+            2132.7499611390704,
+            1736.392496104073
+          ]
+        },
+        "tbtMs": {
+          "maximum": 0,
+          "median": 0,
+          "minimum": 0,
+          "range": 0,
+          "values": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "performanceScoreReference": {
+        "median": 99,
+        "values": [
+          99,
+          99,
+          98,
+          98,
+          99
+        ]
+      },
+      "runs": [
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "paint-deferred-shell",
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-three-viewports-down-run-1",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 2177.53125,
+            "foldClass": "below-first-viewport",
+            "iframeRect": {
+              "bottom": 3741.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 3000.53125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 3741.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 3000.53125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1687.0955,
+            "lcpMs": 1687.0955,
+            "speedIndexMs": 1990.2850469203213,
+            "tbtMs": 0
+          },
+          "performanceScorePercent": 99,
+          "rawLhr": {
+            "bytes": 359999,
+            "path": "reports/host-position-e5/attempts/attempt-3/three-viewports-down/run-1.lhr.json",
+            "sha256": "eb9bb024b2a69d6b1e6d8fb034bb0e5ea89c726d6250d030e1903e9f6f9bff5d"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 1,
+          "timing": {
+            "appRequestStartTimeMs": 545.2000000029802,
+            "passiveFirstSeenAtMs": 548,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 539.4000000059605
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "paint-deferred-shell",
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-three-viewports-down-run-2",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 2177.53125,
+            "foldClass": "below-first-viewport",
+            "iframeRect": {
+              "bottom": 3741.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 3000.53125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 3741.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 3000.53125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1705.8514999999998,
+            "lcpMs": 1705.8514999999998,
+            "speedIndexMs": 1917.1399365061661,
+            "tbtMs": 0
+          },
+          "performanceScorePercent": 99,
+          "rawLhr": {
+            "bytes": 360480,
+            "path": "reports/host-position-e5/attempts/attempt-3/three-viewports-down/run-2.lhr.json",
+            "sha256": "95422dc2f00a3b5054f392408a823e2ad90575790e4a2ad51e21dc0048c7e677"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 2,
+          "timing": {
+            "appRequestStartTimeMs": 507.59999999403954,
+            "passiveFirstSeenAtMs": 510.70000000298023,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 503.09999999403954
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "paint-deferred-shell",
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-three-viewports-down-run-3",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 2177.53125,
+            "foldClass": "below-first-viewport",
+            "iframeRect": {
+              "bottom": 3741.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 3000.53125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 3741.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 3000.53125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1818.6814999999997,
+            "lcpMs": 1818.6814999999997,
+            "speedIndexMs": 2325.9305467907334,
+            "tbtMs": 0
+          },
+          "performanceScorePercent": 98,
+          "rawLhr": {
+            "bytes": 360226,
+            "path": "reports/host-position-e5/attempts/attempt-3/three-viewports-down/run-3.lhr.json",
+            "sha256": "b6d0e17bb446e60e28293252e8817ed0c249782a210809fa967483e3c703f221"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 3,
+          "timing": {
+            "appRequestStartTimeMs": 636,
+            "passiveFirstSeenAtMs": 638.8999999910593,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 528.5999999940395
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "paint-deferred-shell",
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-three-viewports-down-run-4",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 2177.53125,
+            "foldClass": "below-first-viewport",
+            "iframeRect": {
+              "bottom": 3741.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 3000.53125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 3741.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 3000.53125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1836.3531000000003,
+            "lcpMs": 1836.3531000000003,
+            "speedIndexMs": 2132.7499611390704,
+            "tbtMs": 0
+          },
+          "performanceScorePercent": 98,
+          "rawLhr": {
+            "bytes": 360090,
+            "path": "reports/host-position-e5/attempts/attempt-3/three-viewports-down/run-4.lhr.json",
+            "sha256": "1afedc5ad089f01d35f4ec6f50a2804a82e5fd093811c1e3812a845210dbdc90"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 4,
+          "timing": {
+            "appRequestStartTimeMs": 464,
+            "passiveFirstSeenAtMs": 466.70000000298023,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 459.3999999910593
+          }
+        },
+        {
+          "appDelivery": {
+            "bootstrapOutcome": "paint-deferred-shell",
+            "canonicalTotal": 18,
+            "completedCount": 4,
+            "documentOutcome": "loaded",
+            "lazyRequestOutcome": "requested"
+          },
+          "chromeExitProof": {
+            "pid": "chrome-three-viewports-down-run-5",
+            "positivelyGone": true,
+            "reason": "pid-not-found"
+          },
+          "finalGeometry": {
+            "distanceBelowViewportPx": 2177.53125,
+            "foldClass": "below-first-viewport",
+            "iframeRect": {
+              "bottom": 3741.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 3000.53125,
+              "width": 380
+            },
+            "slotRect": {
+              "bottom": 3741.21875,
+              "height": 740.6875,
+              "left": 16,
+              "right": 396,
+              "top": 3000.53125,
+              "width": 380
+            }
+          },
+          "geometry": {
+            "after-first-contentful-paint": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "dom-content-loaded": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "final": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            },
+            "first-seen": {
+              "computedSlotDisplay": "block",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "pre-host-css",
+              "iframeRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              },
+              "slotRect": {
+                "bottom": 3569.5625,
+                "height": 740.6875,
+                "left": 8,
+                "right": 404,
+                "top": 2828.875,
+                "width": 396
+              }
+            },
+            "window-load": {
+              "computedSlotDisplay": "flex",
+              "computedSlotMarginTop": "2469px",
+              "cssState": "host-css-applied",
+              "iframeRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              },
+              "slotRect": {
+                "bottom": 3741.21875,
+                "height": 740.6875,
+                "left": 16,
+                "right": 396,
+                "top": 3000.53125,
+                "width": 380
+              }
+            }
+          },
+          "metrics": {
+            "cls": 0,
+            "fcpMs": 1654.8564999999999,
+            "lcpMs": 1654.8564999999999,
+            "speedIndexMs": 1736.392496104073,
+            "tbtMs": 0
+          },
+          "performanceScorePercent": 99,
+          "rawLhr": {
+            "bytes": 382283,
+            "path": "reports/host-position-e5/attempts/attempt-3/three-viewports-down/run-5.lhr.json",
+            "sha256": "5cf824352c2716c81a4a738d33fa91723a4173bc240adcaa62263ad525c1fd12"
+          },
+          "runLevelValidity": {
+            "errors": [],
+            "passed": true
+          },
+          "runNumber": 5,
+          "timing": {
+            "appRequestStartTimeMs": 459.69999998807907,
+            "passiveFirstSeenAtMs": 463.09999999403954,
+            "requestPrecededPassiveFirstSeen": true,
+            "stylesheetInstalledAtMs": 453.79999999701977
+          }
+        }
+      ],
+      "variant": {
+        "code": "F",
+        "expectedFoldClass": "below-first-viewport",
+        "expectedMarginPx": 2469,
+        "id": "three-viewports-down",
+        "marginTopVh": 300,
+        "sampleFloorPx": 2800
+      }
+    }
+  ],
+  "portableEvidence": {
+    "sourceOriginal": {
+      "relativePath": "summary.json",
+      "bytes": 130519,
+      "sha256": "94ba0a41155a981703dad2551dc0562bdcc9279beda0dec862bdce3f90c71f12"
+    },
+    "transformation": "sanitized-derived-summary-v1"
+  },
+  "portablePackage": {
+    "schemaVersion": 1,
+    "packageRoot": "reports/host-position-e5",
+    "rawLighthouseReportsByteIdentical": true,
+    "localMachinePathsAndChromePidsSanitized": true,
+    "originalAttempt3InputTreeFingerprintSha256": "11daa05d44027a964f90e4ae5c831798ec4e23eae7f6069e9f221e846f867519",
+    "originalDerivedManifestSha256": "3471e0ac767bcba4243e9943fda8cd64f3391936571c43b1185bfa6d1b26eeb8",
+    "nestedPathBindingSemantics": "Nested <source-attempt-N> paths identify original immutable inputs. Tracked package paths are used only when adjacent bytes/SHA bind the byte-identical portable artifact."
+  },
+  "manualAcceptance": {
+    "criterion7": {
+      "evaluated": false,
+      "result": "not-evaluated",
+      "reason": "Clipboard success with permission and the permission-denied fallback require a manual browser session."
+    },
+    "criterion14": {
+      "evaluated": false,
+      "result": "not-evaluated",
+      "reason": "Allowed-origin framing and rejection of phe-preview.com require external-origin browser access."
+    }
+  }
+}

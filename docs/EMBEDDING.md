@@ -23,8 +23,10 @@ not cause layout shift:
 
 Keep every attribute shown above:
 
-- `loading="lazy"` keeps the editor out of the host page's initial critical
-  path when it starts below the viewport.
+- `loading="lazy"` is a browser scheduling hint, not a guarantee that an editor
+  below the viewport will stay out of the host page's initial critical path.
+  Reserve the space and measure the actual request state for the browser and
+  connection category you support.
 - The recommended `height: clamp(520px, 90vh, 760px)` keeps the editor useful
   on shorter viewports without exceeding its desktop target height. It is part
   of the host's initial layout, so the space is reserved before the editor
@@ -117,6 +119,16 @@ fold may never be requested during Lighthouse, in which case a zero-impact
 result only proves the cost of the reserved slot, not the cost of a loaded
 editor. Treating such a run as proof that a loaded iframe has no effect would
 make the comparison formally complete but factually empty.
+
+The E5 native-lazy position diagnostic also shows the opposite case. Chromium
+requested and loaded the editor Document in all five runs at each of three
+tested positions, including a final stable iframe top of `3000.53125px` and a
+final distance of `2177.53125px` (`2.645846` viewport heights) below the first
+fold. The exact native-lazy request cutoff remains unbracketed: there was no
+not-requested sample, and each request began before the passive first-seen
+geometry observation. These are tested final positions, not a claimed
+request-time threshold or lower bound. The portable evidence is under
+`reports/host-position-e5/` and is checked by `npm run host:position`.
 
 Publish the composite Performance score for reference only. Do not use it as
 an acceptance gate: its run-to-run variance is larger than the former

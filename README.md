@@ -26,6 +26,10 @@ first-viewport editor regressed FCP, LCP, Speed Index, and TBT relative to the
 empty reserved slot. The measurement is valid and retained; it is not converted
 into a pass by composite score, a below-fold no-load scenario, or a rerun.
 Remaining framing checks and the exact evidence are tracked in the E5 report.
+An additional 15-run native-lazy position diagnostic found that Chromium
+requested and loaded the editor Document in all five runs at every tested
+position, including `2177.53125px` below the first fold. It brackets no cutoff
+and does not alter the retained criterion-12 failure.
 
 On desktop the visual and source panels share a keyboard- and pointer-adjustable
 splitter. Below 900 px they become accessible tabs. TinyMCE-to-source updates
@@ -90,6 +94,7 @@ npm run licenses
 npm run legal
 npm run icons
 npm run hosting:evidence
+npm run host:position
 npm run hosting
 npm run size
 npm run performance
@@ -121,7 +126,11 @@ used by builds: it validates the portable host package without deadlocking a
 build that records a failed acceptance result. Default `npm run hosting` is the
 criterion-12 acceptance check and exits nonzero while the manifest reports
 `criterion12Passed: false`. Manual criterion-7 clipboard checks and criterion-14
-framing checks remain separate.
+framing checks remain separate. `npm run host:position` independently verifies
+the 53-file portable position experiment, including all 15 immutable raw
+Lighthouse inputs, sanitized probes, exact geometry, delivery states, and
+published medians. The same verifier runs inside both hosting modes as an
+evidence-integrity check; it never changes criterion-12 acceptance semantics.
 
 The accepted E0–E4 stage-specific Network, size, and report evidence is
 preserved unchanged. `reports/tinymce-assets.json` is deliberately a rolling,

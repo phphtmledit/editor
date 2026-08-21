@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "scenario": "host-native-lazy-iframe-position",
+  "startedAt": "2026-08-21T15:39:45.872Z",
+  "failedAt": "2026-08-21T15:39:48.129Z",
+  "error": {
+    "name": "TypeError",
+    "message": "Failed to fetch browser webSocket URL from http://<ephemeral-loopback-devtools>/json/version: fetch failed",
+    "code": null,
+    "stack": "<redacted-stack>"
+  },
+  "portableEvidence": {
+    "sourceOriginal": {
+      "relativePath": "failure.json",
+      "bytes": 451,
+      "sha256": "0211fe15aab59bc5e61bbc6083d9a0a6e9f5bc5e35f46f92c364015397c62c95"
+    },
+    "transformation": "sanitized-json-v1"
+  }
+}

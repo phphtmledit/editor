@@ -25,8 +25,8 @@ describe('Cloudflare Pages header artifact', () => {
       scripts?: Record<string, string>;
     };
 
-    expect(manifest.scripts?.build).toMatch(/vite build && npm run hosting$/);
-    expect(manifest.scripts?.['build:e0']).toContain('npm run hosting -- --include-diagnostic');
+    expect(manifest.scripts?.build).toMatch(/vite build && npm run hosting:evidence$/);
+    expect(manifest.scripts?.['build:e0']).toContain('npm run hosting:evidence -- --include-diagnostic');
   });
 
   it('renders the exact default allow-list and delivery policies', () => {

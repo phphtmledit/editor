@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>phphtmledit.com — free online HTML editor with WYSIWYG and source view</title>
+<meta name="description" content="Free online HTML editor: edit WYSIWYG and source code side by side, clean messy markup, paste from Word, import .html and .docx, export HTML or DOCX. No signup, runs in your browser." />
+<link rel="canonical" href="https://phphtmledit.com/" />
+<meta property="og:title" content="phphtmledit.com — free online HTML editor" />
+<meta property="og:description" content="Edit WYSIWYG and HTML source side by side, clean up Word markup, export HTML or DOCX. Free, no signup." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://phphtmledit.com/" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230078D4'/%3E%3Cpath d='M13 10.5 8.5 16 13 21.5M19 10.5 23.5 16 19 21.5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="assets/icon-180.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap header__bar">
+    <a class="logo" href="index.html" aria-label="phphtmledit.com — home">
+      <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0078D4"></rect><path d="M13 10.5 8.5 16 13 21.5M19 10.5 23.5 16 19 21.5" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <span>phphtml<b>edit</b></span>
+    </a>
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" hidden />
+    <label class="nav-toggle-label" for="nav-toggle" aria-label="Toggle navigation">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </label>
+    <nav class="nav">
+      <a href="index.html#editor">Editor</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#guide">How it works</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn--primary" href="index.html#editor">Open editor</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="wrap hero">
+    <span class="pill">No signup · Nothing uploaded · Free</span>
+    <h1>The online HTML editor with WYSIWYG and source side by side</h1>
+    <p class="lead">Write in the visual pane, watch clean HTML appear in the code pane, and fix either one directly. Paste from Word, strip the junk markup, then export as HTML or DOCX — all in the browser tab you already have open.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#editor">Start editing</a>
+      <a class="btn btn--ghost" href="#guide">Read the guide</a>
+    </div>
+  </section>
+
+  <section class="wrap editor" id="editor">
+    <div class="editor__inner">
+      <div class="editor__meta">
+        <span class="editor__label">Live editor</span>
+        <span class="editor__size">1280 × 800</span>
+      </div>
+
+      <!-- ==== EMBEDDED EDITOR ==== -->
+      <div class="editor-frame" id="editor-frame" style="border:0">
+        <iframe
+          src="https://app.phphtmledit.com/?theme=auto"
+          style="width:100%;height:clamp(520px, 90vh, 760px);border:0;display:block"
+          title="HTML editor"
+          loading="lazy"
+          allow="clipboard-write"
+        ></iframe>
+      </div>
+
+      <p class="editor__hint">Your document stays in this tab — the editor runs client-side and nothing is sent to a server.</p>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="grid grid--3">
+      <article class="card card--step">
+        <span class="num">01</span>
+        <h3>Paste or open a file</h3>
+        <p>Drop in text from Word, Google Docs or a web page, or open an existing .html or .docx file.</p>
+      </article>
+      <article class="card card--step">
+        <span class="num">02</span>
+        <h3>Edit and clean up</h3>
+        <p>Format in the visual pane, or edit tags in the code pane. One click removes inline styles and empty tags.</p>
+      </article>
+      <article class="card card--step">
+        <span class="num">03</span>
+        <h3>Copy or export</h3>
+        <p>Copy the finished HTML into your CMS, or download it as an .html or .docx file.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What the editor does</span>
+        <h2>Everything you need to turn rough text into publishable HTML</h2>
+        <p class="lead">phphtmledit.com is a free online HTML editor for content editors, bloggers, marketers and developers. It pairs a rich-text WYSIWYG surface with a real source-code view, so you can work the way that suits the task: drag a heading into place visually, then tighten the markup by hand.</p>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="card card--feature">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"></rect><path d="M12 4v16M5.5 8.5h3.5M5.5 12h3.5M16 9.5 14.5 12 16 14.5M18.5 9.5 20 12l-1.5 2.5"></path></svg></span>
+          <div>
+            <h3>WYSIWYG and source code, side by side</h3>
+            <p>Two synchronised panes in one window. Type formatted text on the left and the HTML on the right updates as you go; change a tag or attribute in the code and the preview follows. No switching modes, no guessing what a button did to your markup.</p>
+          </div>
+        </article>
+
+        <article class="card card--feature">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M4 11h7M4 16h11"></path><path d="M16.5 5.5 21 10M21 5.5 16.5 10"></path><path d="M15.5 16.5 17.5 18.5 21 15"></path></svg></span>
+          <div>
+            <h3>One-click code cleanup</h3>
+            <p>Strip inline styles, empty tags, editor-specific classes, <code>&lt;span&gt;</code> soup and conditional comments. Choose what to remove, keep the semantic tags, and get markup that passes review.</p>
+          </div>
+        </article>
+
+        <article class="card card--feature">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 16.5h4"></path></svg></span>
+          <div>
+            <h3>Paste from Word without the mess</h3>
+            <p>Word and Google Docs carry hundreds of lines of styling into a normal paste. The editor keeps the structure — headings, lists, tables, links — and drops the rest, so a two-page document becomes a few dozen lines of HTML.</p>
+          </div>
+        </article>
+
+        <article class="card card--feature">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"></path><path d="m8 7 4-4 4 4"></path><path d="M4 15v3.5A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V15"></path></svg></span>
+          <div>
+            <h3>Open .html and .docx files</h3>
+            <p>Load a saved page or a Word document straight from your computer — drag the file onto the editor or pick it from the toolbar. The document is parsed locally in your browser, so even large files open instantly.</p>
+          </div>
+        </article>
+
+        <article class="card card--feature">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="m8 11 4 4 4-4"></path><path d="M4 19h16"></path></svg></span>
+          <div>
+            <h3>Export to HTML or DOCX</h3>
+            <p>Copy the code to the clipboard, download a ready <code>.html</code> file, or convert the other way and save the result as a Word document for a colleague to review.</p>
+          </div>
+        </article>
+
+        <article class="card card--feature">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10a8 8 0 1 1 2.5 5.8"></path><path d="M4 5v5h5"></path><path d="M12 8.5V12l2.5 1.5"></path></svg></span>
+          <div>
+            <h3>Undo history you can trust</h3>
+            <p>Every change — visual edit, code edit or cleanup pass — goes onto one undo stack. Step back and forward with <code>Ctrl+Z</code> / <code>Ctrl+Y</code> without the two panes falling out of sync.</p>
+          </div>
+        </article>
+
+        <article class="card card--feature">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10.5" rx="2.5"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span>
+          <div>
+            <h3>No account, no uploads</h3>
+            <p>There is nothing to sign up for. The editor loads once and then runs entirely in your browser, which means confidential drafts, client copy and internal documents never leave your machine.</p>
+          </div>
+        </article>
+
+        <article class="card card--feature">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#0078D4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h13"></path><path d="M17.5 15.5 20 18l-2.5 2.5"></path></svg></span>
+          <div>
+            <h3>Readable, indented output</h3>
+            <p>The code pane formats as you work: consistent indentation, one block element per line, wrapped attributes. Paste it into a template and the diff stays reviewable.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="guide">
+    <div class="section-head">
+      <span class="eyebrow">Step-by-step guide</span>
+      <h2>How to edit HTML online in four steps</h2>
+      <p class="lead">The workflow below covers the most common job: taking a Word document or a block of formatted text and turning it into clean HTML ready for a CMS.</p>
+    </div>
+
+    <div class="steps">
+      <article class="step">
+        <div class="step__text">
+          <span class="step__num">1</span>
+          <h3>Load your content into the editor</h3>
+          <p>Open the editor above and paste your text with <code>Ctrl+V</code>, or use <strong>Open file</strong> to load an .html or .docx document from your computer. Starting from scratch works too — just type in the left pane.</p>
+        </div>
+        <figure class="shot"><span>Screenshot: pasting content into the editor<br />assets/step-1.png</span></figure>
+      </article>
+
+      <article class="step">
+        <div class="step__text">
+          <span class="step__num">2</span>
+          <h3>Edit visually, or in the code</h3>
+          <p>Use the toolbar for headings, bold, lists, links, tables and images. When you need precision — an attribute, a class, a stray <code>&lt;div&gt;</code> — type it in the code pane instead. Both panes always describe the same document.</p>
+        </div>
+        <figure class="shot"><span>Screenshot: WYSIWYG pane and code pane<br />assets/step-2.png</span></figure>
+      </article>
+
+      <article class="step">
+        <div class="step__text">
+          <span class="step__num">3</span>
+          <h3>Run the cleanup pass</h3>
+          <p>Open <strong>Clean code</strong>, tick what should go — inline styles, empty tags, editor classes, comments — and apply. Review the result in the code pane; if the cleanup went too far, one undo brings the previous version back.</p>
+        </div>
+        <figure class="shot"><span>Screenshot: cleanup options dialog<br />assets/step-3.png</span></figure>
+      </article>
+
+      <article class="step">
+        <div class="step__text">
+          <span class="step__num">4</span>
+          <h3>Copy the HTML or export a file</h3>
+          <p>Select all in the code pane and copy, or use <strong>Download</strong> to save an .html file. Need it back in Word? Export to .docx and the headings, lists and tables come across intact.</p>
+        </div>
+        <figure class="shot"><span>Screenshot: export and download options<br />assets/step-4.png</span></figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Before and after</span>
+        <h2>What the cleanup actually removes</h2>
+        <p class="lead">A single paragraph pasted from Word on the left, the same paragraph after one cleanup pass on the right.</p>
+      </div>
+      <div class="grid grid--2">
+        <div class="code-card">
+          <div class="code-card__head">Pasted from Word <span>1.9 KB</span></div>
+          <pre>&lt;p class="MsoNormal" style="margin:0cm 0cm 8pt;
+  line-height:107%;font-size:11pt;
+  font-family:'Calibri',sans-serif"&gt;
+  &lt;span style="font-size:11.0pt;
+    mso-fareast-font-family:'Times New Roman'"&gt;
+    &lt;o:p&gt;&lt;/o:p&gt;Quarterly report
+  &lt;/span&gt;
+&lt;/p&gt;</pre>
+        </div>
+        <div class="code-card code-card--clean">
+          <div class="code-card__head">After cleanup <span>31 B</span></div>
+          <pre>&lt;p&gt;Quarterly report&lt;/p&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" id="faq">
+    <div class="faq">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions people ask before they start</h2>
+        <p style="font-size:16px;line-height:1.65;color:var(--body)">Something missing? Write to <a href="mailto:hello@phphtmledit.com">hello@phphtmledit.com</a> and we will add it here.</p>
+      </div>
+
+      <div class="faq__list">
+        <details open>
+          <summary>Is the editor really free?</summary>
+          <p>Yes. Every function on this page — the WYSIWYG pane, the code pane, cleanup, file import and export — is free to use with no limits on how many documents you edit. There is no trial period and no paid tier hiding the useful features.</p>
+        </details>
+        <details>
+          <summary>Do I need to register?</summary>
+          <p>No account, no email, no cookie wall. Open the page and start typing. Your editor preferences are remembered locally in your browser, so the layout you set stays the same next visit.</p>
+        </details>
+        <details>
+          <summary>Is my document uploaded to a server?</summary>
+          <p>No. Parsing, editing, cleanup and export all run in your browser. The page loads its own code once and then works offline as far as your content is concerned — nothing you paste or open is transmitted anywhere, which makes it safe for NDA material and internal drafts.</p>
+        </details>
+        <details>
+          <summary>How do I paste from Word without the extra markup?</summary>
+          <p>Paste as usual, then run <strong>Clean code</strong> — it removes <code>mso-</code> styles, <code>MsoNormal</code> classes, conditional comments and empty spans while keeping headings, lists, tables and links. If you want plain text with no formatting at all, paste with <code>Ctrl+Shift+V</code> instead.</p>
+        </details>
+        <details>
+          <summary>Is there a limit on document size?</summary>
+          <p>There is no server-side quota, so the practical limit is your own machine. Documents up to a few hundred kilobytes of HTML — roughly a hundred printed pages — stay comfortable. Very large files with many embedded base64 images are the slow case; splitting them into sections keeps typing responsive.</p>
+        </details>
+        <details>
+          <summary>Does it work on a phone or tablet?</summary>
+          <p>It runs in any modern mobile browser — Safari, Chrome, Firefox — with the two panes stacked instead of side by side. Quick fixes and proofreading work well on a tablet; for a long editing session a desktop screen is still the better place to be.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap prose" style="border-top:1px solid var(--line)">
+    <div>
+      <h2>A free HTML editor for everyday content work</h2>
+      <p>Most content does not start life as HTML. It arrives as a Word file from a client, a Google Doc from a colleague, or a block of text copied out of an old page. phphtmledit.com exists for that moment in between: an online HTML editor that shows you the visual result and the underlying markup at the same time, so converting a draft into publishable code takes minutes rather than an afternoon of tag hunting.</p>
+      <p>Because it runs entirely in the browser, there is nothing to install and no environment to configure. Open the page, work, copy the result — the same routine on a work laptop, a borrowed machine or a locked-down corporate desktop.</p>
+    </div>
+    <div>
+      <h2>Who it is for</h2>
+      <p>Content editors preparing articles for a CMS, marketers building email and landing-page copy, support teams writing knowledge-base pages, and developers who need a scratchpad to check what a fragment of markup renders like. If you have ever pasted a document into a CMS and watched the layout fall apart, this is the step that was missing.</p>
+      <p>It is also a practical way to learn HTML by looking at it: format something in the visual pane, then read the tags that appear next to it. Headings, lists, links, tables and images all become recognisable much faster when the two views sit side by side.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__col footer__about">
+        <a class="logo" href="index.html" aria-label="phphtmledit.com — home"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0078D4"></rect><path d="M13 10.5 8.5 16 13 21.5M19 10.5 23.5 16 19 21.5" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>phphtml<b>edit</b></span></a>
+        <p>Free online HTML editor with a WYSIWYG pane and a real source view. Runs in your browser — nothing is uploaded.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Editor</h4>
+        <a href="index.html#editor">Open the editor</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#guide">How it works</a>
+        <a href="index.html#faq">FAQ</a>
+      </div>
+      <div class="footer__col">
+        <h4>Project</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="mailto:hello@phphtmledit.com">hello@phphtmledit.com</a>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms of use</a>
+        <a href="privacy.html#cookies">Cookies</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 phphtmledit.com — free online HTML editor</span>
+      <span>Made for people who paste from Word. <a href="contact.html">Report a bug</a></span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is the editor really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The WYSIWYG pane, code pane, cleanup, file import and export are free with no limits and no paid tier."}},
+{"@type":"Question","name":"Do I need to register?","acceptedAnswer":{"@type":"Answer","text":"No account or email is required. Preferences are stored locally in your browser."}},
+{"@type":"Question","name":"Is my document uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. Parsing, editing, cleanup and export run in your browser; your content is never transmitted."}},
+{"@type":"Question","name":"How do I paste from Word without the extra markup?","acceptedAnswer":{"@type":"Answer","text":"Paste as usual and run Clean code to remove mso- styles, MsoNormal classes, comments and empty spans while keeping headings, lists, tables and links."}},
+{"@type":"Question","name":"Is there a limit on document size?","acceptedAnswer":{"@type":"Answer","text":"There is no server quota. Documents up to a few hundred kilobytes of HTML stay responsive; very large base64 image payloads are the slow case."}},
+{"@type":"Question","name":"Does it work on a phone or tablet?","acceptedAnswer":{"@type":"Answer","text":"Yes, in any modern mobile browser, with the editor panes stacked instead of side by side."}}]}
+</script>
+
+</body>
+</html>

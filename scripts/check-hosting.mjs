@@ -3,10 +3,12 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { normalizeFrameAncestors } from './pages-headers.mjs';
+import { verifyHostPositionEvidence } from './check-host-position.mjs';
 
 const projectRoot = resolve(import.meta.dirname, '..');
 const failures = [];
 const criterion12Failures = [];
+let hostPositionEvidenceResult = null;
 const evidenceOnly = process.argv.includes('--evidence-only');
 const baselineUrl = 'https://phphtmledit.com/';
 const applicationHostname = 'app.phphtmledit.com';
@@ -905,6 +907,12 @@ const verifyArtifact = async (name, root) => {
   }
 };
 
+const verifyHostPositionPackage = async () => {
+  const verification = await verifyHostPositionEvidence({ projectRoot });
+  hostPositionEvidenceResult = verification.result;
+  failures.push(...verification.failures.map((failure) => `Host-position evidence: ${failure}`));
+};
+
 const artifacts = [
   ['production', resolve(projectRoot, 'dist'), 'dist/_headers'],
 ];
@@ -916,6 +924,7 @@ await Promise.all([
   ...artifacts.map(([name, root]) => verifyArtifact(name, root)),
   verifyDocumentationAndBaseline(),
   verifyInstrumentedHostEvidence(),
+  verifyHostPositionPackage(),
 ]);
 
 if (instrumentedHostEvidenceResult?.criterion12Passed !== true) {
@@ -925,6 +934,7 @@ if (instrumentedHostEvidenceResult?.criterion12Passed !== true) {
 console.log(JSON.stringify({
   artifacts: artifacts.map(([, , path]) => path),
   instrumentedHostEvidence: instrumentedHostEvidenceResult,
+  hostPositionEvidence: hostPositionEvidenceResult,
   evidenceIntegrityPassed: failures.length === 0,
   criterion12AcceptancePassed: failures.length === 0 && criterion12Failures.length === 0,
   manualChecksEvaluated: false,

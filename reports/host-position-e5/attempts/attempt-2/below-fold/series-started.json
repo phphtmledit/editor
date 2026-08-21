@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "variant": {
+    "id": "below-fold",
+    "code": "B",
+    "marginTopVh": 75,
+    "expectedMarginPx": 617.25,
+    "description": "Iframe fully below the first viewport with a 75vh normal-flow margin.",
+    "expectedFoldClass": "below-first-viewport"
+  },
+  "runCount": 5,
+  "profile": {
+    "formFactor": "mobile",
+    "throttlingMethod": "simulate",
+    "throttling": {
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "requestLatencyMs": 562.5,
+      "downloadThroughputKbps": 1474.5600000000002,
+      "uploadThroughputKbps": 675,
+      "cpuSlowdownMultiplier": 4
+    },
+    "screenEmulation": {
+      "mobile": true,
+      "width": 412,
+      "height": 823,
+      "deviceScaleFactor": 1.75,
+      "disabled": false
+    },
+    "locale": "en-US",
+    "onlyCategories": [
+      "performance"
+    ],
+    "channel": "cli",
+    "output": [
+      "json"
+    ]
+  },
+  "startedAt": "2026-08-21T15:41:35.866Z",
+  "tooling": {
+    "lighthouseVersion": "13.4.1",
+    "lighthousePackageRoot": "<local-lighthouse-package-root>",
+    "chromeLauncherVersion": "1.2.1",
+    "chromeExecutableFileName": "chrome.exe",
+    "chromeExecutableSha256": "e14885110934a79637fcd71d76b23040333911b49fadd1bd084cef6bff78ba3a",
+    "nodeVersion": "v24.19.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "harnessPath": "<source-harness>",
+    "harnessSha256AtStart": "0839dabc37b4af2bd810a0f745a19ed2a2423dc50854b590a76d156321925a45",
+    "chromeProfilePolicy": "chrome-launcher default temporary user-data-dir; a new launcher instance and process is created for every run",
+    "command": "node <source-harness> --run --attempt=attempt-2",
+    "acceptedNonAppInventoryEvidence": {
+      "lhrPath": "reports/host-instrumented-e5-after-run-4.lhr.json",
+      "lhrSha256": "1964fea009f9cbcd14777439a566a4bdfc0d0c7d49b7728bcc3d6b88032f7cf0",
+      "probePath": "reports/host-instrumented-e5-after-run-4.probe.json",
+      "probeSha256": "ddac7b3549b263f62730ff4da840e3c11562606dbcd6455c4c0783f65c554bd0",
+      "explanation": "The accepted E5 post-embed run 4 contains 23 requests: 18 app responses and these five passive GET Document/Stylesheet/Font dependencies.",
+      "totalRequestCount": 23,
+      "appRequestCount": 18,
+      "nonAppRequestCount": 5,
+      "derivedInventory": [
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+          "method": "GET",
+          "resourceType": "Stylesheet",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/instrumentsans/v4/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2",
+          "method": "GET",
+          "resourceType": "Font",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+          "method": "GET",
+          "resourceType": "Font",
+          "status": 200
+        },
+        {
+          "url": "https://phphtmledit.com/",
+          "method": "GET",
+          "resourceType": "Document",
+          "status": 200
+        },
+        {
+          "url": "https://phphtmledit.com/styles.css",
+          "method": "GET",
+          "resourceType": "Stylesheet",
+          "status": 200
+        }
+      ]
+    }
+  },
+  "portableEvidence": {
+    "sourceOriginal": {
+      "relativePath": "below-fold/series-started.json",
+      "bytes": 3459,
+      "sha256": "a46a0b4afd18047c89c20f528911df47134ec623812901ceee79a1bee13087d6"
+    },
+    "transformation": "sanitized-json-v1"
+  }
+}
