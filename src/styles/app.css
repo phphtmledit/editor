@@ -177,6 +177,8 @@ h1 {
   background: var(--phe-surface);
 }
 
+.app-shell[aria-busy="true"] .editor-panel { visibility: hidden; }
+
 .panel-title {
   margin: 0;
   padding: 10px 14px;

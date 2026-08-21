@@ -1,16 +1,16 @@
 {
   "stage": "E5",
   "scenario": "cumulative",
-  "manifestSha256": "17ae266862a829d250d6a4c390c18965697b8d84b4b29c9a409ece7ad909f727",
+  "manifestSha256": "4f7498f77d2fa5e770f5f81d04f138fabcf722af731c311b515d0ee5fc02e6ae",
   "pageUrl": "http://127.0.0.1:4173/",
-  "capturedAt": "2026-08-21T11:55:05.295Z",
+  "capturedAt": "2026-08-21T12:48:22.994Z",
   "initialHtmlContract": {
     "source": "HTTP preflight response from the same preview origin before fresh-profile CDP capture",
     "status": 200,
     "contentType": "text/html; charset=utf-8",
-    "byteLength": 9631,
-    "sha256": "ef28c46760a6974105da5d7d6258c45023ed5a6ccea7e7ad698187a50955e552",
-    "distIndexSha256": "ef28c46760a6974105da5d7d6258c45023ed5a6ccea7e7ad698187a50955e552",
+    "byteLength": 9632,
+    "sha256": "dda5bacedc08ff28d7166bad5e2b81a8a532720a53ef267162949e5598cd023f",
+    "distIndexSha256": "dda5bacedc08ff28d7166bad5e2b81a8a532720a53ef267162949e5598cd023f",
     "matchesCurrentDist": true,
     "tinyCoreUrl": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
     "exactTinyPreloadCount": 1,
@@ -37,7 +37,7 @@
     "dynamicTinyScripts": [
       {
         "source": "mutation",
-        "insertedAt": 171.3,
+        "insertedAt": 2131.7,
         "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
         "type": "",
         "async": true,
@@ -47,14 +47,14 @@
     ],
     "tinyScriptLoadEvents": [
       {
-        "at": 184.7,
+        "at": 2143,
         "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
         "runtimeAvailable": true
       }
     ],
     "tinyInitCalls": [
       {
-        "at": 185.6,
+        "at": 2143.5,
         "runtimeAvailable": true,
         "source": "instrumented tinymce.init"
       }
@@ -63,8 +63,8 @@
       {
         "name": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
         "initiatorType": "link",
-        "startTime": 19.7,
-        "responseEnd": 54.3,
+        "startTime": 11.9,
+        "responseEnd": 49.7,
         "transferSize": 486791,
         "encodedBodySize": 486491,
         "decodedBodySize": 486491
@@ -80,49 +80,49 @@
     "performanceMarks": [
       {
         "name": "phe:bootstrap:paint-handoff-complete",
-        "startTime": 170.8,
+        "startTime": 2131.1,
         "duration": 0,
         "entryOrder": 0
       },
       {
         "name": "phe:bootstrap:tinymce-script-inserted",
-        "startTime": 171.2,
+        "startTime": 2131.6,
         "duration": 0,
         "entryOrder": 1
       },
       {
         "name": "phe:bootstrap:tinymce-runtime-loaded",
-        "startTime": 184.9,
+        "startTime": 2143,
         "duration": 0,
         "entryOrder": 2
       },
       {
         "name": "phe:bootstrap:initialise-started",
-        "startTime": 185,
+        "startTime": 2143,
         "duration": 0,
         "entryOrder": 3
       },
       {
         "name": "phe:bootstrap:editor-ready",
-        "startTime": 528.8,
+        "startTime": 2468.1,
         "duration": 0,
         "entryOrder": 4
       }
     ],
     "performanceMarkSequenceExact": true,
-    "editorReadyMarkStartTime": 528.8,
-    "sampledDomEditorReadyAt": 525.9,
-    "editorReadyMarkDomDeltaMs": 2.9,
+    "editorReadyMarkStartTime": 2468.1,
+    "sampledDomEditorReadyAt": 2465.5,
+    "editorReadyMarkDomDeltaMs": 2.6,
     "editorReadyMarkReconcilesWithDom": true,
     "loadingPerformanceMetrics": {
-      "navigationToFirstSkeletonPaintMs": 160,
-      "skeletonPaintToEditorReadyMs": 368.8,
-      "navigationToEditorReadyMs": 528.8
+      "navigationToFirstSkeletonPaintMs": 2124,
+      "skeletonPaintToEditorReadyMs": 344.1,
+      "navigationToEditorReadyMs": 2468.1
     },
-    "firstPaintStartTime": 160,
-    "firstContentfulPaintStartTime": 160,
-    "editorReadyAt": 525.9,
-    "tinyRuntimeAvailableAt": 184.9,
+    "firstPaintStartTime": 2124,
+    "firstContentfulPaintStartTime": 2124,
+    "editorReadyAt": 2465.5,
+    "tinyRuntimeAvailableAt": 2143,
     "tinyRuntimeAvailableAtLoad": true,
     "tinyInitWrapped": true,
     "tinyInitWrapError": null,
@@ -142,15 +142,15 @@
     }
   },
   "loadingPerformanceMetrics": {
-    "navigationToFirstSkeletonPaintMs": 160,
-    "skeletonPaintToEditorReadyMs": 368.8,
-    "navigationToEditorReadyMs": 528.8
+    "navigationToFirstSkeletonPaintMs": 2124,
+    "skeletonPaintToEditorReadyMs": 344.1,
+    "navigationToEditorReadyMs": 2468.1
   },
   "uiActionInventory": {
     "cleanupRuleButtonsExpected": 10,
     "cleanupRuleButtonsApplied": 10,
     "largeDocumentClean100k": true,
-    "largeDocumentCleanDurationMs": 298.7,
+    "largeDocumentCleanDurationMs": 177.6,
     "largeDocumentCleanWithin500ms": true,
     "cleanSelected": true,
     "format": true,
@@ -177,12 +177,12 @@
     "newDocumentCreated": true,
     "loadingSkeletonObserved": true,
     "loadingPaintProof": {
-      "visibleFrom": 27.4,
-      "firstHiddenAt": 525.9,
-      "editorReadyAt": 525.9,
+      "visibleFrom": 18.7,
+      "firstHiddenAt": 2465.5,
+      "editorReadyAt": 2465.5,
       "visibleState": {
         "source": "mutation",
-        "at": 27.4,
+        "at": 18.7,
         "readyState": "loading",
         "visibilityState": "visible",
         "appBusy": "true",
@@ -190,6 +190,28 @@
         "skeletonHidden": false,
         "display": "block",
         "visibility": "visible",
+        "editorPanels": [
+          {
+            "id": "visual-panel",
+            "hidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "width": 1409,
+              "height": 86.906
+            }
+          },
+          {
+            "id": "source-panel",
+            "hidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "width": 1409,
+              "height": 66.906
+            }
+          }
+        ],
         "geometry": {
           "x": 8,
           "y": 505.5,
@@ -203,7 +225,7 @@
       },
       "firstNonzeroGeometry": {
         "source": "mutation",
-        "at": 27.4,
+        "at": 18.7,
         "readyState": "loading",
         "visibilityState": "visible",
         "appBusy": "true",
@@ -211,6 +233,28 @@
         "skeletonHidden": false,
         "display": "block",
         "visibility": "visible",
+        "editorPanels": [
+          {
+            "id": "visual-panel",
+            "hidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "width": 1409,
+              "height": 86.906
+            }
+          },
+          {
+            "id": "source-panel",
+            "hidden": false,
+            "display": "block",
+            "visibility": "visible",
+            "geometry": {
+              "width": 1409,
+              "height": 66.906
+            }
+          }
+        ],
         "geometry": {
           "x": 8,
           "y": 505.5,
@@ -224,7 +268,7 @@
       },
       "hiddenState": {
         "source": "mutation",
-        "at": 525.9,
+        "at": 2465.5,
         "readyState": "complete",
         "visibilityState": "visible",
         "appBusy": "false",
@@ -232,6 +276,28 @@
         "skeletonHidden": true,
         "display": "none",
         "visibility": "visible",
+        "editorPanels": [
+          {
+            "id": "visual-panel",
+            "hidden": false,
+            "display": "grid",
+            "visibility": "visible",
+            "geometry": {
+              "width": 677.5,
+              "height": 558
+            }
+          },
+          {
+            "id": "source-panel",
+            "hidden": false,
+            "display": "grid",
+            "visibility": "visible",
+            "geometry": {
+              "width": 665.5,
+              "height": 558
+            }
+          }
+        ],
         "geometry": {
           "x": 0,
           "y": 0,
@@ -251,7 +317,7 @@
       },
       "editorReadyState": {
         "source": "mutation",
-        "at": 525.9,
+        "at": 2465.5,
         "readyState": "complete",
         "visibilityState": "visible",
         "appBusy": "false",
@@ -259,6 +325,28 @@
         "skeletonHidden": true,
         "display": "none",
         "visibility": "visible",
+        "editorPanels": [
+          {
+            "id": "visual-panel",
+            "hidden": false,
+            "display": "grid",
+            "visibility": "visible",
+            "geometry": {
+              "width": 677.5,
+              "height": 558
+            }
+          },
+          {
+            "id": "source-panel",
+            "hidden": false,
+            "display": "grid",
+            "visibility": "visible",
+            "geometry": {
+              "width": 665.5,
+              "height": 558
+            }
+          }
+        ],
         "geometry": {
           "x": 0,
           "y": 0,
@@ -276,17 +364,103 @@
           }
         }
       },
-      "firstPaintStartTime": 160,
-      "firstContentfulPaintStartTime": 160,
+      "firstPaintStartTime": 2124,
+      "firstContentfulPaintStartTime": 2124,
+      "firstPaintState": {
+        "source": "paint:first-paint",
+        "at": 2130.7,
+        "readyState": "complete",
+        "visibilityState": "visible",
+        "appBusy": "true",
+        "skeletonPresent": true,
+        "skeletonHidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "editorPanels": [
+          {
+            "id": "visual-panel",
+            "hidden": false,
+            "display": "grid",
+            "visibility": "hidden",
+            "geometry": {
+              "width": 677.5,
+              "height": 558
+            }
+          },
+          {
+            "id": "source-panel",
+            "hidden": false,
+            "display": "grid",
+            "visibility": "hidden",
+            "geometry": {
+              "width": 665.5,
+              "height": 558
+            }
+          }
+        ],
+        "geometry": {
+          "x": 35,
+          "y": 171.484,
+          "width": 1355,
+          "height": 558
+        },
+        "editors": {
+          "visual": null,
+          "source": null
+        }
+      },
+      "firstContentfulPaintState": {
+        "source": "paint:first-contentful-paint",
+        "at": 2130.9,
+        "readyState": "complete",
+        "visibilityState": "visible",
+        "appBusy": "true",
+        "skeletonPresent": true,
+        "skeletonHidden": false,
+        "display": "block",
+        "visibility": "visible",
+        "editorPanels": [
+          {
+            "id": "visual-panel",
+            "hidden": false,
+            "display": "grid",
+            "visibility": "hidden",
+            "geometry": {
+              "width": 677.5,
+              "height": 558
+            }
+          },
+          {
+            "id": "source-panel",
+            "hidden": false,
+            "display": "grid",
+            "visibility": "hidden",
+            "geometry": {
+              "width": 665.5,
+              "height": 558
+            }
+          }
+        ],
+        "geometry": {
+          "x": 35,
+          "y": 171.484,
+          "width": 1355,
+          "height": 558
+        },
+        "editors": {
+          "visual": null,
+          "source": null
+        }
+      },
       "paintEntries": [
         {
           "name": "first-paint",
-          "startTime": 160,
+          "startTime": 2124,
           "duration": 0
         },
         {
           "name": "first-contentful-paint",
-          "startTime": 160,
+          "startTime": 2124,
           "duration": 0
         }
       ],
@@ -295,7 +469,7 @@
       "dynamicTinyScripts": [
         {
           "source": "mutation",
-          "insertedAt": 171.3,
+          "insertedAt": 2131.7,
           "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
           "type": "",
           "async": true,
@@ -305,18 +479,18 @@
       ],
       "tinyScriptLoadEvents": [
         {
-          "at": 184.7,
+          "at": 2143,
           "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
           "runtimeAvailable": true
         }
       ],
-      "tinyRuntimeAvailableAt": 184.9,
+      "tinyRuntimeAvailableAt": 2143,
       "tinyRuntimeAvailableAtLoad": true,
       "tinyInitWrapped": true,
       "tinyInitWrapError": null,
       "tinyInitCalls": [
         {
-          "at": 185.6,
+          "at": 2143.5,
           "runtimeAvailable": true,
           "source": "instrumented tinymce.init"
         }
@@ -324,7 +498,7 @@
       "samples": [
         {
           "source": "document-start",
-          "at": 22.1,
+          "at": 14.4,
           "readyState": "loading",
           "visibilityState": "visible",
           "appBusy": null,
@@ -332,6 +506,7 @@
           "skeletonHidden": null,
           "display": null,
           "visibility": null,
+          "editorPanels": [],
           "geometry": null,
           "editors": {
             "visual": null,
@@ -340,7 +515,7 @@
         },
         {
           "source": "mutation",
-          "at": 27.4,
+          "at": 18.7,
           "readyState": "loading",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -348,6 +523,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "width": 1409,
+                "height": 86.906
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "width": 1409,
+                "height": 66.906
+              }
+            }
+          ],
           "geometry": {
             "x": 8,
             "y": 505.5,
@@ -361,7 +558,7 @@
         },
         {
           "source": "state-sampler",
-          "at": 73.2,
+          "at": 58.8,
           "readyState": "loading",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -369,6 +566,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 35,
             "y": 171.484,
@@ -382,7 +601,7 @@
         },
         {
           "source": "readystatechange",
-          "at": 112.3,
+          "at": 94.6,
           "readyState": "interactive",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -390,6 +609,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 35,
             "y": 171.484,
@@ -403,7 +644,7 @@
         },
         {
           "source": "readystatechange",
-          "at": 126.7,
+          "at": 107.5,
           "readyState": "complete",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -411,6 +652,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 35,
             "y": 171.484,
@@ -424,7 +687,7 @@
         },
         {
           "source": "paint:first-paint",
-          "at": 170.5,
+          "at": 2130.7,
           "readyState": "complete",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -432,6 +695,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 35,
             "y": 171.484,
@@ -445,7 +730,7 @@
         },
         {
           "source": "paint:first-contentful-paint",
-          "at": 170.6,
+          "at": 2130.9,
           "readyState": "complete",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -453,6 +738,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 35,
             "y": 171.484,
@@ -466,7 +773,7 @@
         },
         {
           "source": "mutation",
-          "at": 363.5,
+          "at": 2316,
           "readyState": "complete",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -474,6 +781,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 35,
             "y": 171.484,
@@ -490,7 +819,7 @@
         },
         {
           "source": "mutation",
-          "at": 525.9,
+          "at": 2465.5,
           "readyState": "complete",
           "visibilityState": "visible",
           "appBusy": "false",
@@ -498,6 +827,28 @@
           "skeletonHidden": true,
           "display": "none",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "visible",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "visible",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 0,
             "y": 0,
@@ -516,21 +867,33 @@
           }
         }
       ],
-      "visibleDurationMs": 498.5,
-      "firstPaintOffsetFromVisibleMs": 132.6,
-      "hiddenAfterFirstPaintMs": 365.9,
-      "editorReadyMarkStartTime": 528.8,
-      "editorReadyMarkDomDeltaMs": 2.9,
+      "visibleDurationMs": 2446.8,
+      "firstPaintOffsetFromVisibleMs": 2105.3,
+      "hiddenAfterFirstPaintMs": 341.5,
+      "editorPanelVisibilityEvidence": {
+        "selector": ".editor-panel",
+        "expectedPanelIds": [
+          "visual-panel",
+          "source-panel"
+        ],
+        "firstPaintSkeletonHidesBothPanels": true,
+        "firstContentfulPaintSkeletonHidesBothPanels": true,
+        "paintedBusyIntervalSampleCount": 3,
+        "paintedBusyIntervalAlwaysHidesBothPanels": true,
+        "editorReadyShowsBothPanels": true
+      },
+      "editorReadyMarkStartTime": 2468.1,
+      "editorReadyMarkDomDeltaMs": 2.6,
       "performanceMetrics": {
-        "navigationToFirstSkeletonPaintMs": 160,
-        "skeletonPaintToEditorReadyMs": 368.8,
-        "navigationToEditorReadyMs": 528.8
+        "navigationToFirstSkeletonPaintMs": 2124,
+        "skeletonPaintToEditorReadyMs": 344.1,
+        "navigationToEditorReadyMs": 2468.1
       }
     },
     "loadingPerformanceMetrics": {
-      "navigationToFirstSkeletonPaintMs": 160,
-      "skeletonPaintToEditorReadyMs": 368.8,
-      "navigationToEditorReadyMs": 528.8
+      "navigationToFirstSkeletonPaintMs": 2124,
+      "skeletonPaintToEditorReadyMs": 344.1,
+      "navigationToEditorReadyMs": 2468.1
     },
     "bootOrdering": {
       "source": "document-start DOM/load instrumentation plus Resource Timing in the canonical CDP page",
@@ -542,7 +905,7 @@
       "dynamicTinyScripts": [
         {
           "source": "mutation",
-          "insertedAt": 171.3,
+          "insertedAt": 2131.7,
           "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
           "type": "",
           "async": true,
@@ -552,14 +915,14 @@
       ],
       "tinyScriptLoadEvents": [
         {
-          "at": 184.7,
+          "at": 2143,
           "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
           "runtimeAvailable": true
         }
       ],
       "tinyInitCalls": [
         {
-          "at": 185.6,
+          "at": 2143.5,
           "runtimeAvailable": true,
           "source": "instrumented tinymce.init"
         }
@@ -568,8 +931,8 @@
         {
           "name": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
           "initiatorType": "link",
-          "startTime": 19.7,
-          "responseEnd": 54.3,
+          "startTime": 11.9,
+          "responseEnd": 49.7,
           "transferSize": 486791,
           "encodedBodySize": 486491,
           "decodedBodySize": 486491
@@ -585,49 +948,49 @@
       "performanceMarks": [
         {
           "name": "phe:bootstrap:paint-handoff-complete",
-          "startTime": 170.8,
+          "startTime": 2131.1,
           "duration": 0,
           "entryOrder": 0
         },
         {
           "name": "phe:bootstrap:tinymce-script-inserted",
-          "startTime": 171.2,
+          "startTime": 2131.6,
           "duration": 0,
           "entryOrder": 1
         },
         {
           "name": "phe:bootstrap:tinymce-runtime-loaded",
-          "startTime": 184.9,
+          "startTime": 2143,
           "duration": 0,
           "entryOrder": 2
         },
         {
           "name": "phe:bootstrap:initialise-started",
-          "startTime": 185,
+          "startTime": 2143,
           "duration": 0,
           "entryOrder": 3
         },
         {
           "name": "phe:bootstrap:editor-ready",
-          "startTime": 528.8,
+          "startTime": 2468.1,
           "duration": 0,
           "entryOrder": 4
         }
       ],
       "performanceMarkSequenceExact": true,
-      "editorReadyMarkStartTime": 528.8,
-      "sampledDomEditorReadyAt": 525.9,
-      "editorReadyMarkDomDeltaMs": 2.9,
+      "editorReadyMarkStartTime": 2468.1,
+      "sampledDomEditorReadyAt": 2465.5,
+      "editorReadyMarkDomDeltaMs": 2.6,
       "editorReadyMarkReconcilesWithDom": true,
       "loadingPerformanceMetrics": {
-        "navigationToFirstSkeletonPaintMs": 160,
-        "skeletonPaintToEditorReadyMs": 368.8,
-        "navigationToEditorReadyMs": 528.8
+        "navigationToFirstSkeletonPaintMs": 2124,
+        "skeletonPaintToEditorReadyMs": 344.1,
+        "navigationToEditorReadyMs": 2468.1
       },
-      "firstPaintStartTime": 160,
-      "firstContentfulPaintStartTime": 160,
-      "editorReadyAt": 525.9,
-      "tinyRuntimeAvailableAt": 184.9,
+      "firstPaintStartTime": 2124,
+      "firstContentfulPaintStartTime": 2124,
+      "editorReadyAt": 2465.5,
+      "tinyRuntimeAvailableAt": 2143,
       "tinyRuntimeAvailableAtLoad": true,
       "tinyInitWrapped": true,
       "tinyInitWrapError": null,
@@ -651,7 +1014,7 @@
     "docxBusyStateRestored": true
   },
   "regexActionRequestPaths": [
-    "/assets/safe-Dc0WNXD0.js",
+    "/assets/safe-C6CbFziS.js",
     "/assets/regex-worker-CWfjSjbr.js"
   ],
   "docxImportRequestPaths": [
@@ -660,8 +1023,8 @@
   "docxFixtureSha256": "c96400f26ebef8f76b7a859909583f8ea3f9d6760a60512a54b7d800eaf8bfcc",
   "attachedWorkerTargets": [
     {
-      "sessionId": "6FDD6CE62F7A8DFC9680DA214ECB7604",
-      "targetId": "14F500B69FA1E0CCFCB417069B8BB2EA",
+      "sessionId": "85D1EC03599612D8F946C8F301A634BE",
+      "targetId": "B848E347FE127A574CD7AF9A55281158",
       "type": "worker",
       "url": "http://127.0.0.1:4173/assets/regex-worker-CWfjSjbr.js",
       "detached": true
@@ -672,7 +1035,7 @@
       "url": "http://127.0.0.1:4173/assets/regex-worker-CWfjSjbr.js",
       "sessions": [
         "page",
-        "6FDD6CE62F7A8DFC9680DA214ECB7604"
+        "85D1EC03599612D8F946C8F301A634BE"
       ],
       "requestWillBeSentEvents": 1,
       "dataReceivedEvents": 1,
@@ -704,14 +1067,14 @@
       "context": "page"
     },
     {
-      "url": "http://127.0.0.1:4173/assets/index-BGDhNc8z.js",
+      "url": "http://127.0.0.1:4173/assets/index-6_wYmLrV.js",
       "status": 200,
       "resourceType": "script",
       "initiatorType": "parser",
       "context": "page"
     },
     {
-      "url": "http://127.0.0.1:4173/assets/index-C7sJdZG_.css",
+      "url": "http://127.0.0.1:4173/assets/index-BX4V7LXB.css",
       "status": 200,
       "resourceType": "stylesheet",
       "initiatorType": "parser",
@@ -816,14 +1179,14 @@
       "context": "page"
     },
     {
-      "url": "http://127.0.0.1:4173/assets/source-rich-BV2skRpz.js",
+      "url": "http://127.0.0.1:4173/assets/source-rich-BCWzmjGY.js",
       "status": 200,
       "resourceType": "script",
       "initiatorType": "script",
       "context": "page"
     },
     {
-      "url": "http://127.0.0.1:4173/assets/safe-Dc0WNXD0.js",
+      "url": "http://127.0.0.1:4173/assets/safe-C6CbFziS.js",
       "status": 200,
       "resourceType": "script",
       "initiatorType": "script",
@@ -1399,7 +1762,7 @@
           "label": "Source code",
           "requestedUrl": "https://github.com/phphtmledit/editor",
           "createdPageTargetCount": 1,
-          "createdPageTargetId": "985691AB00E558D3AE8AA0E1AD6EA00D",
+          "createdPageTargetId": "EF45205E22E0A28EF6132C1AFE1FE2C8",
           "targetType": "page",
           "targetInitialUrl": "https://github.com/phphtmledit/editor",
           "targetFinalUrl": "https://github.com/phphtmledit/editor",
@@ -1416,7 +1779,7 @@
           "label": "Third-party notices",
           "requestedUrl": "http://127.0.0.1:4173/licenses.txt",
           "createdPageTargetCount": 1,
-          "createdPageTargetId": "A571788068848212535CD7C42B41F3DF",
+          "createdPageTargetId": "352BCB5F48D3010B023DC6D89ADE9B59",
           "targetType": "page",
           "targetInitialUrl": "http://127.0.0.1:4173/licenses.txt",
           "targetFinalUrl": "http://127.0.0.1:4173/licenses.txt",
@@ -1982,12 +2345,12 @@
     },
     "loadingPaintProof": {
       "cold": {
-        "visibleFrom": 26.6,
-        "firstHiddenAt": 1332.6,
-        "editorReadyAt": 1332.6,
+        "visibleFrom": 20.8,
+        "firstHiddenAt": 2406,
+        "editorReadyAt": 2406,
         "visibleState": {
           "source": "mutation",
-          "at": 26.6,
+          "at": 20.8,
           "readyState": "loading",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -1995,6 +2358,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "width": 1409,
+                "height": 86.906
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "width": 1409,
+                "height": 66.906
+              }
+            }
+          ],
           "geometry": {
             "x": 8,
             "y": 505.5,
@@ -2008,7 +2393,7 @@
         },
         "firstNonzeroGeometry": {
           "source": "mutation",
-          "at": 26.6,
+          "at": 20.8,
           "readyState": "loading",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -2016,6 +2401,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "width": 1409,
+                "height": 86.906
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "width": 1409,
+                "height": 66.906
+              }
+            }
+          ],
           "geometry": {
             "x": 8,
             "y": 505.5,
@@ -2029,7 +2436,7 @@
         },
         "hiddenState": {
           "source": "mutation",
-          "at": 1332.6,
+          "at": 2406,
           "readyState": "complete",
           "visibilityState": "visible",
           "appBusy": "false",
@@ -2037,6 +2444,28 @@
           "skeletonHidden": true,
           "display": "none",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "visible",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "visible",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 0,
             "y": 0,
@@ -2056,7 +2485,7 @@
         },
         "editorReadyState": {
           "source": "mutation",
-          "at": 1332.6,
+          "at": 2406,
           "readyState": "complete",
           "visibilityState": "visible",
           "appBusy": "false",
@@ -2064,6 +2493,28 @@
           "skeletonHidden": true,
           "display": "none",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "visible",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "visible",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 0,
             "y": 0,
@@ -2081,17 +2532,103 @@
             }
           }
         },
-        "firstPaintStartTime": 1004,
-        "firstContentfulPaintStartTime": 1004,
+        "firstPaintStartTime": 2052,
+        "firstContentfulPaintStartTime": 2052,
+        "firstPaintState": {
+          "source": "paint:first-paint",
+          "at": 2057.2,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        "firstContentfulPaintState": {
+          "source": "paint:first-contentful-paint",
+          "at": 2057.4,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
         "paintEntries": [
           {
             "name": "first-paint",
-            "startTime": 1004,
+            "startTime": 2052,
             "duration": 0
           },
           {
             "name": "first-contentful-paint",
-            "startTime": 1004,
+            "startTime": 2052,
             "duration": 0
           }
         ],
@@ -2100,7 +2637,7 @@
         "dynamicTinyScripts": [
           {
             "source": "mutation",
-            "insertedAt": 1007.1,
+            "insertedAt": 2058.5,
             "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
             "type": "",
             "async": true,
@@ -2110,18 +2647,18 @@
         ],
         "tinyScriptLoadEvents": [
           {
-            "at": 1021.4,
+            "at": 2076.2,
             "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
             "runtimeAvailable": true
           }
         ],
-        "tinyRuntimeAvailableAt": 1021.6,
+        "tinyRuntimeAvailableAt": 2076.3,
         "tinyRuntimeAvailableAtLoad": true,
         "tinyInitWrapped": true,
         "tinyInitWrapError": null,
         "tinyInitCalls": [
           {
-            "at": 1022.5,
+            "at": 2077.1,
             "runtimeAvailable": true,
             "source": "instrumented tinymce.init"
           }
@@ -2129,7 +2666,7 @@
         "samples": [
           {
             "source": "document-start",
-            "at": 21.9,
+            "at": 16.7,
             "readyState": "loading",
             "visibilityState": "visible",
             "appBusy": null,
@@ -2137,6 +2674,7 @@
             "skeletonHidden": null,
             "display": null,
             "visibility": null,
+            "editorPanels": [],
             "geometry": null,
             "editors": {
               "visual": null,
@@ -2145,7 +2683,7 @@
           },
           {
             "source": "mutation",
-            "at": 26.6,
+            "at": 20.8,
             "readyState": "loading",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2153,6 +2691,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "block",
+                "visibility": "visible",
+                "geometry": {
+                  "width": 1409,
+                  "height": 86.906
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "block",
+                "visibility": "visible",
+                "geometry": {
+                  "width": 1409,
+                  "height": 66.906
+                }
+              }
+            ],
             "geometry": {
               "x": 8,
               "y": 505.5,
@@ -2166,7 +2726,7 @@
           },
           {
             "source": "state-sampler",
-            "at": 74.3,
+            "at": 65.2,
             "readyState": "loading",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2174,6 +2734,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2187,7 +2769,7 @@
           },
           {
             "source": "readystatechange",
-            "at": 119.2,
+            "at": 105.3,
             "readyState": "interactive",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2195,6 +2777,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2208,7 +2812,7 @@
           },
           {
             "source": "readystatechange",
-            "at": 132.5,
+            "at": 119,
             "readyState": "complete",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2216,6 +2820,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2229,7 +2855,7 @@
           },
           {
             "source": "paint:first-paint",
-            "at": 1006.2,
+            "at": 2057.2,
             "readyState": "complete",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2237,6 +2863,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2250,7 +2898,7 @@
           },
           {
             "source": "paint:first-contentful-paint",
-            "at": 1006.2,
+            "at": 2057.4,
             "readyState": "complete",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2258,6 +2906,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2271,7 +2941,7 @@
           },
           {
             "source": "mutation",
-            "at": 1192.1,
+            "at": 2247.8,
             "readyState": "complete",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2279,6 +2949,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2295,7 +2987,7 @@
           },
           {
             "source": "mutation",
-            "at": 1332.6,
+            "at": 2406,
             "readyState": "complete",
             "visibilityState": "visible",
             "appBusy": "false",
@@ -2303,6 +2995,28 @@
             "skeletonHidden": true,
             "display": "none",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "visible",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "visible",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 0,
               "y": 0,
@@ -2321,24 +3035,36 @@
             }
           }
         ],
-        "visibleDurationMs": 1306,
-        "firstPaintOffsetFromVisibleMs": 977.4,
-        "hiddenAfterFirstPaintMs": 328.6,
-        "editorReadyMarkStartTime": 1336.1,
-        "editorReadyMarkDomDeltaMs": 3.5,
+        "visibleDurationMs": 2385.2,
+        "firstPaintOffsetFromVisibleMs": 2031.2,
+        "hiddenAfterFirstPaintMs": 354,
+        "editorPanelVisibilityEvidence": {
+          "selector": ".editor-panel",
+          "expectedPanelIds": [
+            "visual-panel",
+            "source-panel"
+          ],
+          "firstPaintSkeletonHidesBothPanels": true,
+          "firstContentfulPaintSkeletonHidesBothPanels": true,
+          "paintedBusyIntervalSampleCount": 3,
+          "paintedBusyIntervalAlwaysHidesBothPanels": true,
+          "editorReadyShowsBothPanels": true
+        },
+        "editorReadyMarkStartTime": 2409.1,
+        "editorReadyMarkDomDeltaMs": 3.1,
         "performanceMetrics": {
-          "navigationToFirstSkeletonPaintMs": 1004,
-          "skeletonPaintToEditorReadyMs": 332.1,
-          "navigationToEditorReadyMs": 1336.1
+          "navigationToFirstSkeletonPaintMs": 2052,
+          "skeletonPaintToEditorReadyMs": 357.1,
+          "navigationToEditorReadyMs": 2409.1
         }
       },
       "cumulative": {
-        "visibleFrom": 27.4,
-        "firstHiddenAt": 525.9,
-        "editorReadyAt": 525.9,
+        "visibleFrom": 18.7,
+        "firstHiddenAt": 2465.5,
+        "editorReadyAt": 2465.5,
         "visibleState": {
           "source": "mutation",
-          "at": 27.4,
+          "at": 18.7,
           "readyState": "loading",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -2346,6 +3072,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "width": 1409,
+                "height": 86.906
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "width": 1409,
+                "height": 66.906
+              }
+            }
+          ],
           "geometry": {
             "x": 8,
             "y": 505.5,
@@ -2359,7 +3107,7 @@
         },
         "firstNonzeroGeometry": {
           "source": "mutation",
-          "at": 27.4,
+          "at": 18.7,
           "readyState": "loading",
           "visibilityState": "visible",
           "appBusy": "true",
@@ -2367,6 +3115,28 @@
           "skeletonHidden": false,
           "display": "block",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "width": 1409,
+                "height": 86.906
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "geometry": {
+                "width": 1409,
+                "height": 66.906
+              }
+            }
+          ],
           "geometry": {
             "x": 8,
             "y": 505.5,
@@ -2380,7 +3150,7 @@
         },
         "hiddenState": {
           "source": "mutation",
-          "at": 525.9,
+          "at": 2465.5,
           "readyState": "complete",
           "visibilityState": "visible",
           "appBusy": "false",
@@ -2388,6 +3158,28 @@
           "skeletonHidden": true,
           "display": "none",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "visible",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "visible",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 0,
             "y": 0,
@@ -2407,7 +3199,7 @@
         },
         "editorReadyState": {
           "source": "mutation",
-          "at": 525.9,
+          "at": 2465.5,
           "readyState": "complete",
           "visibilityState": "visible",
           "appBusy": "false",
@@ -2415,6 +3207,28 @@
           "skeletonHidden": true,
           "display": "none",
           "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "visible",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "visible",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
           "geometry": {
             "x": 0,
             "y": 0,
@@ -2432,17 +3246,103 @@
             }
           }
         },
-        "firstPaintStartTime": 160,
-        "firstContentfulPaintStartTime": 160,
+        "firstPaintStartTime": 2124,
+        "firstContentfulPaintStartTime": 2124,
+        "firstPaintState": {
+          "source": "paint:first-paint",
+          "at": 2130.7,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
+        "firstContentfulPaintState": {
+          "source": "paint:first-contentful-paint",
+          "at": 2130.9,
+          "readyState": "complete",
+          "visibilityState": "visible",
+          "appBusy": "true",
+          "skeletonPresent": true,
+          "skeletonHidden": false,
+          "display": "block",
+          "visibility": "visible",
+          "editorPanels": [
+            {
+              "id": "visual-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 677.5,
+                "height": 558
+              }
+            },
+            {
+              "id": "source-panel",
+              "hidden": false,
+              "display": "grid",
+              "visibility": "hidden",
+              "geometry": {
+                "width": 665.5,
+                "height": 558
+              }
+            }
+          ],
+          "geometry": {
+            "x": 35,
+            "y": 171.484,
+            "width": 1355,
+            "height": 558
+          },
+          "editors": {
+            "visual": null,
+            "source": null
+          }
+        },
         "paintEntries": [
           {
             "name": "first-paint",
-            "startTime": 160,
+            "startTime": 2124,
             "duration": 0
           },
           {
             "name": "first-contentful-paint",
-            "startTime": 160,
+            "startTime": 2124,
             "duration": 0
           }
         ],
@@ -2451,7 +3351,7 @@
         "dynamicTinyScripts": [
           {
             "source": "mutation",
-            "insertedAt": 171.3,
+            "insertedAt": 2131.7,
             "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
             "type": "",
             "async": true,
@@ -2461,18 +3361,18 @@
         ],
         "tinyScriptLoadEvents": [
           {
-            "at": 184.7,
+            "at": 2143,
             "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
             "runtimeAvailable": true
           }
         ],
-        "tinyRuntimeAvailableAt": 184.9,
+        "tinyRuntimeAvailableAt": 2143,
         "tinyRuntimeAvailableAtLoad": true,
         "tinyInitWrapped": true,
         "tinyInitWrapError": null,
         "tinyInitCalls": [
           {
-            "at": 185.6,
+            "at": 2143.5,
             "runtimeAvailable": true,
             "source": "instrumented tinymce.init"
           }
@@ -2480,7 +3380,7 @@
         "samples": [
           {
             "source": "document-start",
-            "at": 22.1,
+            "at": 14.4,
             "readyState": "loading",
             "visibilityState": "visible",
             "appBusy": null,
@@ -2488,6 +3388,7 @@
             "skeletonHidden": null,
             "display": null,
             "visibility": null,
+            "editorPanels": [],
             "geometry": null,
             "editors": {
               "visual": null,
@@ -2496,7 +3397,7 @@
           },
           {
             "source": "mutation",
-            "at": 27.4,
+            "at": 18.7,
             "readyState": "loading",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2504,6 +3405,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "block",
+                "visibility": "visible",
+                "geometry": {
+                  "width": 1409,
+                  "height": 86.906
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "block",
+                "visibility": "visible",
+                "geometry": {
+                  "width": 1409,
+                  "height": 66.906
+                }
+              }
+            ],
             "geometry": {
               "x": 8,
               "y": 505.5,
@@ -2517,7 +3440,7 @@
           },
           {
             "source": "state-sampler",
-            "at": 73.2,
+            "at": 58.8,
             "readyState": "loading",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2525,6 +3448,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2538,7 +3483,7 @@
           },
           {
             "source": "readystatechange",
-            "at": 112.3,
+            "at": 94.6,
             "readyState": "interactive",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2546,6 +3491,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2559,7 +3526,7 @@
           },
           {
             "source": "readystatechange",
-            "at": 126.7,
+            "at": 107.5,
             "readyState": "complete",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2567,6 +3534,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2580,7 +3569,7 @@
           },
           {
             "source": "paint:first-paint",
-            "at": 170.5,
+            "at": 2130.7,
             "readyState": "complete",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2588,6 +3577,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2601,7 +3612,7 @@
           },
           {
             "source": "paint:first-contentful-paint",
-            "at": 170.6,
+            "at": 2130.9,
             "readyState": "complete",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2609,6 +3620,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2622,7 +3655,7 @@
           },
           {
             "source": "mutation",
-            "at": 363.5,
+            "at": 2316,
             "readyState": "complete",
             "visibilityState": "visible",
             "appBusy": "true",
@@ -2630,6 +3663,28 @@
             "skeletonHidden": false,
             "display": "block",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "hidden",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 35,
               "y": 171.484,
@@ -2646,7 +3701,7 @@
           },
           {
             "source": "mutation",
-            "at": 525.9,
+            "at": 2465.5,
             "readyState": "complete",
             "visibilityState": "visible",
             "appBusy": "false",
@@ -2654,6 +3709,28 @@
             "skeletonHidden": true,
             "display": "none",
             "visibility": "visible",
+            "editorPanels": [
+              {
+                "id": "visual-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "visible",
+                "geometry": {
+                  "width": 677.5,
+                  "height": 558
+                }
+              },
+              {
+                "id": "source-panel",
+                "hidden": false,
+                "display": "grid",
+                "visibility": "visible",
+                "geometry": {
+                  "width": 665.5,
+                  "height": 558
+                }
+              }
+            ],
             "geometry": {
               "x": 0,
               "y": 0,
@@ -2672,28 +3749,40 @@
             }
           }
         ],
-        "visibleDurationMs": 498.5,
-        "firstPaintOffsetFromVisibleMs": 132.6,
-        "hiddenAfterFirstPaintMs": 365.9,
-        "editorReadyMarkStartTime": 528.8,
-        "editorReadyMarkDomDeltaMs": 2.9,
+        "visibleDurationMs": 2446.8,
+        "firstPaintOffsetFromVisibleMs": 2105.3,
+        "hiddenAfterFirstPaintMs": 341.5,
+        "editorPanelVisibilityEvidence": {
+          "selector": ".editor-panel",
+          "expectedPanelIds": [
+            "visual-panel",
+            "source-panel"
+          ],
+          "firstPaintSkeletonHidesBothPanels": true,
+          "firstContentfulPaintSkeletonHidesBothPanels": true,
+          "paintedBusyIntervalSampleCount": 3,
+          "paintedBusyIntervalAlwaysHidesBothPanels": true,
+          "editorReadyShowsBothPanels": true
+        },
+        "editorReadyMarkStartTime": 2468.1,
+        "editorReadyMarkDomDeltaMs": 2.6,
         "performanceMetrics": {
-          "navigationToFirstSkeletonPaintMs": 160,
-          "skeletonPaintToEditorReadyMs": 368.8,
-          "navigationToEditorReadyMs": 528.8
+          "navigationToFirstSkeletonPaintMs": 2124,
+          "skeletonPaintToEditorReadyMs": 344.1,
+          "navigationToEditorReadyMs": 2468.1
         }
       }
     },
     "loadingPerformanceMetrics": {
       "cold": {
-        "navigationToFirstSkeletonPaintMs": 1004,
-        "skeletonPaintToEditorReadyMs": 332.1,
-        "navigationToEditorReadyMs": 1336.1
+        "navigationToFirstSkeletonPaintMs": 2052,
+        "skeletonPaintToEditorReadyMs": 357.1,
+        "navigationToEditorReadyMs": 2409.1
       },
       "cumulative": {
-        "navigationToFirstSkeletonPaintMs": 160,
-        "skeletonPaintToEditorReadyMs": 368.8,
-        "navigationToEditorReadyMs": 528.8
+        "navigationToFirstSkeletonPaintMs": 2124,
+        "skeletonPaintToEditorReadyMs": 344.1,
+        "navigationToEditorReadyMs": 2468.1
       }
     },
     "bootOrdering": {
@@ -2707,7 +3796,7 @@
         "dynamicTinyScripts": [
           {
             "source": "mutation",
-            "insertedAt": 1007.1,
+            "insertedAt": 2058.5,
             "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
             "type": "",
             "async": true,
@@ -2717,14 +3806,14 @@
         ],
         "tinyScriptLoadEvents": [
           {
-            "at": 1021.4,
+            "at": 2076.2,
             "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
             "runtimeAvailable": true
           }
         ],
         "tinyInitCalls": [
           {
-            "at": 1022.5,
+            "at": 2077.1,
             "runtimeAvailable": true,
             "source": "instrumented tinymce.init"
           }
@@ -2733,8 +3822,8 @@
           {
             "name": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
             "initiatorType": "link",
-            "startTime": 15.8,
-            "responseEnd": 86.4,
+            "startTime": 13.7,
+            "responseEnd": 51.7,
             "transferSize": 486791,
             "encodedBodySize": 486491,
             "decodedBodySize": 486491
@@ -2750,49 +3839,49 @@
         "performanceMarks": [
           {
             "name": "phe:bootstrap:paint-handoff-complete",
-            "startTime": 1006.5,
+            "startTime": 2057.7,
             "duration": 0,
             "entryOrder": 0
           },
           {
             "name": "phe:bootstrap:tinymce-script-inserted",
-            "startTime": 1007.1,
+            "startTime": 2058.4,
             "duration": 0,
             "entryOrder": 1
           },
           {
             "name": "phe:bootstrap:tinymce-runtime-loaded",
-            "startTime": 1021.6,
+            "startTime": 2076.4,
             "duration": 0,
             "entryOrder": 2
           },
           {
             "name": "phe:bootstrap:initialise-started",
-            "startTime": 1021.6,
+            "startTime": 2076.4,
             "duration": 0,
             "entryOrder": 3
           },
           {
             "name": "phe:bootstrap:editor-ready",
-            "startTime": 1336.1,
+            "startTime": 2409.1,
             "duration": 0,
             "entryOrder": 4
           }
         ],
         "performanceMarkSequenceExact": true,
-        "editorReadyMarkStartTime": 1336.1,
-        "sampledDomEditorReadyAt": 1332.6,
-        "editorReadyMarkDomDeltaMs": 3.5,
+        "editorReadyMarkStartTime": 2409.1,
+        "sampledDomEditorReadyAt": 2406,
+        "editorReadyMarkDomDeltaMs": 3.1,
         "editorReadyMarkReconcilesWithDom": true,
         "loadingPerformanceMetrics": {
-          "navigationToFirstSkeletonPaintMs": 1004,
-          "skeletonPaintToEditorReadyMs": 332.1,
-          "navigationToEditorReadyMs": 1336.1
+          "navigationToFirstSkeletonPaintMs": 2052,
+          "skeletonPaintToEditorReadyMs": 357.1,
+          "navigationToEditorReadyMs": 2409.1
         },
-        "firstPaintStartTime": 1004,
-        "firstContentfulPaintStartTime": 1004,
-        "editorReadyAt": 1332.6,
-        "tinyRuntimeAvailableAt": 1021.6,
+        "firstPaintStartTime": 2052,
+        "firstContentfulPaintStartTime": 2052,
+        "editorReadyAt": 2406,
+        "tinyRuntimeAvailableAt": 2076.3,
         "tinyRuntimeAvailableAtLoad": true,
         "tinyInitWrapped": true,
         "tinyInitWrapError": null,
@@ -2821,7 +3910,7 @@
         "dynamicTinyScripts": [
           {
             "source": "mutation",
-            "insertedAt": 171.3,
+            "insertedAt": 2131.7,
             "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
             "type": "",
             "async": true,
@@ -2831,14 +3920,14 @@
         ],
         "tinyScriptLoadEvents": [
           {
-            "at": 184.7,
+            "at": 2143,
             "src": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
             "runtimeAvailable": true
           }
         ],
         "tinyInitCalls": [
           {
-            "at": 185.6,
+            "at": 2143.5,
             "runtimeAvailable": true,
             "source": "instrumented tinymce.init"
           }
@@ -2847,8 +3936,8 @@
           {
             "name": "http://127.0.0.1:4173/tinymce/tinymce.min.js?v=8.8.2",
             "initiatorType": "link",
-            "startTime": 19.7,
-            "responseEnd": 54.3,
+            "startTime": 11.9,
+            "responseEnd": 49.7,
             "transferSize": 486791,
             "encodedBodySize": 486491,
             "decodedBodySize": 486491
@@ -2864,49 +3953,49 @@
         "performanceMarks": [
           {
             "name": "phe:bootstrap:paint-handoff-complete",
-            "startTime": 170.8,
+            "startTime": 2131.1,
             "duration": 0,
             "entryOrder": 0
           },
           {
             "name": "phe:bootstrap:tinymce-script-inserted",
-            "startTime": 171.2,
+            "startTime": 2131.6,
             "duration": 0,
             "entryOrder": 1
           },
           {
             "name": "phe:bootstrap:tinymce-runtime-loaded",
-            "startTime": 184.9,
+            "startTime": 2143,
             "duration": 0,
             "entryOrder": 2
           },
           {
             "name": "phe:bootstrap:initialise-started",
-            "startTime": 185,
+            "startTime": 2143,
             "duration": 0,
             "entryOrder": 3
           },
           {
             "name": "phe:bootstrap:editor-ready",
-            "startTime": 528.8,
+            "startTime": 2468.1,
             "duration": 0,
             "entryOrder": 4
           }
         ],
         "performanceMarkSequenceExact": true,
-        "editorReadyMarkStartTime": 528.8,
-        "sampledDomEditorReadyAt": 525.9,
-        "editorReadyMarkDomDeltaMs": 2.9,
+        "editorReadyMarkStartTime": 2468.1,
+        "sampledDomEditorReadyAt": 2465.5,
+        "editorReadyMarkDomDeltaMs": 2.6,
         "editorReadyMarkReconcilesWithDom": true,
         "loadingPerformanceMetrics": {
-          "navigationToFirstSkeletonPaintMs": 160,
-          "skeletonPaintToEditorReadyMs": 368.8,
-          "navigationToEditorReadyMs": 528.8
+          "navigationToFirstSkeletonPaintMs": 2124,
+          "skeletonPaintToEditorReadyMs": 344.1,
+          "navigationToEditorReadyMs": 2468.1
         },
-        "firstPaintStartTime": 160,
-        "firstContentfulPaintStartTime": 160,
-        "editorReadyAt": 525.9,
-        "tinyRuntimeAvailableAt": 184.9,
+        "firstPaintStartTime": 2124,
+        "firstContentfulPaintStartTime": 2124,
+        "editorReadyAt": 2465.5,
+        "tinyRuntimeAvailableAt": 2143,
         "tinyRuntimeAvailableAtLoad": true,
         "tinyInitWrapped": true,
         "tinyInitWrapError": null,

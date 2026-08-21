@@ -123,6 +123,30 @@ const expectTouchTarget = (
 };
 
 describe('E4 visual contract', () => {
+  it('keeps the loading skeleton outside editor panels while the app starts busy', () => {
+    const document = new DOMParser().parseFromString(indexHtml, 'text/html');
+    const app = document.querySelector<HTMLElement>('#app');
+    const workspace = document.querySelector<HTMLElement>('#editor-workspace');
+    const skeleton = document.querySelector<HTMLElement>('#loading-skeleton');
+
+    expect(app?.getAttribute('aria-busy')).toBe('true');
+    expect(skeleton?.parentElement).toBe(workspace);
+    expect(skeleton?.closest('.editor-panel')).toBeNull();
+    expect(document.querySelectorAll('.editor-panel')).toHaveLength(2);
+  });
+
+  it('keeps busy editor geometry measurable while suppressing pre-skin paint', () => {
+    const selector = '.app-shell[aria-busy="true"] .editor-panel';
+    const matchingRules = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+      .filter((match) => (match[1] ?? '').split(',').map((item) => item.trim()).includes(selector));
+    const declarations = matchingRules[0]?.[2] ?? '';
+
+    expect(matchingRules).toHaveLength(1);
+    expect(declarations.replace(/\s+/g, ' ').trim()).toBe('visibility: hidden;');
+    expect(declarations).not.toMatch(/(?:^|;)\s*display\s*:/);
+    expect(declarations).not.toMatch(/(?:^|;)\s*content-visibility\s*:/);
+  });
+
   it('reserves the mobile tab row before editor initialisation without showing it on desktop', () => {
     const document = new DOMParser().parseFromString(indexHtml, 'text/html');
     const tabs = document.querySelector<HTMLElement>('.mobile-tabs');

@@ -66,6 +66,7 @@ const expectedE5AssertionNames = Object.freeze([
   'tinyCoreExactlyOnce',
   'preloadRuntimeOrdering',
   'loadingPerformanceMetricsExact',
+  'paintedBusySkeletonHidesEditorPanelsUntilReady',
   'defaultIconsAbsent',
   'customIconsOnce',
   'customEmoticonsOnce',
@@ -342,6 +343,119 @@ const loadingPerformanceOk = (proof, metrics) =>
   Math.abs(metrics.navigationToFirstSkeletonPaintMs +
     metrics.skeletonPaintToEditorReadyMs - metrics.navigationToEditorReadyMs) <= 0.001;
 
+const editorPanelSelector = '.editor-panel';
+const expectedEditorPanelIds = Object.freeze(['visual-panel', 'source-panel']);
+const expectedEditorPanelStateKeys = Object.freeze([
+  'display',
+  'geometry',
+  'hidden',
+  'id',
+  'visibility',
+]);
+const expectedEditorPanelGeometryKeys = Object.freeze(['height', 'width']);
+const expectedEditorPanelVisibilityEvidenceKeys = Object.freeze([
+  'editorReadyShowsBothPanels',
+  'expectedPanelIds',
+  'firstContentfulPaintSkeletonHidesBothPanels',
+  'firstPaintSkeletonHidesBothPanels',
+  'paintedBusyIntervalAlwaysHidesBothPanels',
+  'paintedBusyIntervalSampleCount',
+  'selector',
+]);
+const editorPanelsHaveExactVisibility = (state, visibility) =>
+  Array.isArray(state?.editorPanels) &&
+  state.editorPanels.length === expectedEditorPanelIds.length &&
+  JSON.stringify(state.editorPanels.map(({ id }) => id)) ===
+    JSON.stringify(expectedEditorPanelIds) &&
+  state.editorPanels.every((panel) =>
+    JSON.stringify(Object.keys(panel).sort()) ===
+      JSON.stringify([...expectedEditorPanelStateKeys].sort()) &&
+    JSON.stringify(Object.keys(panel.geometry ?? {}).sort()) ===
+      JSON.stringify([...expectedEditorPanelGeometryKeys].sort()) &&
+    panel.hidden === false &&
+    panel.display !== 'none' &&
+    panel.visibility === visibility &&
+    panel.geometry.width > 0 &&
+    panel.geometry.height > 0
+  );
+const stateShowsNonzeroVisibleSkeleton = (state) =>
+  state?.skeletonPresent === true &&
+  state.skeletonHidden === false &&
+  state.display !== 'none' &&
+  state.visibility !== 'hidden' &&
+  (state.geometry?.width ?? 0) > 0 &&
+  (state.geometry?.height ?? 0) > 0;
+const stateShowsNonzeroBusySkeleton = (state) =>
+  state?.appBusy === 'true' &&
+  stateShowsNonzeroVisibleSkeleton(state);
+const stateShowsBusySkeletonWithHiddenEditors = (state) =>
+  stateShowsNonzeroBusySkeleton(state) &&
+  editorPanelsHaveExactVisibility(state, 'hidden');
+const stateShowsReadyEditors = (state) =>
+  state?.appBusy === 'false' &&
+  state.skeletonPresent === true &&
+  state.skeletonHidden === true &&
+  editorPanelsHaveExactVisibility(state, 'visible') &&
+  (state.editors?.visual?.width ?? 0) > 0 &&
+  (state.editors?.visual?.height ?? 0) > 0 &&
+  (state.editors?.source?.width ?? 0) > 0 &&
+  (state.editors?.source?.height ?? 0) > 0;
+const paintStateMatchesObservedEntry = (proof, state, paintName, startTime) =>
+  state?.source === `paint:${paintName}` &&
+  typeof state.at === 'number' &&
+  typeof startTime === 'number' &&
+  typeof proof?.firstHiddenAt === 'number' &&
+  startTime <= state.at &&
+  state.at < proof.firstHiddenAt;
+const createEditorPanelVisibilityEvidence = (proof) => {
+  const paintedBusyIntervalSamples = Array.isArray(proof?.samples)
+    ? proof.samples.filter((state) =>
+      typeof state?.at === 'number' &&
+      typeof proof?.firstPaintState?.at === 'number' &&
+      typeof proof?.firstHiddenAt === 'number' &&
+      state.at >= proof.firstPaintState.at &&
+      state.at < proof.firstHiddenAt
+    )
+    : [];
+  return {
+    selector: editorPanelSelector,
+    expectedPanelIds: [...expectedEditorPanelIds],
+    firstPaintSkeletonHidesBothPanels:
+      paintStateMatchesObservedEntry(
+        proof,
+        proof?.firstPaintState,
+        'first-paint',
+        proof?.firstPaintStartTime,
+      ) &&
+      stateShowsBusySkeletonWithHiddenEditors(proof?.firstPaintState),
+    firstContentfulPaintSkeletonHidesBothPanels:
+      paintStateMatchesObservedEntry(
+        proof,
+        proof?.firstContentfulPaintState,
+        'first-contentful-paint',
+        proof?.firstContentfulPaintStartTime,
+      ) &&
+      stateShowsBusySkeletonWithHiddenEditors(proof?.firstContentfulPaintState),
+    paintedBusyIntervalSampleCount: paintedBusyIntervalSamples.length,
+    paintedBusyIntervalAlwaysHidesBothPanels:
+      paintedBusyIntervalSamples.length > 0 &&
+      paintedBusyIntervalSamples.every(stateShowsBusySkeletonWithHiddenEditors),
+    editorReadyShowsBothPanels: stateShowsReadyEditors(proof?.editorReadyState),
+  };
+};
+const editorPanelVisibilityProofPassed = (proof) => {
+  const evidence = proof?.editorPanelVisibilityEvidence;
+  const recomputed = createEditorPanelVisibilityEvidence(proof);
+  return JSON.stringify(Object.keys(evidence ?? {}).sort()) ===
+      JSON.stringify([...expectedEditorPanelVisibilityEvidenceKeys].sort()) &&
+    JSON.stringify(evidence) === JSON.stringify(recomputed) &&
+    evidence.paintedBusyIntervalSampleCount > 0 &&
+    evidence.firstPaintSkeletonHidesBothPanels === true &&
+    evidence.firstContentfulPaintSkeletonHidesBothPanels === true &&
+    evidence.paintedBusyIntervalAlwaysHidesBothPanels === true &&
+    evidence.editorReadyShowsBothPanels === true;
+};
+
 const assertReportShape = (name, report, scenario) => {
   if (!report || typeof report !== 'object') throw new TypeError(`${name}: report must be an object`);
   if (typeof report.pageUrl !== 'string') throw new TypeError(`${name}: pageUrl must be a string`);
@@ -388,6 +502,9 @@ const assertReportShape = (name, report, scenario) => {
   if (JSON.stringify(report.loadingPerformanceMetrics) !==
       JSON.stringify(report.uiActionInventory?.loadingPerformanceMetrics)) {
     failures.push(`${name}: top-level and UI-inventory loading metrics differ`);
+  }
+  if (!editorPanelVisibilityProofPassed(paintProof)) {
+    failures.push(`${name}: painted busy skeleton/editor-panel visibility evidence is missing, malformed or does not match its raw FP/FCP/ready samples`);
   }
   for (const [index, request] of report.requests.entries()) {
     if (!request || typeof request !== 'object' || typeof request.url !== 'string') {
@@ -683,6 +800,20 @@ if (Date.parse(harResultReport.capturedAt) < Date.parse(cumulativeReport.capture
 }
 
 const e5Ui = cumulativeReport.e5UiValidation;
+const editorPanelVisibilityDeepBindingOk =
+  JSON.stringify(coldHar?.log?.pages?.[0]?._uiActionInventory?.loadingPaintProof) ===
+    JSON.stringify(coldReport.uiActionInventory?.loadingPaintProof) &&
+  JSON.stringify(cumulativeHar?.log?.pages?.[0]?._uiActionInventory?.loadingPaintProof) ===
+    JSON.stringify(cumulativeReport.uiActionInventory?.loadingPaintProof) &&
+  JSON.stringify(e5Ui?.loadingPaintProof?.cold) ===
+    JSON.stringify(coldReport.uiActionInventory?.loadingPaintProof) &&
+  JSON.stringify(e5Ui?.loadingPaintProof?.cumulative) ===
+    JSON.stringify(cumulativeReport.uiActionInventory?.loadingPaintProof) &&
+  JSON.stringify(harResultReport?.e5UiValidation?.loadingPaintProof) ===
+    JSON.stringify(e5Ui?.loadingPaintProof);
+if (!editorPanelVisibilityDeepBindingOk) {
+  failures.push('E5 painted busy skeleton/editor-panel visibility evidence must be deeply bound across both scenario reports, HAR page metadata and the result summary');
+}
 const retainedPreloadAdvisoriesAreExact = (value, maximumCount) =>
   Array.isArray(value) &&
   value.length <= maximumCount &&
@@ -1026,6 +1157,12 @@ const paintProofOk =
   });
 if (!paintProofOk) {
   failures.push('E5 UI audit must prove the skeleton spans FP and FCP, reaches two ready editors, and records all three exact navigation/skeleton/editor-ready metrics');
+}
+const paintedBusySkeletonEditorPanelVisibilityOk = ['cold', 'cumulative'].every((scenario) =>
+  editorPanelVisibilityProofPassed(e5Ui?.loadingPaintProof?.[scenario])
+);
+if (!paintedBusySkeletonEditorPanelVisibilityOk) {
+  failures.push('E5 UI audit must prove both editor panels stay visibility:hidden throughout the painted busy skeleton interval from FP through FCP until hiding, then become visible with nonzero TinyMCE and CodeMirror at editor-ready');
 }
 const bootOrderingAuditOk = ['cold', 'cumulative'].every((scenario) =>
   bootOrderingOk(e5Ui?.bootOrdering?.[scenario])
