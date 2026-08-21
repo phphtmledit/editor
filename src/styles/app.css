@@ -329,7 +329,7 @@ body .tox .tox-selectfield select:focus { border-color: var(--phe-accent); box-s
 
 .mobile-tabs {
   padding: 4px;
-  display: grid;
+  display: none;
   grid-template-columns: 1fr 1fr;
   gap: 4px;
   border: 1px solid var(--phe-border);

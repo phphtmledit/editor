@@ -24,6 +24,14 @@ const expectedTinyLinkSaveButtonLabel = 'Save';
 const tinyCoreHref = '/tinymce/tinymce.min.js?v=8.8.2';
 const tinyCorePath = '/tinymce/tinymce.min.js';
 const tinyCoreUrl = new URL(tinyCoreHref, expectedOrigin).href;
+const expectedPaintHandoffPreloadAdvisory = Object.freeze({
+  method: 'Log.entryAdded',
+  source: 'javascript',
+  level: 'warning',
+  text: `The resource ${tinyCoreUrl} was preloaded using link preload but not used within a few seconds from the window's load event. ` +
+    'Please make sure it has an appropriate `as` value and it is preloaded intentionally.',
+  url: `${expectedOrigin}/`,
+});
 const expectedBootMarkNames = Object.freeze([
   'phe:bootstrap:paint-handoff-complete',
   'phe:bootstrap:tinymce-script-inserted',
@@ -32,6 +40,8 @@ const expectedBootMarkNames = Object.freeze([
   'phe:bootstrap:editor-ready',
 ]);
 const expectedBootOrderingKeys = Object.freeze([
+  'preloadFetchStartedBeforeFirstPaint',
+  'preloadFetchStartedBeforeContentfulPaint',
   'preloadFetchStartedBeforeDynamicInsertion',
   'skeletonPaintedBeforeDynamicInsertion',
   'contentfulPaintBeforeDynamicInsertion',
@@ -91,7 +101,7 @@ const expectedE5AssertionNames = Object.freeze([
   'coarseTouchTargetsAtLeast44',
   'fullE5UiAudit',
   'fixturesAbsent',
-  'consoleClean',
+  'noUnexpectedConsoleProblems',
   'noApplicationFailures',
   'decodedContentSizes',
   'exactHarTimingSums',
@@ -673,6 +683,12 @@ if (Date.parse(harResultReport.capturedAt) < Date.parse(cumulativeReport.capture
 }
 
 const e5Ui = cumulativeReport.e5UiValidation;
+const retainedPreloadAdvisoriesAreExact = (value, maximumCount) =>
+  Array.isArray(value) &&
+  value.length <= maximumCount &&
+  value.every((advisory) =>
+    JSON.stringify(advisory) === JSON.stringify(expectedPaintHandoffPreloadAdvisory)
+  );
 if (
   JSON.stringify(harResultReport?.e5UiValidation) !== JSON.stringify(e5Ui) ||
   JSON.stringify(harResultReport?.initialHtmlContract) !== JSON.stringify(coldReport.initialHtmlContract) ||
@@ -690,6 +706,24 @@ if (
   JSON.stringify(cumulativeHar?.log?.pages?.[0]?._e5UiValidation) !== JSON.stringify(e5Ui)
 ) {
   failures.push('network-e5-har-result.json summary is not structurally bound to the fresh cold/cumulative E5 reports and UI/notices evidence');
+}
+if (
+  harResultReport?.cold?.consoleProblems !== 0 ||
+  harResultReport?.cumulative?.consoleProblems !== 0 ||
+  !retainedPreloadAdvisoriesAreExact(
+    harResultReport?.cold?.intentionalPaintHandoffPreloadAdvisories,
+    1,
+  ) ||
+  !retainedPreloadAdvisoriesAreExact(
+    harResultReport?.cumulative?.intentionalPaintHandoffPreloadAdvisories,
+    1,
+  ) ||
+  !retainedPreloadAdvisoriesAreExact(
+    e5Ui?.intentionalPaintHandoffPreloadAdvisories,
+    6,
+  )
+) {
+  failures.push('E5 console evidence must retain only exact intentional paint-handoff preload advisories and contain no unexpected problems');
 }
 const expectedThemeQueries = ['', '?theme=light', '?theme=dark', '?theme=auto', '?theme=unexpected'];
 const expectedViewports = [

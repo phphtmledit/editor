@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 const root = resolve(import.meta.dirname, '../..');
 const cssPath = join(root, 'src/styles/app.css');
 const css = readFileSync(cssPath, 'utf8');
+const indexHtml = readFileSync(join(root, 'index.html'), 'utf8');
 
 const REQUIRED_TOKENS = [
   'accent',
@@ -71,6 +72,21 @@ const blendOver = (foreground: string, background: string, opacity: number): str
   return `#${channels.map((channel) => channel.toString(16).padStart(2, '0')).join('')}`;
 };
 
+const blockBody = (source: string, header: string): string => {
+  const headerStart = source.indexOf(header);
+  const openingBrace = source.indexOf('{', headerStart);
+  if (headerStart < 0 || openingBrace < 0) return '';
+
+  let depth = 0;
+  for (let index = openingBrace; index < source.length; index += 1) {
+    if (source[index] === '{') depth += 1;
+    if (source[index] !== '}') continue;
+    depth -= 1;
+    if (depth === 0) return source.slice(openingBrace + 1, index);
+  }
+  return '';
+};
+
 const opacityAffecting = (selectorFragment: string): number => {
   const opacities = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
     .filter((match) => match[1]?.includes(selectorFragment))
@@ -107,6 +123,19 @@ const expectTouchTarget = (
 };
 
 describe('E4 visual contract', () => {
+  it('reserves the mobile tab row before editor initialisation without showing it on desktop', () => {
+    const document = new DOMParser().parseFromString(indexHtml, 'text/html');
+    const tabs = document.querySelector<HTMLElement>('.mobile-tabs');
+    const baseRule = blockBody(css, '.mobile-tabs');
+    const mobileMedia = blockBody(css, '@media (max-width: 899px)');
+    const mobileRule = blockBody(mobileMedia, '.mobile-tabs');
+
+    expect(tabs).not.toBeNull();
+    expect(tabs?.hasAttribute('hidden')).toBe(false);
+    expect(baseRule).toMatch(/(?:^|;)\s*display:\s*none\s*;/);
+    expect(mobileRule).toMatch(/(?:^|;)\s*display:\s*grid\s*;/);
+  });
+
   it('declares the light-only palette and uses no color literals outside it', () => {
     REQUIRED_TOKENS.forEach((name) => expect(tokenValue(name)).not.toBe(''));
     for (const [name, expected] of Object.entries(COLOR_TOKEN_VALUES)) {

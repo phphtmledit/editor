@@ -177,9 +177,11 @@ request-count invariants while adding the E5 legal-link assertions.
   legal-link checks.
 - `network-e5-har-result.json` — 52 successful Network, lifecycle, lazy-entry,
   Worker, fixture-boundary, About-popup, license-delivery, palette, contrast,
-  touch-target, and clean-console assertions.
+  touch-target, and no-unexpected-console-problem assertions. An exact Chrome
+  advisory for the intentional paint-handoff TinyMCE preload is retained
+  separately when observed; every other warning, error, or exception blocks.
 - `size-e5-result.json` — current-dist hashes and local gzip-9/Brotli-11 lower
-  estimates: 574,704/488,744 B cold, 719,394/606,421 B cumulative, with 18/22
+  estimates: 574,685/488,667 B cold, 719,376/606,502 B cumulative, with 18/22
   requests.
 - `performance-e5-desktop-gate.json` — blocking three-run medians from a
   dedicated CDP harness using the exact Lighthouse desktop transport settings,
