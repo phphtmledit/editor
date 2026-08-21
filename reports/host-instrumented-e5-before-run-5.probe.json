@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 1,
+  "stage": "E5",
+  "scenario": "host-iframe-instrumented-lighthouse",
+  "phase": "before",
+  "sourceCapture": {
+    "attempt": 2,
+    "originalProbeBytes": 10088,
+    "originalProbeSha256": "90a63a06907eda9358875b8593b111ca1a8d31a00b60a1d270cf4fa8684fbd40"
+  },
+  "runNumber": 5,
+  "runStartedAt": "2026-08-21T11:14:22.241Z",
+  "runCompletedAt": "2026-08-21T11:14:31.080Z",
+  "rawLhr": {
+    "repositoryFile": "reports/host-instrumented-e5-before-run-5.lhr.json",
+    "originalBytes": 551908,
+    "originalSha256": "3a7517c3cd3a5e45eed3633f5fb7c9f86575cd389550a2e6b45e92736fbb8969"
+  },
+  "tooling": {
+    "lighthouseVersion": "13.4.1",
+    "chromeLauncherVersion": "1.2.1",
+    "chromeExecutableSha256": "e14885110934a79637fcd71d76b23040333911b49fadd1bd084cef6bff78ba3a",
+    "nodeVersion": "v24.19.0",
+    "platform": "win32",
+    "architecture": "x64",
+    "harnessSha256": "00ff8b0633377f68a48ed36a6b427eceff06106d1aceb262979915dc0660e606"
+  },
+  "lhr": {
+    "requestedUrl": "https://phphtmledit.com/",
+    "mainDocumentUrl": "https://phphtmledit.com/",
+    "finalDisplayedUrl": "https://phphtmledit.com/",
+    "finalUrl": "https://phphtmledit.com/",
+    "fetchTime": "2026-08-21T11:14:24.160Z",
+    "lighthouseVersion": "13.4.1",
+    "runtimeError": null,
+    "runWarnings": [],
+    "performanceScore": 0.98,
+    "performanceScorePercent": 98,
+    "metrics": {
+      "fcpMs": 1931.0522999999998,
+      "lcpMs": 1931.0522999999998,
+      "speedIndexMs": 2434.9188200086783,
+      "tbtMs": 0,
+      "cls": 0
+    },
+    "network": {
+      "requestCount": 5,
+      "finishedRequestCount": 5,
+      "transferSize": 74630,
+      "resourceSize": 105369,
+      "requests": [
+        {
+          "url": "https://phphtmledit.com/",
+          "protocol": "h2",
+          "finished": true,
+          "transferSize": 7233,
+          "resourceSize": 21732,
+          "statusCode": 200,
+          "mimeType": "text/html",
+          "resourceType": "Document"
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+          "protocol": "h2",
+          "finished": true,
+          "transferSize": 1322,
+          "resourceSize": 8950,
+          "statusCode": 200,
+          "mimeType": "text/css",
+          "resourceType": "Stylesheet"
+        },
+        {
+          "url": "https://phphtmledit.com/styles.css",
+          "protocol": "h2",
+          "finished": true,
+          "transferSize": 4163,
+          "resourceSize": 13443,
+          "statusCode": 200,
+          "mimeType": "text/css",
+          "resourceType": "Stylesheet"
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/instrumentsans/v4/pxiTypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr0SZe1ZuWi3g.woff2",
+          "protocol": "h2",
+          "finished": true,
+          "transferSize": 30031,
+          "resourceSize": 29904,
+          "statusCode": 200,
+          "mimeType": "font/woff2",
+          "resourceType": "Font"
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+          "protocol": "h2",
+          "finished": true,
+          "transferSize": 31881,
+          "resourceSize": 31340,
+          "statusCode": 200,
+          "mimeType": "font/woff2",
+          "resourceType": "Font"
+        }
+      ]
+    },
+    "environment": {
+      "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36",
+      "hostUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+      "benchmarkIndex": 1942.5,
+      "credits": {}
+    },
+    "configSettings": {
+      "output": [
+        "json"
+      ],
+      "maxWaitForFcp": 30000,
+      "maxWaitForLoad": 45000,
+      "pauseAfterFcpMs": 1000,
+      "pauseAfterLoadMs": 1000,
+      "networkQuietThresholdMs": 1000,
+      "cpuQuietThresholdMs": 1000,
+      "formFactor": "mobile",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      },
+      "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+      "auditMode": false,
+      "gatherMode": false,
+      "clearStorageTypes": [
+        "file_systems",
+        "shader_cache",
+        "service_workers",
+        "cache_storage"
+      ],
+      "disableStorageReset": false,
+      "debugNavigation": false,
+      "channel": "cli",
+      "usePassiveGathering": false,
+      "disableFullPageScreenshot": false,
+      "skipAboutBlank": false,
+      "blankPage": "about:blank",
+      "ignoreStatusCode": false,
+      "locale": "en-US",
+      "blockedUrlPatterns": null,
+      "additionalTraceCategories": null,
+      "extraHeaders": null,
+      "precomputedLanternData": null,
+      "onlyAudits": null,
+      "onlyCategories": [
+        "performance"
+      ],
+      "skipAudits": null
+    }
+  },
+  "pageProbe": {
+    "capturedAtIso": "2026-08-21T11:14:28.933Z",
+    "capturedAtMs": 4613.5,
+    "href": "https://phphtmledit.com/",
+    "documentReadyState": "complete",
+    "visibilityState": "visible",
+    "viewport": {
+      "innerWidth": 412,
+      "innerHeight": 823,
+      "outerWidth": 412,
+      "outerHeight": 823,
+      "documentClientWidth": 412,
+      "documentClientHeight": 823,
+      "devicePixelRatio": 1.75,
+      "visualViewport": {
+        "width": 412,
+        "height": 823,
+        "offsetLeft": 0,
+        "offsetTop": 0,
+        "pageLeft": 0,
+        "pageTop": 0,
+        "scale": 1
+      }
+    },
+    "scroll": {
+      "x": 0,
+      "y": 0
+    },
+    "slot": {
+      "present": true,
+      "selector": "#editor-frame",
+      "id": "editor-frame",
+      "className": "editor-frame",
+      "domPath": "div#editor-frame",
+      "rect": {
+        "top": 531.53125,
+        "bottom": 1272.21875,
+        "left": 16,
+        "right": 396,
+        "width": 380,
+        "height": 740.6875
+      },
+      "documentTop": 531.53125,
+      "documentBottom": 1272.21875,
+      "foldClass": "crosses-first-fold",
+      "intersectsFirstViewport": true,
+      "fullyInsideFirstViewport": false,
+      "belowFirstViewport": false,
+      "crossesFirstFold": true,
+      "computedStyle": {
+        "display": "flex",
+        "visibility": "visible",
+        "position": "static"
+      }
+    },
+    "iframePresent": false,
+    "totalIframeCount": 0,
+    "slotIframeCount": 0,
+    "iframes": [],
+    "appActiveReferenceCount": 0,
+    "appActiveReferences": [],
+    "appResourceEntries": [],
+    "documentStartProbe": {
+      "schemaVersion": 1,
+      "installedAtTimeOrigin": 1787310864319.9,
+      "installedAtMs": 591.3000000119209,
+      "initialHref": "https://phphtmledit.com/",
+      "appHost": "app.phphtmledit.com",
+      "iframeElementsObserved": 0,
+      "iframeLoadEvents": [],
+      "slotSamples": [
+        {
+          "label": "first-seen",
+          "atMs": 597.3000000119209,
+          "rect": {
+            "top": 359.875,
+            "bottom": 377.875,
+            "left": 8,
+            "right": 404,
+            "width": 396,
+            "height": 18
+          },
+          "innerWidth": 412,
+          "innerHeight": 823,
+          "scrollX": 0,
+          "scrollY": 0
+        },
+        {
+          "label": "dom-content-loaded",
+          "atMs": 649.5,
+          "rect": {
+            "top": 359.875,
+            "bottom": 377.875,
+            "left": 8,
+            "right": 404,
+            "width": 396,
+            "height": 18
+          },
+          "innerWidth": 412,
+          "innerHeight": 823,
+          "scrollX": 0,
+          "scrollY": 0
+        },
+        {
+          "label": "window-load",
+          "atMs": 1003.1000000089407,
+          "rect": {
+            "top": 531.53125,
+            "bottom": 1272.21875,
+            "left": 16,
+            "right": 396,
+            "width": 380,
+            "height": 740.6875
+          },
+          "innerWidth": 412,
+          "innerHeight": 823,
+          "scrollX": 0,
+          "scrollY": 0
+        },
+        {
+          "label": "after-first-contentful-paint",
+          "atMs": 1181.4000000059605,
+          "rect": {
+            "top": 531.53125,
+            "bottom": 1272.21875,
+            "left": 16,
+            "right": 396,
+            "width": 380,
+            "height": 740.6875
+          },
+          "innerWidth": 412,
+          "innerHeight": 823,
+          "scrollX": 0,
+          "scrollY": 0
+        }
+      ]
+    }
+  },
+  "lighthouseIFrameElements": [],
+  "lighthouseViewportDimensions": {
+    "innerWidth": 412,
+    "innerHeight": 823,
+    "outerWidth": 412,
+    "outerHeight": 823,
+    "devicePixelRatio": 1.75
+  },
+  "source": {
+    "bytes": 21732,
+    "sha256": "c3d77a557fbbf9157860d161f259eeac1b983ed4da886b1589edd275654c8d71",
+    "iframeTagCount": 0,
+    "mainDocumentIframeTagCount": 0,
+    "rawIframeTagCount": 1,
+    "commentIframeTagCount": 1,
+    "appHostLiteralCount": 0
+  },
+  "devtools": {
+    "totalRequestWillBeSentCount": 5,
+    "appRequestCount": 0,
+    "appDocumentRequestCount": 0,
+    "appDocumentLoadedCount": 0,
+    "iframeRequested": false,
+    "iframeNetworkLoaded": false,
+    "appRequests": []
+  },
+  "iframeRequested": false,
+  "iframeLoadEventObserved": false,
+  "iframeNetworkLoaded": false,
+  "iframeLoaded": false,
+  "captureValidity": {
+    "passed": true,
+    "errors": []
+  }
+}

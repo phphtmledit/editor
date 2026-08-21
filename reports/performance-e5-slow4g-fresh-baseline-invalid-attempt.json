@@ -2,14 +2,14 @@
   "schemaVersion": 2,
   "stage": "E5",
   "specification": "TZ 2.9 section 7",
-  "reportType": "deployed Slow 4G readiness-regression diagnostic",
+  "reportType": "invalid fresh Slow 4G baseline attempt with valid current-E5 diagnostic runs",
   "generatedAt": "2026-08-21T13:09:56.500Z",
   "language": "en",
   "canonicalHar": false,
   "canonicalByteBudgetInput": false,
   "methodology": {
     "runCountPerDeployment": 3,
-    "aggregation": "Median (middle value after numeric ascending sort) of exactly three trusted-input readiness observations per deployment. A skeleton median or delta is reported only when all three runs have strict skeleton-at-FCP proof.",
+    "aggregation": "Median (middle value after numeric ascending sort) of exactly three complete cold runs.",
     "deployment": "Distinct immutable deployed HTTPS URLs; local Vite preview is rejected.",
     "profile": {
       "name": "Lighthouse Slow 4G, DevTools exact transport with CPU x4",
@@ -43,7 +43,6 @@
   },
   "slow4gReferenceThresholds": {
     "blocking": false,
-    "status": "Superseded absolute references, published for continuity only",
     "values": {
       "navigationToSkeletonPaintMs": 1000,
       "navigationToEditorReadyMs": 2500
@@ -58,7 +57,7 @@
         {
           "schemaVersion": 2,
           "reportType": "E5 deployed startup timing raw run",
-          "capturedAt": "2026-08-20T20:02:32.824Z",
+          "capturedAt": "2026-08-21T13:09:10.733Z",
           "label": "before",
           "revision": "869ce7fc2f8823feb71ce1d674f46aeae7b548ad",
           "requestedUrl": "https://5be873d1.phphtmledit-editor.pages.dev/",
@@ -97,27 +96,27 @@
           "canonicalByteBudgetInput": false,
           "metrics": {
             "navigationToSkeletonPaintMs": null,
-            "observedFirstContentfulPaintMs": 3224,
+            "observedFirstContentfulPaintMs": 2932,
             "skeletonPaintToEditorReadyMs": null,
-            "navigationToEditorReadyMs": 8902.1
+            "navigationToEditorReadyMs": 7517.6
           },
           "postMetricDiagnostics": {
-            "codeMirrorDiagnosticStartedAt": 9231.5,
-            "codeMirrorDiagnosticAcceptedAt": 9358.9,
-            "codeMirrorDiagnosticCompletedAt": 9535.8,
-            "navigationToCodeMirrorDiagnosticInputMs": 9358.9,
-            "editorReadyToCodeMirrorDiagnosticInputMs": 456.8,
-            "codeMirrorDiagnosticSequenceMs": 304.3,
-            "editorReadyToAllProofsCompleteMs": 633.7
+            "codeMirrorDiagnosticStartedAt": 7624.2,
+            "codeMirrorDiagnosticAcceptedAt": 7663.5,
+            "codeMirrorDiagnosticCompletedAt": 7751.3,
+            "navigationToCodeMirrorDiagnosticInputMs": 7663.5,
+            "editorReadyToCodeMirrorDiagnosticInputMs": 145.9,
+            "codeMirrorDiagnosticSequenceMs": 127.1,
+            "editorReadyToAllProofsCompleteMs": 233.7
           },
           "paintProof": {
-            "firstNonzeroVisibleAt": 3465.9,
-            "firstHiddenAfterVisibleAt": 8586.5,
-            "firstContentfulPaintAt": 3224,
-            "firstContentfulPaintCallbackAt": 3638.7,
+            "firstNonzeroVisibleAt": 3187.1,
+            "firstHiddenAfterVisibleAt": 7382.5,
+            "firstContentfulPaintAt": 2932,
+            "firstContentfulPaintCallbackAt": 3562.6,
             "skeletonVisibleAtFcp": false,
             "stateAtFcpCallback": {
-              "at": 3638.2,
+              "at": 3562.2,
               "reason": "paint:first-contentful-paint",
               "appBusy": "true",
               "skeletonPresent": true,
@@ -137,7 +136,7 @@
               "blocksHitTesting": true
             },
             "lastStateAtOrBeforeFcp": {
-              "at": 991.6,
+              "at": 727.3,
               "reason": "installed",
               "appBusy": null,
               "skeletonPresent": false,
@@ -153,7 +152,7 @@
               "signature": "{\"appBusy\":null,\"skeletonPresent\":false,\"skeletonHidden\":null,\"display\":null,\"visibility\":null,\"opacity\":null,\"pointerEvents\":null,\"geometry\":null,\"visible\":false,\"blocksHitTesting\":false}"
             },
             "firstStateAfterFcp": {
-              "at": 3465.9,
+              "at": 3187.1,
               "reason": "skeleton-discovered",
               "appBusy": "true",
               "skeletonPresent": true,
@@ -176,30 +175,30 @@
             "paintEntries": [
               {
                 "name": "first-paint",
-                "startTime": 3224,
+                "startTime": 2932,
                 "duration": 0
               },
               {
                 "name": "first-contentful-paint",
-                "startTime": 3224,
+                "startTime": 2932,
                 "duration": 0
               }
             ],
             "observerPaintEntries": [
               {
                 "name": "first-paint",
-                "startTime": 3224,
+                "startTime": 2932,
                 "duration": 0
               },
               {
                 "name": "first-contentful-paint",
-                "startTime": 3224,
+                "startTime": 2932,
                 "duration": 0
               }
             ],
             "stateTimeline": [
               {
-                "at": 991.6,
+                "at": 727.3,
                 "reason": "installed",
                 "appBusy": null,
                 "skeletonPresent": false,
@@ -214,7 +213,7 @@
                 "blocksHitTesting": false
               },
               {
-                "at": 3465.9,
+                "at": 3187.1,
                 "reason": "skeleton-discovered",
                 "appBusy": "true",
                 "skeletonPresent": true,
@@ -234,7 +233,7 @@
                 "blocksHitTesting": true
               },
               {
-                "at": 3637.1,
+                "at": 3561.4,
                 "reason": "paint:first-paint",
                 "appBusy": "true",
                 "skeletonPresent": true,
@@ -254,7 +253,7 @@
                 "blocksHitTesting": true
               },
               {
-                "at": 3638.2,
+                "at": 3562.2,
                 "reason": "paint:first-contentful-paint",
                 "appBusy": "true",
                 "skeletonPresent": true,
@@ -274,7 +273,7 @@
                 "blocksHitTesting": true
               },
               {
-                "at": 8586.5,
+                "at": 7382.5,
                 "reason": "state-mutation",
                 "appBusy": "false",
                 "skeletonPresent": true,
@@ -298,14 +297,14 @@
           },
           "readinessProof": {
             "definition": "Canonical editorReadyAt is the trusted TinyMCE input event accepted after a current passive user-accessible state. readyOpportunityAt is a precursor: max(uiExposedAt, editorReadyMarkAt) for current builds, or uiExposedAt only for exact legacy before revision 869ce7 when the product mark is absent.",
-            "editorReadyAt": 8902.1,
-            "uiExposedAt": 8594.3,
+            "editorReadyAt": 7517.6,
+            "uiExposedAt": 7387.4,
             "editorReadyMarkAt": null,
-            "readyOpportunityAt": 8594.3,
+            "readyOpportunityAt": 7387.4,
             "readyOpportunityMode": "legacy-ui-exposed-without-product-mark",
             "legacyReadyWithoutMarkAllowed": true,
             "readyOpportunityState": {
-              "inspectedAt": 8594.3,
+              "inspectedAt": 7387.4,
               "reason": "state-mutation",
               "editorReadyMarkAt": null,
               "appBusy": "false",
@@ -352,42 +351,42 @@
                 "height": 517
               },
               "fatalErrorObserved": null,
-              "uiExposedAt": 8594.3,
-              "readyOpportunityAt": 8594.3,
+              "uiExposedAt": 7387.4,
+              "readyOpportunityAt": 7387.4,
               "mode": "legacy-ui-exposed-without-product-mark"
             },
             "metricBoundary": {
-              "verifiedInputAcceptedAt": 8902.1,
-              "capturedAt": 9051.7,
-              "cdpEventCount": 496,
-              "readyOpportunityAt": 8594.3,
-              "editorReadyAt": 8902.1
+              "verifiedInputAcceptedAt": 7517.6,
+              "capturedAt": 7563.2,
+              "cdpEventCount": 503,
+              "readyOpportunityAt": 7387.4,
+              "editorReadyAt": 7517.6
             },
             "probeDiagnostics": {
-              "uiExposedAt": 8594.3,
+              "uiExposedAt": 7387.4,
               "editorReadyMarkAt": null,
-              "readyOpportunityAt": 8594.3,
+              "readyOpportunityAt": 7387.4,
               "readyOpportunityMode": "legacy-ui-exposed-without-product-mark",
               "legacyReadyWithoutMarkAllowed": true,
-              "passiveReadySignalAt": 8594.7,
-              "inputProbeArmedAt": 8783.2,
-              "verifiedInputAcceptedAt": 8902.1,
-              "readyOpportunityToProbeArmMs": 188.9,
-              "probeArmToTrustedInputMs": 118.9,
-              "readyOpportunityToVerifiedInputMs": 307.8,
+              "passiveReadySignalAt": 7387.6,
+              "inputProbeArmedAt": 7467.1,
+              "verifiedInputAcceptedAt": 7517.6,
+              "readyOpportunityToProbeArmMs": 79.7,
+              "probeArmToTrustedInputMs": 50.5,
+              "readyOpportunityToVerifiedInputMs": 130.2,
               "note": "readyOpportunityAt is a passive precursor. editorReadyAt is the subsequent trusted TinyMCE input event; readyOpportunityToVerifiedInputMs publishes the harness dispatch and reaction interval explicitly."
             },
             "canonicalVisualEditor": {
               "input": {
                 "kind": "tinymce",
-                "armedAt": 8783.2,
-                "acceptedAt": 8902.1,
-                "acceptedConfirmedAt": 9019,
-                "rolledBackAt": 9219.7,
+                "armedAt": 7467.1,
+                "acceptedAt": 7517.6,
+                "acceptedConfirmedAt": 7559.8,
+                "rolledBackAt": 7623.2,
                 "baselineTextLength": 0,
                 "baselineHtmlLength": 30,
                 "canonicalArmState": {
-                  "checkedAt": 8779.8,
+                  "checkedAt": 7465.4,
                   "appBusy": "false",
                   "skeletonHidden": true,
                   "skeletonVisible": false,
@@ -400,9 +399,9 @@
                 },
                 "inputEvents": [
                   {
-                    "at": 8902.1,
+                    "at": 7517.6,
                     "inputType": "insertText",
-                    "data": "PHE_READY_BEFORE_1_mt1y5u8l_TINY",
+                    "data": "PHE_READY_BEFORE_1_mt2yu4m0_TINY",
                     "trusted": true
                   }
                 ]
@@ -417,7 +416,7 @@
                     "height": 22.390625
                   },
                   "canonicalArmState": {
-                    "checkedAt": 8779.8,
+                    "checkedAt": 7465.4,
                     "appBusy": "false",
                     "skeletonHidden": true,
                     "skeletonVisible": false,
@@ -434,14 +433,14 @@
                 "accepted": {
                   "present": true,
                   "accepted": true,
-                  "acceptedAt": 8902.1,
-                  "acceptedConfirmedAt": 9019,
+                  "acceptedAt": 7517.6,
+                  "acceptedConfirmedAt": 7559.8,
                   "currentTextLength": 32,
                   "inputEvents": [
                     {
-                      "at": 8902.1,
+                      "at": 7517.6,
                       "inputType": "insertText",
-                      "data": "PHE_READY_BEFORE_1_mt1y5u8l_TINY",
+                      "data": "PHE_READY_BEFORE_1_mt2yu4m0_TINY",
                       "trusted": true
                     }
                   ]
@@ -449,16 +448,16 @@
                 "rollback": {
                   "present": true,
                   "rolledBack": true,
-                  "rolledBackAt": 9219.7,
+                  "rolledBackAt": 7623.2,
                   "sentinelAbsent": true,
                   "baselineTextRestored": true,
                   "currentTextLength": 0,
                   "baselineHtmlRestored": true,
                   "inputEvents": [
                     {
-                      "at": 8902.1,
+                      "at": 7517.6,
                       "inputType": "insertText",
-                      "data": "PHE_READY_BEFORE_1_mt1y5u8l_TINY",
+                      "data": "PHE_READY_BEFORE_1_mt2yu4m0_TINY",
                       "trusted": true
                     }
                   ]
@@ -467,28 +466,28 @@
             },
             "postMetricDiagnostics": {
               "definition": "Undo integrity for TinyMCE and trusted CodeMirror input plus Ctrl+Z restoration are mandatory health proofs performed after the canonical timestamp. Focusing CodeMirror may load source-rich and cannot move editorReadyAt.",
-              "codeMirrorDiagnosticStartedAt": 9231.5,
-              "codeMirrorDiagnosticAcceptedAt": 9358.9,
-              "codeMirrorDiagnosticCompletedAt": 9535.8,
-              "navigationToCodeMirrorDiagnosticInputMs": 9358.9,
-              "editorReadyToCodeMirrorDiagnosticInputMs": 456.8,
-              "codeMirrorDiagnosticSequenceMs": 304.3,
-              "editorReadyToAllProofsCompleteMs": 633.7,
+              "codeMirrorDiagnosticStartedAt": 7624.2,
+              "codeMirrorDiagnosticAcceptedAt": 7663.5,
+              "codeMirrorDiagnosticCompletedAt": 7751.3,
+              "navigationToCodeMirrorDiagnosticInputMs": 7663.5,
+              "editorReadyToCodeMirrorDiagnosticInputMs": 145.9,
+              "codeMirrorDiagnosticSequenceMs": 127.1,
+              "editorReadyToAllProofsCompleteMs": 233.7,
               "codeMirror": {
                 "input": {
                   "kind": "codemirror",
-                  "armedAt": 9272.5,
-                  "acceptedAt": 9358.9,
-                  "acceptedConfirmedAt": 9479,
-                  "rolledBackAt": 9516.4,
+                  "armedAt": 7633.7,
+                  "acceptedAt": 7663.5,
+                  "acceptedConfirmedAt": 7725.6,
+                  "rolledBackAt": 7747.6,
                   "baselineTextLength": 0,
                   "baselineHtmlLength": 31,
                   "canonicalArmState": null,
                   "inputEvents": [
                     {
-                      "at": 9358.9,
+                      "at": 7663.5,
                       "inputType": "insertText",
-                      "data": "PHE_READY_BEFORE_1_mt1y5u8l_CM",
+                      "data": "PHE_READY_BEFORE_1_mt2yu4m0_CM",
                       "trusted": true
                     }
                   ]
@@ -509,14 +508,14 @@
                   "accepted": {
                     "present": true,
                     "accepted": true,
-                    "acceptedAt": 9358.9,
-                    "acceptedConfirmedAt": 9479,
+                    "acceptedAt": 7663.5,
+                    "acceptedConfirmedAt": 7725.6,
                     "currentTextLength": 30,
                     "inputEvents": [
                       {
-                        "at": 9358.9,
+                        "at": 7663.5,
                         "inputType": "insertText",
-                        "data": "PHE_READY_BEFORE_1_mt1y5u8l_CM",
+                        "data": "PHE_READY_BEFORE_1_mt2yu4m0_CM",
                         "trusted": true
                       }
                     ]
@@ -524,16 +523,16 @@
                   "rollback": {
                     "present": true,
                     "rolledBack": true,
-                    "rolledBackAt": 9516.4,
+                    "rolledBackAt": 7747.6,
                     "sentinelAbsent": true,
                     "baselineTextRestored": true,
                     "currentTextLength": 0,
                     "baselineHtmlRestored": true,
                     "inputEvents": [
                       {
-                        "at": 9358.9,
+                        "at": 7663.5,
                         "inputType": "insertText",
-                        "data": "PHE_READY_BEFORE_1_mt1y5u8l_CM",
+                        "data": "PHE_READY_BEFORE_1_mt2yu4m0_CM",
                         "trusted": true
                       }
                     ]
@@ -543,7 +542,7 @@
             }
           },
           "document": {
-            "requestId": "53FD0EA283611E060A6A9A3B2E50CD9C",
+            "requestId": "C03E114651C9FF4D1B7D8850837EF570",
             "finalUrl": "https://5be873d1.phphtmledit-editor.pages.dev/",
             "status": 200,
             "mimeType": "text/html",
@@ -576,16 +575,16 @@
             "requestBudgetReference": 25,
             "canonicalReadinessWindow": {
               "definition": "Requests initiated from navigation through canonical trusted-input acceptance. Response facts are completed from the final session inventory.",
-              "editorReadyAt": 8902.1,
-              "readyOpportunityAt": 8594.3,
-              "verifiedInputAcceptedAt": 8902.1,
-              "boundaryCapturedAt": 9051.7,
+              "editorReadyAt": 7517.6,
+              "readyOpportunityAt": 7387.4,
+              "verifiedInputAcceptedAt": 7517.6,
+              "boundaryCapturedAt": 7563.2,
               "requestCount": 18,
               "sourceRichRequestCount": 0,
               "sourceRichRequests": [],
               "requests": [
                 {
-                  "requestId": "53FD0EA283611E060A6A9A3B2E50CD9C",
+                  "requestId": "C03E114651C9FF4D1B7D8850837EF570",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/",
                   "method": "GET",
                   "type": "Document",
@@ -594,7 +593,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 2677,
+                  "encodedDataLength": 2682,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -606,7 +605,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.2",
+                  "requestId": "17100.2",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/tinymce.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -615,7 +614,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 169793,
+                  "encodedDataLength": 169779,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -627,7 +626,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.3",
+                  "requestId": "17100.3",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-DHYCz9UE.js",
                   "method": "GET",
                   "type": "Script",
@@ -636,7 +635,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 138850,
+                  "encodedDataLength": 138848,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -648,7 +647,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.4",
+                  "requestId": "17100.4",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-C7CHQg2C.css",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -657,7 +656,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 3932,
+                  "encodedDataLength": 3928,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -669,7 +668,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.8",
+                  "requestId": "17100.8",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/themes/silver/theme.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -678,7 +677,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 142125,
+                  "encodedDataLength": 142415,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -690,7 +689,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.9",
+                  "requestId": "17100.9",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/models/dom/model.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -699,7 +698,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 34107,
+                  "encodedDataLength": 33861,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -711,7 +710,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.10",
+                  "requestId": "17100.10",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -720,7 +719,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 6631,
+                  "encodedDataLength": 6634,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -732,7 +731,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.11",
+                  "requestId": "17100.11",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -741,7 +740,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 2418,
+                  "encodedDataLength": 2411,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -753,7 +752,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.12",
+                  "requestId": "17100.12",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/link/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -762,7 +761,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 7451,
+                  "encodedDataLength": 7445,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -774,7 +773,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.13",
+                  "requestId": "17100.13",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/image/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -783,7 +782,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 7227,
+                  "encodedDataLength": 7229,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -795,7 +794,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.14",
+                  "requestId": "17100.14",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/table/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -804,7 +803,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 14644,
+                  "encodedDataLength": 14642,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -816,7 +815,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.15",
+                  "requestId": "17100.15",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -825,7 +824,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 4813,
+                  "encodedDataLength": 4835,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -837,7 +836,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.16",
+                  "requestId": "17100.16",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -846,7 +845,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 3136,
+                  "encodedDataLength": 3137,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -858,7 +857,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.17",
+                  "requestId": "17100.17",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -867,7 +866,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 1577,
+                  "encodedDataLength": 1589,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -879,7 +878,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.18",
+                  "requestId": "17100.18",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -888,7 +887,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 26310,
+                  "encodedDataLength": 26239,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -900,7 +899,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.20",
+                  "requestId": "17100.20",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -909,7 +908,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 8726,
+                  "encodedDataLength": 8729,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -921,7 +920,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.21",
+                  "requestId": "17100.21",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/content/default/content.min.css?v=8.8.2",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -930,7 +929,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 893,
+                  "encodedDataLength": 905,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -942,7 +941,7 @@
                   }
                 },
                 {
-                  "requestId": "17392.22",
+                  "requestId": "17100.22",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -951,7 +950,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 7593,
+                  "encodedDataLength": 7584,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -966,13 +965,13 @@
             },
             "postMetricDiagnostics": {
               "definition": "Requests first initiated only after the canonical event boundary while completing undo and CodeMirror diagnostics.",
-              "startedAt": 9231.5,
-              "completedAt": 9535.8,
+              "startedAt": 7624.2,
+              "completedAt": 7751.3,
               "requestCount": 1,
               "sourceRichRequestCount": 1,
               "sourceRichRequests": [
                 {
-                  "requestId": "17392.23",
+                  "requestId": "17100.23",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/source-rich-DzzMUDbx.js",
                   "method": "GET",
                   "type": "Script",
@@ -981,7 +980,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 53757,
+                  "encodedDataLength": 53761,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -995,7 +994,7 @@
               ],
               "requests": [
                 {
-                  "requestId": "17392.23",
+                  "requestId": "17100.23",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/source-rich-DzzMUDbx.js",
                   "method": "GET",
                   "type": "Script",
@@ -1004,7 +1003,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 53757,
+                  "encodedDataLength": 53761,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -1020,7 +1019,7 @@
             "tinyCoreRequestCount": 1,
             "tinyCoreRequests": [
               {
-                "requestId": "17392.2",
+                "requestId": "17100.2",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/tinymce.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1029,7 +1028,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 169793,
+                "encodedDataLength": 169779,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1044,7 +1043,7 @@
             "failedRequests": [],
             "requests": [
               {
-                "requestId": "53FD0EA283611E060A6A9A3B2E50CD9C",
+                "requestId": "C03E114651C9FF4D1B7D8850837EF570",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/",
                 "method": "GET",
                 "type": "Document",
@@ -1053,7 +1052,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 2677,
+                "encodedDataLength": 2682,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1065,7 +1064,7 @@
                 }
               },
               {
-                "requestId": "17392.2",
+                "requestId": "17100.2",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/tinymce.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1074,7 +1073,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 169793,
+                "encodedDataLength": 169779,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1086,7 +1085,7 @@
                 }
               },
               {
-                "requestId": "17392.3",
+                "requestId": "17100.3",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-DHYCz9UE.js",
                 "method": "GET",
                 "type": "Script",
@@ -1095,7 +1094,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 138850,
+                "encodedDataLength": 138848,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1107,7 +1106,7 @@
                 }
               },
               {
-                "requestId": "17392.4",
+                "requestId": "17100.4",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-C7CHQg2C.css",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -1116,7 +1115,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 3932,
+                "encodedDataLength": 3928,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1128,7 +1127,7 @@
                 }
               },
               {
-                "requestId": "17392.8",
+                "requestId": "17100.8",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/themes/silver/theme.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1137,7 +1136,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 142125,
+                "encodedDataLength": 142415,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1149,7 +1148,7 @@
                 }
               },
               {
-                "requestId": "17392.9",
+                "requestId": "17100.9",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/models/dom/model.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1158,7 +1157,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 34107,
+                "encodedDataLength": 33861,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1170,7 +1169,7 @@
                 }
               },
               {
-                "requestId": "17392.10",
+                "requestId": "17100.10",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1179,7 +1178,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 6631,
+                "encodedDataLength": 6634,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1191,7 +1190,7 @@
                 }
               },
               {
-                "requestId": "17392.11",
+                "requestId": "17100.11",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1200,7 +1199,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 2418,
+                "encodedDataLength": 2411,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1212,7 +1211,7 @@
                 }
               },
               {
-                "requestId": "17392.12",
+                "requestId": "17100.12",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/link/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1221,7 +1220,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 7451,
+                "encodedDataLength": 7445,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1233,7 +1232,7 @@
                 }
               },
               {
-                "requestId": "17392.13",
+                "requestId": "17100.13",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/image/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1242,7 +1241,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 7227,
+                "encodedDataLength": 7229,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1254,7 +1253,7 @@
                 }
               },
               {
-                "requestId": "17392.14",
+                "requestId": "17100.14",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/table/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1263,7 +1262,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 14644,
+                "encodedDataLength": 14642,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1275,7 +1274,7 @@
                 }
               },
               {
-                "requestId": "17392.15",
+                "requestId": "17100.15",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1284,7 +1283,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 4813,
+                "encodedDataLength": 4835,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1296,7 +1295,7 @@
                 }
               },
               {
-                "requestId": "17392.16",
+                "requestId": "17100.16",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1305,7 +1304,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 3136,
+                "encodedDataLength": 3137,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1317,7 +1316,7 @@
                 }
               },
               {
-                "requestId": "17392.17",
+                "requestId": "17100.17",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1326,7 +1325,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 1577,
+                "encodedDataLength": 1589,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1338,7 +1337,7 @@
                 }
               },
               {
-                "requestId": "17392.18",
+                "requestId": "17100.18",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -1347,7 +1346,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 26310,
+                "encodedDataLength": 26239,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1359,7 +1358,7 @@
                 }
               },
               {
-                "requestId": "17392.20",
+                "requestId": "17100.20",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -1368,7 +1367,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 8726,
+                "encodedDataLength": 8729,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1380,7 +1379,7 @@
                 }
               },
               {
-                "requestId": "17392.21",
+                "requestId": "17100.21",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/content/default/content.min.css?v=8.8.2",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -1389,7 +1388,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 893,
+                "encodedDataLength": 905,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1401,7 +1400,7 @@
                 }
               },
               {
-                "requestId": "17392.22",
+                "requestId": "17100.22",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -1410,7 +1409,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 7593,
+                "encodedDataLength": 7584,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1422,7 +1421,7 @@
                 }
               },
               {
-                "requestId": "17392.23",
+                "requestId": "17100.23",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/source-rich-DzzMUDbx.js",
                 "method": "GET",
                 "type": "Script",
@@ -1431,7 +1430,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 53757,
+                "encodedDataLength": 53761,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -1492,7 +1491,7 @@
         {
           "schemaVersion": 2,
           "reportType": "E5 deployed startup timing raw run",
-          "capturedAt": "2026-08-20T20:02:42.854Z",
+          "capturedAt": "2026-08-21T13:09:21.126Z",
           "label": "before",
           "revision": "869ce7fc2f8823feb71ce1d674f46aeae7b548ad",
           "requestedUrl": "https://5be873d1.phphtmledit-editor.pages.dev/",
@@ -1530,28 +1529,28 @@
           "canonicalHar": false,
           "canonicalByteBudgetInput": false,
           "metrics": {
-            "navigationToSkeletonPaintMs": 3104,
-            "observedFirstContentfulPaintMs": 3104,
-            "skeletonPaintToEditorReadyMs": 4798,
-            "navigationToEditorReadyMs": 7902
+            "navigationToSkeletonPaintMs": 3020,
+            "observedFirstContentfulPaintMs": 3020,
+            "skeletonPaintToEditorReadyMs": 5198.3,
+            "navigationToEditorReadyMs": 8218.3
           },
           "postMetricDiagnostics": {
-            "codeMirrorDiagnosticStartedAt": 8234.2,
-            "codeMirrorDiagnosticAcceptedAt": 8342.8,
-            "codeMirrorDiagnosticCompletedAt": 8498.1,
-            "navigationToCodeMirrorDiagnosticInputMs": 8342.8,
-            "editorReadyToCodeMirrorDiagnosticInputMs": 440.8,
-            "codeMirrorDiagnosticSequenceMs": 263.9,
-            "editorReadyToAllProofsCompleteMs": 596.1
+            "codeMirrorDiagnosticStartedAt": 8613,
+            "codeMirrorDiagnosticAcceptedAt": 8744.3,
+            "codeMirrorDiagnosticCompletedAt": 8945.4,
+            "navigationToCodeMirrorDiagnosticInputMs": 8744.3,
+            "editorReadyToCodeMirrorDiagnosticInputMs": 526,
+            "codeMirrorDiagnosticSequenceMs": 332.4,
+            "editorReadyToAllProofsCompleteMs": 727.1
           },
           "paintProof": {
-            "firstNonzeroVisibleAt": 2801.4,
-            "firstHiddenAfterVisibleAt": 7618.5,
-            "firstContentfulPaintAt": 3104,
-            "firstContentfulPaintCallbackAt": 3124.2,
+            "firstNonzeroVisibleAt": 2969.9,
+            "firstHiddenAfterVisibleAt": 7912.4,
+            "firstContentfulPaintAt": 3020,
+            "firstContentfulPaintCallbackAt": 3196.5,
             "skeletonVisibleAtFcp": true,
             "stateAtFcpCallback": {
-              "at": 3124,
+              "at": 3196.5,
               "reason": "paint:first-contentful-paint",
               "appBusy": "true",
               "skeletonPresent": true,
@@ -1571,7 +1570,7 @@
               "blocksHitTesting": true
             },
             "lastStateAtOrBeforeFcp": {
-              "at": 2801.4,
+              "at": 2969.9,
               "reason": "skeleton-discovered",
               "appBusy": "true",
               "skeletonPresent": true,
@@ -1592,7 +1591,7 @@
               "signature": "{\"appBusy\":\"true\",\"skeletonPresent\":true,\"skeletonHidden\":false,\"display\":\"block\",\"visibility\":\"visible\",\"opacity\":\"1\",\"pointerEvents\":\"auto\",\"geometry\":{\"x\":35,\"y\":171.484,\"width\":1355,\"height\":558},\"visible\":true,\"blocksHitTesting\":true}"
             },
             "firstStateAfterFcp": {
-              "at": 3123.5,
+              "at": 3196.1,
               "reason": "paint:first-paint",
               "appBusy": "true",
               "skeletonPresent": true,
@@ -1615,30 +1614,30 @@
             "paintEntries": [
               {
                 "name": "first-paint",
-                "startTime": 3104,
+                "startTime": 3020,
                 "duration": 0
               },
               {
                 "name": "first-contentful-paint",
-                "startTime": 3104,
+                "startTime": 3020,
                 "duration": 0
               }
             ],
             "observerPaintEntries": [
               {
                 "name": "first-paint",
-                "startTime": 3104,
+                "startTime": 3020,
                 "duration": 0
               },
               {
                 "name": "first-contentful-paint",
-                "startTime": 3104,
+                "startTime": 3020,
                 "duration": 0
               }
             ],
             "stateTimeline": [
               {
-                "at": 734.1,
+                "at": 780.6,
                 "reason": "installed",
                 "appBusy": null,
                 "skeletonPresent": false,
@@ -1653,7 +1652,7 @@
                 "blocksHitTesting": false
               },
               {
-                "at": 2801.4,
+                "at": 2969.9,
                 "reason": "skeleton-discovered",
                 "appBusy": "true",
                 "skeletonPresent": true,
@@ -1673,7 +1672,7 @@
                 "blocksHitTesting": true
               },
               {
-                "at": 3123.5,
+                "at": 3196.1,
                 "reason": "paint:first-paint",
                 "appBusy": "true",
                 "skeletonPresent": true,
@@ -1693,7 +1692,7 @@
                 "blocksHitTesting": true
               },
               {
-                "at": 3124,
+                "at": 3196.5,
                 "reason": "paint:first-contentful-paint",
                 "appBusy": "true",
                 "skeletonPresent": true,
@@ -1713,7 +1712,7 @@
                 "blocksHitTesting": true
               },
               {
-                "at": 7618.5,
+                "at": 7912.4,
                 "reason": "state-mutation",
                 "appBusy": "false",
                 "skeletonPresent": true,
@@ -1737,14 +1736,14 @@
           },
           "readinessProof": {
             "definition": "Canonical editorReadyAt is the trusted TinyMCE input event accepted after a current passive user-accessible state. readyOpportunityAt is a precursor: max(uiExposedAt, editorReadyMarkAt) for current builds, or uiExposedAt only for exact legacy before revision 869ce7 when the product mark is absent.",
-            "editorReadyAt": 7902,
-            "uiExposedAt": 7627.1,
+            "editorReadyAt": 8218.3,
+            "uiExposedAt": 7920.1,
             "editorReadyMarkAt": null,
-            "readyOpportunityAt": 7627.1,
+            "readyOpportunityAt": 7920.1,
             "readyOpportunityMode": "legacy-ui-exposed-without-product-mark",
             "legacyReadyWithoutMarkAllowed": true,
             "readyOpportunityState": {
-              "inspectedAt": 7627.1,
+              "inspectedAt": 7920.1,
               "reason": "state-mutation",
               "editorReadyMarkAt": null,
               "appBusy": "false",
@@ -1791,42 +1790,42 @@
                 "height": 517
               },
               "fatalErrorObserved": null,
-              "uiExposedAt": 7627.1,
-              "readyOpportunityAt": 7627.1,
+              "uiExposedAt": 7920.1,
+              "readyOpportunityAt": 7920.1,
               "mode": "legacy-ui-exposed-without-product-mark"
             },
             "metricBoundary": {
-              "verifiedInputAcceptedAt": 7902,
-              "capturedAt": 8047.8,
-              "cdpEventCount": 499,
-              "readyOpportunityAt": 7627.1,
-              "editorReadyAt": 7902
+              "verifiedInputAcceptedAt": 8218.3,
+              "capturedAt": 8375.4,
+              "cdpEventCount": 490,
+              "readyOpportunityAt": 7920.1,
+              "editorReadyAt": 8218.3
             },
             "probeDiagnostics": {
-              "uiExposedAt": 7627.1,
+              "uiExposedAt": 7920.1,
               "editorReadyMarkAt": null,
-              "readyOpportunityAt": 7627.1,
+              "readyOpportunityAt": 7920.1,
               "readyOpportunityMode": "legacy-ui-exposed-without-product-mark",
               "legacyReadyWithoutMarkAllowed": true,
-              "passiveReadySignalAt": 7627.6,
-              "inputProbeArmedAt": 7792.4,
-              "verifiedInputAcceptedAt": 7902,
-              "readyOpportunityToProbeArmMs": 165.3,
-              "probeArmToTrustedInputMs": 109.6,
-              "readyOpportunityToVerifiedInputMs": 274.9,
+              "passiveReadySignalAt": 7920.6,
+              "inputProbeArmedAt": 8100.8,
+              "verifiedInputAcceptedAt": 8218.3,
+              "readyOpportunityToProbeArmMs": 180.7,
+              "probeArmToTrustedInputMs": 117.5,
+              "readyOpportunityToVerifiedInputMs": 298.2,
               "note": "readyOpportunityAt is a passive precursor. editorReadyAt is the subsequent trusted TinyMCE input event; readyOpportunityToVerifiedInputMs publishes the harness dispatch and reaction interval explicitly."
             },
             "canonicalVisualEditor": {
               "input": {
                 "kind": "tinymce",
-                "armedAt": 7792.4,
-                "acceptedAt": 7902,
-                "acceptedConfirmedAt": 8011.2,
-                "rolledBackAt": 8223,
+                "armedAt": 8100.8,
+                "acceptedAt": 8218.3,
+                "acceptedConfirmedAt": 8340.3,
+                "rolledBackAt": 8601.4,
                 "baselineTextLength": 0,
                 "baselineHtmlLength": 30,
                 "canonicalArmState": {
-                  "checkedAt": 7788.3,
+                  "checkedAt": 8097.4,
                   "appBusy": "false",
                   "skeletonHidden": true,
                   "skeletonVisible": false,
@@ -1839,9 +1838,9 @@
                 },
                 "inputEvents": [
                   {
-                    "at": 7902,
+                    "at": 8218.3,
                     "inputType": "insertText",
-                    "data": "PHE_READY_BEFORE_2_mt1y62ln_TINY",
+                    "data": "PHE_READY_BEFORE_2_mt2yubvi_TINY",
                     "trusted": true
                   }
                 ]
@@ -1856,7 +1855,7 @@
                     "height": 22.390625
                   },
                   "canonicalArmState": {
-                    "checkedAt": 7788.3,
+                    "checkedAt": 8097.4,
                     "appBusy": "false",
                     "skeletonHidden": true,
                     "skeletonVisible": false,
@@ -1873,14 +1872,14 @@
                 "accepted": {
                   "present": true,
                   "accepted": true,
-                  "acceptedAt": 7902,
-                  "acceptedConfirmedAt": 8011.2,
+                  "acceptedAt": 8218.3,
+                  "acceptedConfirmedAt": 8340.3,
                   "currentTextLength": 32,
                   "inputEvents": [
                     {
-                      "at": 7902,
+                      "at": 8218.3,
                       "inputType": "insertText",
-                      "data": "PHE_READY_BEFORE_2_mt1y62ln_TINY",
+                      "data": "PHE_READY_BEFORE_2_mt2yubvi_TINY",
                       "trusted": true
                     }
                   ]
@@ -1888,16 +1887,16 @@
                 "rollback": {
                   "present": true,
                   "rolledBack": true,
-                  "rolledBackAt": 8223,
+                  "rolledBackAt": 8601.4,
                   "sentinelAbsent": true,
                   "baselineTextRestored": true,
                   "currentTextLength": 0,
                   "baselineHtmlRestored": true,
                   "inputEvents": [
                     {
-                      "at": 7902,
+                      "at": 8218.3,
                       "inputType": "insertText",
-                      "data": "PHE_READY_BEFORE_2_mt1y62ln_TINY",
+                      "data": "PHE_READY_BEFORE_2_mt2yubvi_TINY",
                       "trusted": true
                     }
                   ]
@@ -1906,28 +1905,28 @@
             },
             "postMetricDiagnostics": {
               "definition": "Undo integrity for TinyMCE and trusted CodeMirror input plus Ctrl+Z restoration are mandatory health proofs performed after the canonical timestamp. Focusing CodeMirror may load source-rich and cannot move editorReadyAt.",
-              "codeMirrorDiagnosticStartedAt": 8234.2,
-              "codeMirrorDiagnosticAcceptedAt": 8342.8,
-              "codeMirrorDiagnosticCompletedAt": 8498.1,
-              "navigationToCodeMirrorDiagnosticInputMs": 8342.8,
-              "editorReadyToCodeMirrorDiagnosticInputMs": 440.8,
-              "codeMirrorDiagnosticSequenceMs": 263.9,
-              "editorReadyToAllProofsCompleteMs": 596.1,
+              "codeMirrorDiagnosticStartedAt": 8613,
+              "codeMirrorDiagnosticAcceptedAt": 8744.3,
+              "codeMirrorDiagnosticCompletedAt": 8945.4,
+              "navigationToCodeMirrorDiagnosticInputMs": 8744.3,
+              "editorReadyToCodeMirrorDiagnosticInputMs": 526,
+              "codeMirrorDiagnosticSequenceMs": 332.4,
+              "editorReadyToAllProofsCompleteMs": 727.1,
               "codeMirror": {
                 "input": {
                   "kind": "codemirror",
-                  "armedAt": 8241.5,
-                  "acceptedAt": 8342.8,
-                  "acceptedConfirmedAt": 8467.9,
-                  "rolledBackAt": 8495.1,
+                  "armedAt": 8658.9,
+                  "acceptedAt": 8744.3,
+                  "acceptedConfirmedAt": 8894.5,
+                  "rolledBackAt": 8942.7,
                   "baselineTextLength": 0,
                   "baselineHtmlLength": 31,
                   "canonicalArmState": null,
                   "inputEvents": [
                     {
-                      "at": 8342.8,
+                      "at": 8744.3,
                       "inputType": "insertText",
-                      "data": "PHE_READY_BEFORE_2_mt1y62ln_CM",
+                      "data": "PHE_READY_BEFORE_2_mt2yubvi_CM",
                       "trusted": true
                     }
                   ]
@@ -1948,14 +1947,14 @@
                   "accepted": {
                     "present": true,
                     "accepted": true,
-                    "acceptedAt": 8342.8,
-                    "acceptedConfirmedAt": 8467.9,
+                    "acceptedAt": 8744.3,
+                    "acceptedConfirmedAt": 8894.5,
                     "currentTextLength": 30,
                     "inputEvents": [
                       {
-                        "at": 8342.8,
+                        "at": 8744.3,
                         "inputType": "insertText",
-                        "data": "PHE_READY_BEFORE_2_mt1y62ln_CM",
+                        "data": "PHE_READY_BEFORE_2_mt2yubvi_CM",
                         "trusted": true
                       }
                     ]
@@ -1963,16 +1962,16 @@
                   "rollback": {
                     "present": true,
                     "rolledBack": true,
-                    "rolledBackAt": 8495.1,
+                    "rolledBackAt": 8942.7,
                     "sentinelAbsent": true,
                     "baselineTextRestored": true,
                     "currentTextLength": 0,
                     "baselineHtmlRestored": true,
                     "inputEvents": [
                       {
-                        "at": 8342.8,
+                        "at": 8744.3,
                         "inputType": "insertText",
-                        "data": "PHE_READY_BEFORE_2_mt1y62ln_CM",
+                        "data": "PHE_READY_BEFORE_2_mt2yubvi_CM",
                         "trusted": true
                       }
                     ]
@@ -1982,7 +1981,7 @@
             }
           },
           "document": {
-            "requestId": "257991CF9D51AB513F9522905D5CCF7A",
+            "requestId": "1A04FA291F0E9F258B8F84810B9D466F",
             "finalUrl": "https://5be873d1.phphtmledit-editor.pages.dev/",
             "status": 200,
             "mimeType": "text/html",
@@ -2015,16 +2014,16 @@
             "requestBudgetReference": 25,
             "canonicalReadinessWindow": {
               "definition": "Requests initiated from navigation through canonical trusted-input acceptance. Response facts are completed from the final session inventory.",
-              "editorReadyAt": 7902,
-              "readyOpportunityAt": 7627.1,
-              "verifiedInputAcceptedAt": 7902,
-              "boundaryCapturedAt": 8047.8,
+              "editorReadyAt": 8218.3,
+              "readyOpportunityAt": 7920.1,
+              "verifiedInputAcceptedAt": 8218.3,
+              "boundaryCapturedAt": 8375.4,
               "requestCount": 18,
               "sourceRichRequestCount": 0,
               "sourceRichRequests": [],
               "requests": [
                 {
-                  "requestId": "257991CF9D51AB513F9522905D5CCF7A",
+                  "requestId": "1A04FA291F0E9F258B8F84810B9D466F",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/",
                   "method": "GET",
                   "type": "Document",
@@ -2033,7 +2032,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 2678,
+                  "encodedDataLength": 2679,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2045,7 +2044,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.2",
+                  "requestId": "9488.2",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/tinymce.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2054,7 +2053,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 169795,
+                  "encodedDataLength": 169794,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2066,7 +2065,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.3",
+                  "requestId": "9488.3",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-DHYCz9UE.js",
                   "method": "GET",
                   "type": "Script",
@@ -2075,7 +2074,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 138849,
+                  "encodedDataLength": 138845,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2087,7 +2086,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.4",
+                  "requestId": "9488.4",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-C7CHQg2C.css",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -2096,7 +2095,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 3932,
+                  "encodedDataLength": 3930,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2108,7 +2107,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.8",
+                  "requestId": "9488.8",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/themes/silver/theme.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2117,7 +2116,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 142222,
+                  "encodedDataLength": 142106,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2129,7 +2128,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.9",
+                  "requestId": "9488.9",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/models/dom/model.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2138,7 +2137,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 33818,
+                  "encodedDataLength": 33859,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2150,7 +2149,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.10",
+                  "requestId": "9488.10",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2159,7 +2158,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 6614,
+                  "encodedDataLength": 6637,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2171,7 +2170,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.11",
+                  "requestId": "9488.11",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2180,7 +2179,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 2435,
+                  "encodedDataLength": 2417,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2192,7 +2191,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.12",
+                  "requestId": "9488.12",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/link/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2201,7 +2200,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 7448,
+                  "encodedDataLength": 7452,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2213,7 +2212,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.13",
+                  "requestId": "9488.13",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/image/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2222,7 +2221,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 7417,
+                  "encodedDataLength": 7422,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2234,7 +2233,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.14",
+                  "requestId": "9488.14",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/table/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2243,7 +2242,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 14666,
+                  "encodedDataLength": 14661,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2255,7 +2254,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.15",
+                  "requestId": "9488.15",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2264,7 +2263,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 4812,
+                  "encodedDataLength": 4820,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2276,7 +2275,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.16",
+                  "requestId": "9488.16",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2285,7 +2284,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 3158,
+                  "encodedDataLength": 3154,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2297,7 +2296,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.17",
+                  "requestId": "9488.17",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2306,7 +2305,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 1564,
+                  "encodedDataLength": 1562,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2318,7 +2317,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.18",
+                  "requestId": "9488.18",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -2327,7 +2326,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 26301,
+                  "encodedDataLength": 26236,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2339,7 +2338,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.20",
+                  "requestId": "9488.20",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -2348,7 +2347,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 8539,
+                  "encodedDataLength": 8530,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2360,7 +2359,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.21",
+                  "requestId": "9488.21",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/content/default/content.min.css?v=8.8.2",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -2381,7 +2380,7 @@
                   }
                 },
                 {
-                  "requestId": "18836.22",
+                  "requestId": "9488.22",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -2390,7 +2389,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 7608,
+                  "encodedDataLength": 7623,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2405,13 +2404,13 @@
             },
             "postMetricDiagnostics": {
               "definition": "Requests first initiated only after the canonical event boundary while completing undo and CodeMirror diagnostics.",
-              "startedAt": 8234.2,
-              "completedAt": 8498.1,
+              "startedAt": 8613,
+              "completedAt": 8945.4,
               "requestCount": 1,
               "sourceRichRequestCount": 1,
               "sourceRichRequests": [
                 {
-                  "requestId": "18836.23",
+                  "requestId": "9488.23",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/source-rich-DzzMUDbx.js",
                   "method": "GET",
                   "type": "Script",
@@ -2420,7 +2419,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 53751,
+                  "encodedDataLength": 53757,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2434,7 +2433,7 @@
               ],
               "requests": [
                 {
-                  "requestId": "18836.23",
+                  "requestId": "9488.23",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/source-rich-DzzMUDbx.js",
                   "method": "GET",
                   "type": "Script",
@@ -2443,7 +2442,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 53751,
+                  "encodedDataLength": 53757,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -2459,7 +2458,7 @@
             "tinyCoreRequestCount": 1,
             "tinyCoreRequests": [
               {
-                "requestId": "18836.2",
+                "requestId": "9488.2",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/tinymce.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2468,7 +2467,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 169795,
+                "encodedDataLength": 169794,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2483,7 +2482,7 @@
             "failedRequests": [],
             "requests": [
               {
-                "requestId": "257991CF9D51AB513F9522905D5CCF7A",
+                "requestId": "1A04FA291F0E9F258B8F84810B9D466F",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/",
                 "method": "GET",
                 "type": "Document",
@@ -2492,7 +2491,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 2678,
+                "encodedDataLength": 2679,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2504,7 +2503,7 @@
                 }
               },
               {
-                "requestId": "18836.2",
+                "requestId": "9488.2",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/tinymce.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2513,7 +2512,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 169795,
+                "encodedDataLength": 169794,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2525,7 +2524,7 @@
                 }
               },
               {
-                "requestId": "18836.3",
+                "requestId": "9488.3",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-DHYCz9UE.js",
                 "method": "GET",
                 "type": "Script",
@@ -2534,7 +2533,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 138849,
+                "encodedDataLength": 138845,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2546,7 +2545,7 @@
                 }
               },
               {
-                "requestId": "18836.4",
+                "requestId": "9488.4",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-C7CHQg2C.css",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -2555,7 +2554,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 3932,
+                "encodedDataLength": 3930,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2567,7 +2566,7 @@
                 }
               },
               {
-                "requestId": "18836.8",
+                "requestId": "9488.8",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/themes/silver/theme.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2576,7 +2575,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 142222,
+                "encodedDataLength": 142106,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2588,7 +2587,7 @@
                 }
               },
               {
-                "requestId": "18836.9",
+                "requestId": "9488.9",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/models/dom/model.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2597,7 +2596,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 33818,
+                "encodedDataLength": 33859,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2609,7 +2608,7 @@
                 }
               },
               {
-                "requestId": "18836.10",
+                "requestId": "9488.10",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2618,7 +2617,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 6614,
+                "encodedDataLength": 6637,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2630,7 +2629,7 @@
                 }
               },
               {
-                "requestId": "18836.11",
+                "requestId": "9488.11",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2639,7 +2638,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 2435,
+                "encodedDataLength": 2417,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2651,7 +2650,7 @@
                 }
               },
               {
-                "requestId": "18836.12",
+                "requestId": "9488.12",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/link/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2660,7 +2659,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 7448,
+                "encodedDataLength": 7452,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2672,7 +2671,7 @@
                 }
               },
               {
-                "requestId": "18836.13",
+                "requestId": "9488.13",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/image/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2681,7 +2680,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 7417,
+                "encodedDataLength": 7422,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2693,7 +2692,7 @@
                 }
               },
               {
-                "requestId": "18836.14",
+                "requestId": "9488.14",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/table/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2702,7 +2701,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 14666,
+                "encodedDataLength": 14661,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2714,7 +2713,7 @@
                 }
               },
               {
-                "requestId": "18836.15",
+                "requestId": "9488.15",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2723,7 +2722,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 4812,
+                "encodedDataLength": 4820,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2735,7 +2734,7 @@
                 }
               },
               {
-                "requestId": "18836.16",
+                "requestId": "9488.16",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2744,7 +2743,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 3158,
+                "encodedDataLength": 3154,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2756,7 +2755,7 @@
                 }
               },
               {
-                "requestId": "18836.17",
+                "requestId": "9488.17",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2765,7 +2764,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 1564,
+                "encodedDataLength": 1562,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2777,7 +2776,7 @@
                 }
               },
               {
-                "requestId": "18836.18",
+                "requestId": "9488.18",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -2786,7 +2785,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 26301,
+                "encodedDataLength": 26236,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2798,7 +2797,7 @@
                 }
               },
               {
-                "requestId": "18836.20",
+                "requestId": "9488.20",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -2807,7 +2806,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 8539,
+                "encodedDataLength": 8530,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2819,7 +2818,7 @@
                 }
               },
               {
-                "requestId": "18836.21",
+                "requestId": "9488.21",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/content/default/content.min.css?v=8.8.2",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -2840,7 +2839,7 @@
                 }
               },
               {
-                "requestId": "18836.22",
+                "requestId": "9488.22",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -2849,7 +2848,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 7608,
+                "encodedDataLength": 7623,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2861,7 +2860,7 @@
                 }
               },
               {
-                "requestId": "18836.23",
+                "requestId": "9488.23",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/source-rich-DzzMUDbx.js",
                 "method": "GET",
                 "type": "Script",
@@ -2870,7 +2869,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 53751,
+                "encodedDataLength": 53757,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -2931,7 +2930,7 @@
         {
           "schemaVersion": 2,
           "reportType": "E5 deployed startup timing raw run",
-          "capturedAt": "2026-08-20T20:02:53.539Z",
+          "capturedAt": "2026-08-21T13:09:30.308Z",
           "label": "before",
           "revision": "869ce7fc2f8823feb71ce1d674f46aeae7b548ad",
           "requestedUrl": "https://5be873d1.phphtmledit-editor.pages.dev/",
@@ -2969,28 +2968,28 @@
           "canonicalHar": false,
           "canonicalByteBudgetInput": false,
           "metrics": {
-            "navigationToSkeletonPaintMs": null,
-            "observedFirstContentfulPaintMs": 3024,
-            "skeletonPaintToEditorReadyMs": null,
-            "navigationToEditorReadyMs": 8529.3
+            "navigationToSkeletonPaintMs": 2628,
+            "observedFirstContentfulPaintMs": 2628,
+            "skeletonPaintToEditorReadyMs": 4532.5,
+            "navigationToEditorReadyMs": 7160.5
           },
           "postMetricDiagnostics": {
-            "codeMirrorDiagnosticStartedAt": 8862.3,
-            "codeMirrorDiagnosticAcceptedAt": 9026.1,
-            "codeMirrorDiagnosticCompletedAt": 9228.6,
-            "navigationToCodeMirrorDiagnosticInputMs": 9026.1,
-            "editorReadyToCodeMirrorDiagnosticInputMs": 496.8,
-            "codeMirrorDiagnosticSequenceMs": 366.3,
-            "editorReadyToAllProofsCompleteMs": 699.3
+            "codeMirrorDiagnosticStartedAt": 7497.2,
+            "codeMirrorDiagnosticAcceptedAt": 7579.5,
+            "codeMirrorDiagnosticCompletedAt": 7784.9,
+            "navigationToCodeMirrorDiagnosticInputMs": 7579.5,
+            "editorReadyToCodeMirrorDiagnosticInputMs": 419,
+            "codeMirrorDiagnosticSequenceMs": 287.7,
+            "editorReadyToAllProofsCompleteMs": 624.4
           },
           "paintProof": {
-            "firstNonzeroVisibleAt": 3286.6,
-            "firstHiddenAfterVisibleAt": 8233.2,
-            "firstContentfulPaintAt": 3024,
-            "firstContentfulPaintCallbackAt": 3444.9,
-            "skeletonVisibleAtFcp": false,
+            "firstNonzeroVisibleAt": 2585.6,
+            "firstHiddenAfterVisibleAt": 6899.6,
+            "firstContentfulPaintAt": 2628,
+            "firstContentfulPaintCallbackAt": 2931.1,
+            "skeletonVisibleAtFcp": true,
             "stateAtFcpCallback": {
-              "at": 3444.9,
+              "at": 2930.8,
               "reason": "paint:first-contentful-paint",
               "appBusy": "true",
               "skeletonPresent": true,
@@ -3010,24 +3009,29 @@
               "blocksHitTesting": true
             },
             "lastStateAtOrBeforeFcp": {
-              "at": 842.1,
-              "reason": "installed",
-              "appBusy": null,
-              "skeletonPresent": false,
-              "skeletonHidden": null,
-              "display": null,
-              "visibility": null,
-              "opacity": null,
-              "pointerEvents": null,
-              "geometry": null,
-              "nonzero": false,
-              "visible": false,
-              "blocksHitTesting": false,
-              "signature": "{\"appBusy\":null,\"skeletonPresent\":false,\"skeletonHidden\":null,\"display\":null,\"visibility\":null,\"opacity\":null,\"pointerEvents\":null,\"geometry\":null,\"visible\":false,\"blocksHitTesting\":false}"
+              "at": 2585.6,
+              "reason": "skeleton-discovered",
+              "appBusy": "true",
+              "skeletonPresent": true,
+              "skeletonHidden": false,
+              "display": "block",
+              "visibility": "visible",
+              "opacity": "1",
+              "pointerEvents": "auto",
+              "geometry": {
+                "x": 35,
+                "y": 171.484,
+                "width": 1355,
+                "height": 558
+              },
+              "nonzero": true,
+              "visible": true,
+              "blocksHitTesting": true,
+              "signature": "{\"appBusy\":\"true\",\"skeletonPresent\":true,\"skeletonHidden\":false,\"display\":\"block\",\"visibility\":\"visible\",\"opacity\":\"1\",\"pointerEvents\":\"auto\",\"geometry\":{\"x\":35,\"y\":171.484,\"width\":1355,\"height\":558},\"visible\":true,\"blocksHitTesting\":true}"
             },
             "firstStateAfterFcp": {
-              "at": 3286.6,
-              "reason": "skeleton-discovered",
+              "at": 2929.5,
+              "reason": "paint:first-paint",
               "appBusy": "true",
               "skeletonPresent": true,
               "skeletonHidden": false,
@@ -3049,30 +3053,30 @@
             "paintEntries": [
               {
                 "name": "first-paint",
-                "startTime": 3024,
+                "startTime": 2628,
                 "duration": 0
               },
               {
                 "name": "first-contentful-paint",
-                "startTime": 3024,
+                "startTime": 2628,
                 "duration": 0
               }
             ],
             "observerPaintEntries": [
               {
                 "name": "first-paint",
-                "startTime": 3024,
+                "startTime": 2628,
                 "duration": 0
               },
               {
                 "name": "first-contentful-paint",
-                "startTime": 3024,
+                "startTime": 2628,
                 "duration": 0
               }
             ],
             "stateTimeline": [
               {
-                "at": 842.1,
+                "at": 318.7,
                 "reason": "installed",
                 "appBusy": null,
                 "skeletonPresent": false,
@@ -3087,7 +3091,7 @@
                 "blocksHitTesting": false
               },
               {
-                "at": 3286.6,
+                "at": 2585.6,
                 "reason": "skeleton-discovered",
                 "appBusy": "true",
                 "skeletonPresent": true,
@@ -3107,7 +3111,7 @@
                 "blocksHitTesting": true
               },
               {
-                "at": 3444.8,
+                "at": 2929.5,
                 "reason": "paint:first-paint",
                 "appBusy": "true",
                 "skeletonPresent": true,
@@ -3127,7 +3131,7 @@
                 "blocksHitTesting": true
               },
               {
-                "at": 3444.9,
+                "at": 2930.8,
                 "reason": "paint:first-contentful-paint",
                 "appBusy": "true",
                 "skeletonPresent": true,
@@ -3147,7 +3151,7 @@
                 "blocksHitTesting": true
               },
               {
-                "at": 8233.2,
+                "at": 6899.6,
                 "reason": "state-mutation",
                 "appBusy": "false",
                 "skeletonPresent": true,
@@ -3171,14 +3175,14 @@
           },
           "readinessProof": {
             "definition": "Canonical editorReadyAt is the trusted TinyMCE input event accepted after a current passive user-accessible state. readyOpportunityAt is a precursor: max(uiExposedAt, editorReadyMarkAt) for current builds, or uiExposedAt only for exact legacy before revision 869ce7 when the product mark is absent.",
-            "editorReadyAt": 8529.3,
-            "uiExposedAt": 8240.7,
+            "editorReadyAt": 7160.5,
+            "uiExposedAt": 6907.2,
             "editorReadyMarkAt": null,
-            "readyOpportunityAt": 8240.7,
+            "readyOpportunityAt": 6907.2,
             "readyOpportunityMode": "legacy-ui-exposed-without-product-mark",
             "legacyReadyWithoutMarkAllowed": true,
             "readyOpportunityState": {
-              "inspectedAt": 8240.7,
+              "inspectedAt": 6907.2,
               "reason": "state-mutation",
               "editorReadyMarkAt": null,
               "appBusy": "false",
@@ -3225,42 +3229,42 @@
                 "height": 517
               },
               "fatalErrorObserved": null,
-              "uiExposedAt": 8240.7,
-              "readyOpportunityAt": 8240.7,
+              "uiExposedAt": 6907.2,
+              "readyOpportunityAt": 6907.2,
               "mode": "legacy-ui-exposed-without-product-mark"
             },
             "metricBoundary": {
-              "verifiedInputAcceptedAt": 8529.3,
-              "capturedAt": 8668.3,
-              "cdpEventCount": 493,
-              "readyOpportunityAt": 8240.7,
-              "editorReadyAt": 8529.3
+              "verifiedInputAcceptedAt": 7160.5,
+              "capturedAt": 7300,
+              "cdpEventCount": 506,
+              "readyOpportunityAt": 6907.2,
+              "editorReadyAt": 7160.5
             },
             "probeDiagnostics": {
-              "uiExposedAt": 8240.7,
+              "uiExposedAt": 6907.2,
               "editorReadyMarkAt": null,
-              "readyOpportunityAt": 8240.7,
+              "readyOpportunityAt": 6907.2,
               "readyOpportunityMode": "legacy-ui-exposed-without-product-mark",
               "legacyReadyWithoutMarkAllowed": true,
-              "passiveReadySignalAt": 8241,
-              "inputProbeArmedAt": 8404.8,
-              "verifiedInputAcceptedAt": 8529.3,
-              "readyOpportunityToProbeArmMs": 164.1,
-              "probeArmToTrustedInputMs": 124.5,
-              "readyOpportunityToVerifiedInputMs": 288.6,
+              "passiveReadySignalAt": 6907.8,
+              "inputProbeArmedAt": 7056.2,
+              "verifiedInputAcceptedAt": 7160.5,
+              "readyOpportunityToProbeArmMs": 149,
+              "probeArmToTrustedInputMs": 104.3,
+              "readyOpportunityToVerifiedInputMs": 253.3,
               "note": "readyOpportunityAt is a passive precursor. editorReadyAt is the subsequent trusted TinyMCE input event; readyOpportunityToVerifiedInputMs publishes the harness dispatch and reaction interval explicitly."
             },
             "canonicalVisualEditor": {
               "input": {
                 "kind": "tinymce",
-                "armedAt": 8404.8,
-                "acceptedAt": 8529.3,
-                "acceptedConfirmedAt": 8637.7,
-                "rolledBackAt": 8852.1,
+                "armedAt": 7056.2,
+                "acceptedAt": 7160.5,
+                "acceptedConfirmedAt": 7264.8,
+                "rolledBackAt": 7484.2,
                 "baselineTextLength": 0,
                 "baselineHtmlLength": 30,
                 "canonicalArmState": {
-                  "checkedAt": 8400.9,
+                  "checkedAt": 7052.4,
                   "appBusy": "false",
                   "skeletonHidden": true,
                   "skeletonVisible": false,
@@ -3273,9 +3277,9 @@
                 },
                 "inputEvents": [
                   {
-                    "at": 8529.3,
+                    "at": 7160.5,
                     "inputType": "insertText",
-                    "data": "PHE_READY_BEFORE_3_mt1y6af6_TINY",
+                    "data": "PHE_READY_BEFORE_3_mt2yuji8_TINY",
                     "trusted": true
                   }
                 ]
@@ -3290,7 +3294,7 @@
                     "height": 22.390625
                   },
                   "canonicalArmState": {
-                    "checkedAt": 8400.9,
+                    "checkedAt": 7052.4,
                     "appBusy": "false",
                     "skeletonHidden": true,
                     "skeletonVisible": false,
@@ -3307,14 +3311,14 @@
                 "accepted": {
                   "present": true,
                   "accepted": true,
-                  "acceptedAt": 8529.3,
-                  "acceptedConfirmedAt": 8637.7,
+                  "acceptedAt": 7160.5,
+                  "acceptedConfirmedAt": 7264.8,
                   "currentTextLength": 32,
                   "inputEvents": [
                     {
-                      "at": 8529.3,
+                      "at": 7160.5,
                       "inputType": "insertText",
-                      "data": "PHE_READY_BEFORE_3_mt1y6af6_TINY",
+                      "data": "PHE_READY_BEFORE_3_mt2yuji8_TINY",
                       "trusted": true
                     }
                   ]
@@ -3322,16 +3326,16 @@
                 "rollback": {
                   "present": true,
                   "rolledBack": true,
-                  "rolledBackAt": 8852.1,
+                  "rolledBackAt": 7484.2,
                   "sentinelAbsent": true,
                   "baselineTextRestored": true,
                   "currentTextLength": 0,
                   "baselineHtmlRestored": true,
                   "inputEvents": [
                     {
-                      "at": 8529.3,
+                      "at": 7160.5,
                       "inputType": "insertText",
-                      "data": "PHE_READY_BEFORE_3_mt1y6af6_TINY",
+                      "data": "PHE_READY_BEFORE_3_mt2yuji8_TINY",
                       "trusted": true
                     }
                   ]
@@ -3340,28 +3344,28 @@
             },
             "postMetricDiagnostics": {
               "definition": "Undo integrity for TinyMCE and trusted CodeMirror input plus Ctrl+Z restoration are mandatory health proofs performed after the canonical timestamp. Focusing CodeMirror may load source-rich and cannot move editorReadyAt.",
-              "codeMirrorDiagnosticStartedAt": 8862.3,
-              "codeMirrorDiagnosticAcceptedAt": 9026.1,
-              "codeMirrorDiagnosticCompletedAt": 9228.6,
-              "navigationToCodeMirrorDiagnosticInputMs": 9026.1,
-              "editorReadyToCodeMirrorDiagnosticInputMs": 496.8,
-              "codeMirrorDiagnosticSequenceMs": 366.3,
-              "editorReadyToAllProofsCompleteMs": 699.3,
+              "codeMirrorDiagnosticStartedAt": 7497.2,
+              "codeMirrorDiagnosticAcceptedAt": 7579.5,
+              "codeMirrorDiagnosticCompletedAt": 7784.9,
+              "navigationToCodeMirrorDiagnosticInputMs": 7579.5,
+              "editorReadyToCodeMirrorDiagnosticInputMs": 419,
+              "codeMirrorDiagnosticSequenceMs": 287.7,
+              "editorReadyToAllProofsCompleteMs": 624.4,
               "codeMirror": {
                 "input": {
                   "kind": "codemirror",
-                  "armedAt": 8918.6,
-                  "acceptedAt": 9026.1,
-                  "acceptedConfirmedAt": 9171.2,
-                  "rolledBackAt": 9226.1,
+                  "armedAt": 7505.7,
+                  "acceptedAt": 7579.5,
+                  "acceptedConfirmedAt": 7728.5,
+                  "rolledBackAt": 7777.1,
                   "baselineTextLength": 0,
                   "baselineHtmlLength": 31,
                   "canonicalArmState": null,
                   "inputEvents": [
                     {
-                      "at": 9026.1,
+                      "at": 7579.5,
                       "inputType": "insertText",
-                      "data": "PHE_READY_BEFORE_3_mt1y6af6_CM",
+                      "data": "PHE_READY_BEFORE_3_mt2yuji8_CM",
                       "trusted": true
                     }
                   ]
@@ -3382,14 +3386,14 @@
                   "accepted": {
                     "present": true,
                     "accepted": true,
-                    "acceptedAt": 9026.1,
-                    "acceptedConfirmedAt": 9171.2,
+                    "acceptedAt": 7579.5,
+                    "acceptedConfirmedAt": 7728.5,
                     "currentTextLength": 30,
                     "inputEvents": [
                       {
-                        "at": 9026.1,
+                        "at": 7579.5,
                         "inputType": "insertText",
-                        "data": "PHE_READY_BEFORE_3_mt1y6af6_CM",
+                        "data": "PHE_READY_BEFORE_3_mt2yuji8_CM",
                         "trusted": true
                       }
                     ]
@@ -3397,16 +3401,16 @@
                   "rollback": {
                     "present": true,
                     "rolledBack": true,
-                    "rolledBackAt": 9226.1,
+                    "rolledBackAt": 7777.1,
                     "sentinelAbsent": true,
                     "baselineTextRestored": true,
                     "currentTextLength": 0,
                     "baselineHtmlRestored": true,
                     "inputEvents": [
                       {
-                        "at": 9026.1,
+                        "at": 7579.5,
                         "inputType": "insertText",
-                        "data": "PHE_READY_BEFORE_3_mt1y6af6_CM",
+                        "data": "PHE_READY_BEFORE_3_mt2yuji8_CM",
                         "trusted": true
                       }
                     ]
@@ -3416,7 +3420,7 @@
             }
           },
           "document": {
-            "requestId": "8DC0D9A9661AAA0B8D314BCF239A9AF9",
+            "requestId": "06AD9DCD7E20EB8E48FF88BCC80A8C8A",
             "finalUrl": "https://5be873d1.phphtmledit-editor.pages.dev/",
             "status": 200,
             "mimeType": "text/html",
@@ -3449,16 +3453,16 @@
             "requestBudgetReference": 25,
             "canonicalReadinessWindow": {
               "definition": "Requests initiated from navigation through canonical trusted-input acceptance. Response facts are completed from the final session inventory.",
-              "editorReadyAt": 8529.3,
-              "readyOpportunityAt": 8240.7,
-              "verifiedInputAcceptedAt": 8529.3,
-              "boundaryCapturedAt": 8668.3,
+              "editorReadyAt": 7160.5,
+              "readyOpportunityAt": 6907.2,
+              "verifiedInputAcceptedAt": 7160.5,
+              "boundaryCapturedAt": 7300,
               "requestCount": 18,
               "sourceRichRequestCount": 0,
               "sourceRichRequests": [],
               "requests": [
                 {
-                  "requestId": "8DC0D9A9661AAA0B8D314BCF239A9AF9",
+                  "requestId": "06AD9DCD7E20EB8E48FF88BCC80A8C8A",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/",
                   "method": "GET",
                   "type": "Document",
@@ -3467,7 +3471,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 2680,
+                  "encodedDataLength": 2683,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3479,7 +3483,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.2",
+                  "requestId": "5888.2",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/tinymce.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3488,7 +3492,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 169794,
+                  "encodedDataLength": 169687,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3500,7 +3504,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.3",
+                  "requestId": "5888.3",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-DHYCz9UE.js",
                   "method": "GET",
                   "type": "Script",
@@ -3509,7 +3513,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 138980,
+                  "encodedDataLength": 138847,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3521,7 +3525,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.4",
+                  "requestId": "5888.4",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-C7CHQg2C.css",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -3530,7 +3534,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 3934,
+                  "encodedDataLength": 3931,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3542,7 +3546,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.8",
+                  "requestId": "5888.8",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/themes/silver/theme.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3551,7 +3555,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 142132,
+                  "encodedDataLength": 142237,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3563,7 +3567,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.9",
+                  "requestId": "5888.9",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/models/dom/model.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3572,7 +3576,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 33915,
+                  "encodedDataLength": 33860,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3584,7 +3588,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.10",
+                  "requestId": "5888.10",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3593,7 +3597,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 6634,
+                  "encodedDataLength": 6638,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3605,7 +3609,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.11",
+                  "requestId": "5888.11",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3614,7 +3618,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 2417,
+                  "encodedDataLength": 2421,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3626,7 +3630,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.12",
+                  "requestId": "5888.12",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/link/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3635,7 +3639,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 7447,
+                  "encodedDataLength": 7453,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3647,7 +3651,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.13",
+                  "requestId": "5888.13",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/image/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3656,7 +3660,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 7420,
+                  "encodedDataLength": 7425,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3668,7 +3672,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.14",
+                  "requestId": "5888.14",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/table/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3677,7 +3681,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 14634,
+                  "encodedDataLength": 14639,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3689,7 +3693,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.15",
+                  "requestId": "5888.15",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3698,7 +3702,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 4816,
+                  "encodedDataLength": 4815,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3710,7 +3714,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.16",
+                  "requestId": "5888.16",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3719,7 +3723,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 3155,
+                  "encodedDataLength": 3166,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3731,7 +3735,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.17",
+                  "requestId": "5888.17",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3740,7 +3744,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 1572,
+                  "encodedDataLength": 1560,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3752,7 +3756,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.18",
+                  "requestId": "5888.18",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -3761,7 +3765,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 26306,
+                  "encodedDataLength": 26237,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3773,7 +3777,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.20",
+                  "requestId": "5888.20",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -3782,7 +3786,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 8531,
+                  "encodedDataLength": 8729,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3794,7 +3798,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.21",
+                  "requestId": "5888.21",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/content/default/content.min.css?v=8.8.2",
                   "method": "GET",
                   "type": "Stylesheet",
@@ -3803,7 +3807,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 1087,
+                  "encodedDataLength": 895,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3815,7 +3819,7 @@
                   }
                 },
                 {
-                  "requestId": "14680.22",
+                  "requestId": "5888.22",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
                   "method": "GET",
                   "type": "Script",
@@ -3824,7 +3828,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 7582,
+                  "encodedDataLength": 7586,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3839,13 +3843,13 @@
             },
             "postMetricDiagnostics": {
               "definition": "Requests first initiated only after the canonical event boundary while completing undo and CodeMirror diagnostics.",
-              "startedAt": 8862.3,
-              "completedAt": 9228.6,
+              "startedAt": 7497.2,
+              "completedAt": 7784.9,
               "requestCount": 1,
               "sourceRichRequestCount": 1,
               "sourceRichRequests": [
                 {
-                  "requestId": "14680.23",
+                  "requestId": "5888.23",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/source-rich-DzzMUDbx.js",
                   "method": "GET",
                   "type": "Script",
@@ -3854,7 +3858,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 53755,
+                  "encodedDataLength": 53754,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3868,7 +3872,7 @@
               ],
               "requests": [
                 {
-                  "requestId": "14680.23",
+                  "requestId": "5888.23",
                   "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/source-rich-DzzMUDbx.js",
                   "method": "GET",
                   "type": "Script",
@@ -3877,7 +3881,7 @@
                   "protocol": "h2",
                   "fromDiskCache": false,
                   "fromServiceWorker": false,
-                  "encodedDataLength": 53755,
+                  "encodedDataLength": 53754,
                   "failed": null,
                   "securityDetails": {
                     "protocol": "TLS 1.3",
@@ -3893,7 +3897,7 @@
             "tinyCoreRequestCount": 1,
             "tinyCoreRequests": [
               {
-                "requestId": "14680.2",
+                "requestId": "5888.2",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/tinymce.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -3902,7 +3906,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 169794,
+                "encodedDataLength": 169687,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -3917,7 +3921,7 @@
             "failedRequests": [],
             "requests": [
               {
-                "requestId": "8DC0D9A9661AAA0B8D314BCF239A9AF9",
+                "requestId": "06AD9DCD7E20EB8E48FF88BCC80A8C8A",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/",
                 "method": "GET",
                 "type": "Document",
@@ -3926,7 +3930,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 2680,
+                "encodedDataLength": 2683,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -3938,7 +3942,7 @@
                 }
               },
               {
-                "requestId": "14680.2",
+                "requestId": "5888.2",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/tinymce.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -3947,7 +3951,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 169794,
+                "encodedDataLength": 169687,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -3959,7 +3963,7 @@
                 }
               },
               {
-                "requestId": "14680.3",
+                "requestId": "5888.3",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-DHYCz9UE.js",
                 "method": "GET",
                 "type": "Script",
@@ -3968,7 +3972,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 138980,
+                "encodedDataLength": 138847,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -3980,7 +3984,7 @@
                 }
               },
               {
-                "requestId": "14680.4",
+                "requestId": "5888.4",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/index-C7CHQg2C.css",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -3989,7 +3993,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 3934,
+                "encodedDataLength": 3931,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4001,7 +4005,7 @@
                 }
               },
               {
-                "requestId": "14680.8",
+                "requestId": "5888.8",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/themes/silver/theme.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4010,7 +4014,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 142132,
+                "encodedDataLength": 142237,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4022,7 +4026,7 @@
                 }
               },
               {
-                "requestId": "14680.9",
+                "requestId": "5888.9",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/models/dom/model.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4031,7 +4035,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 33915,
+                "encodedDataLength": 33860,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4043,7 +4047,7 @@
                 }
               },
               {
-                "requestId": "14680.10",
+                "requestId": "5888.10",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/icons/phphtmledit/icons.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4052,7 +4056,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 6634,
+                "encodedDataLength": 6638,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4064,7 +4068,7 @@
                 }
               },
               {
-                "requestId": "14680.11",
+                "requestId": "5888.11",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/lists/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4073,7 +4077,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 2417,
+                "encodedDataLength": 2421,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4085,7 +4089,7 @@
                 }
               },
               {
-                "requestId": "14680.12",
+                "requestId": "5888.12",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/link/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4094,7 +4098,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 7447,
+                "encodedDataLength": 7453,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4106,7 +4110,7 @@
                 }
               },
               {
-                "requestId": "14680.13",
+                "requestId": "5888.13",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/image/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4115,7 +4119,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 7420,
+                "encodedDataLength": 7425,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4127,7 +4131,7 @@
                 }
               },
               {
-                "requestId": "14680.14",
+                "requestId": "5888.14",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/table/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4136,7 +4140,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 14634,
+                "encodedDataLength": 14639,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4148,7 +4152,7 @@
                 }
               },
               {
-                "requestId": "14680.15",
+                "requestId": "5888.15",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/charmap/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4157,7 +4161,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 4816,
+                "encodedDataLength": 4815,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4169,7 +4173,7 @@
                 }
               },
               {
-                "requestId": "14680.16",
+                "requestId": "5888.16",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4178,7 +4182,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 3155,
+                "encodedDataLength": 3166,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4190,7 +4194,7 @@
                 }
               },
               {
-                "requestId": "14680.17",
+                "requestId": "5888.17",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/insertdatetime/plugin.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4199,7 +4203,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 1572,
+                "encodedDataLength": 1560,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4211,7 +4215,7 @@
                 }
               },
               {
-                "requestId": "14680.18",
+                "requestId": "5888.18",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/skin.min.css?v=8.8.2",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -4220,7 +4224,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 26306,
+                "encodedDataLength": 26237,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4232,7 +4236,7 @@
                 }
               },
               {
-                "requestId": "14680.20",
+                "requestId": "5888.20",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/ui/oxide/content.min.css?v=8.8.2",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -4241,7 +4245,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 8531,
+                "encodedDataLength": 8729,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4253,7 +4257,7 @@
                 }
               },
               {
-                "requestId": "14680.21",
+                "requestId": "5888.21",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/skins/content/default/content.min.css?v=8.8.2",
                 "method": "GET",
                 "type": "Stylesheet",
@@ -4262,7 +4266,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 1087,
+                "encodedDataLength": 895,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4274,7 +4278,7 @@
                 }
               },
               {
-                "requestId": "14680.22",
+                "requestId": "5888.22",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/tinymce/plugins/emoticons/js/emojis-common.min.js?v=8.8.2",
                 "method": "GET",
                 "type": "Script",
@@ -4283,7 +4287,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 7582,
+                "encodedDataLength": 7586,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4295,7 +4299,7 @@
                 }
               },
               {
-                "requestId": "14680.23",
+                "requestId": "5888.23",
                 "url": "https://5be873d1.phphtmledit-editor.pages.dev/assets/source-rich-DzzMUDbx.js",
                 "method": "GET",
                 "type": "Script",
@@ -4304,7 +4308,7 @@
                 "protocol": "h2",
                 "fromDiskCache": false,
                 "fromServiceWorker": false,
-                "encodedDataLength": 53755,
+                "encodedDataLength": 53754,
                 "failed": null,
                 "securityDetails": {
                   "protocol": "TLS 1.3",
@@ -4325,7 +4329,7 @@
             "exactSlow4gAndCpu4ProfileApplied": true,
             "performancePaintTimingObserved": true,
             "editorReadyMarkPolicySatisfied": true,
-            "skeletonVisibleAndNonzeroAtFcp": false,
+            "skeletonVisibleAndNonzeroAtFcp": true,
             "passiveUserAccessibleStateObserved": true,
             "passiveUserAccessibleStateRecheckedAtArm": true,
             "canonicalVisualAcceptedTrustedSentinelInput": true,
@@ -4340,7 +4344,7 @@
             "codeMirrorDiagnosticStartedAfterCanonicalReadiness": true,
             "sourceRichAbsentFromCanonicalReadinessWindow": true,
             "sourceRichRequestedExactlyOncePostMetric": true,
-            "metricsArithmeticallyConsistent": false,
+            "metricsArithmeticallyConsistent": true,
             "appReachedNonzeroReadyState": true,
             "documentResponseCaptured": true,
             "tinyCoreRequestedExactlyOnce": true,
@@ -4353,17 +4357,17 @@
             "canonicalRequestCountWithin25": true,
             "diagnosticRequestCountWithin25": true
           },
-          "captureComplete": false,
+          "captureComplete": true,
           "slow4gPublishedObservations": {
             "blocking": false,
-            "skeletonIsFirstContentfulPaint": false,
+            "skeletonIsFirstContentfulPaint": true,
             "skeletonReferenceThresholdPass": false,
             "editorReadyReferenceThresholdPass": false
           },
           "note": "Standalone timing evidence only. No HAR is emitted, and no canonical Network or size report is read or changed. Canonical readiness is trusted TinyMCE input acceptance after the current UI state passes the passive accessibility proof. Undo and CodeMirror checks remain mandatory post-metric diagnostics. Slow 4G thresholds are published observations, not blocking gates. Timeouts and transport-idle waits can only fail a run; they never establish product readiness."
         }
       ],
-      "completeRunCount": 1,
+      "completeRunCount": 2,
       "expectedRunCount": 3,
       "medians": {
         "navigationToSkeletonPaintMs": null,
@@ -4383,27 +4387,7 @@
           "limit": 2500,
           "pass": false
         }
-      },
-      "sourceArtifacts": [
-        {
-          "basename": "e5-startup-clean-comparison.before.run-1.json",
-          "embeddedRunJsonPointer": "#/runs/0",
-          "byteLength": 46924,
-          "sha256": "8b2f7b105e4590ac0c76145b4a7cacf68f319912b58f13ac8a1203e8ab4aaea0"
-        },
-        {
-          "basename": "e5-startup-clean-comparison.before.run-2.json",
-          "embeddedRunJsonPointer": "#/runs/1",
-          "byteLength": 47072,
-          "sha256": "c6c22d5086868f914aae2c07b7af6ee9173d46c926ed6ffd0b92ffa8a5255259"
-        },
-        {
-          "basename": "e5-startup-clean-comparison.before.run-3.json",
-          "embeddedRunJsonPointer": "#/runs/2",
-          "byteLength": 46932,
-          "sha256": "1ecd33b3e5059b08174a0609738ced741857634cb51841b646a8503a3bbf3d82"
-        }
-      ]
+      }
     },
     "after": {
       "label": "after",
@@ -8820,28 +8804,24 @@
   "comparison": {
     "navigationToSkeletonPaintDeltaMs": null,
     "skeletonPaintToEditorReadyDeltaMs": null,
-    "skeletonComparisonStatus": "not-comparable: accepted E4 has strict skeleton-at-FCP proof in only 1/3 runs",
-    "navigationToEditorReadyDeltaMs": -2223.7,
-    "navigationToEditorReadyChangePercent": -26.071,
-    "readinessRegressionLimitPercent": 15,
-    "readinessRegressionPass": true
+    "navigationToEditorReadyDeltaMs": null,
+    "skeletonPaintImproved": false,
+    "editorReadyDidNotRegress": false
   },
   "acceptance": {
-    "blockingCriterion": "Slow 4G trusted-input readiness may not regress by more than 15% against the accepted previous stage",
-    "absoluteThresholdsBlocking": false,
-    "beforeReadinessObservations": 3,
-    "afterReadinessObservations": 3,
-    "readinessRegressionPass": true,
-    "skeletonDiagnosticComparable": false,
-    "afterRuntimeHealthyInAllReadinessRuns": true,
-    "rawCaptureCompletenessNote": "Accepted E4 whole-run captureComplete is 1/3 because strict skeleton-at-FCP proof is absent in two runs; all three trusted-input readiness observations and their required runtime-health assertions remain valid. The fresh baseline retry is retained separately as an invalid/noncanonical attempt and is not cherry-picked into this comparison.",
-    "allPassed": true
+    "allSixCapturesComplete": false,
+    "afterSkeletonShownAtEveryFcp": true,
+    "afterRuntimeHealthyInAllRuns": true,
+    "skeletonPaintImproved": false,
+    "editorReadyDidNotRegress": false,
+    "allPassed": false
   },
   "slow4gPublishedObservations": {
-    "previousAcceptedE4ReadyMedianMs": 8529.3,
-    "currentE5ReadyMedianMs": 6305.6,
-    "currentE5SkeletonMedianMs": 680,
-    "currentE5SkeletonToReadyMedianMs": 5625.6
+    "afterMedianSkeletonReferenceThresholdPass": true,
+    "afterMedianEditorReadyReferenceThresholdPass": false
   },
-  "note": "This self-contained derived wrapper preserves the accepted E4 readiness observations, embeds the current E5 runs, and keeps E4 skeleton timing explicitly non-comparable. It complements but never substitutes for the canonical HAR and byte/request budgets."
+  "note": "Preserved invalid attempt. No run was removed or repeated. The accepted regression wrapper uses the previously accepted E4 readiness baseline and the exact embedded current-E5 after runs from this attempt.",
+  "validMeasurement": false,
+  "excludedFromAcceptedRegressionComparison": true,
+  "exclusionReason": "The fresh E4 before series completed only 2/3 strict whole-run captures because run 1 did not prove skeleton-at-FCP. It cannot replace the accepted E4 readiness baseline; the three current-E5 after runs remain valid and are embedded for audit."
 }

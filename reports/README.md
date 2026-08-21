@@ -175,30 +175,41 @@ request-count invariants while adding the E5 legal-link assertions.
 - `network-e5-cumulative.har` and `network-e5-cumulative.json` — separate fresh
   load with the complete E2/E3/E4 action inventory plus the E5 About menu and
   legal-link checks.
-- `network-e5-har-result.json` — 52 successful Network, lifecycle, lazy-entry,
+- `network-e5-har-result.json` — 53 successful Network, lifecycle, lazy-entry,
   Worker, fixture-boundary, About-popup, license-delivery, palette, contrast,
-  touch-target, and no-unexpected-console-problem assertions. An exact Chrome
-  advisory for the intentional paint-handoff TinyMCE preload is retained
-  separately when observed; every other warning, error, or exception blocks.
+  touch-target, busy-panel-visibility, and no-unexpected-console-problem
+  assertions. The new painted-busy-state assertion requires the skeleton to
+  cover FP/FCP, both editor panels to remain `visibility: hidden` until ready,
+  and both initialized panels to be visible afterward. An exact Chrome advisory
+  for the intentional paint-handoff TinyMCE preload is retained separately when
+  observed; every other warning, error, or exception blocks.
 - `size-e5-result.json` — current-dist hashes and local gzip-9/Brotli-11 lower
-  estimates: 574,685/488,667 B cold, 719,376/606,502 B cumulative, with 18/22
+  estimates: 574,696/488,672 B cold, 719,386/606,449 B cumulative, with 18/22
   requests.
 - `performance-e5-desktop-gate.json` — blocking three-run medians from a
   dedicated CDP harness using the exact Lighthouse desktop transport settings,
   not Lighthouse CLI audits: 10,240 kbit/s, 40 ms latency, no CPU slowdown,
-  928.0 ms to skeleton, 1,600.9 ms to trusted input, and 586,054 B full wire.
+  792.0 ms to skeleton, 1,682.2 ms to trusted input, and 586,005 B full wire.
 - `performance-e5-slow4g-comparison.json` — published non-absolute-threshold
   diagnostic: accepted E4 trusted-input readiness 8,529.3 ms versus E5
-  7,601.7 ms (−10.875%). E4 skeleton timing is not comparable because only one
+  6,305.6 ms (−26.071%). E4 skeleton timing is not comparable because only one
   of three runs proved the skeleton at FCP; E5 proves it in all three.
-- `performance-e5-ready-gap.json` — one same-navigation comparison of the
-  5,222.0 ms product editor-ready mark and 5,397.5 ms trusted input, a 175.5 ms
-  gap with no rich-source request.
+- `performance-e5-slow4g-fresh-baseline-invalid-attempt.json` — the preserved
+  fresh comparison attempt whose E4 side completed only 2/3 strict whole-run
+  captures. It contributes no replacement baseline or regression metric; its
+  three valid current-E5 runs are byte-for-byte embedded in the accepted
+  derived comparison.
+- `performance-e5-ready-gap.json` — historical `dc818598` same-navigation
+  comparison of the 5,222.0 ms product editor-ready mark and 5,397.5 ms trusted
+  input, a 175.5 ms gap with no rich-source request. It validates the mark's
+  meaning and is not relabelled as a current-build timing run.
 - `performance-e5-ready-gap-invalid-attempt.json` — preserved audit of the
   unparsable first harness readback. It contributes no metric and records why
   one replacement run was necessary.
-- `delivery-e5-production-wire.json` — three deployed runs and 54/54 Brotli
-  response observations; the full-wire median is 586,042 B against 650,000 B.
+- `delivery-e5-production-wire.json` — historical `dc818598` encoding matrix:
+  three deployed runs and 54/54 Brotli response observations, with a 586,042 B
+  full-wire median. The current blocking wire value comes from the current
+  desktop report and is not substituted by this older diagnostic.
 - `e5-palette-visual.json`, `e5-about-menu.png`, and `e5-link-dialog.png` — exact
   accent/soft-accent, native-control, Oxide, contrast, and reviewed visual
   evidence.
@@ -229,17 +240,29 @@ captured before iframe insertion and is the comparison input for the separately
 stored post-embed series using the identical profile and slot position. Neither
 instrumented series may overwrite this historical one.
 
-The first verified E5 production application deployment was built from commit
-`b3dc011b5f3381e10237f6af6c2c7f7a55d9e955`; its immutable Cloudflare URL is
-`https://0e13e6fa.phphtmledit-editor.pages.dev/`. The custom domain is
+The current verified E5 production candidate was built from commit
+`45ff34b568e7e21f53dbc794a05c606b51bdc93d`; its immutable Cloudflare URL is
+`https://97794bf1.phphtmledit-editor.pages.dev/`. The custom domain is
 **Active** with SSL enabled and visibly serves E5, including the About menu.
 Live root, hashed-asset, and `/licenses.txt` headers have been verified.
 
-The new instrumented pre-iframe baseline and iframe insertion are complete. The
-first matching five-run post-embed series was retained as a failed result: the
-host slot stayed stable, but an application-subframe mobile bootstrap shift
-failed criterion 12. Corrective commit
-`f2d2909c87eeb63269e5804d86c0f8dbb047cbf7` is pending production deployment
-and remeasurement. The allowed-origin clipboard/framing checks and the denied
-`phe-preview.com` framing check also remain pending. Their absence is not
-represented as a passed acceptance criterion.
+The portable criterion-12 package consists of
+`host-instrumented-e5.json`, five `before` LHR/probe pairs, and five `after`
+LHR/probe pairs. The permanent hosting evidence verifier checks every hash, the exact
+profile and slot geometry, frame-load evidence, current build entrypoints, and
+independently recomputed medians. No ignored `work/` file or machine-local path
+is required. The manifest SHA-256 is
+`b3a06a0de261489441deb398d2b9628a61cde405b93cd0637730c4618c44f8fa`.
+
+The before medians are 1,931.0523 ms FCP/LCP, 2,434.91882 ms Speed Index,
+0 ms TBT, and 0 CLS. Attempt 4 keeps the same first-viewport slot and proves the
+iframe loaded in all five runs. Its medians are 2,743.3753 ms FCP/LCP,
+3,300.734963 ms Speed Index, 416.0 ms TBT, and 0 CLS. The busy-editor guard
+therefore fixes the application-subframe CLS completely, but FCP, LCP, Speed
+Index, and TBT still fail criterion 12. The manifest deliberately records
+`measurementValidity.passed=true`, `criterion12.passed=false`, and result
+`measurement-valid-criterion12-failed`. `npm run hosting:evidence` verifies the
+package and requires that truthful result; default `npm run hosting` then exits
+nonzero on criterion 12. Allowed-origin clipboard/framing, the no-permission
+clipboard fallback, and the denied `phe-preview.com` framing check also remain
+pending under criteria 7 and 14.

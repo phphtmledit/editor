@@ -1,0 +1,453 @@
+{
+  "schemaVersion": 1,
+  "stage": "E5",
+  "scenario": "host-iframe-instrumented-lighthouse",
+  "result": "measurement-valid-criterion12-failed",
+  "targetUrl": "https://phphtmledit.com/",
+  "appUrl": "https://app.phphtmledit.com/?theme=auto",
+  "appHost": "app.phphtmledit.com",
+  "slotSelector": "#editor-frame",
+  "runCountPerPhase": 5,
+  "profile": {
+    "formFactor": "mobile",
+    "throttlingMethod": "simulate",
+    "throttling": {
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "requestLatencyMs": 562.5,
+      "downloadThroughputKbps": 1474.5600000000002,
+      "uploadThroughputKbps": 675,
+      "cpuSlowdownMultiplier": 4
+    },
+    "screenEmulation": {
+      "mobile": true,
+      "width": 412,
+      "height": 823,
+      "deviceScaleFactor": 1.75,
+      "disabled": false
+    },
+    "locale": "en-US",
+    "onlyCategories": [
+      "performance"
+    ],
+    "channel": "cli",
+    "output": [
+      "json"
+    ]
+  },
+  "tooling": {
+    "lighthouseVersion": "13.4.1",
+    "chromeLauncherVersion": "1.2.1",
+    "chromeExecutableSha256": "e14885110934a79637fcd71d76b23040333911b49fadd1bd084cef6bff78ba3a",
+    "nodeVersion": "v24.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "hostPosition": {
+    "viewport": {
+      "width": 412,
+      "height": 823,
+      "deviceScaleFactor": 1.75
+    },
+    "foldClass": "crosses-first-fold",
+    "intersectsFirstViewport": true,
+    "toleranceCssPx": 0.5,
+    "rect": {
+      "top": 531.53125,
+      "bottom": 1272.21875,
+      "left": 16,
+      "right": 396,
+      "width": 380,
+      "height": 740.6875
+    }
+  },
+  "applicationBuild": {
+    "gitCommit": "45ff34b568e7e21f53dbc794a05c606b51bdc93d",
+    "javascriptUrl": "https://app.phphtmledit.com/assets/index-6_wYmLrV.js",
+    "stylesheetUrl": "https://app.phphtmledit.com/assets/index-BX4V7LXB.css"
+  },
+  "sourceCaptures": {
+    "before": {
+      "attempt": 2,
+      "sourceSummaryBytes": 66420,
+      "sourceSummarySha256": "d7adbadad70d15ec46a3e9c05f71b21273ecd88f323b26bf6e4d6a2d77ab72fe",
+      "harnessSha256": "00ff8b0633377f68a48ed36a6b427eceff06106d1aceb262979915dc0660e606"
+    },
+    "after": {
+      "attempt": 4,
+      "sourceSummaryBytes": 348825,
+      "sourceSummarySha256": "179565c52586c91304a670a01b3ebab3dc413350b35c5304b68f1a1ec6cbf4a0",
+      "harnessSha256": "cf88dfd039aca2d7430ab3b4aa41e89ed98f533724abe6572449b52bcd6ded42"
+    }
+  },
+  "artifacts": {
+    "before": [
+      {
+        "runNumber": 1,
+        "lhr": {
+          "repositoryFile": "reports/host-instrumented-e5-before-run-1.lhr.json",
+          "bytes": 486425,
+          "sha256": "4289cc0ff951e334de9e8d618b8b88e015d69dd47320cf0ebc30b54f523fb95f",
+          "originalBytes": 486425,
+          "originalSha256": "4289cc0ff951e334de9e8d618b8b88e015d69dd47320cf0ebc30b54f523fb95f"
+        },
+        "probe": {
+          "repositoryFile": "reports/host-instrumented-e5-before-run-1.probe.json",
+          "bytes": 9922,
+          "sha256": "351f783c6054118fd931394cf8b33a28f804ff41eabe31f0c91a3324585e6a71",
+          "originalBytes": 10104,
+          "originalSha256": "4fe5b7865636499f9be217d25ea204cc90cdd594956781f4bd50b87ffb9147d8"
+        }
+      },
+      {
+        "runNumber": 2,
+        "lhr": {
+          "repositoryFile": "reports/host-instrumented-e5-before-run-2.lhr.json",
+          "bytes": 552012,
+          "sha256": "9ce049ab4383f6126f9842aa8c17077205f8ad783dac3eb8aab6e75978280913",
+          "originalBytes": 552012,
+          "originalSha256": "9ce049ab4383f6126f9842aa8c17077205f8ad783dac3eb8aab6e75978280913"
+        },
+        "probe": {
+          "repositoryFile": "reports/host-instrumented-e5-before-run-2.probe.json",
+          "bytes": 9908,
+          "sha256": "5bf90a3017aeb0cf6b40eb126ce7adaf92e0421516796272d499f0739a78dfaa",
+          "originalBytes": 10090,
+          "originalSha256": "6510023c7c5fd98e37e206f7157131f57d6dc5d5fc51d101390976e5a6ff3b1d"
+        }
+      },
+      {
+        "runNumber": 3,
+        "lhr": {
+          "repositoryFile": "reports/host-instrumented-e5-before-run-3.lhr.json",
+          "bytes": 573584,
+          "sha256": "20649e7075a0b1b72d3298622a2a27df42f0d4f6b1f1b4ce351680215c6b4197",
+          "originalBytes": 573584,
+          "originalSha256": "20649e7075a0b1b72d3298622a2a27df42f0d4f6b1f1b4ce351680215c6b4197"
+        },
+        "probe": {
+          "repositoryFile": "reports/host-instrumented-e5-before-run-3.probe.json",
+          "bytes": 9930,
+          "sha256": "5b32b77e05833811210f574905485bd5bc522ffd3f03f679efd5a945ba3258df",
+          "originalBytes": 10112,
+          "originalSha256": "3c3f03607ec6025bc5a1af4c0d320857788b0d95d9d16425891c3ac95dd89d0c"
+        }
+      },
+      {
+        "runNumber": 4,
+        "lhr": {
+          "repositoryFile": "reports/host-instrumented-e5-before-run-4.lhr.json",
+          "bytes": 573997,
+          "sha256": "cf2f2bd4057cfdde0a9e421f29ab1085056fcf5675e3174007edd42a7ef1d80f",
+          "originalBytes": 573997,
+          "originalSha256": "cf2f2bd4057cfdde0a9e421f29ab1085056fcf5675e3174007edd42a7ef1d80f"
+        },
+        "probe": {
+          "repositoryFile": "reports/host-instrumented-e5-before-run-4.probe.json",
+          "bytes": 9900,
+          "sha256": "d4b4644c900ad7ded870b152da1859332ad3bba24ae44442b38cf4bc3d89520c",
+          "originalBytes": 10082,
+          "originalSha256": "e01374fceab432e0bde0770ac37c06d68abd37651c4b8a4b3b627af444089257"
+        }
+      },
+      {
+        "runNumber": 5,
+        "lhr": {
+          "repositoryFile": "reports/host-instrumented-e5-before-run-5.lhr.json",
+          "bytes": 551908,
+          "sha256": "3a7517c3cd3a5e45eed3633f5fb7c9f86575cd389550a2e6b45e92736fbb8969",
+          "originalBytes": 551908,
+          "originalSha256": "3a7517c3cd3a5e45eed3633f5fb7c9f86575cd389550a2e6b45e92736fbb8969"
+        },
+        "probe": {
+          "repositoryFile": "reports/host-instrumented-e5-before-run-5.probe.json",
+          "bytes": 9906,
+          "sha256": "04aea06136754c2df7df4eca756d6c7d90bf8e3492a9bff43c6e16a3d01d4347",
+          "originalBytes": 10088,
+          "originalSha256": "90a63a06907eda9358875b8593b111ca1a8d31a00b60a1d270cf4fa8684fbd40"
+        }
+      }
+    ],
+    "after": [
+      {
+        "runNumber": 1,
+        "lhr": {
+          "repositoryFile": "reports/host-instrumented-e5-after-run-1.lhr.json",
+          "bytes": 647759,
+          "sha256": "4e2c3177548d88d726407aeada83454dec9d396e09cf7734cf5faa19c6491374",
+          "originalBytes": 647759,
+          "originalSha256": "4e2c3177548d88d726407aeada83454dec9d396e09cf7734cf5faa19c6491374"
+        },
+        "probe": {
+          "repositoryFile": "reports/host-instrumented-e5-after-run-1.probe.json",
+          "bytes": 60668,
+          "sha256": "3873aab40308a589bef27586a6db97b324ef46dd97277f8ccfe2ad3a3639cfe4",
+          "originalBytes": 60851,
+          "originalSha256": "e08064ee273cc3c58db49e0cca55d6f91c306466b73f612abb8c79d4789131d3"
+        }
+      },
+      {
+        "runNumber": 2,
+        "lhr": {
+          "repositoryFile": "reports/host-instrumented-e5-after-run-2.lhr.json",
+          "bytes": 678092,
+          "sha256": "55476290d589f93437485c234e2ddfd72dfa4de7c51009bc2f0291feeb5ed656",
+          "originalBytes": 678092,
+          "originalSha256": "55476290d589f93437485c234e2ddfd72dfa4de7c51009bc2f0291feeb5ed656"
+        },
+        "probe": {
+          "repositoryFile": "reports/host-instrumented-e5-after-run-2.probe.json",
+          "bytes": 59425,
+          "sha256": "a60062b65d08d4fb7b5225058714c27286d6a9b69f345a92fcc20f8c45381537",
+          "originalBytes": 59608,
+          "originalSha256": "80f6f5fef9a9434e39d5d7361697218f5ee988f26c09f52ff008d97fa54756e2"
+        }
+      },
+      {
+        "runNumber": 3,
+        "lhr": {
+          "repositoryFile": "reports/host-instrumented-e5-after-run-3.lhr.json",
+          "bytes": 658527,
+          "sha256": "d0350d7bc46a9a951370711e003a16943f7cbd07f32d9e7357ea3389d97eef0f",
+          "originalBytes": 658527,
+          "originalSha256": "d0350d7bc46a9a951370711e003a16943f7cbd07f32d9e7357ea3389d97eef0f"
+        },
+        "probe": {
+          "repositoryFile": "reports/host-instrumented-e5-after-run-3.probe.json",
+          "bytes": 60716,
+          "sha256": "f0a1aa8ff5193ca8567d0ab55bd756b8c44084fb8093f87ae93115ef461a6c71",
+          "originalBytes": 60899,
+          "originalSha256": "d743bf1ac0ed19c80f7944e6f7f6f289627e9e258dd7897b25c683d1692f40f6"
+        }
+      },
+      {
+        "runNumber": 4,
+        "lhr": {
+          "repositoryFile": "reports/host-instrumented-e5-after-run-4.lhr.json",
+          "bytes": 560781,
+          "sha256": "1964fea009f9cbcd14777439a566a4bdfc0d0c7d49b7728bcc3d6b88032f7cf0",
+          "originalBytes": 560781,
+          "originalSha256": "1964fea009f9cbcd14777439a566a4bdfc0d0c7d49b7728bcc3d6b88032f7cf0"
+        },
+        "probe": {
+          "repositoryFile": "reports/host-instrumented-e5-after-run-4.probe.json",
+          "bytes": 60689,
+          "sha256": "ddac7b3549b263f62730ff4da840e3c11562606dbcd6455c4c0783f65c554bd0",
+          "originalBytes": 60872,
+          "originalSha256": "8aa0d3c61cd03074569e5cf11cdf0213dedfe53b8c4de5f77643e5e6b23dd477"
+        }
+      },
+      {
+        "runNumber": 5,
+        "lhr": {
+          "repositoryFile": "reports/host-instrumented-e5-after-run-5.lhr.json",
+          "bytes": 646953,
+          "sha256": "08cfde1fa166c5da8240d3e45893e306cb825859cf33fd065de145a87a77b799",
+          "originalBytes": 646953,
+          "originalSha256": "08cfde1fa166c5da8240d3e45893e306cb825859cf33fd065de145a87a77b799"
+        },
+        "probe": {
+          "repositoryFile": "reports/host-instrumented-e5-after-run-5.probe.json",
+          "bytes": 60725,
+          "sha256": "ce570323f158578679058e763fdaa22b6df2322f2dfddcac15d9195290ff05c6",
+          "originalBytes": 60908,
+          "originalSha256": "8ade217396fcb02d892029994d5906c234c8d145ce4cc2a9375a9434d0cd367d"
+        }
+      }
+    ]
+  },
+  "medians": {
+    "before": {
+      "fcpMs": {
+        "values": [
+          2884.968,
+          2046.787,
+          1806.4170000000001,
+          1764.8284999999996,
+          1931.0522999999998
+        ],
+        "median": 1931.0522999999998
+      },
+      "lcpMs": {
+        "values": [
+          2884.968,
+          2046.787,
+          1806.4170000000001,
+          1764.8284999999996,
+          1931.0522999999998
+        ],
+        "median": 1931.0522999999998
+      },
+      "speedIndexMs": {
+        "values": [
+          4649.6877999863145,
+          2754.088660002011,
+          2155.0358799935157,
+          2059.3445800025697,
+          2434.9188200086783
+        ],
+        "median": 2434.9188200086783
+      },
+      "tbtMs": {
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0
+      },
+      "cls": {
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0
+      }
+    },
+    "after": {
+      "fcpMs": {
+        "values": [
+          2865.491,
+          1697.87,
+          2743.3753,
+          3400.992,
+          1728.371
+        ],
+        "median": 2743.3753
+      },
+      "lcpMs": {
+        "values": [
+          2865.491,
+          1697.87,
+          2743.3753,
+          3400.992,
+          1728.371
+        ],
+        "median": 2743.3753
+      },
+      "speedIndexMs": {
+        "values": [
+          3590.2058438787335,
+          2467.499465680268,
+          3300.7349626495143,
+          4751.907752194213,
+          3080.9813035655543
+        ],
+        "median": 3300.7349626495143
+      },
+      "tbtMs": {
+        "values": [
+          419,
+          414.9176699999998,
+          415.99999999999955,
+          368,
+          419.5
+        ],
+        "median": 415.99999999999955
+      },
+      "cls": {
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median": 0
+      }
+    }
+  },
+  "comparison": {
+    "fcpMs": {
+      "beforeMedian": 1931.0522999999998,
+      "afterMedian": 2743.3753,
+      "absoluteDelta": 812.3230000000003,
+      "percentDelta": 42.06633864862181,
+      "passed": false
+    },
+    "lcpMs": {
+      "beforeMedian": 1931.0522999999998,
+      "afterMedian": 2743.3753,
+      "absoluteDelta": 812.3230000000003,
+      "percentDelta": 42.06633864862181,
+      "passed": false
+    },
+    "speedIndexMs": {
+      "beforeMedian": 2434.9188200086783,
+      "afterMedian": 3300.7349626495143,
+      "absoluteDelta": 865.816142640836,
+      "percentDelta": 35.558316586412936,
+      "passed": false
+    },
+    "tbtMs": {
+      "beforeMedian": 0,
+      "afterMedian": 415.99999999999955,
+      "absoluteDelta": 415.99999999999955,
+      "percentDelta": null,
+      "passed": false
+    },
+    "cls": {
+      "beforeMedian": 0,
+      "afterMedian": 0,
+      "absoluteDelta": 0,
+      "percentDelta": null,
+      "passed": true
+    }
+  },
+  "measurementValidity": {
+    "passed": true,
+    "rule": "Both phases contain exactly five valid runs with the exact shared profile and host position; BEFORE excludes the iframe and app requests; AFTER proves the exact lazy iframe loaded the bound application build."
+  },
+  "criterion12": {
+    "passed": false,
+    "rule": "Each AFTER median must be finite and <= its finite BEFORE median.",
+    "metrics": {
+      "fcpMs": {
+        "beforeMedian": 1931.0522999999998,
+        "afterMedian": 2743.3753,
+        "absoluteDelta": 812.3230000000003,
+        "percentDelta": 42.06633864862181,
+        "passed": false
+      },
+      "lcpMs": {
+        "beforeMedian": 1931.0522999999998,
+        "afterMedian": 2743.3753,
+        "absoluteDelta": 812.3230000000003,
+        "percentDelta": 42.06633864862181,
+        "passed": false
+      },
+      "speedIndexMs": {
+        "beforeMedian": 2434.9188200086783,
+        "afterMedian": 3300.7349626495143,
+        "absoluteDelta": 865.816142640836,
+        "percentDelta": 35.558316586412936,
+        "passed": false
+      },
+      "tbtMs": {
+        "beforeMedian": 0,
+        "afterMedian": 415.99999999999955,
+        "absoluteDelta": 415.99999999999955,
+        "percentDelta": null,
+        "passed": false
+      },
+      "cls": {
+        "beforeMedian": 0,
+        "afterMedian": 0,
+        "absoluteDelta": 0,
+        "percentDelta": null,
+        "passed": true
+      }
+    },
+    "failedMetrics": [
+      "fcpMs",
+      "lcpMs",
+      "speedIndexMs",
+      "tbtMs"
+    ]
+  }
+}

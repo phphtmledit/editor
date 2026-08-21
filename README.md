@@ -3,12 +3,12 @@
 Browser-only WYSIWYG HTML editor focused on cleaning copied and generated markup. The application uses a self-hosted TinyMCE 8 visual editor and does not send document contents to a backend or to Tiny Cloud.
 
 The deployment target `https://app.phphtmledit.com/` is live. Its Cloudflare
-Pages custom-domain status is **Active** and SSL is enabled. The first verified
-E5 production application deployment was built from commit
-`b3dc011b5f3381e10237f6af6c2c7f7a55d9e955`; its immutable Cloudflare URL is
-`https://0e13e6fa.phphtmledit-editor.pages.dev/`. The custom domain visibly
-serves E5, including the About menu. Live root, hashed-asset, and
-`/licenses.txt` headers have been verified. The public source repository is
+Pages custom-domain status is **Active** and SSL is enabled. The current
+verified E5 production candidate was built from commit
+`45ff34b568e7e21f53dbc794a05c606b51bdc93d`; its immutable Cloudflare URL is
+`https://97794bf1.phphtmledit-editor.pages.dev/`. It includes the mobile-tab and
+busy-editor paint guards, visibly serves the About menu, and its live root,
+hashed-asset, and `/licenses.txt` headers have been verified. The public source repository is
 `https://github.com/phphtmledit/editor`.
 
 **The deployed E5 candidate adds embedding, browser-visible legal links,
@@ -18,13 +18,14 @@ TinyMCE and CodeMirror 6 share one HTML fragment, while ten independently
 testable cleaning rules remove Word/Office markup, presentation attributes,
 empty structures and typographic artifacts. The verified stage evidence is
 documented in `docs/E5.md`; the accepted E0–E4 reports remain unchanged in
-`docs/E0.md` through `docs/E4.md`. The first E5 production build from
-`b3dc011b5f3381e10237f6af6c2c7f7a55d9e955` is merged and deployed. The
-instrumented pre-iframe baseline and iframe insertion are complete. The first
-post-embed series exposed an application-subframe layout shift; corrective
-commit `f2d2909c87eeb63269e5804d86c0f8dbb047cbf7` is pending production
-deployment and a replacement series. The retained failure and framing checks
-are tracked in the E5 report.
+`docs/E0.md` through `docs/E4.md`. The instrumented attempt-2 pre-iframe
+baseline, iframe insertion, and matching attempt-4 post-embed series are
+complete. The current busy-editor guard eliminated iframe-attributable CLS in
+all five after runs. Criterion 12 nevertheless remains failed: the loaded
+first-viewport editor regressed FCP, LCP, Speed Index, and TBT relative to the
+empty reserved slot. The measurement is valid and retained; it is not converted
+into a pass by composite score, a below-fold no-load scenario, or a rerun.
+Remaining framing checks and the exact evidence are tracked in the E5 report.
 
 On desktop the visual and source panels share a keyboard- and pointer-adjustable
 splitter. Below 900 px they become accessible tabs. TinyMCE-to-source updates
@@ -88,6 +89,7 @@ npm run test
 npm run licenses
 npm run legal
 npm run icons
+npm run hosting:evidence
 npm run hosting
 npm run size
 npm run performance
@@ -104,8 +106,8 @@ from both builds.
 For Cloudflare Pages, use `npm run build` as the build command and `dist` as the
 output directory. The Pages custom-domain association for
 `app.phphtmledit.com` is **Active**, SSL is enabled, and the E5 application was
-verified against immutable deployment `https://0e13e6fa.phphtmledit-editor.pages.dev/`
-from commit `b3dc011b5f3381e10237f6af6c2c7f7a55d9e955`. The live root, hashed-asset,
+verified against immutable deployment `https://97794bf1.phphtmledit-editor.pages.dev/`
+from commit `45ff34b568e7e21f53dbc794a05c606b51bdc93d`. The live root, hashed-asset,
 and license-delivery headers have been verified.
 
 `npm run size` consumes the sanitized E5 production captures in
@@ -114,7 +116,12 @@ their manifest fingerprint against the current `dist`, and applies the four
 local byte budgets plus the request-count limit. `npm run performance` checks
 the blocking desktop startup medians, the non-blocking Slow 4G regression
 diagnostic, and the deployed 650,000-byte full-wire ceiling. See `docs/E5.md`
-for the current measurements.
+for the current measurements. `npm run hosting:evidence` is the integrity mode
+used by builds: it validates the portable host package without deadlocking a
+build that records a failed acceptance result. Default `npm run hosting` is the
+criterion-12 acceptance check and exits nonzero while the manifest reports
+`criterion12Passed: false`. Manual criterion-7 clipboard checks and criterion-14
+framing checks remain separate.
 
 The accepted E0–E4 stage-specific Network, size, and report evidence is
 preserved unchanged. `reports/tinymce-assets.json` is deliberately a rolling,
@@ -122,7 +129,9 @@ reproducible inventory of the current vendored distribution; the E4 reduction
 report pins the accepted E3 inventory hash used as its baseline. Current
 independent DevTools Network-domain evidence is in
 `reports/network-e5-cold.har` and `reports/network-e5-cumulative.har`;
-`reports/network-e5-har-result.json` records its 52 successful assertions.
+`reports/network-e5-har-result.json` records its 53 successful assertions,
+including proof that the painted busy skeleton hides both editor panels until
+editor-ready.
 
 `npm run vendor:tinymce` deterministically generates the 300-entry common emoji
 database from TinyMCE 8.8.2/emojilib data. The stock database is not shipped.

@@ -6,6 +6,7 @@ const reportsRoot = resolve(projectRoot, 'reports');
 const reportPaths = Object.freeze({
   desktop: resolve(reportsRoot, 'performance-e5-desktop-gate.json'),
   slow4g: resolve(reportsRoot, 'performance-e5-slow4g-comparison.json'),
+  invalidSlow4g: resolve(reportsRoot, 'performance-e5-slow4g-fresh-baseline-invalid-attempt.json'),
   delivery: resolve(reportsRoot, 'delivery-e5-production-wire.json'),
   readyGap: resolve(reportsRoot, 'performance-e5-ready-gap.json'),
   invalidReadyGap: resolve(reportsRoot, 'performance-e5-ready-gap-invalid-attempt.json'),
@@ -41,6 +42,12 @@ const SKELETON_LIMIT_MS = 1_000;
 const READY_LIMIT_MS = 2_500;
 const SLOW_4G_REGRESSION_LIMIT_PERCENT = 15;
 const FULL_WIRE_LIMIT_BYTES = 650_000;
+const CURRENT_E5_REVISION = '45ff34b568e7e21f53dbc794a05c606b51bdc93d';
+const CURRENT_E5_URL = 'https://97794bf1.phphtmledit-editor.pages.dev/';
+const ACCEPTED_E4_REVISION = '869ce7fc2f8823feb71ce1d674f46aeae7b548ad';
+const ACCEPTED_E4_URL = 'https://5be873d1.phphtmledit-editor.pages.dev/';
+const HISTORICAL_DC818_REVISION = 'dc818598d16003aed8fe7b429303077a508c22c9';
+const HISTORICAL_DC818_URL = 'https://b200e6d7.phphtmledit-editor.pages.dev/';
 const failures = [];
 
 const failUnless = (condition, message) => {
@@ -65,15 +72,17 @@ const assertTrueFields = (object, fields, label) => {
 };
 const loadJson = async (path) => JSON.parse(await readFile(path, 'utf8'));
 
-const [desktop, slow4g, delivery, readyGap, invalidReadyGap] = await Promise.all(
+const [desktop, slow4g, invalidSlow4g, delivery, readyGap, invalidReadyGap] = await Promise.all(
   Object.values(reportPaths).map(loadJson),
 );
 
-// Blocking Lighthouse desktop timing gate (TZ 2.8, section 7).
+// Blocking Lighthouse desktop timing gate (TZ 2.9, section 7).
 failUnless(desktop.stage === 'E5', 'desktop: stage must be E5');
-failUnless(desktop.specification === 'TZ 2.8 section 7', 'desktop: specification must be TZ 2.8 section 7');
+failUnless(desktop.specification === 'TZ 2.9 section 7', 'desktop: specification must be TZ 2.9 section 7');
 failUnless(desktop.canonicalByteBudgetInput === true, 'desktop: deployed wire values must be canonical budget input');
 failUnless(desktop.canonicalHar === false, 'desktop: timing evidence must not claim to be a canonical HAR');
+failUnless(desktop.deployment?.revision === CURRENT_E5_REVISION && desktop.deployment?.url === CURRENT_E5_URL,
+  'desktop: deployment must be the pinned current E5 revision and immutable URL');
 failUnless(desktop.methodology?.runCount === 3, 'desktop: methodology must require exactly three runs');
 assertProfile(desktop.profile, DESKTOP_PROFILE, 'desktop summary');
 failUnless(desktop.completeRunCount === 3 && desktop.expectedRunCount === 3, 'desktop: exactly 3/3 complete runs are required');
@@ -85,6 +94,9 @@ const desktopWireValues = [];
 for (const [index, run] of (desktop.runs ?? []).entries()) {
   const label = `desktop run ${index + 1}`;
   failUnless(run.runNumber === index + 1 && run.runCount === 3, `${label}: run numbering must be exact`);
+  failUnless(run.revision === desktop.deployment?.revision && run.requestedUrl === desktop.deployment?.url &&
+    run.finalUrl === desktop.deployment?.url,
+  `${label}: revision, requested URL, and final URL must match the pinned desktop deployment`);
   failUnless(run.captureComplete === true, `${label}: capture must be complete`);
   assertProfile(run.profile, DESKTOP_PROFILE, label);
   assertTrueFields(run.coldLoad, [
@@ -126,6 +138,13 @@ for (const [index, run] of (desktop.runs ?? []).entries()) {
   failUnless(canonicalWindow?.sourceRichRequestCount === 0, `${label}: source-rich must be absent before readiness`);
   failUnless(Array.isArray(canonicalWindow?.requests) && canonicalWindow.requests.length === 18, `${label}: canonical request inventory must contain 18 entries`);
   failUnless(finite(wire), `${label}: full wire bytes must be finite`);
+  const recomputedWire = (canonicalWindow?.requests ?? []).reduce((sum, request) =>
+    sum + (finite(request.encodedDataLength) ? request.encodedDataLength : Number.NaN), 0);
+  failUnless(finite(recomputedWire) && wire === recomputedWire,
+    `${label}: full wire bytes must equal the sum of all 18 encodedDataLength values`);
+  const documentRequests = (canonicalWindow?.requests ?? []).filter(({ type }) => type === 'Document');
+  failUnless(documentRequests.length === 1 && documentRequests[0].url === desktop.deployment?.url,
+    `${label}: canonical inventory must contain one Document for the pinned immutable URL`);
   failUnless(wire <= FULL_WIRE_LIMIT_BYTES, `${label}: ${wire} full wire bytes exceed ${FULL_WIRE_LIMIT_BYTES}`);
   failUnless(run.desktopBlockingGate?.actualFullWireBytes === wire, `${label}: wire total is inconsistent across the report`);
 
@@ -149,18 +168,25 @@ failUnless(desktopReadyMedian <= READY_LIMIT_MS, `desktop: median trusted readin
 failUnless(desktop.acceptance?.allPassed === true, 'desktop: evidence summary must pass every acceptance check');
 
 // Slow 4G is published diagnostics. Only a readiness regression over 15% blocks.
-failUnless(slow4g.specification === 'TZ 2.8 section 7', 'Slow 4G: specification must be TZ 2.8 section 7');
+failUnless(slow4g.specification === 'TZ 2.9 section 7', 'Slow 4G: specification must be TZ 2.9 section 7');
 failUnless(slow4g.reportType === 'deployed Slow 4G readiness-regression diagnostic',
-  'Slow 4G: report type must describe the TZ 2.8 readiness-regression diagnostic');
+  'Slow 4G: report type must describe the TZ 2.9 readiness-regression diagnostic');
 failUnless(slow4g.slow4gReferenceThresholds?.blocking === false, 'Slow 4G absolute thresholds must be explicitly non-blocking');
 failUnless(slow4g.methodology?.runCountPerDeployment === 3, 'Slow 4G: exactly three runs per deployment are required');
 assertProfile(slow4g.methodology?.profile, SLOW_4G_PROFILE, 'Slow 4G summary');
 const before = slow4g.profiles?.before;
 const after = slow4g.profiles?.after;
+failUnless(before?.revision === ACCEPTED_E4_REVISION && before?.url === ACCEPTED_E4_URL,
+  'Slow 4G before: accepted E4 revision and immutable URL must remain pinned');
+failUnless(after?.revision === CURRENT_E5_REVISION && after?.url === CURRENT_E5_URL,
+  'Slow 4G after: current E5 revision and immutable URL must remain pinned');
 failUnless(Array.isArray(before?.runs) && before.runs.length === 3, 'Slow 4G before: exactly three runs are required');
 failUnless(Array.isArray(after?.runs) && after.runs.length === 3, 'Slow 4G after: exactly three runs are required');
 
 const readinessValues = (profile, label) => (profile?.runs ?? []).map((run, index) => {
+  failUnless(run.runNumber === index + 1 && run.runCount === 3, `${label} run ${index + 1}: run numbering must be exact`);
+  failUnless(run.revision === profile?.revision && run.requestedUrl === profile?.url && run.finalUrl === profile?.url,
+    `${label} run ${index + 1}: revision, requested URL, and final URL must match its immutable profile`);
   assertProfile(run.profile, SLOW_4G_PROFILE, `${label} run ${index + 1}`);
   assertTrueFields(run.assertions, [
     'canonicalVisualAcceptedTrustedSentinelInput',
@@ -194,7 +220,7 @@ failUnless(slow4g.acceptance?.absoluteThresholdsBlocking === false &&
   slow4g.acceptance?.afterReadinessObservations === 3 &&
   slow4g.acceptance?.readinessRegressionPass === true &&
   slow4g.acceptance?.allPassed === true,
-  'Slow 4G: outer TZ 2.8 acceptance metadata contradicts the valid readiness result');
+  'Slow 4G: outer TZ 2.9 acceptance metadata contradicts the valid readiness result');
 
 const strictBeforePaintProofs = (before?.runs ?? []).filter((run) =>
   run.paintProof?.skeletonVisibleAtFcp === true && finite(run.metrics?.navigationToSkeletonPaintMs)).length;
@@ -207,7 +233,31 @@ failUnless(before?.medians?.navigationToSkeletonPaintMs === null, 'Slow 4G E4: n
 failUnless(slow4g.comparison?.navigationToSkeletonPaintDeltaMs === null, 'Slow 4G: skeleton delta must remain null/non-comparable');
 failUnless(after?.allRunsProveSkeletonAtFcp === true && after?.completeRunCount === 3, 'Slow 4G E5: skeleton proof must be complete in all three runs');
 
-// Actual deployed delivery: all 54 responses are Brotli, 18 eager requests/run, no lazy source chunk.
+// The one fresh E4+E5 comparison attempt is retained exactly because its E4
+// strict whole-run series was incomplete. Its current-E5 runs are the same
+// valid runs embedded in the accepted derived comparison above.
+failUnless(invalidSlow4g.specification === 'TZ 2.9 section 7', 'invalid Slow 4G attempt: specification must be TZ 2.9 section 7');
+failUnless(invalidSlow4g.validMeasurement === false && invalidSlow4g.excludedFromAcceptedRegressionComparison === true,
+  'invalid Slow 4G attempt must be explicitly excluded from the accepted regression metric');
+failUnless(invalidSlow4g.acceptance?.allPassed === false,
+  'invalid Slow 4G attempt must retain its original failing outer acceptance');
+failUnless(invalidSlow4g.profiles?.before?.completeRunCount === 2 && invalidSlow4g.profiles?.before?.expectedRunCount === 3,
+  'invalid Slow 4G attempt must retain the incomplete 2/3 fresh E4 baseline');
+failUnless(invalidSlow4g.profiles?.after?.completeRunCount === 3 && invalidSlow4g.profiles?.after?.expectedRunCount === 3,
+  'invalid Slow 4G attempt must retain all three valid current-E5 runs');
+failUnless(Array.isArray(invalidSlow4g.profiles?.before?.runs) && invalidSlow4g.profiles.before.runs.length === 3 &&
+  invalidSlow4g.profiles.before.runs.filter(({ captureComplete }) => captureComplete === true).length === 2,
+  'invalid Slow 4G attempt must embed all three fresh E4 runs with the original 2/3 completion distribution');
+readinessValues(invalidSlow4g.profiles?.before, 'invalid fresh Slow 4G E4');
+failUnless(JSON.stringify(invalidSlow4g.profiles?.after?.runs) === JSON.stringify(after?.runs),
+  'invalid Slow 4G attempt and accepted wrapper must embed the same current-E5 runs');
+failUnless(invalidSlow4g.profiles?.after?.revision === desktop.deployment?.revision &&
+  invalidSlow4g.profiles?.after?.url === desktop.deployment?.url,
+  'invalid Slow 4G attempt must remain bound to the current immutable E5 deployment');
+
+// Historical deployed encoding diagnostic: all 54 dc818 responses were Brotli,
+// with 18 eager requests/run and no lazy source chunk. The current blocking
+// full-wire value comes from the three current desktop runs above.
 assertProfile(delivery.methodology?.profile, {
   latencyMs: SLOW_4G_PROFILE.latencyMs,
   downloadBytesPerSecond: SLOW_4G_PROFILE.downloadBytesPerSecond,
@@ -288,6 +338,7 @@ failUnless(typeof invalidReadyGap.failurePhase === 'string' && typeof invalidRea
 const portableEvidenceSerialized = JSON.stringify({
   desktop,
   slow4g,
+  invalidSlow4g,
   delivery,
   readyGap,
   invalidReadyGap,
@@ -295,17 +346,19 @@ const portableEvidenceSerialized = JSON.stringify({
 failUnless(!/(?:file:\/\/\/|(?:^|["'(\s])[A-Za-z]:[\\/])/.test(portableEvidenceSerialized),
   'performance evidence must not contain machine-local absolute paths');
 
-// Cross-report bindings keep the verdict attached to one immutable E5 deployment.
+// Current blocking and regression evidence is attached to one immutable E5
+// deployment. Delivery encoding and the mark/input probe remain explicitly
+// historical dc818 diagnostics and are not relabelled as current captures.
 failUnless(desktop.deployment?.revision === slow4g.profiles?.after?.revision, 'reports: desktop and Slow 4G E5 revisions differ');
-failUnless(desktop.deployment?.revision === readyGap.targetRevision, 'reports: desktop and ready-gap revisions differ');
 failUnless(desktop.deployment?.url === slow4g.profiles?.after?.url, 'reports: desktop and Slow 4G E5 URLs differ');
-failUnless(desktop.deployment?.url === delivery.targetUrl && desktop.deployment?.url === readyGap.targetUrl,
-  'reports: desktop, delivery and ready-gap URLs differ');
+failUnless(readyGap.targetRevision === HISTORICAL_DC818_REVISION && readyGap.targetUrl === HISTORICAL_DC818_URL,
+  'reports: ready-gap diagnostic must remain labelled with its historical dc818 deployment');
+failUnless(delivery.targetUrl === readyGap.targetUrl,
+  'reports: historical delivery and ready-gap diagnostics must identify the same dc818 deployment URL');
 
-const crossSeriesMarkToInputDifferenceMs = afterReadyMedian - delivery.medians.editorReadyMs;
 const result = {
   stage: 'E5',
-  specification: 'TZ 2.8 section 7',
+  specification: 'TZ 2.9 section 7',
   blockingGates: {
     desktop: {
       profile: '10240 kbit/s, 40 ms latency, CPU x1',
@@ -317,10 +370,11 @@ const result = {
       pass: desktopSkeletonMedian <= SKELETON_LIMIT_MS && desktopReadyMedian <= READY_LIMIT_MS,
     },
     deployedFullWire: {
-      medianBytes: deliveryWireMedian,
+      source: 'current deployed desktop startup runs',
+      medianBytes: desktopWireMedian,
       limitBytes: FULL_WIRE_LIMIT_BYTES,
-      marginBytes: FULL_WIRE_LIMIT_BYTES - deliveryWireMedian,
-      pass: deliveryWireMedian <= FULL_WIRE_LIMIT_BYTES,
+      marginBytes: FULL_WIRE_LIMIT_BYTES - desktopWireMedian,
+      pass: desktopWireMedian <= FULL_WIRE_LIMIT_BYTES,
     },
     slow4gReadinessRegression: {
       previousAcceptedE4MedianMs: beforeReadyMedian,
@@ -337,17 +391,24 @@ const result = {
       reason: `E4 strict skeleton-at-FCP proof exists in ${strictBeforePaintProofs}/3 runs; E5 has ${strictAfterPaintProofs}/3. No E4 median or delta is claimed.`,
     },
     deployedEncoding: {
+      status: 'historical dc818 diagnostic; not relabelled as current-build evidence',
       brotliResponses: `${brotliResponseCount}/54`,
       eagerRequestsPerRun: 18,
       sourceRichRequestsBeforeReadiness: 0,
     },
     sameRunReadyGap: {
+      status: 'historical dc818 same-navigation semantic diagnostic; not current-build timing evidence',
       productEditorReadyMarkAtMs: markAt,
       trustedInputAcceptedAtMs: trustedInputAt,
       markToTrustedInputMs: Number(sameRunMarkToInputMs.toFixed(3)),
-      crossSeriesDifferenceMs: Number(crossSeriesMarkToInputDifferenceMs.toFixed(3)),
-      verdict: `The sampled same-navigation gap is ${sameRunMarkToInputMs.toFixed(1)} ms. The ${crossSeriesMarkToInputDifferenceMs.toFixed(1)} ms difference comes from separate diagnostic series and is not a valid application readiness gap.`,
+      verdict: `The sampled same-navigation gap is ${sameRunMarkToInputMs.toFixed(1)} ms. Cross-series or cross-revision endpoint subtraction is intentionally not reported as an application readiness gap.`,
       invalidHarnessAttemptExcluded: invalidReadyGap.validMeasurement === false,
+    },
+    invalidFreshSlow4gBaselineAttempt: {
+      retained: true,
+      acceptedAsMeasurement: false,
+      currentE5RunsRetained: invalidSlow4g.profiles?.after?.runs?.length,
+      reason: invalidSlow4g.exclusionReason,
     },
   },
   failures,
