@@ -3,21 +3,25 @@
 Browser-only WYSIWYG HTML editor focused on cleaning copied and generated markup. The application uses a self-hosted TinyMCE 8 visual editor and does not send document contents to a backend or to Tiny Cloud.
 
 The deployment target `https://app.phphtmledit.com/` is live. Its Cloudflare
-Pages custom-domain status is **Active** and SSL is enabled. The public endpoint
-currently serves the accepted E4 build from production `main`—the E5 About menu
-is absent—so domain availability is not evidence of an E5 production
-deployment. The public source repository is
+Pages custom-domain status is **Active** and SSL is enabled. The first verified
+E5 production application deployment was built from commit
+`b3dc011b5f3381e10237f6af6c2c7f7a55d9e955`; its immutable Cloudflare URL is
+`https://0e13e6fa.phphtmledit-editor.pages.dev/`. The custom domain visibly
+serves E5, including the About menu. Live root, hashed-asset, and
+`/licenses.txt` headers have been verified. The public source repository is
 `https://github.com/phphtmledit/editor`.
 
-**The current E5 branch adds embedding, browser-visible legal links, action
-icons, and a Cloudflare Pages delivery policy to the accepted E4 interface.**
+**The deployed E5 candidate adds embedding, browser-visible legal links,
+action icons, and a Cloudflare Pages delivery policy to the accepted E4
+interface.**
 TinyMCE and CodeMirror 6 share one HTML fragment, while ten independently
 testable cleaning rules remove Word/Office markup, presentation attributes,
 empty structures and typographic artifacts. The verified stage evidence is
 documented in `docs/E5.md`; the accepted E0–E4 reports remain unchanged in
-`docs/E0.md` through `docs/E4.md`. E5 still requires acceptance and deployment
-from `main`, live E5 header verification, host embedding, post-embed Lighthouse,
-and framing checks listed in its report.
+`docs/E0.md` through `docs/E4.md`. The E5 implementation candidate is merged
+and deployed. Host integration still requires a new instrumented pre-iframe
+baseline, iframe insertion, post-embed Lighthouse, and framing checks listed in
+the E5 report.
 
 On desktop the visual and source panels share a keyboard- and pointer-adjustable
 splitter. Below 900 px they become accessible tabs. TinyMCE-to-source updates
@@ -96,9 +100,10 @@ from both builds.
 
 For Cloudflare Pages, use `npm run build` as the build command and `dist` as the
 output directory. The Pages custom-domain association for
-`app.phphtmledit.com` is **Active** and SSL is enabled. It currently serves the
-accepted E4 build from production `main`; E5 acceptance, merge/deployment, and
-verification of the live E5 headers remain pending.
+`app.phphtmledit.com` is **Active**, SSL is enabled, and the E5 application was
+verified against immutable deployment `https://0e13e6fa.phphtmledit-editor.pages.dev/`
+from commit `b3dc011b5f3381e10237f6af6c2c7f7a55d9e955`. The live root, hashed-asset,
+and license-delivery headers have been verified.
 
 `npm run size` consumes the sanitized E5 production captures in
 `reports/network-e5-cold.json` and `reports/network-e5-cumulative.json`, checks

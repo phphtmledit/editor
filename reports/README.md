@@ -207,7 +207,7 @@ and is a lower estimate; the latter observes a separate deployed graph at a
 different capture time and includes hosting compression plus HTTP/2 overhead.
 Neither value may be substituted for the other.
 
-## E5 host baseline before embedding
+## Original E5 host baseline before embedding
 
 - `lighthouse-host-baseline-e5.json` — the English five-run summary and medians
   for `https://phphtmledit.com/` before any iframe was inserted.
@@ -218,14 +218,21 @@ Neither value may be substituted for the other.
 The page contained zero iframes and made zero requests to
 `app.phphtmledit.com` in all five runs. Median FCP/LCP is 1,753.5425 ms, Speed
 Index is 1,988.316824 ms, TBT is 0 ms, and CLS is 0.0000592733; the median
-Performance score of 99 is reference-only. This baseline is immutable: the
-post-embedding comparison must be stored separately and must not overwrite it.
+Performance score of 99 is reference-only. This baseline is immutable.
 
-The Cloudflare Pages custom-domain status is **Active**, SSL is enabled, and the
-public URL loads successfully. Production `main` still serves accepted E4—the
-E5 About menu is absent—so the live domain is not E5 production evidence. E5
-acceptance and merge/deployment, live E5 header verification, iframe insertion,
-the matching five-run post-embed Lighthouse series, allowed-origin
-clipboard/framing checks, and the denied `phe-preview.com` framing check remain
-pending manual E5 work. Their absence is not represented as a passed acceptance
-criterion.
+The series predates specification 2.9 and does not contain the required
+first-viewport slot geometry or per-run frame-load state. It remains historical
+evidence, but a new instrumented five-run pre-iframe baseline must be captured
+and paired with a separately stored post-embed series using the identical
+profile and slot position. Neither new series may overwrite this one.
+
+The first verified E5 production application deployment was built from commit
+`b3dc011b5f3381e10237f6af6c2c7f7a55d9e955`; its immutable Cloudflare URL is
+`https://0e13e6fa.phphtmledit-editor.pages.dev/`. The custom domain is
+**Active** with SSL enabled and visibly serves E5, including the About menu.
+Live root, hashed-asset, and `/licenses.txt` headers have been verified.
+
+The new instrumented pre-iframe baseline, iframe insertion, the matching
+five-run post-embed Lighthouse series, allowed-origin clipboard/framing checks,
+and the denied `phe-preview.com` framing check remain pending host-integration
+work. Their absence is not represented as a passed acceptance criterion.

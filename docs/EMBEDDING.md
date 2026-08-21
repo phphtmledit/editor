@@ -122,11 +122,15 @@ Publish the composite Performance score for reference only. Do not use it as
 an acceptance gate: its run-to-run variance is larger than the former
 two-point allowance.
 
-The pre-iframe baseline for `https://phphtmledit.com/` is recorded in
+The original historical pre-iframe baseline for `https://phphtmledit.com/` is recorded in
 `reports/lighthouse-host-baseline-e5.json`. Its five-run medians are
 1,753.5425 ms FCP, 1,753.5425 ms LCP, 1,988.3168240007462 ms Speed Index,
 0 ms TBT, and 0.00005927330338111205 CLS; the reference Performance score is
-99. Do not overwrite this baseline with the post-embed measurement.
+99. It predates specification 2.9 and lacks per-run reserved-slot geometry and
+frame-load state, so it does not satisfy the current before-series contract. A
+new instrumented five-run baseline must be recorded before inserting the
+iframe. Do not overwrite the historical baseline or reuse it as the post-embed
+comparison input.
 
 ## Deployment checks
 

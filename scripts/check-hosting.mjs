@@ -126,7 +126,10 @@ const verifyDocumentationAndBaseline = async () => {
   loading="lazy"
   allow="clipboard-write"
 ></iframe>`;
-  const iframeBlock = embedding.match(/```html\s*([\s\S]*?)```/i)?.[1]?.trim();
+  const iframeBlock = embedding
+    .match(/```html\s*([\s\S]*?)```/i)?.[1]
+    ?.trim()
+    .replace(/\r\n?/g, '\n');
   if (iframeBlock !== expectedIframe) {
     failures.push('docs/EMBEDDING.md must contain the exact approved iframe contract');
   }
