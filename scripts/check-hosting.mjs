@@ -121,7 +121,7 @@ const verifyDocumentationAndBaseline = async () => {
 
   const expectedIframe = `<iframe
   src="https://app.phphtmledit.com/?theme=auto"
-  style="width:100%;height:760px;border:0;display:block"
+  style="width:100%;height:clamp(520px, 90vh, 760px);border:0;display:block"
   title="HTML editor"
   loading="lazy"
   allow="clipboard-write"

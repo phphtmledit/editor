@@ -14,7 +14,7 @@ not cause layout shift:
 ```html
 <iframe
   src="https://app.phphtmledit.com/?theme=auto"
-  style="width:100%;height:760px;border:0;display:block"
+  style="width:100%;height:clamp(520px, 90vh, 760px);border:0;display:block"
   title="HTML editor"
   loading="lazy"
   allow="clipboard-write"
@@ -25,9 +25,12 @@ Keep every attribute shown above:
 
 - `loading="lazy"` keeps the editor out of the host page's initial critical
   path when it starts below the viewport.
-- A reserved `height` prevents iframe-attributable CLS. The host may choose a
-  different fixed height, but it must reserve that space before the editor
-  loads.
+- The recommended `height: clamp(520px, 90vh, 760px)` keeps the editor useful
+  on shorter viewports without exceeding its desktop target height. It is part
+  of the host's initial layout, so the space is reserved before the editor
+  loads and the iframe adds no CLS. If the host moves this rule to a class, the
+  equivalent CSS must still be present in the initial stylesheet; do not set
+  the height in response to the iframe's `load` event.
 - `allow="clipboard-write"` delegates the modern Clipboard API to the
   cross-origin frame. Without it, the editor can only attempt its legacy
   fallback and never reports a copy as successful unless the fallback worked.
@@ -43,6 +46,12 @@ fullscreen plugin is not shipped.
 The `theme` parameter is stable, but the MVP is intentionally light-only.
 Missing, `light`, `dark`, `auto`, and unsupported values all resolve to the
 light token set. The application explicitly declares `color-scheme: light`.
+
+Keep `?theme=auto` in embeds. It is a forward-looking contract: it resolves to
+light today, but when a dark theme is added, existing `auto` embeds will be able
+to follow the future automatic theme selection without any host-page markup
+change. Use an explicit `light` value only if the host intentionally wants to
+pin the light theme after that capability exists.
 
 There is no `postMessage` API in the MVP. Do not build host-to-editor commands
 or document exchange around undocumented window messages.
@@ -81,9 +90,33 @@ attempt to read or mirror editor state.
 
 Measure the public host **before** inserting the iframe. Run Lighthouse five
 times with one fixed profile and calculate independent medians for FCP, LCP,
-Speed Index, TBT, and CLS. After adding the exact iframe, repeat the same
-five-run profile on the same page and compare those five median metrics. The
-iframe must add zero CLS.
+Speed Index, TBT, and CLS. After adding the exact iframe, repeat the same five
+runs on the same page. The Lighthouse profile, viewport, initial scroll
+position, reserved editor-slot geometry, and iframe position relative to the
+first viewport must be identical in both series. The iframe must add zero CLS.
+
+For every individual before and after run, record all of the following:
+
+- the initial viewport dimensions and scroll position;
+- the reserved editor slot's `top` and `bottom` relative to that initial
+  viewport, plus a classification of whether it is inside, intersects, or is
+  below the first viewport;
+- whether an iframe element was present;
+- whether the editor frame actually loaded, established by its `load` event or
+  an observed request to `app.phphtmledit.com`, not merely by the presence of a
+  lazy iframe element.
+
+In the before series, record the same reserved slot before it is populated;
+`iframePresent` and `iframeLoaded` are both false, and there must be no request
+to the application origin. In the after series, record the iframe in that exact
+slot and report `iframeLoaded` separately for each run. Do not scroll or add an
+interaction in only one series to trigger lazy loading.
+
+This evidence is essential for interpreting `loading="lazy"`. A frame below the
+fold may never be requested during Lighthouse, in which case a zero-impact
+result only proves the cost of the reserved slot, not the cost of a loaded
+editor. Treating such a run as proof that a loaded iframe has no effect would
+make the comparison formally complete but factually empty.
 
 Publish the composite Performance score for reference only. Do not use it as
 an acceptance gate: its run-to-run variance is larger than the former
